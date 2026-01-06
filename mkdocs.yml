@@ -3,8 +3,8 @@ site_url: https://n00b-5634.github.io/OpenIndiana-SiteReimagined/
 site_dir: site_docs
 
 theme:
-  name: null
-  custom_dir: overrides  # Best to use a folder for your main.html template
+  name: mkdocs
+  custom_dir: overrides
 
 extra_css:
   - css/style.css

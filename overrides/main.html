@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{# This adds Tailwind to the head of every page #}
+{% block extrahead %}
+    <script src="https://cdn.tailwindcss.com"></script>
+{% endblock %}
+
+{# This replaces the default content area with your styled version #}
+{% block content %}
+    <div class="bg-[#0f172a] text-slate-200 p-8 rounded-lg shadow-2xl border border-slate-800">
+        <div class="prose prose-invert max-w-none">
+            {{ page.content }}
+        </div>
+    </div>
+{% endblock %}

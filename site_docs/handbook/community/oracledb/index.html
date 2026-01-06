@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://n00b-5634.github.io/OpenIndiana-SiteReimagined/handbook/community/oracledb/">
+        <link rel="shortcut icon" href="../../../img/favicon.ico">
+        <title>Oracledb - OpenIndiana Reimagined</title>
+        <link href="../../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
+        <link href="../../../css/style.css" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../../..">OpenIndiana Reimagined</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="../../.." class="nav-link">Welcome to OpenIndiana Reimagined</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Books <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../../books/about/" class="dropdown-item">About</a>
+</li>
+                                    
+<li>
+    <a href="../../../books/advanced/" class="dropdown-item">Advanced</a>
+</li>
+                                    
+<li>
+    <a href="../../../books/basic/" class="dropdown-item">Basic</a>
+</li>
+                                    
+<li>
+    <a href="../../../books/develop/" class="dropdown-item">Develop</a>
+</li>
+                                    
+<li>
+    <a href="../../../books/express/" class="dropdown-item">Express</a>
+</li>
+                                    
+<li>
+    <a href="../../../books/trusted/" class="dropdown-item">Trusted</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Community hcl <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../../community-hcl/components/" class="dropdown-item">Components</a>
+</li>
+                                    
+<li>
+    <a href="../../../community-hcl/getting-hardware-info/" class="dropdown-item">Getting hardware info</a>
+</li>
+                                    
+<li>
+    <a href="../../../community-hcl/systems/" class="dropdown-item">Systems</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Contrib <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../../contrib/content/" class="dropdown-item">Content</a>
+</li>
+                                    
+<li>
+    <a href="../../../contrib/getting-started/" class="dropdown-item">Getting started</a>
+</li>
+                                    
+<li>
+    <a href="../../../contrib/git/" class="dropdown-item">Git</a>
+</li>
+                                    
+<li>
+    <a href="../../../contrib/markdown/" class="dropdown-item">Markdown</a>
+</li>
+                                    
+<li>
+    <a href="../../../contrib/roles/" class="dropdown-item">Roles</a>
+</li>
+                                    
+<li>
+    <a href="../../../contrib/style/" class="dropdown-item">Style</a>
+</li>
+                                    
+<li>
+    <a href="../../../contrib/tools/" class="dropdown-item">Tools</a>
+</li>
+                                    
+<li>
+    <a href="../../../contrib/topics/" class="dropdown-item">Topics</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Dev <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../../dev/building-openindiana/" class="dropdown-item">Building openindiana</a>
+</li>
+                                    
+<li>
+    <a href="../../../dev/distribution-constructor/" class="dropdown-item">Distribution constructor</a>
+</li>
+                                    
+<li>
+    <a href="../../../dev/existing-tasks/" class="dropdown-item">Existing tasks</a>
+</li>
+                                    
+<li>
+    <a href="../../../dev/graphics-stack/" class="dropdown-item">Graphics stack</a>
+</li>
+                                    
+<li>
+    <a href="../../../dev/repo-cleanup/" class="dropdown-item">Repo cleanup</a>
+</li>
+                                    
+<li>
+    <a href="../../../dev/userland/" class="dropdown-item">Userland</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Handbook <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../appendix/" class="dropdown-item">Appendix</a>
+</li>
+                                    
+<li>
+    <a href="../../common-tasks/" class="dropdown-item">Common tasks</a>
+</li>
+                                    
+<li>
+    <a href="../" class="dropdown-item">Community</a>
+</li>
+                                    
+<li>
+    <a href="../../getting-started/" class="dropdown-item">Getting started</a>
+</li>
+                                    
+<li>
+    <a href="../../legacy-branch/" class="dropdown-item">Legacy branch</a>
+</li>
+                                    
+<li>
+    <a href="../../network-communications/" class="dropdown-item">Network communications</a>
+</li>
+                                    
+<li>
+    <a href="../../openindiana-download-mirrors/" class="dropdown-item">Openindiana download mirrors</a>
+</li>
+                                    
+<li>
+    <a href="../../pdfdocs/" class="dropdown-item">Pdfdocs</a>
+</li>
+                                    
+<li>
+    <a href="../../sunray/" class="dropdown-item">Sunray</a>
+</li>
+                                    
+<li>
+    <a href="../../systems-administration/" class="dropdown-item">Systems administration</a>
+</li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Community</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../inputmethod/" class="dropdown-item">Inputmethod</a>
+</li>
+            
+<li>
+    <a href="./" class="dropdown-item active">Oracledb</a>
+</li>
+            
+<li>
+    <a href="../quikstor/" class="dropdown-item">Quikstor</a>
+</li>
+            
+<li>
+    <a href="../samqfs/" class="dropdown-item">Samqfs</a>
+</li>
+            
+<li>
+    <a href="../squeak/" class="dropdown-item">Squeak</a>
+</li>
+            
+<li>
+    <a href="../texlive/" class="dropdown-item">Texlive</a>
+</li>
+            
+<li>
+    <a href="../vagrant/" class="dropdown-item">Vagrant</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Misc <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../../misc/conduct/" class="dropdown-item">Conduct</a>
+</li>
+                                    
+<li>
+    <a href="../../../misc/oi-docs/" class="dropdown-item">Oi docs</a>
+</li>
+                                    
+<li>
+    <a href="../../../misc/openindiana/" class="dropdown-item">Openindiana</a>
+</li>
+                                    
+<li>
+    <a href="../../../misc/pdl/" class="dropdown-item">PUBLIC DOCUMENTATION LICENSE</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Release notes <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../../release-notes/2015.03-release-notes/" class="dropdown-item">2015.03 release notes</a>
+</li>
+                                    
+<li>
+    <a href="../../../release-notes/2015.10-release-notes/" class="dropdown-item">2015.10 release notes</a>
+</li>
+                                    
+<li>
+    <a href="../../../release-notes/2016.04-release-notes/" class="dropdown-item">2016.04 release notes</a>
+</li>
+                                    
+<li>
+    <a href="../../../release-notes/2016.10-release-notes/" class="dropdown-item">2016.10 release notes</a>
+</li>
+                                    
+<li>
+    <a href="../../../release-notes/2017.04-release-notes/" class="dropdown-item">2017.04 release notes</a>
+</li>
+                                    
+<li>
+    <a href="../../../release-notes/2017.10-release-notes/" class="dropdown-item">2017.10 release notes</a>
+</li>
+                                    
+<li>
+    <a href="../../../release-notes/2018.04-release-notes/" class="dropdown-item">2018.04 release notes</a>
+</li>
+                                    
+<li>
+    <a href="../../../release-notes/2018.10-release-notes/" class="dropdown-item">2018.10 release notes</a>
+</li>
+                                    
+<li>
+    <a href="../../../release-notes/2019.04-release-notes/" class="dropdown-item">2019.04 release notes</a>
+</li>
+                                    
+<li>
+    <a href="../../../release-notes/2019.10-release-notes/" class="dropdown-item">2019.10 release notes</a>
+</li>
+                                    
+<li>
+    <a href="../../../release-notes/2020.04-release-notes/" class="dropdown-item">2020.04 release notes</a>
+</li>
+                                    
+<li>
+    <a href="../../../release-notes/2020.10-release-notes/" class="dropdown-item">2020.10 release notes</a>
+</li>
+                                    
+<li>
+    <a href="../../../release-notes/latest-changes/" class="dropdown-item">Latest changes</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Retired <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../../retired/" class="dropdown-item">Index</a>
+</li>
+                                    
+<li>
+    <a href="../../../retired/books/" class="dropdown-item">Books</a>
+</li>
+                                    
+<li>
+    <a href="../../../retired/bsd/" class="dropdown-item">Bsd</a>
+</li>
+                                    
+<li>
+    <a href="../../../retired/old-handbook/" class="dropdown-item">TODO: Booting</a>
+</li>
+                                    
+<li>
+    <a href="../../../retired/project/" class="dropdown-item">Project</a>
+</li>
+                                    
+<li>
+    <a href="../../../retired/sphinx/" class="dropdown-item">Sphinx</a>
+</li>
+                                    
+<li>
+    <a href="../../../retired/toolchain/" class="dropdown-item">Toolchain</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../inputmethod/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../quikstor/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+    <div class="bg-[#0f172a] text-slate-200 p-8 rounded-lg shadow-2xl border border-slate-800">
+        <div class="prose prose-invert max-w-none">
+            <!--
+
+The contents of this Documentation are subject to the Public Documentation License Version 1.01
+ (the "License"); you may only use this Documentation if you comply with the terms of this License.
+A copy of the License is available at http://illumos.org/license/PDL.
+
+
+The Original Documentation is _________________.
+
+The Initial Writer of the Original Documentation is ___________ Copyright (C)_________[Insert year(s)].
+All Rights Reserved. (Initial Writer contact(s):________________[Insert hyperlink/alias]).
+
+Contributor(s): ______________________________________.
+
+Portions created by ______ are Copyright (C)_________[Insert year(s)].
+All Rights Reserved. (Contributor contact(s):________________[Insert hyperlink/alias]).
+
+-->
+
+<h1 id="installing-oracle-databases-native-or-vagrant">Installing Oracle Databases (Native or Vagrant)</h1>
+<p>Originally contributed by OpenIndiana community member Franklin Ronald, Franklin Ronald's article details the steps required for the native installation of Oracle Database 11R2 on OpenIndiana Hipster.  Alternatively it is possible to run Oracle RAC or any other Oracle Database software using VirtualBox and Vagrant.</p>
+<p>Link to PDF Document: <a href="../../pdf/HowToInstallOracleDB.pdf">How to Install Oracle Database 11R2 on OpenIndiana Hipster</a></p>
+<div class="note" markdown="1">
+!!! note
+    It is not recommended to run Oracle Database on OpenIndiana in a production environment. Oracle has a restricted list of supported operating systems and unfortunately OpenIndiana is not in it. The purpose of the Installing 11R2 on OI article is to install the Oracle Database for use in a development environment.
+</div>
+
+<p>For development purposes it is also possible to setup Oracle Database 18, 19 and 21.3 using Vagrant.  See the Vagrant documentation for more information.</p>
+<p>Vagrantfile are provided by Oracle, for testing products such as the Oracle Database.</p>
+<p>As ordinary login user do:</p>
+<pre><code class="language-none">        $ mkdir -p /scratch/oracle/vagrant-projects
+</code></pre>
+<p>Then clone the Oracle vagrant projects :</p>
+<pre><code class="language-none">        $ cd /scratch/oracle/vagrant-projects
+        $ git clone https://github.com/oracle/vagrant-projects.git .
+</code></pre>
+<p>Some interesting Oracle Database products can be built :</p>
+<pre><code class="language-none">        $ cd /scratch/oracle/vagrant-projects
+        $ cd OracleDatabase/
+        $ ls
+        11.2.0.2   12.2.0.1   18.4.0-XE  21.3.0
+        12.1.0.2   18.3.0     19.3.0     README.md
+</code></pre>
+<p>For example to build a 21.3 Oracle Database provided you can download from OTN (Oracle Tech Net) the LINUX.X64_213000_db_home.zip Oracle product :</p>
+<pre><code class="language-none">        $ cd 21.3.0
+        $ vagrant up
+        Bringing machine 'oracle-21c-vagrant' up with 'virtualbox' provider...
+        ==&gt; oracle-21c-vagrant: Importing base box 'oraclelinux/8'...
+        ==&gt; oracle-21c-vagrant: Matching MAC address for NAT networking...
+
+        ... lots of messages ---
+
+        oracle-21c-vagrant: Oracle Database 21c Enterprise Edition Release 21.0.0.0.0 - Production
+        oracle-21c-vagrant: Version 21.3.0.0.0
+</code></pre>
+<p>This is an example Vagrantfile to deploy a VirtualBox VM called oracle-21c-vagrant running Linux and Oracle Database 21c.
+</div></p>
+        </div>
+    </div>
+
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../../../js/jquery-3.6.0.min.js"></script>
+        <script src="../../../js/bootstrap.min.js"></script>
+        <script>
+            var base_url = "../../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../../js/base.js"></script>
+        <script src="../../../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
