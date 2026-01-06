@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://n00b-5634.github.io/OpenIndiana-SiteReimagined/retired/sphinx/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Sphinx - OpenIndiana Reimagined</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
+        <link href="../../css/style.css" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../..">OpenIndiana Reimagined</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="../.." class="nav-link">Welcome to OpenIndiana Reimagined</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Books <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../books/about/" class="dropdown-item">About</a>
+</li>
+                                    
+<li>
+    <a href="../../books/advanced/" class="dropdown-item">Advanced</a>
+</li>
+                                    
+<li>
+    <a href="../../books/basic/" class="dropdown-item">Basic</a>
+</li>
+                                    
+<li>
+    <a href="../../books/develop/" class="dropdown-item">Develop</a>
+</li>
+                                    
+<li>
+    <a href="../../books/express/" class="dropdown-item">Express</a>
+</li>
+                                    
+<li>
+    <a href="../../books/trusted/" class="dropdown-item">Trusted</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Community hcl <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../community-hcl/components/" class="dropdown-item">Components</a>
+</li>
+                                    
+<li>
+    <a href="../../community-hcl/getting-hardware-info/" class="dropdown-item">Getting hardware info</a>
+</li>
+                                    
+<li>
+    <a href="../../community-hcl/systems/" class="dropdown-item">Systems</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Contrib <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../contrib/content/" class="dropdown-item">Content</a>
+</li>
+                                    
+<li>
+    <a href="../../contrib/getting-started/" class="dropdown-item">Getting started</a>
+</li>
+                                    
+<li>
+    <a href="../../contrib/git/" class="dropdown-item">Git</a>
+</li>
+                                    
+<li>
+    <a href="../../contrib/markdown/" class="dropdown-item">Markdown</a>
+</li>
+                                    
+<li>
+    <a href="../../contrib/roles/" class="dropdown-item">Roles</a>
+</li>
+                                    
+<li>
+    <a href="../../contrib/style/" class="dropdown-item">Style</a>
+</li>
+                                    
+<li>
+    <a href="../../contrib/tools/" class="dropdown-item">Tools</a>
+</li>
+                                    
+<li>
+    <a href="../../contrib/topics/" class="dropdown-item">Topics</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Dev <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../dev/building-openindiana/" class="dropdown-item">Building openindiana</a>
+</li>
+                                    
+<li>
+    <a href="../../dev/distribution-constructor/" class="dropdown-item">Distribution constructor</a>
+</li>
+                                    
+<li>
+    <a href="../../dev/existing-tasks/" class="dropdown-item">Existing tasks</a>
+</li>
+                                    
+<li>
+    <a href="../../dev/graphics-stack/" class="dropdown-item">Graphics stack</a>
+</li>
+                                    
+<li>
+    <a href="../../dev/repo-cleanup/" class="dropdown-item">Repo cleanup</a>
+</li>
+                                    
+<li>
+    <a href="../../dev/userland/" class="dropdown-item">Userland</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Handbook <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../handbook/appendix/" class="dropdown-item">Appendix</a>
+</li>
+                                    
+<li>
+    <a href="../../handbook/common-tasks/" class="dropdown-item">Common tasks</a>
+</li>
+                                    
+<li>
+    <a href="../../handbook/community/" class="dropdown-item">Community</a>
+</li>
+                                    
+<li>
+    <a href="../../handbook/getting-started/" class="dropdown-item">Getting started</a>
+</li>
+                                    
+<li>
+    <a href="../../handbook/legacy-branch/" class="dropdown-item">Legacy branch</a>
+</li>
+                                    
+<li>
+    <a href="../../handbook/network-communications/" class="dropdown-item">Network communications</a>
+</li>
+                                    
+<li>
+    <a href="../../handbook/openindiana-download-mirrors/" class="dropdown-item">Openindiana download mirrors</a>
+</li>
+                                    
+<li>
+    <a href="../../handbook/pdfdocs/" class="dropdown-item">Pdfdocs</a>
+</li>
+                                    
+<li>
+    <a href="../../handbook/sunray/" class="dropdown-item">Sunray</a>
+</li>
+                                    
+<li>
+    <a href="../../handbook/systems-administration/" class="dropdown-item">Systems administration</a>
+</li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Community</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../handbook/community/inputmethod/" class="dropdown-item">Inputmethod</a>
+</li>
+            
+<li>
+    <a href="../../handbook/community/oracledb/" class="dropdown-item">Oracledb</a>
+</li>
+            
+<li>
+    <a href="../../handbook/community/quikstor/" class="dropdown-item">Quikstor</a>
+</li>
+            
+<li>
+    <a href="../../handbook/community/samqfs/" class="dropdown-item">Samqfs</a>
+</li>
+            
+<li>
+    <a href="../../handbook/community/squeak/" class="dropdown-item">Squeak</a>
+</li>
+            
+<li>
+    <a href="../../handbook/community/texlive/" class="dropdown-item">Texlive</a>
+</li>
+            
+<li>
+    <a href="../../handbook/community/vagrant/" class="dropdown-item">Vagrant</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Misc <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../misc/conduct/" class="dropdown-item">Conduct</a>
+</li>
+                                    
+<li>
+    <a href="../../misc/oi-docs/" class="dropdown-item">Oi docs</a>
+</li>
+                                    
+<li>
+    <a href="../../misc/openindiana/" class="dropdown-item">Openindiana</a>
+</li>
+                                    
+<li>
+    <a href="../../misc/pdl/" class="dropdown-item">PUBLIC DOCUMENTATION LICENSE</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Release notes <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../release-notes/2015.03-release-notes/" class="dropdown-item">2015.03 release notes</a>
+</li>
+                                    
+<li>
+    <a href="../../release-notes/2015.10-release-notes/" class="dropdown-item">2015.10 release notes</a>
+</li>
+                                    
+<li>
+    <a href="../../release-notes/2016.04-release-notes/" class="dropdown-item">2016.04 release notes</a>
+</li>
+                                    
+<li>
+    <a href="../../release-notes/2016.10-release-notes/" class="dropdown-item">2016.10 release notes</a>
+</li>
+                                    
+<li>
+    <a href="../../release-notes/2017.04-release-notes/" class="dropdown-item">2017.04 release notes</a>
+</li>
+                                    
+<li>
+    <a href="../../release-notes/2017.10-release-notes/" class="dropdown-item">2017.10 release notes</a>
+</li>
+                                    
+<li>
+    <a href="../../release-notes/2018.04-release-notes/" class="dropdown-item">2018.04 release notes</a>
+</li>
+                                    
+<li>
+    <a href="../../release-notes/2018.10-release-notes/" class="dropdown-item">2018.10 release notes</a>
+</li>
+                                    
+<li>
+    <a href="../../release-notes/2019.04-release-notes/" class="dropdown-item">2019.04 release notes</a>
+</li>
+                                    
+<li>
+    <a href="../../release-notes/2019.10-release-notes/" class="dropdown-item">2019.10 release notes</a>
+</li>
+                                    
+<li>
+    <a href="../../release-notes/2020.04-release-notes/" class="dropdown-item">2020.04 release notes</a>
+</li>
+                                    
+<li>
+    <a href="../../release-notes/2020.10-release-notes/" class="dropdown-item">2020.10 release notes</a>
+</li>
+                                    
+<li>
+    <a href="../../release-notes/latest-changes/" class="dropdown-item">Latest changes</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Retired <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../" class="dropdown-item">Index</a>
+</li>
+                                    
+<li>
+    <a href="../books/" class="dropdown-item">Books</a>
+</li>
+                                    
+<li>
+    <a href="../bsd/" class="dropdown-item">Bsd</a>
+</li>
+                                    
+<li>
+    <a href="../old-handbook/" class="dropdown-item">TODO: Booting</a>
+</li>
+                                    
+<li>
+    <a href="../project/" class="dropdown-item">Project</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active">Sphinx</a>
+</li>
+                                    
+<li>
+    <a href="../toolchain/" class="dropdown-item">Toolchain</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../project/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../toolchain/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+    <div class="bg-[#0f172a] text-slate-200 p-8 rounded-lg shadow-2xl border border-slate-800">
+        <div class="prose prose-invert max-w-none">
+            <!--
+
+The contents of this Documentation are subject to the Public Documentation License Version 1.01
+(the "License"); you may only use this Documentation if you comply with the terms of this License.
+A copy of the License is available at http://illumos.org/license/PDL.
+
+The Original Documentation is _________________.
+
+The Initial Writer of the Original Documentation is ___________ Copyright (C)_________[Insert year(s)].
+All Rights Reserved. (Initial Writer contact(s):________________[Insert hyperlink/alias]).
+
+Contributor(s): ______________________________________.
+
+Portions created by ______ are Copyright (C)_________[Insert year(s)].
+All Rights Reserved. (Contributor contact(s):________________[Insert hyperlink/alias]).
+
+-->
+
+<h1 id="building-a-document-management-toolchain-using-sphinx">Building a Document Management Toolchain using Sphinx</h1>
+<h2 id="introduction">Introduction</h2>
+<p>This article looks at the Sphinx documentation management framework and how it could be used as part of a document management toolchain.
+Sphinx is a python based docs framework and uses RestructuredText as it's text markup language.</p>
+<h3 id="system-characteristics">System Characteristics</h3>
+<ul>
+<li>Easy to use</li>
+<li>TOC is easy to navigate.</li>
+<li>Produces a very professional looking end product.</li>
+<li>Processes text markup into highly polished, searchable and indexed HTML docs (as well as PDF and EPUB).</li>
+<li>Produces chunked HTML by means of pulling together several smaller documents into one larger document.</li>
+</ul>
+<h3 id="editing-tools">Editing tools</h3>
+<ul>
+<li>As a text markup any text editor can be used.</li>
+<li>There is a VIM plugin for RestructuredTEXT named RIV, which provides text folding, syntax highlighting, etc., but it's rather buggy.</li>
+<li>Another available plugin is InstantRST which provides a realtime text parsing webserver to provide you realtime feedback for your edits.</li>
+</ul>
+<h2 id="tool-chain-installation">Tool chain installation</h2>
+<p>You can install Sphinx on OpenIndiana Hipster, but latex is required for converting documents to PDF.
+I'm not sure whether latex is available on Hipster.</p>
+<h3 id="linux-mint-172">Linux Mint 17.2</h3>
+<ul>
+<li><code>sudo apt-get install git</code></li>
+<li><code>sudo apt-get install python-sphinx</code></li>
+<li><code>pip install https://github.com/Rykka/instant-rst.py/archive/master.zip</code></li>
+</ul>
+<h3 id="openindiana-hipster">OpenIndiana Hipster</h3>
+<ul>
+<li><code>pkg install git</code></li>
+<li><code>pkg install pip</code></li>
+<li><code>pip install sphinx</code></li>
+<li><code>pip install https://github.com/Rykka/instant-rst.py/archive/master.zip</code></li>
+</ul>
+<h3 id="setup-vim-for-using-sphinx">Setup VIM for using Sphinx</h3>
+<ul>
+<li>Configure Vundle for VIM (Vundle is used to manage VIM plugins)<ul>
+<li>backup your VIM configuration by renaming your existing .vimrc and .vim folder</li>
+<li><code>git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim</code></li>
+<li>Configure .vimrc for vundle per: <a href="https://github.com/VundleVim/Vundle.vim">https://github.com/VundleVim/Vundle.vim</a></li>
+</ul>
+</li>
+<li>Add plugins to .vimrc and use vundle to install the plugins<ul>
+<li>Configure .vimrc for <code>Plugin 'Rykka/riv.vim'</code></li>
+<li>Configure .vimrc for <code>Plugin 'Rykka/InstantRst'</code></li>
+<li>From within VIM, run <code>:PluginInstall</code> to process/install the plugins</li>
+</ul>
+</li>
+</ul>
+<h2 id="using-sphinx">Using Sphinx</h2>
+<h3 id="getting-started">Getting Started</h3>
+<ul>
+<li>Create a new repository on GitHub.</li>
+<li>Clone your repository to your local machine.</li>
+<li>cd into the directory creating by <code>git clone</code>.</li>
+<li>Configure Sphinx<ul>
+<li><code>sphinx-quickstart</code>  (Note: For help on this, see the Sphinx website, which explains all the options.)</li>
+</ul>
+</li>
+</ul>
+<h3 id="writing-your-docs">Writing your docs</h3>
+<ul>
+<li>Write your docs using RestructuredTEXT - (See the Sphinx website for guidance)<ul>
+<li>Sphinx docs use the .rst file name extension.</li>
+</ul>
+</li>
+<li>Add finished doc file names to the <em>Table of Contents</em> (TOC) which is located in <code>Index.rst</code>.</li>
+</ul>
+<h3 id="add-work-products-to-git">Add work products to GIT</h3>
+<ul>
+<li>Create and configure a <code>.gitignore</code> as appropriate.</li>
+<li><code>git status</code></li>
+<li><code>git add &lt;file(s)&gt;</code></li>
+<li><code>git commit</code></li>
+<li><code>git push</code></li>
+</ul>
+<h3 id="process-your-docs-into-html">Process your docs into HTML</h3>
+<ul>
+<li>Generate html output by executing the command <code>make html</code> from within the Sphinx <code>_build</code> directory.<ul>
+<li>Finished docs are found in the <code>_build/html</code> directory.</li>
+<li>Images, css, javascript, etc., are found in <code>_build/html/_static</code></li>
+<li>Source RestructuredTEXT files are copied to <code>_build/html/_source</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="share-your-work">Share your work</h3>
+<ul>
+<li>When satisfied with HTML output, submit git pull requests to other members of the doc team.</li>
+<li>When doc team is satisfied with state of GitHub repository, a member of the doc team would clone the repository and generate the final HTML for display on the OI website.</li>
+</ul>
+<h2 id="references">References:</h2>
+<ul>
+<li><a href="http://www.sphinx-doc.org/en/stable/tutorial.html">http://www.sphinx-doc.org/en/stable/tutorial.html</a></li>
+<li><a href="http://www.sphinx-doc.org/en/stable/tutorial.html">https://github.com/VundleVim/Vundle.vim</a></li>
+<li><a href="http://www.sphinx-doc.org/en/stable/tutorial.html">https://github.com/Rykka/riv.vim</a></li>
+<li><a href="http://www.sphinx-doc.org/en/stable/tutorial.html">https://github.com/Rykka/InstantRst</a></li>
+</ul>
+        </div>
+    </div>
+
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../../js/jquery-3.6.0.min.js"></script>
+        <script src="../../js/bootstrap.min.js"></script>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js"></script>
+        <script src="../../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

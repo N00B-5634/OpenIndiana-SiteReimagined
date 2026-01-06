@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://n00b-5634.github.io/OpenIndiana-SiteReimagined/dev/repo-cleanup/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Repo cleanup - OpenIndiana Reimagined</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
+        <link href="../../css/style.css" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../..">OpenIndiana Reimagined</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="../.." class="nav-link">Welcome to OpenIndiana Reimagined</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Books <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../books/about/" class="dropdown-item">About</a>
+</li>
+                                    
+<li>
+    <a href="../../books/advanced/" class="dropdown-item">Advanced</a>
+</li>
+                                    
+<li>
+    <a href="../../books/basic/" class="dropdown-item">Basic</a>
+</li>
+                                    
+<li>
+    <a href="../../books/develop/" class="dropdown-item">Develop</a>
+</li>
+                                    
+<li>
+    <a href="../../books/express/" class="dropdown-item">Express</a>
+</li>
+                                    
+<li>
+    <a href="../../books/trusted/" class="dropdown-item">Trusted</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Community hcl <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../community-hcl/components/" class="dropdown-item">Components</a>
+</li>
+                                    
+<li>
+    <a href="../../community-hcl/getting-hardware-info/" class="dropdown-item">Getting hardware info</a>
+</li>
+                                    
+<li>
+    <a href="../../community-hcl/systems/" class="dropdown-item">Systems</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Contrib <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../contrib/content/" class="dropdown-item">Content</a>
+</li>
+                                    
+<li>
+    <a href="../../contrib/getting-started/" class="dropdown-item">Getting started</a>
+</li>
+                                    
+<li>
+    <a href="../../contrib/git/" class="dropdown-item">Git</a>
+</li>
+                                    
+<li>
+    <a href="../../contrib/markdown/" class="dropdown-item">Markdown</a>
+</li>
+                                    
+<li>
+    <a href="../../contrib/roles/" class="dropdown-item">Roles</a>
+</li>
+                                    
+<li>
+    <a href="../../contrib/style/" class="dropdown-item">Style</a>
+</li>
+                                    
+<li>
+    <a href="../../contrib/tools/" class="dropdown-item">Tools</a>
+</li>
+                                    
+<li>
+    <a href="../../contrib/topics/" class="dropdown-item">Topics</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Dev <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../building-openindiana/" class="dropdown-item">Building openindiana</a>
+</li>
+                                    
+<li>
+    <a href="../distribution-constructor/" class="dropdown-item">Distribution constructor</a>
+</li>
+                                    
+<li>
+    <a href="../existing-tasks/" class="dropdown-item">Existing tasks</a>
+</li>
+                                    
+<li>
+    <a href="../graphics-stack/" class="dropdown-item">Graphics stack</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active">Repo cleanup</a>
+</li>
+                                    
+<li>
+    <a href="../userland/" class="dropdown-item">Userland</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Handbook <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../handbook/appendix/" class="dropdown-item">Appendix</a>
+</li>
+                                    
+<li>
+    <a href="../../handbook/common-tasks/" class="dropdown-item">Common tasks</a>
+</li>
+                                    
+<li>
+    <a href="../../handbook/community/" class="dropdown-item">Community</a>
+</li>
+                                    
+<li>
+    <a href="../../handbook/getting-started/" class="dropdown-item">Getting started</a>
+</li>
+                                    
+<li>
+    <a href="../../handbook/legacy-branch/" class="dropdown-item">Legacy branch</a>
+</li>
+                                    
+<li>
+    <a href="../../handbook/network-communications/" class="dropdown-item">Network communications</a>
+</li>
+                                    
+<li>
+    <a href="../../handbook/openindiana-download-mirrors/" class="dropdown-item">Openindiana download mirrors</a>
+</li>
+                                    
+<li>
+    <a href="../../handbook/pdfdocs/" class="dropdown-item">Pdfdocs</a>
+</li>
+                                    
+<li>
+    <a href="../../handbook/sunray/" class="dropdown-item">Sunray</a>
+</li>
+                                    
+<li>
+    <a href="../../handbook/systems-administration/" class="dropdown-item">Systems administration</a>
+</li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Community</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../handbook/community/inputmethod/" class="dropdown-item">Inputmethod</a>
+</li>
+            
+<li>
+    <a href="../../handbook/community/oracledb/" class="dropdown-item">Oracledb</a>
+</li>
+            
+<li>
+    <a href="../../handbook/community/quikstor/" class="dropdown-item">Quikstor</a>
+</li>
+            
+<li>
+    <a href="../../handbook/community/samqfs/" class="dropdown-item">Samqfs</a>
+</li>
+            
+<li>
+    <a href="../../handbook/community/squeak/" class="dropdown-item">Squeak</a>
+</li>
+            
+<li>
+    <a href="../../handbook/community/texlive/" class="dropdown-item">Texlive</a>
+</li>
+            
+<li>
+    <a href="../../handbook/community/vagrant/" class="dropdown-item">Vagrant</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Misc <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../misc/conduct/" class="dropdown-item">Conduct</a>
+</li>
+                                    
+<li>
+    <a href="../../misc/oi-docs/" class="dropdown-item">Oi docs</a>
+</li>
+                                    
+<li>
+    <a href="../../misc/openindiana/" class="dropdown-item">Openindiana</a>
+</li>
+                                    
+<li>
+    <a href="../../misc/pdl/" class="dropdown-item">PUBLIC DOCUMENTATION LICENSE</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Release notes <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../release-notes/2015.03-release-notes/" class="dropdown-item">2015.03 release notes</a>
+</li>
+                                    
+<li>
+    <a href="../../release-notes/2015.10-release-notes/" class="dropdown-item">2015.10 release notes</a>
+</li>
+                                    
+<li>
+    <a href="../../release-notes/2016.04-release-notes/" class="dropdown-item">2016.04 release notes</a>
+</li>
+                                    
+<li>
+    <a href="../../release-notes/2016.10-release-notes/" class="dropdown-item">2016.10 release notes</a>
+</li>
+                                    
+<li>
+    <a href="../../release-notes/2017.04-release-notes/" class="dropdown-item">2017.04 release notes</a>
+</li>
+                                    
+<li>
+    <a href="../../release-notes/2017.10-release-notes/" class="dropdown-item">2017.10 release notes</a>
+</li>
+                                    
+<li>
+    <a href="../../release-notes/2018.04-release-notes/" class="dropdown-item">2018.04 release notes</a>
+</li>
+                                    
+<li>
+    <a href="../../release-notes/2018.10-release-notes/" class="dropdown-item">2018.10 release notes</a>
+</li>
+                                    
+<li>
+    <a href="../../release-notes/2019.04-release-notes/" class="dropdown-item">2019.04 release notes</a>
+</li>
+                                    
+<li>
+    <a href="../../release-notes/2019.10-release-notes/" class="dropdown-item">2019.10 release notes</a>
+</li>
+                                    
+<li>
+    <a href="../../release-notes/2020.04-release-notes/" class="dropdown-item">2020.04 release notes</a>
+</li>
+                                    
+<li>
+    <a href="../../release-notes/2020.10-release-notes/" class="dropdown-item">2020.10 release notes</a>
+</li>
+                                    
+<li>
+    <a href="../../release-notes/latest-changes/" class="dropdown-item">Latest changes</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Retired <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../retired/" class="dropdown-item">Index</a>
+</li>
+                                    
+<li>
+    <a href="../../retired/books/" class="dropdown-item">Books</a>
+</li>
+                                    
+<li>
+    <a href="../../retired/bsd/" class="dropdown-item">Bsd</a>
+</li>
+                                    
+<li>
+    <a href="../../retired/old-handbook/" class="dropdown-item">TODO: Booting</a>
+</li>
+                                    
+<li>
+    <a href="../../retired/project/" class="dropdown-item">Project</a>
+</li>
+                                    
+<li>
+    <a href="../../retired/sphinx/" class="dropdown-item">Sphinx</a>
+</li>
+                                    
+<li>
+    <a href="../../retired/toolchain/" class="dropdown-item">Toolchain</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../graphics-stack/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../userland/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+    <div class="bg-[#0f172a] text-slate-200 p-8 rounded-lg shadow-2xl border border-slate-800">
+        <div class="prose prose-invert max-w-none">
+            <!--
+
+The contents of this Documentation are subject to the Public Documentation License Version 1.01
+(the "License"); you may only use this Documentation if you comply with the terms of this License.
+A copy of the License is available at http://illumos.org/license/PDL.
+
+The Original Documentation is _________________.
+
+The Initial Writer of the Original Documentation is Alexander Pyhalov Copyright (C) 2020
+All Rights Reserved.
+
+-->
+
+<h1 id="cleaning-up-openindiana-repository">Cleaning up OpenIndiana repository</h1>
+<div class="note" markdown="1">
+!!! note
+    This is an internal document provided mostly for OpenIndiana maintainers
+</div>
+
+<p>Due to current CI practices, OpenIndiana Hipster repository tend to bloat with old package versions.
+This causes several issues:</p>
+<ul>
+<li><code>pkg(1)</code> starts consuming a lot of memory during planning stage;</li>
+<li>refreshing repository index becomes the longest step in Jenkins build jobs;</li>
+<li>storage space is wasted on pkg and build servers.</li>
+</ul>
+<p>To fix these issues currently periodic manual cleanup is necessary.
+Note that during cleanup we preserve only latest versions of packages.
+Given that it's usually just 10-20% of all published packages, using <code>pkgrepo  remove</code> is impractical.</p>
+<p>The cleanup should be done on two sides: on the side of pkg server (pkg.openindiana.org) and on build server (hipster.openindiana.org) to avoid resyncing old package versions from build server to the pkg depot server.</p>
+<p>Be sure to disable Jenkins jobs prior to the operation.</p>
+<p>As transfering packages takes significant time (about an hour on build server and several hours on pkg server), you likely want to perform operations on both of them simultaneously.</p>
+<h2 id="tasks-held-on-the-build-server">Tasks held on the build server</h2>
+<p>We should cleanup packages produced by illumos-gate and oi-userland Jenkins jobs.</p>
+<p>We generally don't care about packages, produced by illumos-gate build job.
+They can be simply removed.
+Remove them from build area:</p>
+<pre><code class="language-bash">cd /jenkins/jobs/illumos-gate/workspace/components/openindiana/illumos-gate/
+rm -fr build/i386/pkgre*
+rm -fr illumos-gate/packages/i386/nightly*
+</code></pre>
+<p>and repository:</p>
+<pre><code class="language-bash">cd /jenkins/jobs/illumos-gate/workspace/i386/repo/
+rm -fr publisher/openindiana.org/*
+</code></pre>
+<p>Packages, produced by oi-userland build job, are used to generate userland-incorporation, so we can't just drop them.
+We create new repository and populate it with latest packages.
+This step takes some time, so be sure to run it in screen or tmux environment.</p>
+<pre><code class="language-bash">cd /jenkins/jobs/oi-userland/workspace/i386/repo/
+mkdir repo.new
+cp repo/pkg5.repository repo.new/
+pkgrecv -s repo --newest | tee pkg-list
+cat pkg-list | split -l 100
+for i in $(ls x*); do pkgrecv -s repo -d repo.new $(cat $i); done
+</code></pre>
+<p>Check that resulting repo contains all packages from old repository (diff should be empty).</p>
+<pre><code class="language-bash">pkgrecv -s repo --newest &gt; /tmp/old.packages
+pkgrecv -s repo.new --newest &gt; /tmp/new.packages
+diff -u /tmp/old.packages /tmp/new.packages
+</code></pre>
+<p>If diff is not empty, investigate the issue and use <code>pkgrecv</code> to transfer missing packages individually.</p>
+<p>When everything is fine, perform final cleanup.</p>
+<pre><code class="language-bash">pkgrepo -s repo.new rebuild
+rm x* pkg-list
+</code></pre>
+<p>Now you are ready to replace old repository with the new one.</p>
+<pre><code class="language-bash">rm -fr repo
+mv repo.new repo
+</code></pre>
+<h2 id="tasks-held-on-the-package-server">Tasks held on the package server</h2>
+<p>The procedure is essentially the same, we create new repository and transfer latest packages and custom scripts from the old repository to the new one.
+Scripts mentioned here are partially used by rsync jobs to update repository and partially can be used by pkg server administrator to perform repository maintenance.</p>
+<p>You should start by creating new filesystem for the repository.
+File systems on the pkg server has UUID in its name, it's replaced by literal <code>UUID</code> here.</p>
+<pre><code class="language-bash">zfs create zones/UUID/data/repos/pkg.openindiana.org/hipster-new
+</code></pre>
+<p>Copy necessary scripts and files from old repository:</p>
+<pre><code class="language-bash">cp -r /data/repos/pkg.openindiana.org/hipster/{pkg5.repository,scripts,add-content.sh} /data/repos/pkg.openindiana.org/hipster-new/
+</code></pre>
+<p>Make necessary directories:</p>
+<pre><code class="language-bash">cd /data/repos/pkg.openindiana.org/hipster-new
+mkdir .empty .temp .temp/.openindiana.org
+</code></pre>
+<p>Transfer data from current repository (the script essentially does the same batched pkgrecv as we've done on the build server):</p>
+<pre><code class="language-bash">bash scripts/create-new-repo.sh
+</code></pre>
+<p>Check that resulting repo contains all packages from old repository (diff should be empty).</p>
+<pre><code class="language-bash">pkgrecv -s /data/repos/pkg.openindiana.org/hipster-new/ --newest &gt; /tmp/new.packages
+pkgrecv -s /data/repos/pkg.openindiana.org/hipster/ --newest &gt; /tmp/old.packages
+diff -u /tmp/old.packages /tmp/new.packages
+</code></pre>
+<p>If diff is not empty, investigate the issue and use <code>pkgrecv</code> to transfer missing packages individually.</p>
+<p>When everything is fine, perform final cleanup.</p>
+<pre><code class="language-bash">pkgrepo -s . rebuild
+rm x* pkg-list
+</code></pre>
+<p>Make pkg server actually use new repository.
+Ensure that you minimise time between disabling pkg server and enabling it again - during this interval it's evidently unusable to the clients.</p>
+<pre><code class="language-bash">cd /
+svcadm disable svc:/application/pkg/server:hipster
+zfs rename zones/UUID/data/repos/pkg.openindiana.org/hipster zones/UUID/data/repos/pkg.openindiana.org/hipster-old
+zfs rename zones/UUID/data/repos/pkg.openindiana.org/hipster-new zones/UUID/data/repos/pkg.openindiana.org/hipster
+svcadm enable svc:/application/pkg/server:hipster
+</code></pre>
+<h2 id="final-steps-and-testing">Final steps and testing</h2>
+<p>Don't forget to enable Jenkins jobs, which you've disabled before cleanup.</p>
+<ul>
+<li>Visit <a href="http://pkg.openindiana.org/hipster/">http://pkg.openindiana.org/hipster/</a> and check that search works correctly.</li>
+<li>Run some Jenkins build job to ensure that interaction between hipster.openindiana.org and pkg.openindiana.org works correctly.</li>
+<li>Don't forget to destroy <code>zones/UUID/data/repos/pkg.openindiana.org/hipster-old</code> filesystem in several days after cleanup.</li>
+</ul>
+        </div>
+    </div>
+
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../../js/jquery-3.6.0.min.js"></script>
+        <script src="../../js/bootstrap.min.js"></script>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js"></script>
+        <script src="../../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
