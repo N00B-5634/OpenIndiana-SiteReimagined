@@ -2,7 +2,7 @@
 
 ## Welcome
 
-Welcome to **OpenIndiana Reimagined**. This site is a personal reinterpretation of the original OpenIndiana website. While the design is based on the classic "no-frills" look, this version introduces a more colorful, modern layout, using Sass for styling. Please note, this site is not affiliated with or endorsed by OpenIndiana, and it does not offer any official services related to the platform.
+Welcome to **OpenIndiana Reimagined**. This site is a personal reinterpretation of the original OpenIndiana website. While the design is based on the classic "no-frills" look, this version introduces a more colorful, modern layout, using Sass for styling. Please note, this site is not affiliated with or officially endorsed by OpenIndiana, and it does not offer any official services related to the platform. However, it does link to the official OpenIndiana site for downloads and other resources.
 
 ## Why This Redesign?
 
@@ -12,7 +12,7 @@ You might be wondering why I decided to make this change to the website. The ori
 
 ### Q: **Is this site legal?**
 
-**A:** Yes, this site is legal. OpenIndiana is an open-source project licensed under the Common Development and Distribution License (CDDL). This site does not use any copyrighted material from OpenIndiana’s official website, and it is not affiliated with or endorsed by OpenIndiana. The site is intended as a derivative work and clearly states that it is not an official source.
+**A:** Yes, this site is legal. OpenIndiana is an open-source project licensed under the Common Development and Distribution License (CDDL). This site does not use any copyrighted material from OpenIndiana’s official website, and it is not affiliated with or endorsed by OpenIndiana. However, this site provides links to the official OpenIndiana website for downloads and other official resources, ensuring users can easily access the latest information and software from OpenIndiana.
 
 ### Q: **Why does the site look like this? I find the design off-putting.**
 
@@ -26,13 +26,10 @@ You might be wondering why I decided to make this change to the website. The ori
 
 **A:** While I appreciate feedback, I do not condone harassment of any kind. This includes harassment of myself, any potential future developers, OpenIndiana, or other users. Constructive criticism is always welcome, but please keep the tone respectful. If you have suggestions for improvements, I encourage you to submit an issue or reach out in a professional manner.
 
-### Q: **What if I dislike the redesign, can I just ignore it?**
-
-**A:** If the redesign isn’t to your liking, that’s perfectly fine. Everyone has different tastes, and this site may not be for everyone. The goal is to provide an alternative, not to replace the original OpenIndiana site. You can always refer to the official OpenIndiana website if you prefer the original design.
 
 ### Q: **Is this site connected to OpenIndiana's official resources or support?**
 
-**A:** No, this site is not connected to OpenIndiana’s official resources or support. If you are looking for official information or help, please visit the **[OpenIndiana website](https://www.openindiana.org/)** for accurate and up-to-date details from the OpenIndiana team.
+**A:** While this site is not officially affiliated with OpenIndiana, it does link directly to the OpenIndiana website for downloads and resources. This site is a derivative project intended to reimagine the visual aspect of the OpenIndiana experience. For official information, support, and resources, please visit the **[OpenIndiana website](https://www.openindiana.org/)**.
 
 ## Final Thoughts
 
