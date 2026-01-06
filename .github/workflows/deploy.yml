@@ -1,31 +1,44 @@
-name: Deploy MkDocs to GitHub Pages
-
+name: Build and Deploy Docs
 on:
   push:
     branches:
-      - main  # Runs every time you push to main
+      - main
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
 
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Search
+      - name: Checkout Code
         uses: actions/checkout@v4
 
       - name: Set up Python
-        uses: actions/checkout@v4
+        uses: actions/setup-python@v4
         with:
           python-version: '3.x'
 
-      - name: Install dependencies
-        run: |
-          pip install mkdocs-material 
-          # Add any other plugins you use here
+      - name: Install MkDocs
+        run: pip install mkdocs mkdocs-material
 
-      - name: Build and Deploy
+      - name: Build Docs
+        run: mkdocs build
+
+      - name: Sync PDFs
         run: |
-          # This command builds the docs and pushes them to the gh-pages branch
-          mkdocs 
+          if [ -d "pdf" ]; then
+            cp -r pdf/ site_docs/
+          fi
+          touch site_docs/.nojekyll
+
+      - name: Upload Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: . # This uploads your whole root (index.html + site_docs)
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
