@@ -22,23 +22,25 @@ jobs:
           python-version: '3.x'
 
       - name: Install MkDocs
-        run: pip install mkdocs mkdocs-material
+        run: pip install mkdocs-material
+
+      - name: Prepare Files
+        run: |
+          # 1. Force the PDF folder into docs so MkDocs can 'see' them
+          if [ -d "pdf" ]; then
+            cp -r pdf docs/
+          fi
+          
+          # 2. List files to debug if the image is missing (check logs if it fails again)
+          ls -R docs/handbook/
 
       - name: Build Docs
         run: mkdocs build
 
-      - name: Sync PDFs
-        run: |
-          if [ -d "pdf" ]; then
-            cp -r pdf/ site_docs/
-          fi
-          touch site_docs/.nojekyll
-
       - name: Upload Artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: . # This uploads your whole root (index.html + site_docs)
+          path: . 
 
       - name: Deploy to GitHub Pages
-        id: deployment
         uses: actions/deploy-pages@v4
