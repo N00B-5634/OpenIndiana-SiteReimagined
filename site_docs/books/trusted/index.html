@@ -17,6 +17,125 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
         <script>hljs.highlightAll();</script>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --oi-primary: #8b5cf6;
+            --oi-secondary: #3b82f6;
+            --oi-bg: #f8fafc;
+            --oi-text: #1e293b;
+            --oi-card-bg: #ffffff;
+            --oi-card-border: #e2e8f0;
+        }
+
+        .dark-mode {
+            --oi-primary: #a78bfa;
+            --oi-secondary: #60a5fa;
+            --oi-bg: #0f172a;
+            --oi-text: #e2e8f0;
+            --oi-card-bg: #1e293b;
+            --oi-card-border: #334155;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--oi-bg);
+            color: var(--oi-text);
+            transition: all 0.3s ease;
+        }
+
+        .oi-header {
+            background: linear-gradient(135deg, var(--oi-primary) 0%, var(--oi-secondary) 100%);
+            color: white;
+            display: none;  /* Removed the header */
+        }
+
+        .oi-card {
+            background-color: var(--oi-card-bg);
+            border: 1px solid var(--oi-card-border);
+            border-radius: 0.75rem;
+            transition: all 0.3s ease;
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg, var(--oi-primary), var(--oi-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Sidebar styling */
+        .docs-sidebar {
+            width: 250px;
+            max-width: 100%;
+            background-color: var(--oi-card-bg);
+            padding: 1rem;
+            border-right: 1px solid var(--oi-card-border);
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .docs-sidebar a {
+            display: block;
+            padding: 10px;
+            margin-bottom: 8px;
+            font-size: 1rem;
+            color: var(--oi-text);
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .docs-sidebar a:hover {
+            background-color: var(--oi-primary);
+            color: white;
+        }
+
+        .docs-sidebar a.active {
+            background-color: var(--oi-secondary);
+            color: white;
+        }
+
+        .docs-content {
+            margin-left: 270px;
+            padding: 2rem;
+        }
+
+        /* Search box styling */
+        .search-bar {
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid var(--oi-card-border);
+            width: 100%;
+            max-width: 100%;
+            margin-bottom: 1.5rem;
+            background-color: var(--oi-card-bg);
+            font-size: 1rem;
+        }
+
+        .search-results {
+            max-height: 400px;
+            overflow-y: auto;
+            background-color: var(--oi-card-bg);
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-results a {
+            display: block;
+            padding: 10px;
+            border-bottom: 1px solid var(--oi-card-border);
+            color: var(--oi-text);
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .search-results a:hover {
+            background-color: var(--oi-primary);
+            color: white;
+        }
+
+    </style>
 
     </head>
 
@@ -363,9 +482,298 @@
 
         <div class="container">
             <div class="row">
-    <div class="bg-[#0f172a] text-slate-200 p-8 rounded-lg shadow-2xl border border-slate-800">
-        <div class="prose prose-invert max-w-none">
-            <!--
+    <div class="container mx-auto flex mt-8">
+        <!-- Sidebar -->
+        <div class="docs-sidebar">
+            <h3 class="text-lg font-semibold mb-6">Documentation</h3>
+
+            <!-- Search Bar -->
+            <form action="#search" method="get" class="mb-6">
+                <input
+                    type="text"
+                    id="mkdocs-search-input"
+                    name="q"
+                    placeholder="Search the documentation"
+                    class="search-bar"
+                />
+            </form>
+
+            <!-- Search Results -->
+            <div class="search-results" id="search-results">
+                <!-- Search results will appear here -->
+            </div>
+
+            <!-- Sidebar Menu -->
+            <ul class="space-y-2">
+                
+                    <li>
+                        <a href="./" class="hover:underline"></a>
+                    </li>
+                
+                    <li>
+                        <a href="books/about/" class="hover:underline"></a>
+                    </li>
+                
+                    <li>
+                        <a href="books/advanced/" class="hover:underline"></a>
+                    </li>
+                
+                    <li>
+                        <a href="books/basic/" class="hover:underline"></a>
+                    </li>
+                
+                    <li>
+                        <a href="books/develop/" class="hover:underline"></a>
+                    </li>
+                
+                    <li>
+                        <a href="books/express/" class="hover:underline"></a>
+                    </li>
+                
+                    <li>
+                        <a href="books/trusted/" class="hover:underline"></a>
+                    </li>
+                
+                    <li>
+                        <a href="community-hcl/components/" class="hover:underline"></a>
+                    </li>
+                
+                    <li>
+                        <a href="community-hcl/getting-hardware-info/" class="hover:underline"></a>
+                    </li>
+                
+                    <li>
+                        <a href="community-hcl/systems/" class="hover:underline"></a>
+                    </li>
+                
+                    <li>
+                        <a href="contrib/content/" class="hover:underline"></a>
+                    </li>
+                
+                    <li>
+                        <a href="contrib/getting-started/" class="hover:underline"></a>
+                    </li>
+                
+                    <li>
+                        <a href="contrib/git/" class="hover:underline"></a>
+                    </li>
+                
+                    <li>
+                        <a href="contrib/markdown/" class="hover:underline"></a>
+                    </li>
+                
+                    <li>
+                        <a href="contrib/roles/" class="hover:underline"></a>
+                    </li>
+                
+                    <li>
+                        <a href="contrib/style/" class="hover:underline"></a>
+                    </li>
+                
+                    <li>
+                        <a href="contrib/tools/" class="hover:underline"></a>
+                    </li>
+                
+                    <li>
+                        <a href="contrib/topics/" class="hover:underline"></a>
+                    </li>
+                
+                    <li>
+                        <a href="dev/building-openindiana/" class="hover:underline"></a>
+                    </li>
+                
+                    <li>
+                        <a href="dev/distribution-constructor/" class="hover:underline"></a>
+                    </li>
+                
+                    <li>
+                        <a href="dev/existing-tasks/" class="hover:underline"></a>
+                    </li>
+                
+                    <li>
+                        <a href="dev/graphics-stack/" class="hover:underline"></a>
+                    </li>
+                
+                    <li>
+                        <a href="dev/repo-cleanup/" class="hover:underline"></a>
+                    </li>
+                
+                    <li>
+                        <a href="dev/userland/" class="hover:underline"></a>
+                    </li>
+                
+                    <li>
+                        <a href="handbook/appendix/" class="hover:underline"></a>
+                    </li>
+                
+                    <li>
+                        <a href="handbook/common-tasks/" class="hover:underline"></a>
+                    </li>
+                
+                    <li>
+                        <a href="handbook/community/" class="hover:underline"></a>
+                    </li>
+                
+                    <li>
+                        <a href="handbook/getting-started/" class="hover:underline"></a>
+                    </li>
+                
+                    <li>
+                        <a href="handbook/legacy-branch/" class="hover:underline"></a>
+                    </li>
+                
+                    <li>
+                        <a href="handbook/network-communications/" class="hover:underline"></a>
+                    </li>
+                
+                    <li>
+                        <a href="handbook/openindiana-download-mirrors/" class="hover:underline"></a>
+                    </li>
+                
+                    <li>
+                        <a href="handbook/pdfdocs/" class="hover:underline"></a>
+                    </li>
+                
+                    <li>
+                        <a href="handbook/sunray/" class="hover:underline"></a>
+                    </li>
+                
+                    <li>
+                        <a href="handbook/systems-administration/" class="hover:underline"></a>
+                    </li>
+                
+                    <li>
+                        <a href="handbook/community/inputmethod/" class="hover:underline"></a>
+                    </li>
+                
+                    <li>
+                        <a href="handbook/community/oracledb/" class="hover:underline"></a>
+                    </li>
+                
+                    <li>
+                        <a href="handbook/community/quikstor/" class="hover:underline"></a>
+                    </li>
+                
+                    <li>
+                        <a href="handbook/community/samqfs/" class="hover:underline"></a>
+                    </li>
+                
+                    <li>
+                        <a href="handbook/community/squeak/" class="hover:underline"></a>
+                    </li>
+                
+                    <li>
+                        <a href="handbook/community/texlive/" class="hover:underline"></a>
+                    </li>
+                
+                    <li>
+                        <a href="handbook/community/vagrant/" class="hover:underline"></a>
+                    </li>
+                
+                    <li>
+                        <a href="misc/conduct/" class="hover:underline"></a>
+                    </li>
+                
+                    <li>
+                        <a href="misc/oi-docs/" class="hover:underline"></a>
+                    </li>
+                
+                    <li>
+                        <a href="misc/openindiana/" class="hover:underline"></a>
+                    </li>
+                
+                    <li>
+                        <a href="misc/pdl/" class="hover:underline"></a>
+                    </li>
+                
+                    <li>
+                        <a href="release-notes/2015.03-release-notes/" class="hover:underline"></a>
+                    </li>
+                
+                    <li>
+                        <a href="release-notes/2015.10-release-notes/" class="hover:underline"></a>
+                    </li>
+                
+                    <li>
+                        <a href="release-notes/2016.04-release-notes/" class="hover:underline"></a>
+                    </li>
+                
+                    <li>
+                        <a href="release-notes/2016.10-release-notes/" class="hover:underline"></a>
+                    </li>
+                
+                    <li>
+                        <a href="release-notes/2017.04-release-notes/" class="hover:underline"></a>
+                    </li>
+                
+                    <li>
+                        <a href="release-notes/2017.10-release-notes/" class="hover:underline"></a>
+                    </li>
+                
+                    <li>
+                        <a href="release-notes/2018.04-release-notes/" class="hover:underline"></a>
+                    </li>
+                
+                    <li>
+                        <a href="release-notes/2018.10-release-notes/" class="hover:underline"></a>
+                    </li>
+                
+                    <li>
+                        <a href="release-notes/2019.04-release-notes/" class="hover:underline"></a>
+                    </li>
+                
+                    <li>
+                        <a href="release-notes/2019.10-release-notes/" class="hover:underline"></a>
+                    </li>
+                
+                    <li>
+                        <a href="release-notes/2020.04-release-notes/" class="hover:underline"></a>
+                    </li>
+                
+                    <li>
+                        <a href="release-notes/2020.10-release-notes/" class="hover:underline"></a>
+                    </li>
+                
+                    <li>
+                        <a href="release-notes/latest-changes/" class="hover:underline"></a>
+                    </li>
+                
+                    <li>
+                        <a href="retired/" class="hover:underline"></a>
+                    </li>
+                
+                    <li>
+                        <a href="retired/books/" class="hover:underline"></a>
+                    </li>
+                
+                    <li>
+                        <a href="retired/bsd/" class="hover:underline"></a>
+                    </li>
+                
+                    <li>
+                        <a href="retired/old-handbook/" class="hover:underline"></a>
+                    </li>
+                
+                    <li>
+                        <a href="retired/project/" class="hover:underline"></a>
+                    </li>
+                
+                    <li>
+                        <a href="retired/sphinx/" class="hover:underline"></a>
+                    </li>
+                
+                    <li>
+                        <a href="retired/toolchain/" class="hover:underline"></a>
+                    </li>
+                
+            </ul>
+        </div>
+
+        <!-- Main Content Area -->
+        <div class="docs-content">
+            <h1 class="text-4xl font-bold mb-4 gradient-text">Trusted</h1>
+            <div class="prose max-w-none">
+                <!--
 
 The contents of this Documentation are subject to the Public Documentation License Version 1.01
 (the "License"); you may only use this Documentation if you comply with the terms of this License.
@@ -539,8 +947,67 @@ All Rights Reserved. (Contributor contact(s):________________[Insert hyperlink/a
 </tr>
 </tbody>
 </table>
+            </div>
         </div>
     </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-10 mt-12">
+        <div class="container mx-auto px-4 text-center">
+            <div class="flex justify-center space-x-6 mb-4">
+                <a href="#" class="hover:text-purple-400 transition">GitHub</a>
+                <a href="#" class="hover:text-purple-400 transition">IRC</a>
+                <a href="#" class="hover:text-purple-400 transition">Twitter</a>
+                <a href="#" class="hover:text-purple-400 transition">Forum</a>
+            </div>
+            <p class="mb-2 text-gray-300"> OpenIndiana Maintainers. All rights reserved.</p>
+            <p class="text-sm text-gray-400 max-w-2xl mx-auto">
+                This is a derivative site. OpenIndiana is a registered trademark. For official information, visit <a href="https://www.openindiana.org/" class="hover:underline">openindiana.org</a>.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Dark Mode Script -->
+    <script>
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        function updateTheme(isDark) {
+            document.body.classList.toggle('dark-mode', isDark);
+            darkModeToggle.textContent = isDark ? '☀️ Light Mode' : '🌓 Dark Mode';
+            localStorage.setItem('darkMode', isDark);
+        }
+
+        darkModeToggle.addEventListener('click', () => {
+            const isDark = !document.body.classList.contains('dark-mode');
+            updateTheme(isDark);
+        });
+
+        if (localStorage.getItem('darkMode') === 'true') {
+            updateTheme(true);
+        }
+
+        // Search functionality - integrates with MkDocs search
+        const searchInput = document.getElementById('mkdocs-search-input');
+        const searchResultsContainer = document.getElementById('search-results');
+
+        searchInput.addEventListener('input', function() {
+            const query = searchInput.value;
+            if (query) {
+                fetch(`/search/?q=${query}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.results.length > 0) {
+                            searchResultsContainer.innerHTML = data.results.map(result => {
+                                return `<a href="${result.url}" class="block py-2 px-4 hover:bg-gray-200">${result.title}</a>`;
+                            }).join('');
+                        } else {
+                            searchResultsContainer.innerHTML = '<p>No results found.</p>';
+                        }
+                    });
+            } else {
+                searchResultsContainer.innerHTML = '';
+            }
+        });
+    </script>
 
             </div>
         </div>
