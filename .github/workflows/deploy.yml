@@ -35,7 +35,7 @@ jobs:
           ls -R docs/handbook/
 
       - name: Build Docs
-        run: mkdocs build
+        run: mkdocs build -v 
 
       - name: Upload Artifact
         uses: actions/upload-pages-artifact@v3
