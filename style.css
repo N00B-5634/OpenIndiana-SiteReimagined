@@ -1,0 +1,54 @@
+/* Custom Design System for OpenIndiana Project */
+:root {
+    --oi-primary: #8b5cf6;
+    --oi-secondary: #3b82f6;
+    --oi-bg: #f8fafc;
+    --oi-text: #1e293b;
+    --oi-card-bg: #ffffff;
+    --oi-card-border: #e2e8f0;
+}
+
+.dark-mode {
+    --oi-primary: #a78bfa;
+    --oi-secondary: #60a5fa;
+    --oi-bg: #0f172a;
+    --oi-text: #e2e8f0;
+    --oi-card-bg: #1e293b;
+    --oi-card-border: #334155;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--oi-bg);
+    color: var(--oi-text);
+    transition: all 0.3s ease;
+}
+
+/* Header & Typography */
+.oi-header {
+    background: linear-gradient(135deg, var(--oi-primary) 0%, var(--oi-secondary) 100%);
+    color: white;
+}
+
+.gradient-text {
+    background: linear-gradient(90deg, var(--oi-primary), var(--oi-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Cards for Features and Docs */
+.oi-card {
+    background-color: var(--oi-card-bg);
+    border: 1px solid var(--oi-card-border);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+}
+
+/* Styling for the Markdown Content specifically */
+.markdown-content h1, .markdown-content h2 { 
+    font-weight: bold; 
+    margin-bottom: 1rem;
+    color: var(--oi-primary);
+}
+.markdown-content p { margin-bottom: 1rem; opacity: 0.9; }
