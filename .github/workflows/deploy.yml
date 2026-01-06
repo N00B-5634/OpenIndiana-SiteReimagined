@@ -30,17 +30,17 @@ jobs:
           if [ -d "pdf" ]; then
             cp -r pdf docs/
           fi
-          
+
           # 2. List files to debug if the image is missing (check logs if it fails again)
           ls -R docs/handbook/
 
       - name: Build Docs
-        run: mkdocs build -v 
+        run: mkdocs build -v
 
       - name: Upload Artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: . 
+          path: site_docs
 
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4
