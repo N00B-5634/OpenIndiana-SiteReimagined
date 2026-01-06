@@ -12,6 +12,9 @@ permissions:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -26,12 +29,9 @@ jobs:
 
       - name: Prepare Files
         run: |
-          # 1. Force the PDF folder into docs so MkDocs can 'see' them
           if [ -d "pdf" ]; then
             cp -r pdf docs/
           fi
-
-          # 2. List files to debug if the image is missing (check logs if it fails again)
           ls -R docs/handbook/
 
       - name: Build Docs
@@ -43,4 +43,5 @@ jobs:
           path: site_docs
 
       - name: Deploy to GitHub Pages
+        id: deployment
         uses: actions/deploy-pages@v4
