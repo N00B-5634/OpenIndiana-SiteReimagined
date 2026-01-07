@@ -2,7 +2,7 @@
 
 ## Welcome
 
-Welcome to **OpenIndiana Reimagined**. This site is a personal reinterpretation of the original OpenIndiana website. While the design is based on the classic "no-frills" look, this version introduces a more colorful, modern layout, using Sass for styling. Please note, this site is not affiliated with or officially endorsed by OpenIndiana, and it does not offer any official services related to the platform. However, it does link to the official OpenIndiana site for downloads and other resources.
+Welcome to **OpenIndiana Reimagined**. This site is a personal reinterpretation of the original OpenIndiana website. While the design is based on the classic "no-frills" look, this version introduces a more colorful, modern layout, using SaS looks for styling. Please note, this site is not affiliated with or officially endorsed by OpenIndiana, and it does not offer any official services related to the platform. However, it does link to the official OpenIndiana site for downloads and other resources.
 
 ## Why This Redesign?
 
