@@ -29,6 +29,6 @@ You might be wondering why I decided to make this change to the website. The ori
 
 ## Final Thoughts
 
-Thank you for visiting **OpenIndiana Reimagined**. This site is an independent project, and I hope it offers a different perspective on the OpenIndiana operating system. If you’d like to share feedback or contribute to the project, feel free to contact me at **ribsai@outlook.com**.
+Thank you for visiting **OpenIndiana Reimagined**. This site is an independent project, and I hope it offers a different perspective on the OpenIndiana operating system. If you’d like to share feedback or contribute to the project, please fork the repository and submit a pull request.
 
 That’s all. Thank you for your time.
