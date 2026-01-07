@@ -21,32 +21,40 @@
 
     <style>
         /* ============================================================
-           FAIL-SAFE 1: NUCLEAR FOOTER REMOVAL
+           FIXED SKIP LINK (THE "YELLOW BAR")
            ============================================================ */
-        .md-footer,
-        .md-copyright,
-        .md-footer-meta,
-        footer:not(.custom-footer),
-        [role="contentinfo"],
-        .md-typeset hr,
-        .md-sidebar--secondary {
-            display: none !important;
-            visibility: hidden !important;
-            opacity: 0 !important;
-            height: 0 !important;
-            margin-top: 1000vh !important;
-            pointer-events: none !important;
+        .skip-link {
+            position: fixed; /* Changed from absolute to fixed */
+            top: -100px;
+            left: 0;
+            right: 0;
+            background: #ffde59; /* Bright Yellow */
+            color: #000 !important;
+            text-align: center;
+            padding: 1rem;
+            z-index: 100000; /* Highest possible priority */
+            font-weight: 900;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-bottom: 4px solid black;
+            transition: top 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+        }
+
+        /* This triggers when you press TAB */
+        .skip-link:focus {
+            top: 0;
+            outline: none;
         }
 
         /* ============================================================
-           GLOBAL DESIGN SYSTEM (HIGH CONTRAST EDITION)
+           THE DESIGN SYSTEM (STAYING TRUE TO YOUR VISION)
            ============================================================ */
         :root {
             --oi-primary: #8b5cf6;
             --oi-secondary: #3b82f6;
             --bg-body: #ffffff;
             --text-main: #0f172a;
-            --text-muted: #475569;
             --card-bg: #ffffff;
             --card-border: #e2e8f0;
             --nav-bg: rgba(255, 255, 255, 0.9);
@@ -58,40 +66,38 @@
             --oi-primary: #a78bfa;
             --oi-secondary: #60a5fa;
             --bg-body: #020617;
-            /* CRITICAL FIX: Changed from gray to pure white */
             --text-main: #ffffff;
-            --text-muted: #e2e8f0;
             --card-bg: #0f172a;
             --card-border: #334155;
             --nav-bg: rgba(2, 6, 23, 0.95);
-            /* CRITICAL FIX: Darker background for code to make white text pop */
-            --code-bg: #1e293b;
+            /* TERMINAL MODE: Pure Black & White */
+            --code-bg: #000000;
             --code-text: #ffffff;
         }
-
-        html { scroll-behavior: smooth; }
 
         body {
             font-family: 'Inter', sans-serif;
             background-color: var(--bg-body);
             color: var(--text-main);
             margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            width: 100%;
-            overflow-x: hidden;
             transition: background-color 0.2s ease;
         }
 
-        /* ============================================================
-           NAVIGATION
-           ============================================================ */
+        /* High Visibility Focus States */
+        :focus-visible {
+            outline: 4px solid #ffde59 !important;
+            outline-offset: 2px;
+        }
+
+        /* REMOVING MKDOCS DEFAULTS */
+        .md-footer, .md-copyright, .md-footer-meta, .md-sidebar--secondary, .md-nav--secondary {
+            display: none !important;
+        }
+
+        /* NAVIGATION */
         .navbar-hardened {
             position: sticky;
             top: 0;
-            width: 100%;
             z-index: 9999;
             background: var(--nav-bg);
             backdrop-filter: blur(12px);
@@ -102,171 +108,20 @@
             align-items: center;
         }
 
-        .logo-text {
-            font-weight: 800;
-            font-size: 1.5rem;
-            letter-spacing: -0.05em;
-            text-decoration: none;
-            color: var(--text-main) !important;
-        }
-
-        /* ============================================================
-           HOME PAGE: HERO & TILES
-           ============================================================ */
-        .hero-banner {
-            background: linear-gradient(135deg, var(--oi-primary), var(--oi-secondary));
-            color: white !important;
-            padding: 8rem 1rem 10rem 1rem;
-            text-align: center;
-            width: 100%;
-        }
-
-        .hero-title {
-            font-size: clamp(2.5rem, 8vw, 4.5rem);
-            font-weight: 800;
-            letter-spacing: -0.05em;
-            margin-bottom: 1rem;
-            color: white !important;
-        }
-
-        .search-boundary {
-            max-width: 650px;
-            margin: -3rem auto 0;
-            position: relative;
-            z-index: 50;
-            padding: 0 1rem;
-        }
-
-        .search-engine-input {
-            width: 100%;
-            padding: 1.25rem 1.75rem;
-            border-radius: 16px;
-            background: var(--card-bg);
-            border: 2px solid var(--card-border);
-            color: var(--text-main);
-            font-size: 1.1rem;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-            outline: none;
-        }
-
-        .search-engine-input:focus {
-            border-color: var(--oi-primary);
-        }
-
-        #mkdocs-search-results {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 12px;
-            margin-top: 10px;
-            color: var(--text-main);
-        }
-
-        .home-main-layout {
-            max-width: 1200px;
-            margin: 5rem auto;
-            padding: 0 1.5rem;
-            width: 100%;
-        }
-
-        .tile-grid-system {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .nav-card-tile {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            padding: 4rem 2rem;
-            border-radius: 24px;
-            text-align: center;
-            text-decoration: none !important;
-            transition: all 0.2s ease;
-        }
-
-        .nav-card-tile:hover {
-            transform: translateY(-8px);
-            border-color: var(--oi-primary);
-        }
-
-        .nav-card-tile h3 {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--oi-primary) !important;
-        }
-
-        /* ============================================================
-           READER VIEW: HIGH CONTRAST MARKDOWN
-           ============================================================ */
-        .documentation-wrapper {
-            flex: 1;
-            width: 100%;
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 5rem 1.5rem;
-        }
-
-        .markdown-engine {
-            color: var(--text-main) !important;
-        }
-
-        .markdown-engine h1 { font-size: 3rem; font-weight: 800; margin-bottom: 2rem; color: var(--oi-primary); }
-        .markdown-engine h2 { font-size: 2rem; font-weight: 700; margin-top: 3.5rem; border-bottom: 2px solid var(--card-border); padding-bottom: 0.75rem; color: var(--text-main); }
-        .markdown-engine p { font-size: 1.125rem; line-height: 1.8; margin-bottom: 1.75rem; color: var(--text-main); }
-
-        /* High-Contrast Code Blocks */
-        .markdown-engine code {
-            font-family: 'JetBrains Mono', monospace;
-            background: var(--code-bg);
-            color: var(--code-text) !important;
-            padding: 0.2rem 0.5rem;
-            border-radius: 6px;
-            font-size: 0.95em;
-            font-weight: 500;
-        }
-
+        /* TERMINAL STYLE CODE */
         .markdown-engine pre {
             background: var(--code-bg) !important;
+            border: 2px solid var(--card-border);
             padding: 1.5rem;
-            border-radius: 12px;
+            border-radius: 8px;
             overflow-x: auto;
-            margin-bottom: 2rem;
-            border: 1px solid var(--card-border);
         }
 
         .markdown-engine pre code {
             background: transparent !important;
-            padding: 0;
             color: var(--code-text) !important;
-        }
-
-        /* ============================================================
-           PINNED FOOTER
-           ============================================================ */
-        .custom-footer {
-            flex-shrink: 0;
-            width: 100%;
-            background: var(--bg-body);
-            border-top: 1px solid var(--card-border);
-            padding: 5rem 1.5rem;
-            margin-top: auto;
-            text-align: center;
-        }
-
-        .theme-btn {
-            cursor: pointer;
-            background: var(--card-bg);
-            color: var(--text-main);
-            border: 2px solid var(--card-border);
-            padding: 0.5rem 1rem;
-            border-radius: 12px;
-            font-weight: 800;
-            font-size: 0.75rem;
-        }
-
-        @media (max-width: 768px) {
-            .hero-title { font-size: 2.5rem; }
-            .tile-grid-system { grid-template-columns: 1fr; }
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.95rem;
         }
     </style>
 
@@ -615,18 +470,19 @@
 
         <div class="container">
             <div class="row">
-    <nav class="navbar-hardened">
-        <a href="../.." class="logo-text">
+    <a href="#main-doc-content" class="skip-link">Skip to main content (Press Enter)</a>
+
+    <nav class="navbar-hardened" aria-label="Main Navigation">
+        <a href="../.." class="font-extrabold text-xl" style="color:var(--text-main)">
             OI <span style="color:var(--oi-primary)">DOCS</span>
         </a>
-        <button id="master-theme-toggle" class="theme-btn">
+        <button id="master-theme-toggle" class="px-4 py-2 border-2 rounded-lg font-black text-xs" style="border-color:var(--card-border)">
             DARK MODE
         </button>
     </nav>
 
-    
-        <main class="documentation-wrapper">
-            <article class="markdown-engine">
+    <main id="main-doc-content" tabindex="-1"> 
+            <article class="max-w-3xl mx-auto py-16 px-6 markdown-engine">
                 <!--
 
 The contents of this Documentation are subject to the Public Documentation License Version 1.01
@@ -789,48 +645,37 @@ And whenever you're ready, submit a <strong><em>pull request</em></strong> to ha
 <p>If you're really excited about Git and desire to become a Git Ninja, here is a great book to further your education: <a href="https://git-scm.com/book/en/v2">https://git-scm.com/book/en/v2</a></p>
 <p>There is also the book <a href="https://git-scm.com/book/en/v2">Pro Git</a> which is available for free under a Creative Commons license.</p>
             </article>
-        </main>
-    
+        
+    </main>
 
-    <footer class="custom-footer">
-        <p class="font-black text-xs tracking-widest opacity-40 uppercase mb-8" style="color:var(--text-main)">OpenIndiana Project</p>
-        <div class="flex flex-wrap justify-center gap-12">
-            <a href="https://www.openindiana.org/" class="text-sm font-bold no-underline hover:underline" style="color:var(--oi-secondary)">Website</a>
-            <a href="https://github.com/openindiana" class="text-sm font-bold no-underline hover:underline" style="color:var(--oi-secondary)">GitHub</a>
-        </div>
+    <footer class="py-12 text-center border-t" style="border-color:var(--card-border)">
+        <nav class="flex justify-center gap-10">
+            <a href="https://www.openindiana.org/" class="font-bold text-sm" style="color:var(--oi-secondary)">Official Website</a>
+            <a href="https://github.com/openindiana" class="font-bold text-sm" style="color:var(--oi-secondary)">GitHub</a>
+        </nav>
     </footer>
 
     <script>
-        (function() {
-            const toggle = document.getElementById('master-theme-toggle');
-            const html = document.documentElement;
+        const toggle = document.getElementById('master-theme-toggle');
+        const html = document.documentElement;
 
-            const applyTheme = (theme) => {
-                if (theme === 'dark') {
-                    html.setAttribute('data-theme', 'dark');
-                    toggle.textContent = 'LIGHT MODE';
-                } else {
-                    html.removeAttribute('data-theme');
-                    toggle.textContent = 'DARK MODE';
-                }
-                localStorage.setItem('oi-docs-theme', theme);
-            };
+        const applyTheme = (theme) => {
+            if (theme === 'dark') {
+                html.setAttribute('data-theme', 'dark');
+                toggle.textContent = 'LIGHT MODE';
+            } else {
+                html.removeAttribute('data-theme');
+                toggle.textContent = 'DARK MODE';
+            }
+            localStorage.setItem('oi-pref-theme', theme);
+        };
 
-            applyTheme(localStorage.getItem('oi-docs-theme') || 'light');
+        toggle.addEventListener('click', () => {
+            const current = html.hasAttribute('data-theme') ? 'light' : 'dark';
+            applyTheme(current);
+        });
 
-            toggle.addEventListener('click', () => {
-                const current = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-                applyTheme(current);
-            });
-
-            setInterval(() => {
-                const results = document.getElementById('mkdocs-search-results');
-                if (results) {
-                    const descriptions = results.querySelectorAll('p');
-                    descriptions.forEach(d => d.style.display = 'none');
-                }
-            }, 150);
-        })();
+        applyTheme(localStorage.getItem('oi-pref-theme') || 'light');
     </script>
 
             </div>
