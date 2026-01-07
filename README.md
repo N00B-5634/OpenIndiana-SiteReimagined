@@ -14,15 +14,11 @@ You might be wondering why I decided to make this change to the website. The ori
 
 **A:** Yes, this site is legal. OpenIndiana is an open-source project licensed under the Common Development and Distribution License (CDDL). This site does not use any copyrighted material from OpenIndiana’s official website, and it is not affiliated with or endorsed by OpenIndiana. However, this site provides links to the official OpenIndiana website for downloads and other official resources, ensuring users can easily access the latest information and software from OpenIndiana.
 
-### Q: **Why does the site look like this? I find the design off-putting.**
-
-**A:** Design preferences can vary, and I understand that the updated look may not appeal to everyone. The purpose of the redesign is to offer a more modern and visually engaging interface. The original minimalistic style has its advantages, but I wanted to provide an alternative that might attract users who prefer something more colorful and contemporary. If you have specific feedback or suggestions, feel free to reach out. Constructive criticism is always welcome.
-
 ### Q: **Can I contribute to the project or provide feedback?**
 
-**A:** Yes, you can contribute or provide feedback. This is a one-person project, but I’m open to suggestions and improvements. If you have design ideas, technical input, or just general feedback, you can open an issue. I’ll review all submissions as time permits.
+**A:** No, of at this moment, I want to be able to handle any workload, so I am studying Tailwind CSS, and HTML, and Javascript. When I'm ready an update will be made to this line.
 
-### Q: **I [expletive] hate it! It looks so bad, make it better.**
+### Q: **I [ insert expletive] hate it! It looks so bad, make it better.**
 
 **A:** While I appreciate feedback, I do not condone harassment of any kind. This includes harassment of myself, any potential future developers, OpenIndiana, or other users. Constructive criticism is always welcome, but please keep the tone respectful. If you have suggestions for improvements, I encourage you to submit an issue or reach out in a professional manner.
 
