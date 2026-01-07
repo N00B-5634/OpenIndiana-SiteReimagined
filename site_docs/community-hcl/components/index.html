@@ -18,6 +18,7 @@
         <script>hljs.highlightAll();</script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <style>
         :root {
             --oi-primary: #8b5cf6;
@@ -135,6 +136,26 @@
             color: white;
         }
 
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--oi-primary) 0%, var(--oi-secondary) 100%);
+            color: white;
+            text-align: center;
+            padding: 6rem 2rem;
+        }
+
+        /* Featured Docs Section */
+        #featured-docs .oi-card {
+            background-color: var(--oi-card-bg);
+            border: 1px solid var(--oi-card-border);
+            padding: 2rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        #featured-docs .oi-card:hover {
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+        }
     </style>
 
     </head>
@@ -482,298 +503,496 @@
 
         <div class="container">
             <div class="row">
-    <div class="container mx-auto flex mt-8">
-        <!-- Sidebar -->
-        <div class="docs-sidebar">
-            <h3 class="text-lg font-semibold mb-6">Documentation</h3>
+    <!-- Welcome Hero Section -->
+    <div class="hero">
+        <h1 class="text-5xl font-bold mb-4">Welcome to OpenIndiana Documentation</h1>
+        <p class="text-xl mb-6">Find everything you need to know about OpenIndiana, from installation guides to advanced usage.</p>
+        <a href="#docs" class="bg-white text-purple-800 py-3 px-8 rounded-lg text-xl hover:bg-gray-200 transition">Start Exploring</a>
+    </div>
 
-            <!-- Search Bar -->
-            <form action="#search" method="get" class="mb-6">
-                <input
-                    type="text"
-                    id="mkdocs-search-input"
-                    name="q"
-                    placeholder="Search the documentation"
-                    class="search-bar"
-                />
-            </form>
-
-            <!-- Search Results -->
-            <div class="search-results" id="search-results">
-                <!-- Search results will appear here -->
-            </div>
-
-            <!-- Sidebar Menu -->
-            <ul class="space-y-2">
-                
-                    <li>
-                        <a href="./" class="hover:underline"></a>
-                    </li>
-                
-                    <li>
-                        <a href="books/about/" class="hover:underline"></a>
-                    </li>
-                
-                    <li>
-                        <a href="books/advanced/" class="hover:underline"></a>
-                    </li>
-                
-                    <li>
-                        <a href="books/basic/" class="hover:underline"></a>
-                    </li>
-                
-                    <li>
-                        <a href="books/develop/" class="hover:underline"></a>
-                    </li>
-                
-                    <li>
-                        <a href="books/express/" class="hover:underline"></a>
-                    </li>
-                
-                    <li>
-                        <a href="books/trusted/" class="hover:underline"></a>
-                    </li>
-                
-                    <li>
-                        <a href="community-hcl/components/" class="hover:underline"></a>
-                    </li>
-                
-                    <li>
-                        <a href="community-hcl/getting-hardware-info/" class="hover:underline"></a>
-                    </li>
-                
-                    <li>
-                        <a href="community-hcl/systems/" class="hover:underline"></a>
-                    </li>
-                
-                    <li>
-                        <a href="contrib/content/" class="hover:underline"></a>
-                    </li>
-                
-                    <li>
-                        <a href="contrib/getting-started/" class="hover:underline"></a>
-                    </li>
-                
-                    <li>
-                        <a href="contrib/git/" class="hover:underline"></a>
-                    </li>
-                
-                    <li>
-                        <a href="contrib/markdown/" class="hover:underline"></a>
-                    </li>
-                
-                    <li>
-                        <a href="contrib/roles/" class="hover:underline"></a>
-                    </li>
-                
-                    <li>
-                        <a href="contrib/style/" class="hover:underline"></a>
-                    </li>
-                
-                    <li>
-                        <a href="contrib/tools/" class="hover:underline"></a>
-                    </li>
-                
-                    <li>
-                        <a href="contrib/topics/" class="hover:underline"></a>
-                    </li>
-                
-                    <li>
-                        <a href="dev/building-openindiana/" class="hover:underline"></a>
-                    </li>
-                
-                    <li>
-                        <a href="dev/distribution-constructor/" class="hover:underline"></a>
-                    </li>
-                
-                    <li>
-                        <a href="dev/existing-tasks/" class="hover:underline"></a>
-                    </li>
-                
-                    <li>
-                        <a href="dev/graphics-stack/" class="hover:underline"></a>
-                    </li>
-                
-                    <li>
-                        <a href="dev/repo-cleanup/" class="hover:underline"></a>
-                    </li>
-                
-                    <li>
-                        <a href="dev/userland/" class="hover:underline"></a>
-                    </li>
-                
-                    <li>
-                        <a href="handbook/appendix/" class="hover:underline"></a>
-                    </li>
-                
-                    <li>
-                        <a href="handbook/common-tasks/" class="hover:underline"></a>
-                    </li>
-                
-                    <li>
-                        <a href="handbook/community/" class="hover:underline"></a>
-                    </li>
-                
-                    <li>
-                        <a href="handbook/getting-started/" class="hover:underline"></a>
-                    </li>
-                
-                    <li>
-                        <a href="handbook/legacy-branch/" class="hover:underline"></a>
-                    </li>
-                
-                    <li>
-                        <a href="handbook/network-communications/" class="hover:underline"></a>
-                    </li>
-                
-                    <li>
-                        <a href="handbook/openindiana-download-mirrors/" class="hover:underline"></a>
-                    </li>
-                
-                    <li>
-                        <a href="handbook/pdfdocs/" class="hover:underline"></a>
-                    </li>
-                
-                    <li>
-                        <a href="handbook/sunray/" class="hover:underline"></a>
-                    </li>
-                
-                    <li>
-                        <a href="handbook/systems-administration/" class="hover:underline"></a>
-                    </li>
-                
-                    <li>
-                        <a href="handbook/community/inputmethod/" class="hover:underline"></a>
-                    </li>
-                
-                    <li>
-                        <a href="handbook/community/oracledb/" class="hover:underline"></a>
-                    </li>
-                
-                    <li>
-                        <a href="handbook/community/quikstor/" class="hover:underline"></a>
-                    </li>
-                
-                    <li>
-                        <a href="handbook/community/samqfs/" class="hover:underline"></a>
-                    </li>
-                
-                    <li>
-                        <a href="handbook/community/squeak/" class="hover:underline"></a>
-                    </li>
-                
-                    <li>
-                        <a href="handbook/community/texlive/" class="hover:underline"></a>
-                    </li>
-                
-                    <li>
-                        <a href="handbook/community/vagrant/" class="hover:underline"></a>
-                    </li>
-                
-                    <li>
-                        <a href="misc/conduct/" class="hover:underline"></a>
-                    </li>
-                
-                    <li>
-                        <a href="misc/oi-docs/" class="hover:underline"></a>
-                    </li>
-                
-                    <li>
-                        <a href="misc/openindiana/" class="hover:underline"></a>
-                    </li>
-                
-                    <li>
-                        <a href="misc/pdl/" class="hover:underline"></a>
-                    </li>
-                
-                    <li>
-                        <a href="release-notes/2015.03-release-notes/" class="hover:underline"></a>
-                    </li>
-                
-                    <li>
-                        <a href="release-notes/2015.10-release-notes/" class="hover:underline"></a>
-                    </li>
-                
-                    <li>
-                        <a href="release-notes/2016.04-release-notes/" class="hover:underline"></a>
-                    </li>
-                
-                    <li>
-                        <a href="release-notes/2016.10-release-notes/" class="hover:underline"></a>
-                    </li>
-                
-                    <li>
-                        <a href="release-notes/2017.04-release-notes/" class="hover:underline"></a>
-                    </li>
-                
-                    <li>
-                        <a href="release-notes/2017.10-release-notes/" class="hover:underline"></a>
-                    </li>
-                
-                    <li>
-                        <a href="release-notes/2018.04-release-notes/" class="hover:underline"></a>
-                    </li>
-                
-                    <li>
-                        <a href="release-notes/2018.10-release-notes/" class="hover:underline"></a>
-                    </li>
-                
-                    <li>
-                        <a href="release-notes/2019.04-release-notes/" class="hover:underline"></a>
-                    </li>
-                
-                    <li>
-                        <a href="release-notes/2019.10-release-notes/" class="hover:underline"></a>
-                    </li>
-                
-                    <li>
-                        <a href="release-notes/2020.04-release-notes/" class="hover:underline"></a>
-                    </li>
-                
-                    <li>
-                        <a href="release-notes/2020.10-release-notes/" class="hover:underline"></a>
-                    </li>
-                
-                    <li>
-                        <a href="release-notes/latest-changes/" class="hover:underline"></a>
-                    </li>
-                
-                    <li>
-                        <a href="retired/" class="hover:underline"></a>
-                    </li>
-                
-                    <li>
-                        <a href="retired/books/" class="hover:underline"></a>
-                    </li>
-                
-                    <li>
-                        <a href="retired/bsd/" class="hover:underline"></a>
-                    </li>
-                
-                    <li>
-                        <a href="retired/old-handbook/" class="hover:underline"></a>
-                    </li>
-                
-                    <li>
-                        <a href="retired/project/" class="hover:underline"></a>
-                    </li>
-                
-                    <li>
-                        <a href="retired/sphinx/" class="hover:underline"></a>
-                    </li>
-                
-                    <li>
-                        <a href="retired/toolchain/" class="hover:underline"></a>
-                    </li>
-                
-            </ul>
+    <!-- Featured Docs -->
+    <div id="featured-docs" class="container mx-auto mt-12">
+        <h2 class="text-3xl font-semibold text-center mb-6">Featured Documentation</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+                <div class="oi-card">
+                    <a href="./" class="block p-4 hover:shadow-lg transition">
+                        <h3 class="text-xl font-semibold"></h3>
+                        <p class="mt-2 text-gray-500">Learn more about this topic.</p>
+                    </a>
+                </div>
+            
+                <div class="oi-card">
+                    <a href="books/about/" class="block p-4 hover:shadow-lg transition">
+                        <h3 class="text-xl font-semibold"></h3>
+                        <p class="mt-2 text-gray-500">Learn more about this topic.</p>
+                    </a>
+                </div>
+            
+                <div class="oi-card">
+                    <a href="books/advanced/" class="block p-4 hover:shadow-lg transition">
+                        <h3 class="text-xl font-semibold"></h3>
+                        <p class="mt-2 text-gray-500">Learn more about this topic.</p>
+                    </a>
+                </div>
+            
+                <div class="oi-card">
+                    <a href="books/basic/" class="block p-4 hover:shadow-lg transition">
+                        <h3 class="text-xl font-semibold"></h3>
+                        <p class="mt-2 text-gray-500">Learn more about this topic.</p>
+                    </a>
+                </div>
+            
+                <div class="oi-card">
+                    <a href="books/develop/" class="block p-4 hover:shadow-lg transition">
+                        <h3 class="text-xl font-semibold"></h3>
+                        <p class="mt-2 text-gray-500">Learn more about this topic.</p>
+                    </a>
+                </div>
+            
+                <div class="oi-card">
+                    <a href="books/express/" class="block p-4 hover:shadow-lg transition">
+                        <h3 class="text-xl font-semibold"></h3>
+                        <p class="mt-2 text-gray-500">Learn more about this topic.</p>
+                    </a>
+                </div>
+            
+                <div class="oi-card">
+                    <a href="books/trusted/" class="block p-4 hover:shadow-lg transition">
+                        <h3 class="text-xl font-semibold"></h3>
+                        <p class="mt-2 text-gray-500">Learn more about this topic.</p>
+                    </a>
+                </div>
+            
+                <div class="oi-card">
+                    <a href="community-hcl/components/" class="block p-4 hover:shadow-lg transition">
+                        <h3 class="text-xl font-semibold"></h3>
+                        <p class="mt-2 text-gray-500">Learn more about this topic.</p>
+                    </a>
+                </div>
+            
+                <div class="oi-card">
+                    <a href="community-hcl/getting-hardware-info/" class="block p-4 hover:shadow-lg transition">
+                        <h3 class="text-xl font-semibold"></h3>
+                        <p class="mt-2 text-gray-500">Learn more about this topic.</p>
+                    </a>
+                </div>
+            
+                <div class="oi-card">
+                    <a href="community-hcl/systems/" class="block p-4 hover:shadow-lg transition">
+                        <h3 class="text-xl font-semibold"></h3>
+                        <p class="mt-2 text-gray-500">Learn more about this topic.</p>
+                    </a>
+                </div>
+            
+                <div class="oi-card">
+                    <a href="contrib/content/" class="block p-4 hover:shadow-lg transition">
+                        <h3 class="text-xl font-semibold"></h3>
+                        <p class="mt-2 text-gray-500">Learn more about this topic.</p>
+                    </a>
+                </div>
+            
+                <div class="oi-card">
+                    <a href="contrib/getting-started/" class="block p-4 hover:shadow-lg transition">
+                        <h3 class="text-xl font-semibold"></h3>
+                        <p class="mt-2 text-gray-500">Learn more about this topic.</p>
+                    </a>
+                </div>
+            
+                <div class="oi-card">
+                    <a href="contrib/git/" class="block p-4 hover:shadow-lg transition">
+                        <h3 class="text-xl font-semibold"></h3>
+                        <p class="mt-2 text-gray-500">Learn more about this topic.</p>
+                    </a>
+                </div>
+            
+                <div class="oi-card">
+                    <a href="contrib/markdown/" class="block p-4 hover:shadow-lg transition">
+                        <h3 class="text-xl font-semibold"></h3>
+                        <p class="mt-2 text-gray-500">Learn more about this topic.</p>
+                    </a>
+                </div>
+            
+                <div class="oi-card">
+                    <a href="contrib/roles/" class="block p-4 hover:shadow-lg transition">
+                        <h3 class="text-xl font-semibold"></h3>
+                        <p class="mt-2 text-gray-500">Learn more about this topic.</p>
+                    </a>
+                </div>
+            
+                <div class="oi-card">
+                    <a href="contrib/style/" class="block p-4 hover:shadow-lg transition">
+                        <h3 class="text-xl font-semibold"></h3>
+                        <p class="mt-2 text-gray-500">Learn more about this topic.</p>
+                    </a>
+                </div>
+            
+                <div class="oi-card">
+                    <a href="contrib/tools/" class="block p-4 hover:shadow-lg transition">
+                        <h3 class="text-xl font-semibold"></h3>
+                        <p class="mt-2 text-gray-500">Learn more about this topic.</p>
+                    </a>
+                </div>
+            
+                <div class="oi-card">
+                    <a href="contrib/topics/" class="block p-4 hover:shadow-lg transition">
+                        <h3 class="text-xl font-semibold"></h3>
+                        <p class="mt-2 text-gray-500">Learn more about this topic.</p>
+                    </a>
+                </div>
+            
+                <div class="oi-card">
+                    <a href="dev/building-openindiana/" class="block p-4 hover:shadow-lg transition">
+                        <h3 class="text-xl font-semibold"></h3>
+                        <p class="mt-2 text-gray-500">Learn more about this topic.</p>
+                    </a>
+                </div>
+            
+                <div class="oi-card">
+                    <a href="dev/distribution-constructor/" class="block p-4 hover:shadow-lg transition">
+                        <h3 class="text-xl font-semibold"></h3>
+                        <p class="mt-2 text-gray-500">Learn more about this topic.</p>
+                    </a>
+                </div>
+            
+                <div class="oi-card">
+                    <a href="dev/existing-tasks/" class="block p-4 hover:shadow-lg transition">
+                        <h3 class="text-xl font-semibold"></h3>
+                        <p class="mt-2 text-gray-500">Learn more about this topic.</p>
+                    </a>
+                </div>
+            
+                <div class="oi-card">
+                    <a href="dev/graphics-stack/" class="block p-4 hover:shadow-lg transition">
+                        <h3 class="text-xl font-semibold"></h3>
+                        <p class="mt-2 text-gray-500">Learn more about this topic.</p>
+                    </a>
+                </div>
+            
+                <div class="oi-card">
+                    <a href="dev/repo-cleanup/" class="block p-4 hover:shadow-lg transition">
+                        <h3 class="text-xl font-semibold"></h3>
+                        <p class="mt-2 text-gray-500">Learn more about this topic.</p>
+                    </a>
+                </div>
+            
+                <div class="oi-card">
+                    <a href="dev/userland/" class="block p-4 hover:shadow-lg transition">
+                        <h3 class="text-xl font-semibold"></h3>
+                        <p class="mt-2 text-gray-500">Learn more about this topic.</p>
+                    </a>
+                </div>
+            
+                <div class="oi-card">
+                    <a href="handbook/appendix/" class="block p-4 hover:shadow-lg transition">
+                        <h3 class="text-xl font-semibold"></h3>
+                        <p class="mt-2 text-gray-500">Learn more about this topic.</p>
+                    </a>
+                </div>
+            
+                <div class="oi-card">
+                    <a href="handbook/common-tasks/" class="block p-4 hover:shadow-lg transition">
+                        <h3 class="text-xl font-semibold"></h3>
+                        <p class="mt-2 text-gray-500">Learn more about this topic.</p>
+                    </a>
+                </div>
+            
+                <div class="oi-card">
+                    <a href="handbook/community/" class="block p-4 hover:shadow-lg transition">
+                        <h3 class="text-xl font-semibold"></h3>
+                        <p class="mt-2 text-gray-500">Learn more about this topic.</p>
+                    </a>
+                </div>
+            
+                <div class="oi-card">
+                    <a href="handbook/getting-started/" class="block p-4 hover:shadow-lg transition">
+                        <h3 class="text-xl font-semibold"></h3>
+                        <p class="mt-2 text-gray-500">Learn more about this topic.</p>
+                    </a>
+                </div>
+            
+                <div class="oi-card">
+                    <a href="handbook/legacy-branch/" class="block p-4 hover:shadow-lg transition">
+                        <h3 class="text-xl font-semibold"></h3>
+                        <p class="mt-2 text-gray-500">Learn more about this topic.</p>
+                    </a>
+                </div>
+            
+                <div class="oi-card">
+                    <a href="handbook/network-communications/" class="block p-4 hover:shadow-lg transition">
+                        <h3 class="text-xl font-semibold"></h3>
+                        <p class="mt-2 text-gray-500">Learn more about this topic.</p>
+                    </a>
+                </div>
+            
+                <div class="oi-card">
+                    <a href="handbook/openindiana-download-mirrors/" class="block p-4 hover:shadow-lg transition">
+                        <h3 class="text-xl font-semibold"></h3>
+                        <p class="mt-2 text-gray-500">Learn more about this topic.</p>
+                    </a>
+                </div>
+            
+                <div class="oi-card">
+                    <a href="handbook/pdfdocs/" class="block p-4 hover:shadow-lg transition">
+                        <h3 class="text-xl font-semibold"></h3>
+                        <p class="mt-2 text-gray-500">Learn more about this topic.</p>
+                    </a>
+                </div>
+            
+                <div class="oi-card">
+                    <a href="handbook/sunray/" class="block p-4 hover:shadow-lg transition">
+                        <h3 class="text-xl font-semibold"></h3>
+                        <p class="mt-2 text-gray-500">Learn more about this topic.</p>
+                    </a>
+                </div>
+            
+                <div class="oi-card">
+                    <a href="handbook/systems-administration/" class="block p-4 hover:shadow-lg transition">
+                        <h3 class="text-xl font-semibold"></h3>
+                        <p class="mt-2 text-gray-500">Learn more about this topic.</p>
+                    </a>
+                </div>
+            
+                <div class="oi-card">
+                    <a href="handbook/community/inputmethod/" class="block p-4 hover:shadow-lg transition">
+                        <h3 class="text-xl font-semibold"></h3>
+                        <p class="mt-2 text-gray-500">Learn more about this topic.</p>
+                    </a>
+                </div>
+            
+                <div class="oi-card">
+                    <a href="handbook/community/oracledb/" class="block p-4 hover:shadow-lg transition">
+                        <h3 class="text-xl font-semibold"></h3>
+                        <p class="mt-2 text-gray-500">Learn more about this topic.</p>
+                    </a>
+                </div>
+            
+                <div class="oi-card">
+                    <a href="handbook/community/quikstor/" class="block p-4 hover:shadow-lg transition">
+                        <h3 class="text-xl font-semibold"></h3>
+                        <p class="mt-2 text-gray-500">Learn more about this topic.</p>
+                    </a>
+                </div>
+            
+                <div class="oi-card">
+                    <a href="handbook/community/samqfs/" class="block p-4 hover:shadow-lg transition">
+                        <h3 class="text-xl font-semibold"></h3>
+                        <p class="mt-2 text-gray-500">Learn more about this topic.</p>
+                    </a>
+                </div>
+            
+                <div class="oi-card">
+                    <a href="handbook/community/squeak/" class="block p-4 hover:shadow-lg transition">
+                        <h3 class="text-xl font-semibold"></h3>
+                        <p class="mt-2 text-gray-500">Learn more about this topic.</p>
+                    </a>
+                </div>
+            
+                <div class="oi-card">
+                    <a href="handbook/community/texlive/" class="block p-4 hover:shadow-lg transition">
+                        <h3 class="text-xl font-semibold"></h3>
+                        <p class="mt-2 text-gray-500">Learn more about this topic.</p>
+                    </a>
+                </div>
+            
+                <div class="oi-card">
+                    <a href="handbook/community/vagrant/" class="block p-4 hover:shadow-lg transition">
+                        <h3 class="text-xl font-semibold"></h3>
+                        <p class="mt-2 text-gray-500">Learn more about this topic.</p>
+                    </a>
+                </div>
+            
+                <div class="oi-card">
+                    <a href="misc/conduct/" class="block p-4 hover:shadow-lg transition">
+                        <h3 class="text-xl font-semibold"></h3>
+                        <p class="mt-2 text-gray-500">Learn more about this topic.</p>
+                    </a>
+                </div>
+            
+                <div class="oi-card">
+                    <a href="misc/oi-docs/" class="block p-4 hover:shadow-lg transition">
+                        <h3 class="text-xl font-semibold"></h3>
+                        <p class="mt-2 text-gray-500">Learn more about this topic.</p>
+                    </a>
+                </div>
+            
+                <div class="oi-card">
+                    <a href="misc/openindiana/" class="block p-4 hover:shadow-lg transition">
+                        <h3 class="text-xl font-semibold"></h3>
+                        <p class="mt-2 text-gray-500">Learn more about this topic.</p>
+                    </a>
+                </div>
+            
+                <div class="oi-card">
+                    <a href="misc/pdl/" class="block p-4 hover:shadow-lg transition">
+                        <h3 class="text-xl font-semibold"></h3>
+                        <p class="mt-2 text-gray-500">Learn more about this topic.</p>
+                    </a>
+                </div>
+            
+                <div class="oi-card">
+                    <a href="release-notes/2015.03-release-notes/" class="block p-4 hover:shadow-lg transition">
+                        <h3 class="text-xl font-semibold"></h3>
+                        <p class="mt-2 text-gray-500">Learn more about this topic.</p>
+                    </a>
+                </div>
+            
+                <div class="oi-card">
+                    <a href="release-notes/2015.10-release-notes/" class="block p-4 hover:shadow-lg transition">
+                        <h3 class="text-xl font-semibold"></h3>
+                        <p class="mt-2 text-gray-500">Learn more about this topic.</p>
+                    </a>
+                </div>
+            
+                <div class="oi-card">
+                    <a href="release-notes/2016.04-release-notes/" class="block p-4 hover:shadow-lg transition">
+                        <h3 class="text-xl font-semibold"></h3>
+                        <p class="mt-2 text-gray-500">Learn more about this topic.</p>
+                    </a>
+                </div>
+            
+                <div class="oi-card">
+                    <a href="release-notes/2016.10-release-notes/" class="block p-4 hover:shadow-lg transition">
+                        <h3 class="text-xl font-semibold"></h3>
+                        <p class="mt-2 text-gray-500">Learn more about this topic.</p>
+                    </a>
+                </div>
+            
+                <div class="oi-card">
+                    <a href="release-notes/2017.04-release-notes/" class="block p-4 hover:shadow-lg transition">
+                        <h3 class="text-xl font-semibold"></h3>
+                        <p class="mt-2 text-gray-500">Learn more about this topic.</p>
+                    </a>
+                </div>
+            
+                <div class="oi-card">
+                    <a href="release-notes/2017.10-release-notes/" class="block p-4 hover:shadow-lg transition">
+                        <h3 class="text-xl font-semibold"></h3>
+                        <p class="mt-2 text-gray-500">Learn more about this topic.</p>
+                    </a>
+                </div>
+            
+                <div class="oi-card">
+                    <a href="release-notes/2018.04-release-notes/" class="block p-4 hover:shadow-lg transition">
+                        <h3 class="text-xl font-semibold"></h3>
+                        <p class="mt-2 text-gray-500">Learn more about this topic.</p>
+                    </a>
+                </div>
+            
+                <div class="oi-card">
+                    <a href="release-notes/2018.10-release-notes/" class="block p-4 hover:shadow-lg transition">
+                        <h3 class="text-xl font-semibold"></h3>
+                        <p class="mt-2 text-gray-500">Learn more about this topic.</p>
+                    </a>
+                </div>
+            
+                <div class="oi-card">
+                    <a href="release-notes/2019.04-release-notes/" class="block p-4 hover:shadow-lg transition">
+                        <h3 class="text-xl font-semibold"></h3>
+                        <p class="mt-2 text-gray-500">Learn more about this topic.</p>
+                    </a>
+                </div>
+            
+                <div class="oi-card">
+                    <a href="release-notes/2019.10-release-notes/" class="block p-4 hover:shadow-lg transition">
+                        <h3 class="text-xl font-semibold"></h3>
+                        <p class="mt-2 text-gray-500">Learn more about this topic.</p>
+                    </a>
+                </div>
+            
+                <div class="oi-card">
+                    <a href="release-notes/2020.04-release-notes/" class="block p-4 hover:shadow-lg transition">
+                        <h3 class="text-xl font-semibold"></h3>
+                        <p class="mt-2 text-gray-500">Learn more about this topic.</p>
+                    </a>
+                </div>
+            
+                <div class="oi-card">
+                    <a href="release-notes/2020.10-release-notes/" class="block p-4 hover:shadow-lg transition">
+                        <h3 class="text-xl font-semibold"></h3>
+                        <p class="mt-2 text-gray-500">Learn more about this topic.</p>
+                    </a>
+                </div>
+            
+                <div class="oi-card">
+                    <a href="release-notes/latest-changes/" class="block p-4 hover:shadow-lg transition">
+                        <h3 class="text-xl font-semibold"></h3>
+                        <p class="mt-2 text-gray-500">Learn more about this topic.</p>
+                    </a>
+                </div>
+            
+                <div class="oi-card">
+                    <a href="retired/" class="block p-4 hover:shadow-lg transition">
+                        <h3 class="text-xl font-semibold"></h3>
+                        <p class="mt-2 text-gray-500">Learn more about this topic.</p>
+                    </a>
+                </div>
+            
+                <div class="oi-card">
+                    <a href="retired/books/" class="block p-4 hover:shadow-lg transition">
+                        <h3 class="text-xl font-semibold"></h3>
+                        <p class="mt-2 text-gray-500">Learn more about this topic.</p>
+                    </a>
+                </div>
+            
+                <div class="oi-card">
+                    <a href="retired/bsd/" class="block p-4 hover:shadow-lg transition">
+                        <h3 class="text-xl font-semibold"></h3>
+                        <p class="mt-2 text-gray-500">Learn more about this topic.</p>
+                    </a>
+                </div>
+            
+                <div class="oi-card">
+                    <a href="retired/old-handbook/" class="block p-4 hover:shadow-lg transition">
+                        <h3 class="text-xl font-semibold"></h3>
+                        <p class="mt-2 text-gray-500">Learn more about this topic.</p>
+                    </a>
+                </div>
+            
+                <div class="oi-card">
+                    <a href="retired/project/" class="block p-4 hover:shadow-lg transition">
+                        <h3 class="text-xl font-semibold"></h3>
+                        <p class="mt-2 text-gray-500">Learn more about this topic.</p>
+                    </a>
+                </div>
+            
+                <div class="oi-card">
+                    <a href="retired/sphinx/" class="block p-4 hover:shadow-lg transition">
+                        <h3 class="text-xl font-semibold"></h3>
+                        <p class="mt-2 text-gray-500">Learn more about this topic.</p>
+                    </a>
+                </div>
+            
+                <div class="oi-card">
+                    <a href="retired/toolchain/" class="block p-4 hover:shadow-lg transition">
+                        <h3 class="text-xl font-semibold"></h3>
+                        <p class="mt-2 text-gray-500">Learn more about this topic.</p>
+                    </a>
+                </div>
+            
         </div>
+    </div>
 
-        <!-- Main Content Area -->
-        <div class="docs-content">
-            <h1 class="text-4xl font-bold mb-4 gradient-text">Components</h1>
-            <div class="prose max-w-none">
-                <!--
+    <!-- Search Section -->
+    <div id="docs" class="container mx-auto mt-12">
+        <h2 class="text-3xl font-semibold text-center mb-6">Search Documentation</h2>
+        <form action="#search" method="get" class="mb-6">
+            <input
+                type="text"
+                id="mkdocs-search-input"
+                name="q"
+                placeholder="Search the documentation"
+                class="search-bar"
+            />
+        </form>
+        <div class="search-results" id="search-results"></div>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="docs-content">
+        <h1 class="text-4xl font-bold mb-4 gradient-text">Components</h1>
+        <div class="markdown-content max-w-none">
+            <!--
 
 The contents of this Documentation are subject to the Public Documentation License Version 1.01
 (the "License"); you may only use this Documentation if you comply with the terms of this License.
@@ -3549,7 +3768,6 @@ All Rights Reserved. (Contributor contact(s):________________[Insert hyperlink/a
 </tr>
 </tbody>
 </table>
-            </div>
         </div>
     </div>
 
@@ -3591,15 +3809,17 @@ All Rights Reserved. (Contributor contact(s):________________[Insert hyperlink/a
         const searchInput = document.getElementById('mkdocs-search-input');
         const searchResultsContainer = document.getElementById('search-results');
 
-        searchInput.addEventListener('input', function() {
-            const query = searchInput.value;
+        searchInput.addEventListener('input', function () {
+            const query = searchInput.value.trim();
             if (query) {
                 fetch(`/search/?q=${query}`)
                     .then(response => response.json())
                     .then(data => {
                         if (data.results.length > 0) {
                             searchResultsContainer.innerHTML = data.results.map(result => {
-                                return `<a href="${result.url}" class="block py-2 px-4 hover:bg-gray-200">${result.title}</a>`;
+                                return `
+                                    <a href="${result.url}" class="block py-2 px-4 hover:bg-gray-200">${result.title}</a>
+                                `;
                             }).join('');
                         } else {
                             searchResultsContainer.innerHTML = '<p>No results found.</p>';
@@ -3607,6 +3827,14 @@ All Rights Reserved. (Contributor contact(s):________________[Insert hyperlink/a
                     });
             } else {
                 searchResultsContainer.innerHTML = '';
+            }
+        });
+
+        // Markdown rendering
+        document.addEventListener('DOMContentLoaded', function () {
+            const markdownContent = document.querySelector('.markdown-content');
+            if (markdownContent) {
+                markdownContent.innerHTML = marked(markdownContent.textContent);
             }
         });
     </script>

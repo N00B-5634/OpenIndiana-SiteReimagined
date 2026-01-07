@@ -5,6 +5,7 @@ site_dir: site_docs
 theme:
   name: mkdocs
   custom_dir: overrides
+  search_index_only:
 
 extra_css:
   - css/style.css
