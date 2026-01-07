@@ -3,341 +3,236 @@
 {% block extrahead %}
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            transition: all 0.3s ease;
+        }
+
+        /* Color Variables */
         :root {
-            --oi-primary: #8b5cf6;
-            --oi-secondary: #3b82f6;
-            --oi-bg: #f8fafc;
-            --oi-text: #1e293b;
-            --oi-card-bg: #ffffff;
-            --oi-card-border: #e2e8f0;
+            --background-color: #1e293b;
+            --text-color: #e2e8f0;
+            --primary-color: #8b5cf6;
+            --secondary-color: #3b82f6;
+            --accent-color: #9333ea;
+            --card-background: #2d3748;
+            --card-border: #4a5568;
+            --button-bg: #3b82f6;
+            --button-hover-bg: #2563eb;
+            --footer-background: #111827;
         }
 
         .dark-mode {
-            --oi-primary: #a78bfa;
-            --oi-secondary: #60a5fa;
-            --oi-bg: #0f172a;
-            --oi-text: #e2e8f0;
-            --oi-card-bg: #1e293b;
-            --oi-card-border: #334155;
+            --background-color: #111827;
+            --text-color: #e2e8f0;
+            --primary-color: #a78bfa;
+            --secondary-color: #60a5fa;
+            --accent-color: #9333ea;
+            --card-background: #334155;
+            --card-border: #4b5563;
+            --button-bg: #60a5fa;
+            --button-hover-bg: #3b82f6;
+            --footer-background: #1f2937;
         }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--oi-bg);
-            color: var(--oi-text);
-            transition: all 0.3s ease;
-        }
-
-        /* Topbar */
-        .oi-topbar {
-            background: linear-gradient(135deg, var(--oi-primary) 0%, var(--oi-secondary) 100%);
-            color: white;
-            padding: 0.75rem 1rem;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-        .oi-topbar__title {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin: 0;
-        }
-        .oi-topbar__nav {
-            display: flex;
-            gap: 1rem;
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        .oi-topbar__nav a {
-            color: white;
-            text-decoration: none;
-            padding: 0.5rem 1rem;
-            border-radius: 0.375rem;
-            transition: background-color 0.3s;
-        }
-        .oi-topbar__nav a:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-        }
-
-        /* Sidebar */
-        .docs-sidebar {
-            width: 250px;
-            max-width: 100%;
-            background-color: var(--oi-card-bg);
-            padding: 1rem;
-            border-right: 1px solid var(--oi-card-border);
-            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
-            position: fixed;
-            height: 100%;
-            overflow-y: auto;
-        }
-        .docs-sidebar a {
-            display: block;
-            padding: 10px;
-            margin-bottom: 8px;
-            font-size: 1rem;
-            color: var(--oi-text);
-            text-decoration: none;
-            border-radius: 8px;
-            transition: all 0.3s;
-        }
-        .docs-sidebar a:hover {
-            background-color: var(--oi-primary);
-            color: white;
-        }
-        .docs-sidebar a.active {
-            background-color: var(--oi-secondary);
-            color: white;
-        }
-
-        /* Main content */
-        .docs-content {
-            margin-left: 270px;
-            padding: 2rem;
-            min-height: calc(100vh - 80px);
-        }
-
-        /* Search */
-        .search-bar {
-            padding: 12px;
-            border-radius: 8px;
-            border: 1px solid var(--oi-card-border);
-            width: 100%;
-            max-width: 100%;
-            margin-bottom: 1.5rem;
-            background-color: var(--oi-card-bg);
-            font-size: 1rem;
-        }
-        .search-results {
-            max-height: 400px;
-            overflow-y: auto;
-            background-color: var(--oi-card-bg);
-            padding: 1rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-            display: none;
-        }
-        .search-results:not(:empty) {
-            display: block;
-        }
-        .search-results a {
-            display: block;
-            padding: 10px;
-            border-bottom: 1px solid var(--oi-card-border);
-            color: var(--oi-text);
-            text-decoration: none;
-            transition: background-color 0.3s;
-        }
-        .search-results a:hover {
-            background-color: var(--oi-primary);
-            color: white;
-        }
-
-        /* Hero */
+        /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, var(--oi-primary) 0%, var(--oi-secondary) 100%);
+            background-color: var(--primary-color);
             color: white;
-            text-align: center;
             padding: 4rem 2rem;
-            margin: 0 -2rem;
+            text-align: center;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        .hero h2 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
             margin-bottom: 2rem;
         }
 
-        /* Cards */
-        .oi-card {
-            background-color: var(--oi-card-bg);
-            border: 1px solid var(--oi-card-border);
+        /* New Search Bar (Transparent, minimal) */
+        .hero .search-bar {
+            padding: 1rem;
+            width: 60%;
+            border-radius: 9999px; /* Fully rounded corners */
+            background-color: transparent; /* Transparent background */
+            color: var(--text-color);
+            font-size: 1.1rem;
+            margin: 0 auto;
+            border: none; /* Remove border */
+            box-shadow: none; /* No box shadow */
+            outline: none; /* Remove outline */
+        }
+
+        .hero .search-bar:focus {
+            color: var(--text-color); /* Keep the color same on focus */
+            background-color: transparent; /* Keep background transparent */
+        }
+
+        .hero .search-bar::placeholder {
+            color: #6b7280; /* Placeholder color */
+        }
+
+        /* Cards Section */
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 2rem 1rem;
+        }
+
+        .card {
+            background-color: var(--card-background);
+            border: 1px solid var(--card-border);
             border-radius: 0.75rem;
-            transition: all 0.3s ease;
-            padding: 1.5rem;
-        }
-        .oi-card:hover {
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
-        }
-
-        /* Gradient text */
-        .gradient-text {
-            background: linear-gradient(90deg, var(--oi-primary), var(--oi-secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            padding: 2rem;
+            transition: box-shadow 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+            text-align: center;
         }
 
-        /* Footer */
-        footer {
-            background-color: #1e293b;
-            color: white;
+        .card:hover {
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .card h3 {
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .card p {
+            font-size: 1rem;
+            color: #6b7280;
+        }
+
+        /* Footer Section */
+        .footer {
+            background-color: var(--footer-background);
+            color: var(--text-color);
             text-align: center;
             padding: 2rem;
-            margin-left: 270px;
-        }
-        footer a {
-            color: white;
-            text-decoration: none;
-            margin: 0 0.75rem;
-        }
-        footer a:hover {
-            color: var(--oi-primary);
+            width: 100%;
+            margin-top: 2rem;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
         }
 
-        /* Responsive */
+        .footer a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Button Styles */
+        .button {
+            background-color: var(--button-bg);
+            color: white;
+            padding: 1rem 2rem;
+            font-size: 1.125rem;
+            font-weight: 600;
+            border-radius: 0.375rem;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+            display: inline-block;
+            margin: 1rem;
+        }
+
+        .button:hover {
+            background-color: var(--button-hover-bg);
+        }
+
+        /* Responsive Design */
         @media (max-width: 768px) {
-            .docs-sidebar {
-                width: 100%;
-                position: static;
-                height: auto;
-                margin-bottom: 1rem;
+            .hero h2 {
+                font-size: 2rem;
             }
-            .docs-content, footer {
-                margin-left: 0;
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .hero .search-bar {
+                width: 80%;
+            }
+
+            .cards-container {
+                margin: 2rem 1rem;
+            }
+
+            .card {
+                padding: 1.5rem;
             }
         }
     </style>
 {% endblock %}
 
 {% block content %}
-    <!-- Topbar -->
-    <div class="oi-topbar">
-        <h1 class="oi-topbar__title">OpenIndiana Docs</h1>
-        <ul class="oi-topbar__nav">
-            <li><a href="{{ base_url }}">Home</a></li>
-            <li><a href="{{ base_url }}#docs">Docs</a></li>
-            <li><a href="{{ base_url }}#search">Search</a></li>
-        </ul>
-    </div>
-
-    <!-- Sidebar -->
-    <div class="docs-sidebar">
-        <h3>Navigation</h3>
-        <ul>
-            {% for page in pages %}
-                <li><a href="{{ page.url }}" {% if page.url == current_page.url %}class="active"{% endif %}>{{ page.title }}</a></li>
-            {% endfor %}
-        </ul>
-    </div>
-
-    <!-- Hero -->
+    <!-- Hero Section -->
     <div class="hero">
-        <h1 class="text-4xl font-bold mb-4">Welcome to OpenIndiana Documentation</h1>
-        <p class="text-xl mb-6">Find everything you need to know about OpenIndiana, from installation guides to advanced usage.</p>
-        <a href="#docs" class="bg-white text-purple-800 py-3 px-8 rounded-lg text-xl hover:bg-gray-200 transition">Start Exploring</a>
+        <h2>Search the Documentation</h2>
+        <p>Quickly find what you're looking for by searching through our extensive documentation.</p>
+        <input type="text" id="mkdocs-search-input" class="search-bar" placeholder="Search the documentation" />
     </div>
 
-    <!-- Featured Docs -->
-    <div class="docs-content">
-        <h2 class="text-3xl font-semibold text-center mb-6">Featured Documentation</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {% for page in pages %}
-                <div class="oi-card">
-                    <a href="{{ page.url }}" class="block p-4 hover:shadow-lg transition">
-                        <h3 class="text-xl font-semibold">{{ page.title }}</h3>
-                        <p class="mt-2 text-gray-500">{{ page.excerpt|default('Learn more about this topic.') }}</p>
-                    </a>
-                </div>
-            {% endfor %}
+    <!-- Featured Docs Section -->
+    <div class="cards-container">
+        <div class="card">
+            <h3>Getting Started</h3>
+            <p>Learn how to set up and get started with OpenIndiana from scratch.</p>
         </div>
-
-        <!-- Search -->
-        <div id="docs" class="mt-12">
-            <h2 class="text-3xl font-semibold text-center mb-6">Search Documentation</h2>
-            <form action="{{ base_url }}search.html" method="get" class="mb-6">
-                <input
-                    type="text"
-                    id="mkdocs-search-input"
-                    name="q"
-                    placeholder="Search the documentation"
-                    class="search-bar"
-                />
-            </form>
-            <div class="search-results" id="search-results"></div>
+        <div class="card">
+            <h3>System Administration</h3>
+            <p>Explore system administration tasks for managing OpenIndiana servers.</p>
         </div>
-
-        <!-- Page Content -->
-        <h1 class="text-4xl font-bold mb-4 gradient-text">{{ page.title }}</h1>
-        <div class="markdown-content max-w-none">
-            {{ page.content }}
+        <div class="card">
+            <h3>Networking</h3>
+            <p>Understand networking configurations and management in OpenIndiana.</p>
+        </div>
+        <div class="card">
+            <h3>Advanced Features</h3>
+            <p>Dive deep into the advanced features and capabilities of OpenIndiana.</p>
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container mx-auto px-4 text-center">
-            <div class="flex justify-center space-x-6 mb-4">
-                <a href="#">GitHub</a>
-                <a href="#">IRC</a>
-                <a href="#">Twitter</a>
-                <a href="#">Forum</a>
-            </div>
-            <p class="mb-2">OpenIndiana Maintainers. All rights reserved.</p>
-            <p class="text-sm text-gray-400 max-w-2xl mx-auto">
-                This is a derivative site. OpenIndiana is a registered trademark. For official information, visit <a href="https://www.openindiana.org/">openindiana.org</a>.
-            </p>
-        </div>
-    </footer>
+    <!-- Footer Section -->
+    <div class="footer">
+        <p>© 2026 OpenIndiana Maintainers</p>
+        <p><a href="https://www.openindiana.org/">Visit the official site</a></p>
+    </div>
 
-    <!-- Dark Mode Script -->
     <script>
-        const darkModeToggle = document.createElement('button');
-        darkModeToggle.id = 'darkModeToggle';
-        darkModeToggle.textContent = '🌓 Dark Mode';
-        darkModeToggle.style.position = 'fixed';
-        darkModeToggle.style.bottom = '20px';
-        darkModeToggle.style.right = '20px';
-        darkModeToggle.style.zIndex = '1000';
-        darkModeToggle.style.padding = '0.5rem 1rem';
-        darkModeToggle.style.backgroundColor = 'var(--oi-primary)';
-        darkModeToggle.style.color = 'white';
-        darkModeToggle.style.border = 'none';
-        darkModeToggle.style.borderRadius = '0.375rem';
-        darkModeToggle.style.cursor = 'pointer';
-        document.body.appendChild(darkModeToggle);
-
-        function updateTheme(isDark) {
-            document.body.classList.toggle('dark-mode', isDark);
-            darkModeToggle.textContent = isDark ? '☀️ Light Mode' : '🌓 Dark Mode';
-            localStorage.setItem('darkMode', isDark);
-        }
+        // Dark mode toggle
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const body = document.body;
 
         darkModeToggle.addEventListener('click', () => {
-            const isDark = !document.body.classList.contains('dark-mode');
-            updateTheme(isDark);
+            body.classList.toggle('dark-mode');
+            const isDarkMode = body.classList.contains('dark-mode');
+            localStorage.setItem('darkMode', isDarkMode);
+            darkModeToggle.textContent = isDarkMode ? '☀️' : '🌙';
         });
 
+        // Load dark mode state from localStorage
         if (localStorage.getItem('darkMode') === 'true') {
-            updateTheme(true);
+            body.classList.add('dark-mode');
+            darkModeToggle.textContent = '☀️';
+        } else {
+            darkModeToggle.textContent = '🌙';
         }
-
-        // Search functionality
-        const searchInput = document.getElementById('mkdocs-search-input');
-        const searchResultsContainer = document.getElementById('search-results');
-
-        searchInput.addEventListener('input', function () {
-            const query = searchInput.value.trim();
-            if (query) {
-                fetch(`{{ base_url }}search/search_index.json`)
-                    .then(response => response.json())
-                    .then(data => {
-                        const results = data.docs.filter(doc =>
-                            doc.title.toLowerCase().includes(query.toLowerCase()) ||
-                            doc.text.toLowerCase().includes(query.toLowerCase())
-                        );
-                        if (results.length > 0) {
-                            searchResultsContainer.innerHTML = results.map(result => {
-                                return `
-                                    <a href="${result.location}" class="block py-2 px-4 hover:bg-gray-200">${result.title}</a>
-                                `;
-                            }).join('');
-                        } else {
-                            searchResultsContainer.innerHTML = '<p>No results found.</p>';
-                        }
-                    });
-            } else {
-                searchResultsContainer.innerHTML = '';
-            }
-        });
     </script>
 {% endblock %}
