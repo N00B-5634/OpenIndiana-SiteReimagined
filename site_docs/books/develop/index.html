@@ -20,109 +20,90 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono&display=swap" rel="stylesheet">
 
     <style>
-        /* ============================================================
-           FIXED SKIP LINK (THE "YELLOW BAR")
-           ============================================================ */
+        /* THE SKIP LINK */
         .skip-link {
-            position: fixed; /* Changed from absolute to fixed */
-            top: -100px;
-            left: 0;
-            right: 0;
-            background: #ffde59; /* Bright Yellow */
-            color: #000 !important;
-            text-align: center;
-            padding: 1rem;
-            z-index: 100000; /* Highest possible priority */
-            font-weight: 900;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-            text-decoration: none;
-            border-bottom: 4px solid black;
-            transition: top 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+            position: fixed; top: -100px; left: 50%; transform: translateX(-50%);
+            background: #ffde59; color: #000 !important; padding: 1rem 2rem;
+            z-index: 10001; font-weight: 800; border: 3px solid black;
+            transition: top 0.3s ease;
+        }
+        .skip-link:focus { top: 20px; outline: none; }
+
+        /* FOOTER REMOVAL */
+        .md-footer, .md-copyright, .md-footer-meta, footer:not(.custom-footer),
+        [role="contentinfo"], .md-typeset hr, .md-sidebar--secondary {
+            display: none !important;
         }
 
-        /* This triggers when you press TAB */
-        .skip-link:focus {
-            top: 0;
-            outline: none;
-        }
-
-        /* ============================================================
-           THE DESIGN SYSTEM (STAYING TRUE TO YOUR VISION)
-           ============================================================ */
         :root {
-            --oi-primary: #8b5cf6;
-            --oi-secondary: #3b82f6;
-            --bg-body: #ffffff;
-            --text-main: #0f172a;
-            --card-bg: #ffffff;
-            --card-border: #e2e8f0;
-            --nav-bg: rgba(255, 255, 255, 0.9);
-            --code-bg: #f1f5f9;
-            --code-text: #1e293b;
+            --oi-primary: #8b5cf6; --oi-secondary: #3b82f6;
+            --bg-body: #ffffff; --text-main: #0f172a;
+            --card-bg: #ffffff; --card-border: #e2e8f0;
+            --nav-bg: rgba(255, 255, 255, 0.98);
+            --code-bg: #0f172a; /* STICKY DARK CODE BG */
+            --code-text: #ffffff;
         }
 
         [data-theme="dark"] {
-            --oi-primary: #a78bfa;
-            --oi-secondary: #60a5fa;
-            --bg-body: #020617;
-            --text-main: #ffffff;
-            --card-bg: #0f172a;
-            --card-border: #334155;
-            --nav-bg: rgba(2, 6, 23, 0.95);
-            /* TERMINAL MODE: Pure Black & White */
+            --oi-primary: #a78bfa; --oi-secondary: #60a5fa;
+            --bg-body: #020617; --text-main: #ffffff;
+            --card-bg: #0f172a; --card-border: #334155;
+            --nav-bg: rgba(2, 6, 23, 0.98);
             --code-bg: #000000;
             --code-text: #ffffff;
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-body);
-            color: var(--text-main);
-            margin: 0;
-            transition: background-color 0.2s ease;
+            font-family: 'Inter', sans-serif; background-color: var(--bg-body);
+            color: var(--text-main); margin: 0; display: flex;
+            flex-direction: column; min-height: 100vh;
         }
 
-        /* High Visibility Focus States */
-        :focus-visible {
-            outline: 4px solid #ffde59 !important;
-            outline-offset: 2px;
-        }
-
-        /* REMOVING MKDOCS DEFAULTS */
-        .md-footer, .md-copyright, .md-footer-meta, .md-sidebar--secondary, .md-nav--secondary {
-            display: none !important;
-        }
-
-        /* NAVIGATION */
+        /* NAVBAR WITH INTEGRATED SEARCH */
         .navbar-hardened {
-            position: sticky;
-            top: 0;
-            z-index: 9999;
-            background: var(--nav-bg);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--card-border);
-            padding: 1rem 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            position: sticky; top: 0; z-index: 9999; background: var(--nav-bg);
+            backdrop-filter: blur(12px); border-bottom: 1px solid var(--card-border);
+            padding: 0.75rem 5%; display: flex; justify-content: space-between; align-items: center;
+            gap: 2rem;
         }
 
-        /* TERMINAL STYLE CODE */
+        .header-search-wrap { flex: 1; max-width: 500px; position: relative; }
+        .header-search-input {
+            width: 100%; padding: 0.6rem 1.25rem; border-radius: 12px;
+            background: var(--card-bg); border: 2px solid var(--card-border);
+            color: var(--text-main); font-size: 0.9rem; outline: none;
+        }
+
+        /* HERO AREA - PURPLE GRADIENT RESTORED */
+        .hero-banner {
+            background: linear-gradient(135deg, var(--oi-primary), var(--oi-secondary)) !important;
+            color: white !important; padding: 12rem 1rem; text-align: center;
+        }
+        .hero-title { font-size: clamp(2.5rem, 8vw, 4.5rem); font-weight: 800; letter-spacing: -0.05em; color: white !important; margin: 0; }
+
+        /* READER VIEW STYLES */
+        .documentation-container { display: flex; max-width: 1400px; margin: 0 auto; width: 100%; padding: 0 5%; }
+        .sidebar-nav { width: 280px; position: sticky; top: 100px; height: fit-content; padding: 4rem 0; border-right: 1px solid var(--card-border); }
+        .documentation-wrapper { flex: 1; padding: 6rem 0; max-width: 900px; }
+
+        /* TERMINAL / CODE BLOCKS - FORCED DARK */
         .markdown-engine pre {
-            background: var(--code-bg) !important;
-            border: 2px solid var(--card-border);
-            padding: 1.5rem;
-            border-radius: 8px;
+            background-color: var(--code-bg) !important;
+            padding: 1.5rem; border-radius: 12px;
+            border: 1px solid var(--card-border);
+            margin: 2rem 0;
             overflow-x: auto;
         }
-
         .markdown-engine pre code {
-            background: transparent !important;
             color: var(--code-text) !important;
+            background: transparent !important;
             font-family: 'JetBrains Mono', monospace;
             font-size: 0.95rem;
         }
+
+        .markdown-engine h1 { font-size: 3.5rem; font-weight: 800; color: var(--oi-primary) !important; margin-bottom: 2rem; }
+        .custom-footer { border-top: 1px solid var(--card-border); padding: 4rem 5%; text-align: center; margin-top: auto; }
+        .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
     </style>
 
     </head>
@@ -470,20 +451,77 @@
 
         <div class="container">
             <div class="row">
-    <a href="#main-doc-content" class="skip-link">Skip to main content (Press Enter)</a>
+    <a href="#main-content" class="skip-link">Skip to Content</a>
 
-    <nav class="navbar-hardened" aria-label="Main Navigation">
-        <a href="../.." class="font-extrabold text-xl" style="color:var(--text-main)">
+    <nav class="navbar-hardened">
+        <a href="../.." class="font-extrabold text-2xl shrink-0" style="color:var(--text-main)">
             OI <span style="color:var(--oi-primary)">DOCS</span>
         </a>
-        <button id="master-theme-toggle" class="px-4 py-2 border-2 rounded-lg font-black text-xs" style="border-color:var(--card-border)">
-            DARK MODE
-        </button>
+
+        <div class="header-search-wrap">
+            <form role="search" onsubmit="return false;">
+                <label for="mkdocs-search-query" class="sr-only">Search</label>
+                <input type="text" id="mkdocs-search-query" class="header-search-input"
+                       placeholder="Search docs..." autocomplete="off">
+            </form>
+            <div id="mkdocs-search-results" class="absolute top-full left-0 right-0 mt-2 rounded-xl shadow-2xl overflow-hidden" style="background:var(--card-bg); z-index: 100;"></div>
+        </div>
+
+        <div class="flex gap-3 shrink-0">
+            <button id="a11y-toggle" class="px-3 py-1.5 border-2 rounded-lg font-bold text-[9px] uppercase opacity-60 hover:opacity-100" style="border-color:var(--card-border)">
+                W3C Access
+            </button>
+            <button id="master-theme-toggle" class="px-4 py-2 border-2 rounded-xl font-bold text-[10px] uppercase" style="border-color:var(--card-border)">
+                DARK MODE
+            </button>
+        </div>
     </nav>
 
-    <main id="main-doc-content" tabindex="-1"> 
-            <article class="max-w-3xl mx-auto py-16 px-6 markdown-engine">
-                <!--
+    
+        <div class="documentation-container">
+            <aside class="sidebar-nav">
+                <p class="text-[10px] font-black uppercase tracking-widest opacity-40 mb-8">Navigation</p>
+                
+                    <a href="../.." class="block mb-4 text-sm font-bold no-underline hover:text-[var(--oi-primary)] text-[var(--text-main)]">
+                        Welcome to OpenIndiana Reimagined
+                    </a>
+                
+                    <a href="../.." class="block mb-4 text-sm font-bold no-underline hover:text-[var(--oi-primary)] text-[var(--oi-primary)]">
+                        Books
+                    </a>
+                
+                    <a href="../.." class="block mb-4 text-sm font-bold no-underline hover:text-[var(--oi-primary)] text-[var(--text-main)]">
+                        Community hcl
+                    </a>
+                
+                    <a href="../.." class="block mb-4 text-sm font-bold no-underline hover:text-[var(--oi-primary)] text-[var(--text-main)]">
+                        Contrib
+                    </a>
+                
+                    <a href="../.." class="block mb-4 text-sm font-bold no-underline hover:text-[var(--oi-primary)] text-[var(--text-main)]">
+                        Dev
+                    </a>
+                
+                    <a href="../.." class="block mb-4 text-sm font-bold no-underline hover:text-[var(--oi-primary)] text-[var(--text-main)]">
+                        Handbook
+                    </a>
+                
+                    <a href="../.." class="block mb-4 text-sm font-bold no-underline hover:text-[var(--oi-primary)] text-[var(--text-main)]">
+                        Misc
+                    </a>
+                
+                    <a href="../.." class="block mb-4 text-sm font-bold no-underline hover:text-[var(--oi-primary)] text-[var(--text-main)]">
+                        Release notes
+                    </a>
+                
+                    <a href="../.." class="block mb-4 text-sm font-bold no-underline hover:text-[var(--oi-primary)] text-[var(--text-main)]">
+                        Retired
+                    </a>
+                
+            </aside>
+            <main id="main-content" class="documentation-wrapper">
+                <article class="markdown-engine">
+                    <!--
 
 The contents of this Documentation are subject to the Public Documentation License Version 1.01
 (the "License"); you may only use this Documentation if you comply with the terms of this License.
@@ -805,38 +843,52 @@ All Rights Reserved. (Contributor contact(s):________________[Insert hyperlink/a
 </tr>
 </tbody>
 </table>
-            </article>
-        
-    </main>
+                </article>
+            </main>
+        </div>
+    
 
-    <footer class="py-12 text-center border-t" style="border-color:var(--card-border)">
-        <nav class="flex justify-center gap-10">
-            <a href="https://www.openindiana.org/" class="font-bold text-sm" style="color:var(--oi-secondary)">Official Website</a>
-            <a href="https://github.com/openindiana" class="font-bold text-sm" style="color:var(--oi-secondary)">GitHub</a>
-        </nav>
+    <footer class="custom-footer">
+        <div class="flex justify-between items-center opacity-60">
+            <p class="text-[10px] font-black uppercase tracking-widest">OpenIndiana Reimagined</p>
+            <div class="flex gap-8">
+                <a href="https://www.openindiana.org/" class="font-bold text-sm no-underline hover:underline">Website</a>
+                <a href="https://github.com/openindiana" class="font-bold text-sm no-underline hover:underline">GitHub</a>
+            </div>
+        </div>
     </footer>
 
     <script>
-        const toggle = document.getElementById('master-theme-toggle');
-        const html = document.documentElement;
+        (function() {
+            const toggle = document.getElementById('master-theme-toggle');
+            const a11yBtn = document.getElementById('a11y-toggle');
+            const html = document.documentElement;
 
-        const applyTheme = (theme) => {
-            if (theme === 'dark') {
-                html.setAttribute('data-theme', 'dark');
-                toggle.textContent = 'LIGHT MODE';
-            } else {
-                html.removeAttribute('data-theme');
-                toggle.textContent = 'DARK MODE';
-            }
-            localStorage.setItem('oi-pref-theme', theme);
-        };
+            a11yBtn.addEventListener('click', () => {
+                html.classList.toggle('a11y-mode');
+                a11yBtn.textContent = html.classList.contains('a11y-mode') ? "Standard Mode" : "W3C Access";
+            });
 
-        toggle.addEventListener('click', () => {
-            const current = html.hasAttribute('data-theme') ? 'light' : 'dark';
-            applyTheme(current);
-        });
+            const applyTheme = (theme) => {
+                if (theme === 'dark') {
+                    html.setAttribute('data-theme', 'dark');
+                    toggle.textContent = 'LIGHT MODE';
+                } else {
+                    html.removeAttribute('data-theme');
+                    toggle.textContent = 'DARK MODE';
+                }
+                localStorage.setItem('oi-theme-v5', theme);
+            };
+            applyTheme(localStorage.getItem('oi-theme-v5') || 'light');
+            toggle.addEventListener('click', () => applyTheme(html.hasAttribute('data-theme') ? 'light' : 'dark'));
 
-        applyTheme(localStorage.getItem('oi-pref-theme') || 'light');
+            setInterval(() => {
+                const results = document.getElementById('mkdocs-search-results');
+                if (results) {
+                    results.querySelectorAll('p').forEach(d => d.style.display = 'none');
+                }
+            }, 150);
+        })();
     </script>
 
             </div>
