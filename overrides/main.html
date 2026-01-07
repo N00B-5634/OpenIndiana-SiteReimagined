@@ -3,6 +3,7 @@
 {% block extrahead %}
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <style>
         :root {
             --oi-primary: #8b5cf6;
@@ -120,47 +121,72 @@
             color: white;
         }
 
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--oi-primary) 0%, var(--oi-secondary) 100%);
+            color: white;
+            text-align: center;
+            padding: 6rem 2rem;
+        }
+
+        /* Featured Docs Section */
+        #featured-docs .oi-card {
+            background-color: var(--oi-card-bg);
+            border: 1px solid var(--oi-card-border);
+            padding: 2rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        #featured-docs .oi-card:hover {
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+        }
     </style>
 {% endblock %}
 
 {% block content %}
-    <div class="container mx-auto flex mt-8">
-        <!-- Sidebar -->
-        <div class="docs-sidebar">
-            <h3 class="text-lg font-semibold mb-6">Documentation</h3>
+    <!-- Welcome Hero Section -->
+    <div class="hero">
+        <h1 class="text-5xl font-bold mb-4">Welcome to OpenIndiana Documentation</h1>
+        <p class="text-xl mb-6">Find everything you need to know about OpenIndiana, from installation guides to advanced usage.</p>
+        <a href="#docs" class="bg-white text-purple-800 py-3 px-8 rounded-lg text-xl hover:bg-gray-200 transition">Start Exploring</a>
+    </div>
 
-            <!-- Search Bar -->
-            <form action="#search" method="get" class="mb-6">
-                <input
-                    type="text"
-                    id="mkdocs-search-input"
-                    name="q"
-                    placeholder="Search the documentation"
-                    class="search-bar"
-                />
-            </form>
-
-            <!-- Search Results -->
-            <div class="search-results" id="search-results">
-                <!-- Search results will appear here -->
-            </div>
-
-            <!-- Sidebar Menu -->
-            <ul class="space-y-2">
-                {% for page in pages %}
-                    <li>
-                        <a href="{{ page.url }}" class="hover:underline">{{ page.title }}</a>
-                    </li>
-                {% endfor %}
-            </ul>
+    <!-- Featured Docs -->
+    <div id="featured-docs" class="container mx-auto mt-12">
+        <h2 class="text-3xl font-semibold text-center mb-6">Featured Documentation</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {% for page in pages %}
+                <div class="oi-card">
+                    <a href="{{ page.url }}" class="block p-4 hover:shadow-lg transition">
+                        <h3 class="text-xl font-semibold">{{ page.title }}</h3>
+                        <p class="mt-2 text-gray-500">{{ page.excerpt|default('Learn more about this topic.') }}</p>
+                    </a>
+                </div>
+            {% endfor %}
         </div>
+    </div>
 
-        <!-- Main Content Area -->
-        <div class="docs-content">
-            <h1 class="text-4xl font-bold mb-4 gradient-text">{{ page.title }}</h1>
-            <div class="prose max-w-none">
-                {{ page.content }}
-            </div>
+    <!-- Search Section -->
+    <div id="docs" class="container mx-auto mt-12">
+        <h2 class="text-3xl font-semibold text-center mb-6">Search Documentation</h2>
+        <form action="#search" method="get" class="mb-6">
+            <input
+                type="text"
+                id="mkdocs-search-input"
+                name="q"
+                placeholder="Search the documentation"
+                class="search-bar"
+            />
+        </form>
+        <div class="search-results" id="search-results"></div>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="docs-content">
+        <h1 class="text-4xl font-bold mb-4 gradient-text">{{ page.title }}</h1>
+        <div class="markdown-content max-w-none">
+            {{ page.content }}
         </div>
     </div>
 
@@ -202,15 +228,17 @@
         const searchInput = document.getElementById('mkdocs-search-input');
         const searchResultsContainer = document.getElementById('search-results');
 
-        searchInput.addEventListener('input', function() {
-            const query = searchInput.value;
+        searchInput.addEventListener('input', function () {
+            const query = searchInput.value.trim();
             if (query) {
                 fetch(`/search/?q=${query}`)
                     .then(response => response.json())
                     .then(data => {
                         if (data.results.length > 0) {
                             searchResultsContainer.innerHTML = data.results.map(result => {
-                                return `<a href="${result.url}" class="block py-2 px-4 hover:bg-gray-200">${result.title}</a>`;
+                                return `
+                                    <a href="${result.url}" class="block py-2 px-4 hover:bg-gray-200">${result.title}</a>
+                                `;
                             }).join('');
                         } else {
                             searchResultsContainer.innerHTML = '<p>No results found.</p>';
@@ -218,6 +246,14 @@
                     });
             } else {
                 searchResultsContainer.innerHTML = '';
+            }
+        });
+
+        // Markdown rendering
+        document.addEventListener('DOMContentLoaded', function () {
+            const markdownContent = document.querySelector('.markdown-content');
+            if (markdownContent) {
+                markdownContent.innerHTML = marked(markdownContent.textContent);
             }
         });
     </script>
