@@ -30,27 +30,40 @@
             transition: all 0.3s ease;
         }
 
-        .oi-header {
+        /* Topbar */
+        .oi-topbar {
             background: linear-gradient(135deg, var(--oi-primary) 0%, var(--oi-secondary) 100%);
             color: white;
-            display: none;  /* Removed the header */
+            padding: 0.75rem 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .oi-topbar__title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin: 0;
+        }
+        .oi-topbar__nav {
+            display: flex;
+            gap: 1rem;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .oi-topbar__nav a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            transition: background-color 0.3s;
+        }
+        .oi-topbar__nav a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
         }
 
-        .oi-card {
-            background-color: var(--oi-card-bg);
-            border: 1px solid var(--oi-card-border);
-            border-radius: 0.75rem;
-            transition: all 0.3s ease;
-        }
-
-        .gradient-text {
-            background: linear-gradient(90deg, var(--oi-primary), var(--oi-secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        /* Sidebar styling */
+        /* Sidebar */
         .docs-sidebar {
             width: 250px;
             max-width: 100%;
@@ -58,8 +71,10 @@
             padding: 1rem;
             border-right: 1px solid var(--oi-card-border);
             box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            height: 100%;
+            overflow-y: auto;
         }
-
         .docs-sidebar a {
             display: block;
             padding: 10px;
@@ -70,23 +85,23 @@
             border-radius: 8px;
             transition: all 0.3s;
         }
-
         .docs-sidebar a:hover {
             background-color: var(--oi-primary);
             color: white;
         }
-
         .docs-sidebar a.active {
             background-color: var(--oi-secondary);
             color: white;
         }
 
+        /* Main content */
         .docs-content {
             margin-left: 270px;
             padding: 2rem;
+            min-height: calc(100vh - 80px);
         }
 
-        /* Search box styling */
+        /* Search */
         .search-bar {
             padding: 12px;
             border-radius: 8px;
@@ -97,7 +112,6 @@
             background-color: var(--oi-card-bg);
             font-size: 1rem;
         }
-
         .search-results {
             max-height: 400px;
             overflow-y: auto;
@@ -105,8 +119,11 @@
             padding: 1rem;
             border-radius: 8px;
             box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            display: none;
         }
-
+        .search-results:not(:empty) {
+            display: block;
+        }
         .search-results a {
             display: block;
             padding: 10px;
@@ -115,45 +132,103 @@
             text-decoration: none;
             transition: background-color 0.3s;
         }
-
         .search-results a:hover {
             background-color: var(--oi-primary);
             color: white;
         }
 
-        /* Hero Section */
+        /* Hero */
         .hero {
             background: linear-gradient(135deg, var(--oi-primary) 0%, var(--oi-secondary) 100%);
             color: white;
             text-align: center;
-            padding: 6rem 2rem;
+            padding: 4rem 2rem;
+            margin: 0 -2rem;
+            margin-bottom: 2rem;
         }
 
-        /* Featured Docs Section */
-        #featured-docs .oi-card {
+        /* Cards */
+        .oi-card {
             background-color: var(--oi-card-bg);
             border: 1px solid var(--oi-card-border);
-            padding: 2rem;
             border-radius: 0.75rem;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            padding: 1.5rem;
+        }
+        .oi-card:hover {
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
         }
 
-        #featured-docs .oi-card:hover {
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+        /* Gradient text */
+        .gradient-text {
+            background: linear-gradient(90deg, var(--oi-primary), var(--oi-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #1e293b;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-left: 270px;
+        }
+        footer a {
+            color: white;
+            text-decoration: none;
+            margin: 0 0.75rem;
+        }
+        footer a:hover {
+            color: var(--oi-primary);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .docs-sidebar {
+                width: 100%;
+                position: static;
+                height: auto;
+                margin-bottom: 1rem;
+            }
+            .docs-content, footer {
+                margin-left: 0;
+            }
         }
     </style>
 {% endblock %}
 
 {% block content %}
-    <!-- Welcome Hero Section -->
+    <!-- Topbar -->
+    <div class="oi-topbar">
+        <h1 class="oi-topbar__title">OpenIndiana Docs</h1>
+        <ul class="oi-topbar__nav">
+            <li><a href="{{ base_url }}">Home</a></li>
+            <li><a href="{{ base_url }}#docs">Docs</a></li>
+            <li><a href="{{ base_url }}#search">Search</a></li>
+        </ul>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="docs-sidebar">
+        <h3>Navigation</h3>
+        <ul>
+            {% for page in pages %}
+                <li><a href="{{ page.url }}" {% if page.url == current_page.url %}class="active"{% endif %}>{{ page.title }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <!-- Hero -->
     <div class="hero">
-        <h1 class="text-5xl font-bold mb-4">Welcome to OpenIndiana Documentation</h1>
+        <h1 class="text-4xl font-bold mb-4">Welcome to OpenIndiana Documentation</h1>
         <p class="text-xl mb-6">Find everything you need to know about OpenIndiana, from installation guides to advanced usage.</p>
         <a href="#docs" class="bg-white text-purple-800 py-3 px-8 rounded-lg text-xl hover:bg-gray-200 transition">Start Exploring</a>
     </div>
 
     <!-- Featured Docs -->
-    <div id="featured-docs" class="container mx-auto mt-12">
+    <div class="docs-content">
         <h2 class="text-3xl font-semibold text-center mb-6">Featured Documentation</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {% for page in pages %}
@@ -165,25 +240,23 @@
                 </div>
             {% endfor %}
         </div>
-    </div>
 
-    <!-- Search Section -->
-    <div id="docs" class="container mx-auto mt-12">
-        <h2 class="text-3xl font-semibold text-center mb-6">Search Documentation</h2>
-        <form action="#search" method="get" class="mb-6">
-            <input
-                type="text"
-                id="mkdocs-search-input"
-                name="q"
-                placeholder="Search the documentation"
-                class="search-bar"
-            />
-        </form>
-        <div class="search-results" id="search-results"></div>
-    </div>
+        <!-- Search -->
+        <div id="docs" class="mt-12">
+            <h2 class="text-3xl font-semibold text-center mb-6">Search Documentation</h2>
+            <form action="{{ base_url }}search.html" method="get" class="mb-6">
+                <input
+                    type="text"
+                    id="mkdocs-search-input"
+                    name="q"
+                    placeholder="Search the documentation"
+                    class="search-bar"
+                />
+            </form>
+            <div class="search-results" id="search-results"></div>
+        </div>
 
-    <!-- Main Content Area -->
-    <div class="docs-content">
+        <!-- Page Content -->
         <h1 class="text-4xl font-bold mb-4 gradient-text">{{ page.title }}</h1>
         <div class="markdown-content max-w-none">
             {{ page.content }}
@@ -191,24 +264,38 @@
     </div>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-10 mt-12">
+    <footer>
         <div class="container mx-auto px-4 text-center">
             <div class="flex justify-center space-x-6 mb-4">
-                <a href="#" class="hover:text-purple-400 transition">GitHub</a>
-                <a href="#" class="hover:text-purple-400 transition">IRC</a>
-                <a href="#" class="hover:text-purple-400 transition">Twitter</a>
-                <a href="#" class="hover:text-purple-400 transition">Forum</a>
+                <a href="#">GitHub</a>
+                <a href="#">IRC</a>
+                <a href="#">Twitter</a>
+                <a href="#">Forum</a>
             </div>
-            <p class="mb-2 text-gray-300"> OpenIndiana Maintainers. All rights reserved.</p>
+            <p class="mb-2">OpenIndiana Maintainers. All rights reserved.</p>
             <p class="text-sm text-gray-400 max-w-2xl mx-auto">
-                This is a derivative site. OpenIndiana is a registered trademark. For official information, visit <a href="https://www.openindiana.org/" class="hover:underline">openindiana.org</a>.
+                This is a derivative site. OpenIndiana is a registered trademark. For official information, visit <a href="https://www.openindiana.org/">openindiana.org</a>.
             </p>
         </div>
     </footer>
 
     <!-- Dark Mode Script -->
     <script>
-        const darkModeToggle = document.getElementById('darkModeToggle');
+        const darkModeToggle = document.createElement('button');
+        darkModeToggle.id = 'darkModeToggle';
+        darkModeToggle.textContent = '🌓 Dark Mode';
+        darkModeToggle.style.position = 'fixed';
+        darkModeToggle.style.bottom = '20px';
+        darkModeToggle.style.right = '20px';
+        darkModeToggle.style.zIndex = '1000';
+        darkModeToggle.style.padding = '0.5rem 1rem';
+        darkModeToggle.style.backgroundColor = 'var(--oi-primary)';
+        darkModeToggle.style.color = 'white';
+        darkModeToggle.style.border = 'none';
+        darkModeToggle.style.borderRadius = '0.375rem';
+        darkModeToggle.style.cursor = 'pointer';
+        document.body.appendChild(darkModeToggle);
+
         function updateTheme(isDark) {
             document.body.classList.toggle('dark-mode', isDark);
             darkModeToggle.textContent = isDark ? '☀️ Light Mode' : '🌓 Dark Mode';
@@ -224,20 +311,24 @@
             updateTheme(true);
         }
 
-        // Search functionality - integrates with MkDocs search
+        // Search functionality
         const searchInput = document.getElementById('mkdocs-search-input');
         const searchResultsContainer = document.getElementById('search-results');
 
         searchInput.addEventListener('input', function () {
             const query = searchInput.value.trim();
             if (query) {
-                fetch(`/search/?q=${query}`)
+                fetch(`{{ base_url }}search/search_index.json`)
                     .then(response => response.json())
                     .then(data => {
-                        if (data.results.length > 0) {
-                            searchResultsContainer.innerHTML = data.results.map(result => {
+                        const results = data.docs.filter(doc =>
+                            doc.title.toLowerCase().includes(query.toLowerCase()) ||
+                            doc.text.toLowerCase().includes(query.toLowerCase())
+                        );
+                        if (results.length > 0) {
+                            searchResultsContainer.innerHTML = results.map(result => {
                                 return `
-                                    <a href="${result.url}" class="block py-2 px-4 hover:bg-gray-200">${result.title}</a>
+                                    <a href="${result.location}" class="block py-2 px-4 hover:bg-gray-200">${result.title}</a>
                                 `;
                             }).join('');
                         } else {
@@ -246,14 +337,6 @@
                     });
             } else {
                 searchResultsContainer.innerHTML = '';
-            }
-        });
-
-        // Markdown rendering
-        document.addEventListener('DOMContentLoaded', function () {
-            const markdownContent = document.querySelector('.markdown-content');
-            if (markdownContent) {
-                markdownContent.innerHTML = marked(markdownContent.textContent);
             }
         });
     </script>
