@@ -17,181 +17,256 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
         <script>hljs.highlightAll();</script>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono&display=swap" rel="stylesheet">
+
     <style>
+        /* ============================================================
+           FAIL-SAFE 1: NUCLEAR FOOTER REMOVAL
+           ============================================================ */
+        .md-footer,
+        .md-copyright,
+        .md-footer-meta,
+        footer:not(.custom-footer),
+        [role="contentinfo"],
+        .md-typeset hr,
+        .md-sidebar--secondary {
+            display: none !important;
+            visibility: hidden !important;
+            opacity: 0 !important;
+            height: 0 !important;
+            margin-top: 1000vh !important;
+            pointer-events: none !important;
+        }
+
+        /* ============================================================
+           GLOBAL DESIGN SYSTEM (HIGH CONTRAST EDITION)
+           ============================================================ */
+        :root {
+            --oi-primary: #8b5cf6;
+            --oi-secondary: #3b82f6;
+            --bg-body: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --card-bg: #ffffff;
+            --card-border: #e2e8f0;
+            --nav-bg: rgba(255, 255, 255, 0.9);
+            --code-bg: #f1f5f9;
+            --code-text: #1e293b;
+        }
+
+        [data-theme="dark"] {
+            --oi-primary: #a78bfa;
+            --oi-secondary: #60a5fa;
+            --bg-body: #020617;
+            /* CRITICAL FIX: Changed from gray to pure white */
+            --text-main: #ffffff;
+            --text-muted: #e2e8f0;
+            --card-bg: #0f172a;
+            --card-border: #334155;
+            --nav-bg: rgba(2, 6, 23, 0.95);
+            /* CRITICAL FIX: Darker background for code to make white text pop */
+            --code-bg: #1e293b;
+            --code-text: #ffffff;
+        }
+
+        html { scroll-behavior: smooth; }
+
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--background-color);
-            color: var(--text-color);
+            background-color: var(--bg-body);
+            color: var(--text-main);
             margin: 0;
             padding: 0;
-            transition: all 0.3s ease;
-        }
-
-        /* Color Variables */
-        :root {
-            --background-color: #1e293b;
-            --text-color: #e2e8f0;
-            --primary-color: #8b5cf6;
-            --secondary-color: #3b82f6;
-            --accent-color: #9333ea;
-            --card-background: #2d3748;
-            --card-border: #4a5568;
-            --button-bg: #3b82f6;
-            --button-hover-bg: #2563eb;
-            --footer-background: #111827;
-        }
-
-        .dark-mode {
-            --background-color: #111827;
-            --text-color: #e2e8f0;
-            --primary-color: #a78bfa;
-            --secondary-color: #60a5fa;
-            --accent-color: #9333ea;
-            --card-background: #334155;
-            --card-border: #4b5563;
-            --button-bg: #60a5fa;
-            --button-hover-bg: #3b82f6;
-            --footer-background: #1f2937;
-        }
-
-        /* Hero Section */
-        .hero {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 4rem 2rem;
-            text-align: center;
-            border-bottom: 2px solid var(--secondary-color);
-        }
-
-        .hero h2 {
-            font-size: 2.5rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-
-        .hero p {
-            font-size: 1.25rem;
-            margin-bottom: 2rem;
-        }
-
-        /* New Search Bar (Transparent, minimal) */
-        .hero .search-bar {
-            padding: 1rem;
-            width: 60%;
-            border-radius: 9999px; /* Fully rounded corners */
-            background-color: transparent; /* Transparent background */
-            color: var(--text-color);
-            font-size: 1.1rem;
-            margin: 0 auto;
-            border: none; /* Remove border */
-            box-shadow: none; /* No box shadow */
-            outline: none; /* Remove outline */
-        }
-
-        .hero .search-bar:focus {
-            color: var(--text-color); /* Keep the color same on focus */
-            background-color: transparent; /* Keep background transparent */
-        }
-
-        .hero .search-bar::placeholder {
-            color: #6b7280; /* Placeholder color */
-        }
-
-        /* Cards Section */
-        .cards-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 2rem;
-            margin: 2rem 1rem;
-        }
-
-        .card {
-            background-color: var(--card-background);
-            border: 1px solid var(--card-border);
-            border-radius: 0.75rem;
-            padding: 2rem;
-            transition: box-shadow 0.3s ease, transform 0.3s ease;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-
-        .card:hover {
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
-            transform: translateY(-5px);
-        }
-
-        .card h3 {
-            font-size: 1.75rem;
-            font-weight: 600;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-        }
-
-        .card p {
-            font-size: 1rem;
-            color: #6b7280;
-        }
-
-        /* Footer Section */
-        .footer {
-            background-color: var(--footer-background);
-            color: var(--text-color);
-            text-align: center;
-            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
             width: 100%;
-            margin-top: 2rem;
-            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+            overflow-x: hidden;
+            transition: background-color 0.2s ease;
         }
 
-        .footer a {
-            color: var(--primary-color);
+        /* ============================================================
+           NAVIGATION
+           ============================================================ */
+        .navbar-hardened {
+            position: sticky;
+            top: 0;
+            width: 100%;
+            z-index: 9999;
+            background: var(--nav-bg);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--card-border);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-text {
+            font-weight: 800;
+            font-size: 1.5rem;
+            letter-spacing: -0.05em;
             text-decoration: none;
+            color: var(--text-main) !important;
         }
 
-        .footer a:hover {
-            text-decoration: underline;
+        /* ============================================================
+           HOME PAGE: HERO & TILES
+           ============================================================ */
+        .hero-banner {
+            background: linear-gradient(135deg, var(--oi-primary), var(--oi-secondary));
+            color: white !important;
+            padding: 8rem 1rem 10rem 1rem;
+            text-align: center;
+            width: 100%;
         }
 
-        /* Button Styles */
-        .button {
-            background-color: var(--button-bg);
-            color: white;
-            padding: 1rem 2rem;
-            font-size: 1.125rem;
-            font-weight: 600;
-            border-radius: 0.375rem;
-            text-decoration: none;
-            transition: background-color 0.3s ease;
-            display: inline-block;
-            margin: 1rem;
+        .hero-title {
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            font-weight: 800;
+            letter-spacing: -0.05em;
+            margin-bottom: 1rem;
+            color: white !important;
         }
 
-        .button:hover {
-            background-color: var(--button-hover-bg);
+        .search-boundary {
+            max-width: 650px;
+            margin: -3rem auto 0;
+            position: relative;
+            z-index: 50;
+            padding: 0 1rem;
         }
 
-        /* Responsive Design */
+        .search-engine-input {
+            width: 100%;
+            padding: 1.25rem 1.75rem;
+            border-radius: 16px;
+            background: var(--card-bg);
+            border: 2px solid var(--card-border);
+            color: var(--text-main);
+            font-size: 1.1rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            outline: none;
+        }
+
+        .search-engine-input:focus {
+            border-color: var(--oi-primary);
+        }
+
+        #mkdocs-search-results {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            margin-top: 10px;
+            color: var(--text-main);
+        }
+
+        .home-main-layout {
+            max-width: 1200px;
+            margin: 5rem auto;
+            padding: 0 1.5rem;
+            width: 100%;
+        }
+
+        .tile-grid-system {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .nav-card-tile {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            padding: 4rem 2rem;
+            border-radius: 24px;
+            text-align: center;
+            text-decoration: none !important;
+            transition: all 0.2s ease;
+        }
+
+        .nav-card-tile:hover {
+            transform: translateY(-8px);
+            border-color: var(--oi-primary);
+        }
+
+        .nav-card-tile h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--oi-primary) !important;
+        }
+
+        /* ============================================================
+           READER VIEW: HIGH CONTRAST MARKDOWN
+           ============================================================ */
+        .documentation-wrapper {
+            flex: 1;
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 5rem 1.5rem;
+        }
+
+        .markdown-engine {
+            color: var(--text-main) !important;
+        }
+
+        .markdown-engine h1 { font-size: 3rem; font-weight: 800; margin-bottom: 2rem; color: var(--oi-primary); }
+        .markdown-engine h2 { font-size: 2rem; font-weight: 700; margin-top: 3.5rem; border-bottom: 2px solid var(--card-border); padding-bottom: 0.75rem; color: var(--text-main); }
+        .markdown-engine p { font-size: 1.125rem; line-height: 1.8; margin-bottom: 1.75rem; color: var(--text-main); }
+
+        /* High-Contrast Code Blocks */
+        .markdown-engine code {
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--code-bg);
+            color: var(--code-text) !important;
+            padding: 0.2rem 0.5rem;
+            border-radius: 6px;
+            font-size: 0.95em;
+            font-weight: 500;
+        }
+
+        .markdown-engine pre {
+            background: var(--code-bg) !important;
+            padding: 1.5rem;
+            border-radius: 12px;
+            overflow-x: auto;
+            margin-bottom: 2rem;
+            border: 1px solid var(--card-border);
+        }
+
+        .markdown-engine pre code {
+            background: transparent !important;
+            padding: 0;
+            color: var(--code-text) !important;
+        }
+
+        /* ============================================================
+           PINNED FOOTER
+           ============================================================ */
+        .custom-footer {
+            flex-shrink: 0;
+            width: 100%;
+            background: var(--bg-body);
+            border-top: 1px solid var(--card-border);
+            padding: 5rem 1.5rem;
+            margin-top: auto;
+            text-align: center;
+        }
+
+        .theme-btn {
+            cursor: pointer;
+            background: var(--card-bg);
+            color: var(--text-main);
+            border: 2px solid var(--card-border);
+            padding: 0.5rem 1rem;
+            border-radius: 12px;
+            font-weight: 800;
+            font-size: 0.75rem;
+        }
+
         @media (max-width: 768px) {
-            .hero h2 {
-                font-size: 2rem;
-            }
-
-            .hero p {
-                font-size: 1.1rem;
-            }
-
-            .hero .search-bar {
-                width: 80%;
-            }
-
-            .cards-container {
-                margin: 2rem 1rem;
-            }
-
-            .card {
-                padding: 1.5rem;
-            }
+            .hero-title { font-size: 2.5rem; }
+            .tile-grid-system { grid-template-columns: 1fr; }
         }
     </style>
 
@@ -540,58 +615,545 @@
 
         <div class="container">
             <div class="row">
-    <!-- Hero Section -->
-    <div class="hero">
-        <h2>Search the Documentation</h2>
-        <p>Quickly find what you're looking for by searching through our extensive documentation.</p>
-        <input type="text" id="mkdocs-search-input" class="search-bar" placeholder="Search the documentation" />
-    </div>
+    <nav class="navbar-hardened">
+        <a href="../.." class="logo-text">
+            OI <span style="color:var(--oi-primary)">DOCS</span>
+        </a>
+        <button id="master-theme-toggle" class="theme-btn">
+            DARK MODE
+        </button>
+    </nav>
 
-    <!-- Featured Docs Section -->
-    <div class="cards-container">
-        <div class="card">
-            <h3>Getting Started</h3>
-            <p>Learn how to set up and get started with OpenIndiana from scratch.</p>
-        </div>
-        <div class="card">
-            <h3>System Administration</h3>
-            <p>Explore system administration tasks for managing OpenIndiana servers.</p>
-        </div>
-        <div class="card">
-            <h3>Networking</h3>
-            <p>Understand networking configurations and management in OpenIndiana.</p>
-        </div>
-        <div class="card">
-            <h3>Advanced Features</h3>
-            <p>Dive deep into the advanced features and capabilities of OpenIndiana.</p>
-        </div>
-    </div>
+    
+        <main class="documentation-wrapper">
+            <article class="markdown-engine">
+                <!--
 
-    <!-- Footer Section -->
-    <div class="footer">
-        <p>© 2026 OpenIndiana Maintainers</p>
-        <p><a href="https://www.openindiana.org/">Visit the official site</a></p>
-    </div>
+The contents of this Documentation are subject to the Public Documentation License Version 1.01
+(the "License"); you may only use this Documentation if you comply with the terms of this License.
+A copy of the License is available at http://illumos.org/license/PDL.
+
+The Original Documentation is _________________.
+
+The Initial Writer of the Original Documentation is ___________ Copyright (C)_________[Insert year(s)].
+All Rights Reserved. (Initial Writer contact(s):________________[Insert hyperlink/alias]).
+
+Contributor(s): ______________________________________.
+
+Portions created by ______ are Copyright (C)_________[Insert year(s)].
+All Rights Reserved. (Contributor contact(s):________________[Insert hyperlink/alias]).
+
+-->
+
+<h1 id="intermediate-advanced-systems-administration">Intermediate &amp; Advanced Systems Administration</h1>
+<h2 id="opensolaris-managing-boot-environments">OpenSolaris Managing Boot Environments</h2>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Document Link</td>
+<td><a href="http://dlc.openindiana.org/docs/osol/20090715/snapupgrade/html/solarisinstall.html" target="_blank">OpenSolaris Managing Boot Environments</a></td>
+</tr>
+<tr>
+<td>Topics</td>
+<td>A boot environment is a bootable instance of an OpenSolaris™ operating system image plus any other application software packages installed into that image. System administrators can maintain multiple boot environments on their systems, and each boot environment can have different software versions installed.</p>Upon the initial installation of OpenSolaris onto a system, a boot environment is created. Use the beadm(1M) utility or the Package Manager to administer additional boot environments on your system.</td>
+</tr>
+<tr>
+<td>Relevancy to OpenIndiana Hipster</td>
+<td>To be determined</td>
+</tr>
+<tr>
+<td>Target Audience</td>
+<td>This book is intended for anyone responsible for administering one or more systems running the OpenSolaris operating system.</td>
+</tr>
+<tr>
+<td>Requirements</td>
+<td>Experience using the Solaris Operating System (OS) or another UNIX® version is recommended.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="opensolaris-200906-image-packaging-system-guide">OpenSolaris 2009.06 Image Packaging System Guide</h2>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Document Link</td>
+<td><a href="http://dlc.openindiana.org/docs/osol/20090715/IMGPACKAGESYS/html/ips.html" target="_blank">OpenSolaris 2009.06 Image Packaging System Guide</a></td>
+</tr>
+<tr>
+<td>Topics</td>
+<td>The Image Packaging System, pkg(5), is a framework that provides for software lifecycle management such as installation, upgrade, and removal of packages. IPS also provides users the ability to create their own software packages, create and manage packaging repositories, and mirror existing packaging repositories.</p>With IPS, users can perform the following tasks: <ul><li>Create and manage images</li><li>Install new packages and update existing packages</li><li>Manage and search the software on your system</li></ul></p>With the IPS publication tools, developers can perform the following:<ul><li>Create and manage packaging repositories</li><li>Create and publish packages to a packaging repository</li><li>Provide a content mirror for an existing packaging repository</li><li>Retrieve the contents of an existing package from a packaging repository</li><li>Republish the contents of an existing package to a packaging repository</li></ul></td>
+</tr>
+<tr>
+<td>Relevancy to OpenIndiana Hipster</td>
+<td>To be determined</td>
+</tr>
+<tr>
+<td>Target Audience</td>
+<td>This book is intended for system administrators, end users, and developers.</td>
+</tr>
+<tr>
+<td>Requirements</td>
+<td>Experience using the Solaris Operating System (OS) or another UNIX® version is recommended.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="solaris-cifs-administration-guide">Solaris CIFS Administration Guide</h2>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Document Link</td>
+<td><a href="http://dlc.openindiana.org/docs/osol/20090715/SSMBAG/html/ssmbag.html" target="_blank">Solaris CIFS Administration Guide</a></td>
+</tr>
+<tr>
+<td>Topics</td>
+<td><ul><li>Solaris CIFS service, which enables you to configure a Solaris system to make CIFS shares available to CIFS clients.</li><li>Native identity mapping services, which enables you to map user and group identities between Solaris systems and Windows systems.</li></ul></td>
+</tr>
+<tr>
+<td>Relevancy to OpenIndiana Hipster</td>
+<td>To be determined</td>
+</tr>
+<tr>
+<td>Target Audience</td>
+<td>This book is intended for system administrators and end users. Both Solaris and Windows system administrators can use this information to configure and integrate the Solaris CIFS service into a Windows environment.</p>In addition, system administrators can configure the identity mapping service. Finally, the chapter about the Solaris CIFS client is primarily intended for Solaris users who would like to mount CIFS shares. The Solaris CIFS client chapter also includes tasks to be performed by a system administrator.</td>
+</tr>
+<tr>
+<td>Requirements</td>
+<td>Experience using the Solaris Operating System (OS) or another UNIX® version is recommended.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="solaris-zfs-administration-guide">Solaris ZFS Administration Guide</h2>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Document Link</td>
+<td><a href="http://dlc.openindiana.org/docs/osol/20090715/ZFSADMIN/html/zfsadmin.html" target="_blank">Solaris ZFS Administration Guide</a></td>
+</tr>
+<tr>
+<td>Topics</td>
+<td><ul><li>ZFS storage pool and file system creation and management</li><li>Snapshots</li><li>Clones</li><li>Backups</li><li>Using access control lists (ACLs) to protect ZFS files</li><li>Using ZFS on a Solaris system with zones installed</li><li>Emulated volumes</li><li>Troubleshooting</li><li>Data recovery</li></ul></td>
+</tr>
+<tr>
+<td>Relevancy to OpenIndiana Hipster</td>
+<td>To be determined</td>
+</tr>
+<tr>
+<td>Target Audience</td>
+<td>This guide is intended for anyone who is interested in setting up and managing Solaris ZFS file systems.</td>
+</tr>
+<tr>
+<td>Requirements</td>
+<td>Experience using the Solaris Operating System (OS) or another UNIX® version is recommended.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="opensolaris-automated-installer-guide">OpenSolaris Automated Installer Guide</h2>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Document Link</td>
+<td><a href="http://dlc.openindiana.org/docs/osol/20090715/AIinstall/html/solarisinstall.html" target="_blank">OpenSolaris Automated Installer Guide</a></td>
+</tr>
+<tr>
+<td>Topics</td>
+<td>If you want to install the OpenSolaris operating system (OS) on multiple client systems on a network, you can use the automated installer (AI) to accomplish that task. The automated installer performs essentially “hands-free” network installations of the OpenSolaris OS.</td>
+</tr>
+<tr>
+<td>Relevancy to OpenIndiana Hipster</td>
+<td>To be determined</td>
+</tr>
+<tr>
+<td>Target Audience</td>
+<td>This book is intended for anyone responsible for administering one or more systems that are running the Solaris release.</td>
+</tr>
+<tr>
+<td>Requirements</td>
+<td>Experience using the Solaris Operating System (OS) or another UNIX® version is recommended.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="system-administration-guide-advanced-administration">System Administration Guide: Advanced Administration</h2>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Document Link</td>
+<td><a href="http://dlc.openindiana.org/docs/osol/20090715/SYSADV2/html/sysadv2.html" target="_blank">System Administration Guide: Advanced Administration</a></td>
+</tr>
+<tr>
+<td>Topics</td>
+<td><ul><li>Terminals and modems</li><li>System resources (disk quotas, accounting, and crontabs)</li><li>System processes</li><li>Troubleshooting Solaris software problems</li></ul></td>
+</tr>
+<tr>
+<td>Relevancy to OpenIndiana Hipster</td>
+<td>To be determined</td>
+</tr>
+<tr>
+<td>Target Audience</td>
+<td>This book is intended for anyone responsible for administering one or more systems that are running the Solaris release.</td>
+</tr>
+<tr>
+<td>Requirements</td>
+<td>This book assumes that you have installed the SunOS™ Solaris Operating System. It also assumes that you have set up any networking software that you plan to use. To use this book, you should have 1-2 years of UNIX® system administration experience. Attending UNIX system administration training courses might be helpful.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="system-administration-guide-devices-and-file-systems">System Administration Guide: Devices and File Systems</h2>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Document Link</td>
+<td><a href="http://dlc.openindiana.org/docs/osol/20090715/SAGDFS/html/sagdfs.html" target="_blank">System Administration Guide: Devices and File Systems</a></td>
+</tr>
+<tr>
+<td>Topics</td>
+<td><ul><li>Disks and devices</li><li>File systems</li><li>Backing up and restoring data</li></ul></td>
+</tr>
+<tr>
+<td>Relevancy to OpenIndiana Hipster</td>
+<td>To be determined</td>
+</tr>
+<tr>
+<td>Target Audience</td>
+<td>This book is intended for anyone responsible for administering one or more systems running the Solaris release.</td>
+</tr>
+<tr>
+<td>Requirements</td>
+<td>This book assumes you have installed the SunOS 5.11 Operating System and set up all the networking software that you plan to use. To use this book, you should have 1–2 years of UNIX® system administration experience. Attending UNIX system administration training courses might be helpful.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="system-administration-guide-ip-services">System Administration Guide: IP Services</h2>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Document Link</td>
+<td><a href="http://dlc.openindiana.org/docs/osol/20090715/SYSADV3/html/sysadv3.html" target=_blank">System Administration Guide: IP Services</a></td>
+</tr>
+<tr>
+<td>Topics</td>
+<td><ul><li>TCP/IP network administration</li><li>IPv4 and IPv6 address administration</li><li>DHCP</li><li>IPsec</li><li>IKE</li><li>Solaris IP filter</li><li>Mobile IP</li><li>IP network multipathing (IPMP)</li><li>IPQoS</li></ul></td>
+</tr>
+<tr>
+<td>Relevancy to OpenIndiana Hipster</td>
+<td>To be determined</td>
+</tr>
+<tr>
+<td>Target Audience</td>
+<td>This book is intended for anyone responsible for administering systems that run the Solaris OS release, which are configured in a network.</td>
+</tr>
+<tr>
+<td>Requirements</td>
+<td>This book assumes that you have already installed the Solaris operating system (Solaris OS). You should be ready to configure your network or ready to configure any networking software that is required on your network. To use this book, you should have at least two years of UNIX® system administration experience. Attending UNIX system administration training courses might be helpful.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="system-administration-guide-network-services">System Administration Guide: Network Services</h2>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Document Link</td>
+<td><a href="http://dlc.openindiana.org/docs/osol/20090715/SYSADV4/html/sysadv4.html" target="_blank">System Administration Guide: Network Services</a></td>
+</tr>
+<tr>
+<td>Topics</td>
+<td><ul><li>Web cache servers</li><li>Time-related services</li><li>Network file systems (NFS and Autofs)</li><li>Mail</li><li>SLP</li><li>PPP</li></ul></td>
+</tr>
+<tr>
+<td>Relevancy to OpenIndiana Hipster</td>
+<td>To be determined</td>
+</tr>
+<tr>
+<td>Target Audience</td>
+<td>This book is intended for anyone responsible for administering one or more systems that run the Solaris 10 release.</td>
+</tr>
+<tr>
+<td>Requirements</td>
+<td>This book assumes that you have already installed the SunOS™ 5.10 operating system, and you have set up any networking software that you plan to use. To use this book, you should have one to two years of UNIX® system administration experience. Attending UNIX system administration training courses might be helpful.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="system-administration-guide-naming-and-directory-services-dns-nis-and-ldap">System Administration Guide: Naming and Directory Services (DNS, NIS, and LDAP)</h2>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Document Link</td>
+<td><a href="http://dlc.openindiana.org/docs/osol/20090715/SYSADV5/html/sysadv5.html" target="_blank">System Administration Guide: Naming and Directory Services (DNS, NIS, and LDAP)</a></td>
+</tr>
+<tr>
+<td>Topics</td>
+<td><ul><li>DNS</li><li>NIS</li><li>LDAP (including transitioning from NIS to LDAP and transitioning from NIS+ to LDAP)</li></ul></td>
+</tr>
+<tr>
+<td>Relevancy to OpenIndiana Hipster</td>
+<td>To be determined</td>
+</tr>
+<tr>
+<td>Target Audience</td>
+<td>This manual is written for experienced system and network administrators.</td>
+</tr>
+<tr>
+<td>Requirements</td>
+<td>Although this book introduces networking concepts relevant to Solaris naming and directory services, it explains neither the networking fundamentals nor the administration tools in the Solaris OS. To use this book, you should have a firm understanding of UNIX® networking and systems administration fundamentals.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="system-administration-guide-solaris-printing">System Administration Guide: Solaris Printing</h2>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Document Link</td>
+<td><a href="http://dlc.openindiana.org/docs/osol/20090715/SYSADPRTSVCS/html/sysadprtsvcs.html" target="_blank">System Administration Guide: Solaris Printing</a></td>
+</tr>
+<tr>
+<td>Topics</td>
+<td><ul><li>Solaris printing topics and tasks</li><li>Using services, tools, protocols, and technologies to set up and administer printing services and printers</li></ul></td>
+</tr>
+<tr>
+<td>Relevancy to OpenIndiana Hipster</td>
+<td><strong>OBSOLETE; although portions may still be valid</strong>.</p><strong>Deprecation notes:</strong> Subsequent to the release of OpenSolaris 2009.06, the Common UNIX Printing System (CUPS) was selected as the default print service, however, the lp print service was retained. This change was implemented in preparation for the OpenSolaris 2010.03 release.</p>The proposed release notes for OpenSolaris 2010.03 included this statement: "CUPS support includes a web and graphical interface to manage your printing environment. A system that is running CUPS becomes a host that can accept print requests from client systems, process those requests, and then send them to the appropriate printer. To facilitate CUPS support, a new print-service command has been introduced that provides a mechanism for switching between CUPS print service and the LP print service, including 2 new SMF services."</p><strong>Doc Team Notes:</strong> Oracle Solaris dropped support for lp when they introduced CUPS in the Solaris 11.0 release. The OpenIndiana project retained both print subsystems, which are managed by the <code>print-service</code> command. Both <code>lp</code> and <code>lpr</code> are symbolically linked to <code>print-service</code>. Issuing the command <code>print-service -q</code> shows the active print subsystem, which by default is CUPS. More information can be found in the print-service (1M) man page.</td>
+</tr>
+<tr>
+<td>Target Audience</td>
+<td>This book is intended for anyone responsible for administering one or more systems that are running the Solaris release.</td>
+</tr>
+<tr>
+<td>Requirements</td>
+<td>This book assumes that you have installed the SunOS™ Solaris Operating System. It also assumes that you have set up any networking software that you plan to use. To use this book, you should have 1-2 years of UNIX® system administration experience. Attending UNIX system administration training courses might be helpful.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="system-administration-guide-security-services">System Administration Guide: Security Services</h2>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Document Link</td>
+<td><a href="http://dlc.openindiana.org/docs/osol/20090715/SYSADV6/html/sysadv6.html" target="_blank">System Administration Guide: Security Services</a></td>
+</tr>
+<tr>
+<td>Topics</td>
+<td><ul><li>Auditing</li><li>Device management</li><li>File security</li><li>BART</li><li>Kerberos services</li><li>PAM</li><li>Solaris Cryptographic Framework</li><li>Privileges</li><li>RBAC</li><li>SASL</li><li>Solaris Secure Shell</li></ul></td>
+</tr>
+<tr>
+<td>Relevancy to OpenIndiana Hipster</td>
+<td>To be determined</td>
+</tr>
+<tr>
+<td>Target Audience</td>
+<td>This book is intended for anyone who is responsible for administering one or more systems that run a Solaris Express Community Edition release.</td>
+</tr>
+<tr>
+<td>Requirements</td>
+<td>To use this book, you should have more than two years of UNIX® system administration experience. Attending training courses in UNIX system administration might be helpful.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="system-administration-guide-virtualization-using-the-solaris-operating-system">System Administration Guide: Virtualization Using the Solaris Operating System</h2>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Document Link</td>
+<td><a href="http://dlc.openindiana.org/docs/osol/20090715/SYSADRM/html/sysadrm.html" target="_blank">System Administration Guide: Virtualization Using the Solaris Operating System</a></td>
+</tr>
+<tr>
+<td>Topics</td>
+<td><ul><li>Resource management features, which enable you to control how applications use available system resources</li><li>Zones software partitioning technology, which virtualizes operating system services to create an isolated environment for running applications</li><li>Virtualization using Sun™ xVM hypervisor technology, which supports multiple operating system instances simultaneously</li></ul></td>
+</tr>
+<tr>
+<td>Relevancy to OpenIndiana Hipster</td>
+<td>To be determined</td>
+</tr>
+<tr>
+<td>Target Audience</td>
+<td>This book is intended for anyone responsible for administering one or more systems that run the Solaris release.</td>
+</tr>
+<tr>
+<td>Requirements</td>
+<td>This book assumes that you have already installed the operating system and set up any networking software that you plan to use. To use this book, you should have at least one to two years of UNIX® system administration experience.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="solaris-volume-manager-administration-guide">Solaris Volume Manager Administration Guide</h2>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Document Link</td>
+<td><a href="http://dlc.openindiana.org/docs/osol/20090715/LOGVOLMGRADMIN/html/logvolmgradmin.html" target="_blank">Solaris Volume Manager Administration Guide</a></td>
+</tr>
+<tr>
+<td>Topics</td>
+<td>The Solaris Volume Manager Administration Guide explains how to use Solaris™ Volume Manager to manage your system's storage needs. Solaris Volume Manager enables you to create, modify, and use RAID-0 (concatenation and stripe) volumes, RAID-1 (mirror) volumes.</td>
+</tr>
+<tr>
+<td>Relevancy to OpenIndiana Hipster</td>
+<td>To be determined</td>
+</tr>
+<tr>
+<td>Target Audience</td>
+<td>System and storage administrators can use this book to identify:<ul><li>Tasks supported by Solaris Volume Manager</li><li>Ways to use Solaris Volume Manager to provide more reliable and accessible data</li></ul></td>
+</tr>
+<tr>
+<td>Requirements</td>
+<td>This book assumes that you have installed the SunOS™ Solaris Operating System. It also assumes that you have set up any networking software that you plan to use. To use this book, you should have 1-2 years of UNIX® system administration experience. Attending UNIX system administration training courses might be helpful.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="solaris-tunable-parameters-reference-manual">Solaris Tunable Parameters Reference Manual</h2>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Document Link</td>
+<td><a href="http://dlc.openindiana.org/docs/osol/20090715/SOLTUNEPARAMREF/html/soltuneparamref.html" target="_blank">Solaris Tunable Parameters Reference Manual</a></td>
+</tr>
+<tr>
+<td>Topics</td>
+<td>The Solaris Tunable Parameters Reference Manual provides reference information about Solaris™ OS kernel and network tunable parameters. This manual does not provide tunable parameter information about the CDE, GNOME, or Java™ environments.</td>
+</tr>
+<tr>
+<td>Relevancy to OpenIndiana Hipster</td>
+<td>To be determined</td>
+</tr>
+<tr>
+<td>Target Audience</td>
+<td>This book is intended for experienced Solaris system administrators who might need to change kernel tunable parameters in certain situations.</td>
+</tr>
+<tr>
+<td>Requirements</td>
+<td>To use this book, you should have more than two years of UNIX® system administration experience. Attending training courses in UNIX system administration might be helpful.</td>
+</tr>
+</tbody>
+</table>
+            </article>
+        </main>
+    
+
+    <footer class="custom-footer">
+        <p class="font-black text-xs tracking-widest opacity-40 uppercase mb-8" style="color:var(--text-main)">OpenIndiana Project</p>
+        <div class="flex flex-wrap justify-center gap-12">
+            <a href="https://www.openindiana.org/" class="text-sm font-bold no-underline hover:underline" style="color:var(--oi-secondary)">Website</a>
+            <a href="https://github.com/openindiana" class="text-sm font-bold no-underline hover:underline" style="color:var(--oi-secondary)">GitHub</a>
+        </div>
+    </footer>
 
     <script>
-        // Dark mode toggle
-        const darkModeToggle = document.getElementById('darkModeToggle');
-        const body = document.body;
+        (function() {
+            const toggle = document.getElementById('master-theme-toggle');
+            const html = document.documentElement;
 
-        darkModeToggle.addEventListener('click', () => {
-            body.classList.toggle('dark-mode');
-            const isDarkMode = body.classList.contains('dark-mode');
-            localStorage.setItem('darkMode', isDarkMode);
-            darkModeToggle.textContent = isDarkMode ? '☀️' : '🌙';
-        });
+            const applyTheme = (theme) => {
+                if (theme === 'dark') {
+                    html.setAttribute('data-theme', 'dark');
+                    toggle.textContent = 'LIGHT MODE';
+                } else {
+                    html.removeAttribute('data-theme');
+                    toggle.textContent = 'DARK MODE';
+                }
+                localStorage.setItem('oi-docs-theme', theme);
+            };
 
-        // Load dark mode state from localStorage
-        if (localStorage.getItem('darkMode') === 'true') {
-            body.classList.add('dark-mode');
-            darkModeToggle.textContent = '☀️';
-        } else {
-            darkModeToggle.textContent = '🌙';
-        }
+            applyTheme(localStorage.getItem('oi-docs-theme') || 'light');
+
+            toggle.addEventListener('click', () => {
+                const current = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+                applyTheme(current);
+            });
+
+            setInterval(() => {
+                const results = document.getElementById('mkdocs-search-results');
+                if (results) {
+                    const descriptions = results.querySelectorAll('p');
+                    descriptions.forEach(d => d.style.display = 'none');
+                }
+            }, 150);
+        })();
     </script>
 
             </div>

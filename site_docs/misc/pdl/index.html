@@ -17,181 +17,256 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
         <script>hljs.highlightAll();</script>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono&display=swap" rel="stylesheet">
+
     <style>
+        /* ============================================================
+           FAIL-SAFE 1: NUCLEAR FOOTER REMOVAL
+           ============================================================ */
+        .md-footer,
+        .md-copyright,
+        .md-footer-meta,
+        footer:not(.custom-footer),
+        [role="contentinfo"],
+        .md-typeset hr,
+        .md-sidebar--secondary {
+            display: none !important;
+            visibility: hidden !important;
+            opacity: 0 !important;
+            height: 0 !important;
+            margin-top: 1000vh !important;
+            pointer-events: none !important;
+        }
+
+        /* ============================================================
+           GLOBAL DESIGN SYSTEM (HIGH CONTRAST EDITION)
+           ============================================================ */
+        :root {
+            --oi-primary: #8b5cf6;
+            --oi-secondary: #3b82f6;
+            --bg-body: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --card-bg: #ffffff;
+            --card-border: #e2e8f0;
+            --nav-bg: rgba(255, 255, 255, 0.9);
+            --code-bg: #f1f5f9;
+            --code-text: #1e293b;
+        }
+
+        [data-theme="dark"] {
+            --oi-primary: #a78bfa;
+            --oi-secondary: #60a5fa;
+            --bg-body: #020617;
+            /* CRITICAL FIX: Changed from gray to pure white */
+            --text-main: #ffffff;
+            --text-muted: #e2e8f0;
+            --card-bg: #0f172a;
+            --card-border: #334155;
+            --nav-bg: rgba(2, 6, 23, 0.95);
+            /* CRITICAL FIX: Darker background for code to make white text pop */
+            --code-bg: #1e293b;
+            --code-text: #ffffff;
+        }
+
+        html { scroll-behavior: smooth; }
+
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--background-color);
-            color: var(--text-color);
+            background-color: var(--bg-body);
+            color: var(--text-main);
             margin: 0;
             padding: 0;
-            transition: all 0.3s ease;
-        }
-
-        /* Color Variables */
-        :root {
-            --background-color: #1e293b;
-            --text-color: #e2e8f0;
-            --primary-color: #8b5cf6;
-            --secondary-color: #3b82f6;
-            --accent-color: #9333ea;
-            --card-background: #2d3748;
-            --card-border: #4a5568;
-            --button-bg: #3b82f6;
-            --button-hover-bg: #2563eb;
-            --footer-background: #111827;
-        }
-
-        .dark-mode {
-            --background-color: #111827;
-            --text-color: #e2e8f0;
-            --primary-color: #a78bfa;
-            --secondary-color: #60a5fa;
-            --accent-color: #9333ea;
-            --card-background: #334155;
-            --card-border: #4b5563;
-            --button-bg: #60a5fa;
-            --button-hover-bg: #3b82f6;
-            --footer-background: #1f2937;
-        }
-
-        /* Hero Section */
-        .hero {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 4rem 2rem;
-            text-align: center;
-            border-bottom: 2px solid var(--secondary-color);
-        }
-
-        .hero h2 {
-            font-size: 2.5rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-
-        .hero p {
-            font-size: 1.25rem;
-            margin-bottom: 2rem;
-        }
-
-        /* New Search Bar (Transparent, minimal) */
-        .hero .search-bar {
-            padding: 1rem;
-            width: 60%;
-            border-radius: 9999px; /* Fully rounded corners */
-            background-color: transparent; /* Transparent background */
-            color: var(--text-color);
-            font-size: 1.1rem;
-            margin: 0 auto;
-            border: none; /* Remove border */
-            box-shadow: none; /* No box shadow */
-            outline: none; /* Remove outline */
-        }
-
-        .hero .search-bar:focus {
-            color: var(--text-color); /* Keep the color same on focus */
-            background-color: transparent; /* Keep background transparent */
-        }
-
-        .hero .search-bar::placeholder {
-            color: #6b7280; /* Placeholder color */
-        }
-
-        /* Cards Section */
-        .cards-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 2rem;
-            margin: 2rem 1rem;
-        }
-
-        .card {
-            background-color: var(--card-background);
-            border: 1px solid var(--card-border);
-            border-radius: 0.75rem;
-            padding: 2rem;
-            transition: box-shadow 0.3s ease, transform 0.3s ease;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-
-        .card:hover {
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
-            transform: translateY(-5px);
-        }
-
-        .card h3 {
-            font-size: 1.75rem;
-            font-weight: 600;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-        }
-
-        .card p {
-            font-size: 1rem;
-            color: #6b7280;
-        }
-
-        /* Footer Section */
-        .footer {
-            background-color: var(--footer-background);
-            color: var(--text-color);
-            text-align: center;
-            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
             width: 100%;
-            margin-top: 2rem;
-            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+            overflow-x: hidden;
+            transition: background-color 0.2s ease;
         }
 
-        .footer a {
-            color: var(--primary-color);
+        /* ============================================================
+           NAVIGATION
+           ============================================================ */
+        .navbar-hardened {
+            position: sticky;
+            top: 0;
+            width: 100%;
+            z-index: 9999;
+            background: var(--nav-bg);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--card-border);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-text {
+            font-weight: 800;
+            font-size: 1.5rem;
+            letter-spacing: -0.05em;
             text-decoration: none;
+            color: var(--text-main) !important;
         }
 
-        .footer a:hover {
-            text-decoration: underline;
+        /* ============================================================
+           HOME PAGE: HERO & TILES
+           ============================================================ */
+        .hero-banner {
+            background: linear-gradient(135deg, var(--oi-primary), var(--oi-secondary));
+            color: white !important;
+            padding: 8rem 1rem 10rem 1rem;
+            text-align: center;
+            width: 100%;
         }
 
-        /* Button Styles */
-        .button {
-            background-color: var(--button-bg);
-            color: white;
-            padding: 1rem 2rem;
-            font-size: 1.125rem;
-            font-weight: 600;
-            border-radius: 0.375rem;
-            text-decoration: none;
-            transition: background-color 0.3s ease;
-            display: inline-block;
-            margin: 1rem;
+        .hero-title {
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            font-weight: 800;
+            letter-spacing: -0.05em;
+            margin-bottom: 1rem;
+            color: white !important;
         }
 
-        .button:hover {
-            background-color: var(--button-hover-bg);
+        .search-boundary {
+            max-width: 650px;
+            margin: -3rem auto 0;
+            position: relative;
+            z-index: 50;
+            padding: 0 1rem;
         }
 
-        /* Responsive Design */
+        .search-engine-input {
+            width: 100%;
+            padding: 1.25rem 1.75rem;
+            border-radius: 16px;
+            background: var(--card-bg);
+            border: 2px solid var(--card-border);
+            color: var(--text-main);
+            font-size: 1.1rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            outline: none;
+        }
+
+        .search-engine-input:focus {
+            border-color: var(--oi-primary);
+        }
+
+        #mkdocs-search-results {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            margin-top: 10px;
+            color: var(--text-main);
+        }
+
+        .home-main-layout {
+            max-width: 1200px;
+            margin: 5rem auto;
+            padding: 0 1.5rem;
+            width: 100%;
+        }
+
+        .tile-grid-system {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .nav-card-tile {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            padding: 4rem 2rem;
+            border-radius: 24px;
+            text-align: center;
+            text-decoration: none !important;
+            transition: all 0.2s ease;
+        }
+
+        .nav-card-tile:hover {
+            transform: translateY(-8px);
+            border-color: var(--oi-primary);
+        }
+
+        .nav-card-tile h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--oi-primary) !important;
+        }
+
+        /* ============================================================
+           READER VIEW: HIGH CONTRAST MARKDOWN
+           ============================================================ */
+        .documentation-wrapper {
+            flex: 1;
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 5rem 1.5rem;
+        }
+
+        .markdown-engine {
+            color: var(--text-main) !important;
+        }
+
+        .markdown-engine h1 { font-size: 3rem; font-weight: 800; margin-bottom: 2rem; color: var(--oi-primary); }
+        .markdown-engine h2 { font-size: 2rem; font-weight: 700; margin-top: 3.5rem; border-bottom: 2px solid var(--card-border); padding-bottom: 0.75rem; color: var(--text-main); }
+        .markdown-engine p { font-size: 1.125rem; line-height: 1.8; margin-bottom: 1.75rem; color: var(--text-main); }
+
+        /* High-Contrast Code Blocks */
+        .markdown-engine code {
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--code-bg);
+            color: var(--code-text) !important;
+            padding: 0.2rem 0.5rem;
+            border-radius: 6px;
+            font-size: 0.95em;
+            font-weight: 500;
+        }
+
+        .markdown-engine pre {
+            background: var(--code-bg) !important;
+            padding: 1.5rem;
+            border-radius: 12px;
+            overflow-x: auto;
+            margin-bottom: 2rem;
+            border: 1px solid var(--card-border);
+        }
+
+        .markdown-engine pre code {
+            background: transparent !important;
+            padding: 0;
+            color: var(--code-text) !important;
+        }
+
+        /* ============================================================
+           PINNED FOOTER
+           ============================================================ */
+        .custom-footer {
+            flex-shrink: 0;
+            width: 100%;
+            background: var(--bg-body);
+            border-top: 1px solid var(--card-border);
+            padding: 5rem 1.5rem;
+            margin-top: auto;
+            text-align: center;
+        }
+
+        .theme-btn {
+            cursor: pointer;
+            background: var(--card-bg);
+            color: var(--text-main);
+            border: 2px solid var(--card-border);
+            padding: 0.5rem 1rem;
+            border-radius: 12px;
+            font-weight: 800;
+            font-size: 0.75rem;
+        }
+
         @media (max-width: 768px) {
-            .hero h2 {
-                font-size: 2rem;
-            }
-
-            .hero p {
-                font-size: 1.1rem;
-            }
-
-            .hero .search-bar {
-                width: 80%;
-            }
-
-            .cards-container {
-                margin: 2rem 1rem;
-            }
-
-            .card {
-                padding: 1.5rem;
-            }
+            .hero-title { font-size: 2.5rem; }
+            .tile-grid-system { grid-template-columns: 1fr; }
         }
     </style>
 
@@ -540,58 +615,131 @@
 
         <div class="container">
             <div class="row">
-    <!-- Hero Section -->
-    <div class="hero">
-        <h2>Search the Documentation</h2>
-        <p>Quickly find what you're looking for by searching through our extensive documentation.</p>
-        <input type="text" id="mkdocs-search-input" class="search-bar" placeholder="Search the documentation" />
-    </div>
+    <nav class="navbar-hardened">
+        <a href="../.." class="logo-text">
+            OI <span style="color:var(--oi-primary)">DOCS</span>
+        </a>
+        <button id="master-theme-toggle" class="theme-btn">
+            DARK MODE
+        </button>
+    </nav>
 
-    <!-- Featured Docs Section -->
-    <div class="cards-container">
-        <div class="card">
-            <h3>Getting Started</h3>
-            <p>Learn how to set up and get started with OpenIndiana from scratch.</p>
-        </div>
-        <div class="card">
-            <h3>System Administration</h3>
-            <p>Explore system administration tasks for managing OpenIndiana servers.</p>
-        </div>
-        <div class="card">
-            <h3>Networking</h3>
-            <p>Understand networking configurations and management in OpenIndiana.</p>
-        </div>
-        <div class="card">
-            <h3>Advanced Features</h3>
-            <p>Dive deep into the advanced features and capabilities of OpenIndiana.</p>
-        </div>
-    </div>
+    
+        <main class="documentation-wrapper">
+            <article class="markdown-engine">
+                <h1 id="public-documentation-license">PUBLIC DOCUMENTATION LICENSE</h1>
+<p>Version 1.01</p>
+<p>For the OpenIndiana Project</p>
+<h2 id="10-definitions">1.0 DEFINITIONS.</h2>
+<p>1.1. "Commercial Use" means distribution or otherwise making the Documentation available to a third party.</p>
+<p>1.2. "Contributor" means a person or entity who creates or contributes to the creation of Modifications.</p>
+<p>1.3. "Documentation" means the Original Documentation or Modifications or the combination of the Original Documentation and Modifications, in each case including portions thereof.</p>
+<p>1.4. "Editable Form" means the preferred form of Documentation for making Modifications to such documentation. The Documentation can be in an electronic, compressed or archival form, provided the appropriate decompression or de-archiving software is widely available for no charge.</p>
+<p>1.5. "Electronic Distribution Mechanism" means a mechanism generally accepted for the electronic transfer of data.</p>
+<p>1.6. "Initial Writer" means the individual or entity identified as the Initial Writer in the notice required by the Appendix.</p>
+<p>1.7. "Larger Work" means a work which combines Documentation or portions thereof with documentation or other writings not governed by the terms of this License.</p>
+<p>1.8. "License" means this document.</p>
+<p>1.9. "Modifications" means any addition to or deletion from the substance or structure of either the Original Documentation or any previous Modifications, such as a translation, abridgment, condensation, or any other form in which the Original Documentation or previous Modifications may be recast, transformed or adapted. A work consisting of editorial revisions, annotations, elaborations, and other modifications which, as a whole represent an original work of authorship, is a Modification. For example, when Documentation is released as a series of documents, a Modification is:</p>
+<p>A. Any addition to or deletion from the contents of the Original Documentation or previous Modifications.</p>
+<p>B. Any new documentation that contains any part of the Original Documentation or previous Modifications.</p>
+<p>1.10. "Original Documentation" means documentation described as Original Documentation in the notice required by the Appendix, and which, at the time of its release under this License is not already Documentation governed by this License.</p>
+<p>1.11. "You" (or "Your") means an individual or a legal entity exercising rights under, and complying with all of the terms of, this License or a future version of this License issued under Section 5.0 ("Versions of the License"). For legal entities, "You" includes any entity which controls, is controlled by, or is under common control with You. For purposes of this definition, "control" means (a) the power, direct or indirect, to cause the direction or management of such entity, whether by contract or otherwise, or (b) ownership of more than fifty percent (50%) of the outstanding shares or beneficial ownership of such entity.</p>
+<h2 id="20-license-grants">2.0 LICENSE GRANTS.</h2>
+<p>2.1 Initial Writer Grant.</p>
+<p>The Initial Writer hereby grants You a world-wide, royalty-free, non-exclusive license to use, reproduce, prepare Modifications of, compile, publicly perform, publicly display, demonstrate, market, disclose and distribute the Documentation in any form, on any media or via any Electronic Distribution Mechanism or other method now known or later discovered, and to sublicense the foregoing rights to third parties through multiple tiers of sublicensees in accordance with the terms of this License.
+The license rights granted in this Section 2.1 ("Initial Writer Grant") are effective on the date Initial Writer first distributes Original Documentation under the terms of this License.
+2.2. Contributor Grant.</p>
+<p>Each Contributor hereby grants You a world-wide, royalty-free, non-exclusive license to use, reproduce, prepare Modifications of, compile, publicly perform, publicly display, demonstrate, market, disclose and distribute the Documentation in any form, on any media or via any Electronic Distribution Mechanism or other method now known or later discovered, and to sublicense the foregoing rights to third parties through multiple tiers of sublicensees in accordance with the terms of this License.</p>
+<p>The license rights granted in this Section 2.2 ("Contributor Grant") are effective on the date Contributor first makes Commercial Use of the Documentation.</p>
+<h2 id="30-distribution-obligations">3.0 DISTRIBUTION OBLIGATIONS.</h2>
+<p>3.1. Application of License.</p>
+<p>The Modifications which You create or to which You contribute are governed by the terms of this License, including without limitation Section 2.2 ("Contributor Grant"). The Documentation may be distributed only under the terms of this License or a future version of this License released in accordance with Section 5.0 ("Versions of the License"), and You must include a copy of this License with every copy of the Documentation You distribute. You may not offer or impose any terms that alter or restrict the applicable version of this License or the recipients' rights hereunder. However, You may include an additional document offering the additional rights described in Section 3.5 ("Required Notices").</p>
+<p>3.2. Availability of Documentation.</p>
+<p>Any Modification which You create or to which You contribute must be made available publicly in Editable Form under the terms of this License via a fixed medium or an accepted Electronic Distribution Mechanism.</p>
+<p>3.3. Description of Modifications.</p>
+<p>All Documentation to which You contribute must identify the changes You made to create that Documentation and the date of any change. You must include a prominent statement that the Modification is derived, directly or indirectly, from Original Documentation provided by the Initial Writer and include the name of the Initial Writer in the Documentation or via an electronic link that describes the origin or ownership of the Documentation. The foregoing change documentation may be created by using an electronic program that automatically tracks changes to the Documentation. You must make all such changes and required information publicly available for at least five years following release of the changed Documentation.</p>
+<p>3.4. Intellectual Property Matters.</p>
+<p>Contributor represents that Contributor believes that Contributor's Modifications are Contributor's original creation(s), Contributor has sufficient rights to grant the rights conveyed by this License, or both of these statements are true.</p>
+<p>3.5. Required Notices.</p>
+<p>You must duplicate the notice in the Appendix in each file of the Documentation. If it is not possible to put such notice in a particular Documentation file due to its structure, then You must include such notice in a location (such as a relevant directory) where a reader would be likely to look for such a notice, for example, via a hyperlink in each file of the Documentation that takes the reader to a page that describes the origin and ownership of the Documentation. If You created one or more Modification(s) You may add your name as a Contributor to the notice described in the Appendix.</p>
+<p>You must also duplicate this License in any Documentation file (or with a hyperlink in each file of the Documentation) where You describe recipients' rights or ownership rights.</p>
+<p>You may choose to offer, and to charge a fee for, warranty, support, indemnity or liability obligations to one or more recipients of Documentation. However, You may do so only on Your own behalf, and not on behalf of the Initial Writer or any Contributor. You must make it absolutely clear than any such warranty, support, indemnity or liability obligation is offered by You alone, and You hereby agree to indemnify the Initial Writer and every Contributor for any liability incurred by the Initial Writer or such Contributor as a result of warranty, support, indemnity or liability terms You offer.</p>
+<p>3.6. Larger Works.</p>
+<p>You may create a Larger Work by combining Documentation with other documents not governed by the terms of this License and distribute the Larger Work as a single product. In such a case, You must make sure the requirements of this License are fulfilled for the Documentation.</p>
+<h2 id="40-application-of-this-license">4.0 APPLICATION OF THIS LICENSE.</h2>
+<p>This License applies to Documentation to which the Initial Writer has attached this License and the notice in the Appendix.</p>
+<h2 id="50-trademarks">5.0 TRADEMARKS.</h2>
+<p>This license does not grant permission to use the trade names, trademarks, service marks, logos, or product names of the Initial Writer or any Contributor, except as required for reasonable and customary use in describing the Origin of the Documentation and reproducing the content of any of the notices described in the Appendix.</p>
+<h2 id="60-versions-of-the-license">6.0 VERSIONS OF THE LICENSE.</h2>
+<p>6.1. New Versions.</p>
+<p>Initial Writer may publish revised or new versions of the License from time to time. Each version will be given a distinguishing version number.</p>
+<p>6.2. Effect of New Versions.</p>
+<p>Once Documentation has been published under a particular version of the License, You may always continue to use it under the terms of that version. You may also choose to use such Documentation under the terms of any subsequent version of the License published by OpenSolaris. No one other than OpenSolaris has the right to modify the terms of this License. Filling in the name of the Initial Writer, Original Documentation or Contributor in the notice described in the Appendix shall not be deemed to be Modifications of this License.</p>
+<h2 id="70-disclaimer-of-warranty">7.0 DISCLAIMER OF WARRANTY.</h2>
+<p>DOCUMENTATION IS PROVIDED UNDER THIS LICENSE ON AN "AS IS'' BASIS, WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING, WITHOUT LIMITATION, WARRANTIES THAT THE DOCUMENTATION IS FREE OF DEFECTS, MERCHANTABLE, FIT FOR A PARTICULAR PURPOSE OR NON-INFRINGING. THE ENTIRE RISK AS TO THE QUALITY, ACCURACY, AND PERFORMANCE OF THE DOCUMENTATION IS WITH YOU. SHOULD ANY DOCUMENTATION PROVE DEFECTIVE IN ANY RESPECT, YOU (NOT THE INITIAL WRITER OR ANY OTHER CONTRIBUTOR) ASSUME THE COST OF ANY NECESSARY SERVICING, REPAIR OR CORRECTION. THIS DISCLAIMER OF WARRANTY CONSTITUTES AN ESSENTIAL PART OF THIS LICENSE. NO USE OF ANY DOCUMENTATION IS AUTHORIZED HEREUNDER EXCEPT UNDER THIS DISCLAIMER.</p>
+<h2 id="80-termination">8.0 TERMINATION.</h2>
+<p>This License and the rights granted hereunder will terminate automatically if You fail to comply with terms herein and fail to cure such breach within 30 days of becoming aware of the breach. All sublicenses to the Documentation which are properly granted shall survive any termination of this License. Provisions which, by their nature, must remain in effect beyond the termination of this License shall survive.</p>
+<h2 id="90-limitation-of-liability">9.0 LIMITATION OF LIABILITY.</h2>
+<p>UNDER NO CIRCUMSTANCES AND UNDER NO LEGAL THEORY, WHETHER IN TORT (INCLUDING NEGLIGENCE), CONTRACT, OR OTHERWISE, SHALL THE INITIAL WRITER, ANY OTHER CONTRIBUTOR, OR ANY DISTRIBUTOR OF DOCUMENTATION, OR ANY SUPPLIER OF ANY OF SUCH PARTIES, BE LIABLE TO ANY PERSON FOR ANY DIRECT, INDIRECT, SPECIAL, INCIDENTAL, OR CONSEQUENTIAL DAMAGES OF ANY CHARACTER INCLUDING, WITHOUT LIMITATION, DAMAGES FOR LOSS OF GOODWILL, WORK STOPPAGE, COMPUTER FAILURE OR MALFUNCTION, OR ANY AND ALL OTHER DAMAGES OR LOSSES ARISING OUT OF OR RELATING TO THE USE OF THE DOCUMENTATION, EVEN IF SUCH PARTY SHALL HAVE BEEN INFORMED OF THE POSSIBILITY OF SUCH DAMAGES.</p>
+<h2 id="100-us-government-end-users">10.0 U.S. GOVERNMENT END USERS.</h2>
+<p>If Documentation is being acquired by or on behalf of the U.S. Government or by a U.S. Government prime contractor or subcontractor (at any tier), then the Government's rights in Documentation will be only as set forth in this Agreement; this is in accordance with 48 CFR 227.7201 through 227.7202-4 (for Department of Defense (DOD) acquisitions) and with 48 CFR 2.101 and 12.212 (for non-DOD acquisitions).</p>
+<h2 id="110-miscellaneous">11.0 MISCELLANEOUS.</h2>
+<p>This License represents the complete agreement concerning the subject matter hereof. If any provision of this License is held to be unenforceable, such provision shall be reformed only to the extent necessary to make it enforceable. This License shall be governed by California law, excluding its conflict-of-law provisions. With respect to disputes or any litigation relating to this License, the losing party is responsible for costs, including without limitation, court costs and reasonable attorneys' fees and expenses. The application of the United Nations Convention on Contracts for the International Sale of Goods is expressly excluded. Any law or regulation which provides that the language of a contract shall be construed against the drafter shall not apply to this License.</p>
+<h2 id="appendix">Appendix</h2>
+<h3 id="public-documentation-license-notice">Public Documentation License Notice</h3>
+<p>The contents of this Documentation are subject to the Public Documentation License Version 1.01 (the "License"); you may only use this Documentation if you comply with the terms of this License. A copy of the License is available at <a href="http://illumos.org/license/PDL">http://illumos.org/license/PDL</a>.</p>
+<pre><code class="language-markdown">The Original Documentation is _________________.
 
-    <!-- Footer Section -->
-    <div class="footer">
-        <p>© 2026 OpenIndiana Maintainers</p>
-        <p><a href="https://www.openindiana.org/">Visit the official site</a></p>
-    </div>
+The Initial Writer of the Original Documentation is ___________ Copyright (C)_________[Insert year(s)]. All Rights Reserved. (Initial Writer contact(s):________________[Insert hyperlink/alias]).
+
+Contributor(s): ______________________________________.
+
+Portions created by ______ are Copyright (C)_________[Insert year(s)]. All Rights Reserved. (Contributor contact(s):________________[Insert hyperlink/alias]).
+</code></pre>
+<p>NOTE: The text of this Appendix may differ slightly from the text of the notices in the files of the Original Documentation. You should use the text of this Appendix rather than the text found in the Original Documentation for Your Modifications.</p>
+            </article>
+        </main>
+    
+
+    <footer class="custom-footer">
+        <p class="font-black text-xs tracking-widest opacity-40 uppercase mb-8" style="color:var(--text-main)">OpenIndiana Project</p>
+        <div class="flex flex-wrap justify-center gap-12">
+            <a href="https://www.openindiana.org/" class="text-sm font-bold no-underline hover:underline" style="color:var(--oi-secondary)">Website</a>
+            <a href="https://github.com/openindiana" class="text-sm font-bold no-underline hover:underline" style="color:var(--oi-secondary)">GitHub</a>
+        </div>
+    </footer>
 
     <script>
-        // Dark mode toggle
-        const darkModeToggle = document.getElementById('darkModeToggle');
-        const body = document.body;
+        (function() {
+            const toggle = document.getElementById('master-theme-toggle');
+            const html = document.documentElement;
 
-        darkModeToggle.addEventListener('click', () => {
-            body.classList.toggle('dark-mode');
-            const isDarkMode = body.classList.contains('dark-mode');
-            localStorage.setItem('darkMode', isDarkMode);
-            darkModeToggle.textContent = isDarkMode ? '☀️' : '🌙';
-        });
+            const applyTheme = (theme) => {
+                if (theme === 'dark') {
+                    html.setAttribute('data-theme', 'dark');
+                    toggle.textContent = 'LIGHT MODE';
+                } else {
+                    html.removeAttribute('data-theme');
+                    toggle.textContent = 'DARK MODE';
+                }
+                localStorage.setItem('oi-docs-theme', theme);
+            };
 
-        // Load dark mode state from localStorage
-        if (localStorage.getItem('darkMode') === 'true') {
-            body.classList.add('dark-mode');
-            darkModeToggle.textContent = '☀️';
-        } else {
-            darkModeToggle.textContent = '🌙';
-        }
+            applyTheme(localStorage.getItem('oi-docs-theme') || 'light');
+
+            toggle.addEventListener('click', () => {
+                const current = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+                applyTheme(current);
+            });
+
+            setInterval(() => {
+                const results = document.getElementById('mkdocs-search-results');
+                if (results) {
+                    const descriptions = results.querySelectorAll('p');
+                    descriptions.forEach(d => d.style.display = 'none');
+                }
+            }, 150);
+        })();
     </script>
 
             </div>

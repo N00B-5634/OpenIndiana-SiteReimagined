@@ -17,181 +17,256 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
         <script>hljs.highlightAll();</script>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono&display=swap" rel="stylesheet">
+
     <style>
+        /* ============================================================
+           FAIL-SAFE 1: NUCLEAR FOOTER REMOVAL
+           ============================================================ */
+        .md-footer,
+        .md-copyright,
+        .md-footer-meta,
+        footer:not(.custom-footer),
+        [role="contentinfo"],
+        .md-typeset hr,
+        .md-sidebar--secondary {
+            display: none !important;
+            visibility: hidden !important;
+            opacity: 0 !important;
+            height: 0 !important;
+            margin-top: 1000vh !important;
+            pointer-events: none !important;
+        }
+
+        /* ============================================================
+           GLOBAL DESIGN SYSTEM (HIGH CONTRAST EDITION)
+           ============================================================ */
+        :root {
+            --oi-primary: #8b5cf6;
+            --oi-secondary: #3b82f6;
+            --bg-body: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --card-bg: #ffffff;
+            --card-border: #e2e8f0;
+            --nav-bg: rgba(255, 255, 255, 0.9);
+            --code-bg: #f1f5f9;
+            --code-text: #1e293b;
+        }
+
+        [data-theme="dark"] {
+            --oi-primary: #a78bfa;
+            --oi-secondary: #60a5fa;
+            --bg-body: #020617;
+            /* CRITICAL FIX: Changed from gray to pure white */
+            --text-main: #ffffff;
+            --text-muted: #e2e8f0;
+            --card-bg: #0f172a;
+            --card-border: #334155;
+            --nav-bg: rgba(2, 6, 23, 0.95);
+            /* CRITICAL FIX: Darker background for code to make white text pop */
+            --code-bg: #1e293b;
+            --code-text: #ffffff;
+        }
+
+        html { scroll-behavior: smooth; }
+
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--background-color);
-            color: var(--text-color);
+            background-color: var(--bg-body);
+            color: var(--text-main);
             margin: 0;
             padding: 0;
-            transition: all 0.3s ease;
-        }
-
-        /* Color Variables */
-        :root {
-            --background-color: #1e293b;
-            --text-color: #e2e8f0;
-            --primary-color: #8b5cf6;
-            --secondary-color: #3b82f6;
-            --accent-color: #9333ea;
-            --card-background: #2d3748;
-            --card-border: #4a5568;
-            --button-bg: #3b82f6;
-            --button-hover-bg: #2563eb;
-            --footer-background: #111827;
-        }
-
-        .dark-mode {
-            --background-color: #111827;
-            --text-color: #e2e8f0;
-            --primary-color: #a78bfa;
-            --secondary-color: #60a5fa;
-            --accent-color: #9333ea;
-            --card-background: #334155;
-            --card-border: #4b5563;
-            --button-bg: #60a5fa;
-            --button-hover-bg: #3b82f6;
-            --footer-background: #1f2937;
-        }
-
-        /* Hero Section */
-        .hero {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 4rem 2rem;
-            text-align: center;
-            border-bottom: 2px solid var(--secondary-color);
-        }
-
-        .hero h2 {
-            font-size: 2.5rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-
-        .hero p {
-            font-size: 1.25rem;
-            margin-bottom: 2rem;
-        }
-
-        /* New Search Bar (Transparent, minimal) */
-        .hero .search-bar {
-            padding: 1rem;
-            width: 60%;
-            border-radius: 9999px; /* Fully rounded corners */
-            background-color: transparent; /* Transparent background */
-            color: var(--text-color);
-            font-size: 1.1rem;
-            margin: 0 auto;
-            border: none; /* Remove border */
-            box-shadow: none; /* No box shadow */
-            outline: none; /* Remove outline */
-        }
-
-        .hero .search-bar:focus {
-            color: var(--text-color); /* Keep the color same on focus */
-            background-color: transparent; /* Keep background transparent */
-        }
-
-        .hero .search-bar::placeholder {
-            color: #6b7280; /* Placeholder color */
-        }
-
-        /* Cards Section */
-        .cards-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 2rem;
-            margin: 2rem 1rem;
-        }
-
-        .card {
-            background-color: var(--card-background);
-            border: 1px solid var(--card-border);
-            border-radius: 0.75rem;
-            padding: 2rem;
-            transition: box-shadow 0.3s ease, transform 0.3s ease;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-
-        .card:hover {
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
-            transform: translateY(-5px);
-        }
-
-        .card h3 {
-            font-size: 1.75rem;
-            font-weight: 600;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-        }
-
-        .card p {
-            font-size: 1rem;
-            color: #6b7280;
-        }
-
-        /* Footer Section */
-        .footer {
-            background-color: var(--footer-background);
-            color: var(--text-color);
-            text-align: center;
-            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
             width: 100%;
-            margin-top: 2rem;
-            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+            overflow-x: hidden;
+            transition: background-color 0.2s ease;
         }
 
-        .footer a {
-            color: var(--primary-color);
+        /* ============================================================
+           NAVIGATION
+           ============================================================ */
+        .navbar-hardened {
+            position: sticky;
+            top: 0;
+            width: 100%;
+            z-index: 9999;
+            background: var(--nav-bg);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--card-border);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-text {
+            font-weight: 800;
+            font-size: 1.5rem;
+            letter-spacing: -0.05em;
             text-decoration: none;
+            color: var(--text-main) !important;
         }
 
-        .footer a:hover {
-            text-decoration: underline;
+        /* ============================================================
+           HOME PAGE: HERO & TILES
+           ============================================================ */
+        .hero-banner {
+            background: linear-gradient(135deg, var(--oi-primary), var(--oi-secondary));
+            color: white !important;
+            padding: 8rem 1rem 10rem 1rem;
+            text-align: center;
+            width: 100%;
         }
 
-        /* Button Styles */
-        .button {
-            background-color: var(--button-bg);
-            color: white;
-            padding: 1rem 2rem;
-            font-size: 1.125rem;
-            font-weight: 600;
-            border-radius: 0.375rem;
-            text-decoration: none;
-            transition: background-color 0.3s ease;
-            display: inline-block;
-            margin: 1rem;
+        .hero-title {
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            font-weight: 800;
+            letter-spacing: -0.05em;
+            margin-bottom: 1rem;
+            color: white !important;
         }
 
-        .button:hover {
-            background-color: var(--button-hover-bg);
+        .search-boundary {
+            max-width: 650px;
+            margin: -3rem auto 0;
+            position: relative;
+            z-index: 50;
+            padding: 0 1rem;
         }
 
-        /* Responsive Design */
+        .search-engine-input {
+            width: 100%;
+            padding: 1.25rem 1.75rem;
+            border-radius: 16px;
+            background: var(--card-bg);
+            border: 2px solid var(--card-border);
+            color: var(--text-main);
+            font-size: 1.1rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            outline: none;
+        }
+
+        .search-engine-input:focus {
+            border-color: var(--oi-primary);
+        }
+
+        #mkdocs-search-results {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            margin-top: 10px;
+            color: var(--text-main);
+        }
+
+        .home-main-layout {
+            max-width: 1200px;
+            margin: 5rem auto;
+            padding: 0 1.5rem;
+            width: 100%;
+        }
+
+        .tile-grid-system {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .nav-card-tile {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            padding: 4rem 2rem;
+            border-radius: 24px;
+            text-align: center;
+            text-decoration: none !important;
+            transition: all 0.2s ease;
+        }
+
+        .nav-card-tile:hover {
+            transform: translateY(-8px);
+            border-color: var(--oi-primary);
+        }
+
+        .nav-card-tile h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--oi-primary) !important;
+        }
+
+        /* ============================================================
+           READER VIEW: HIGH CONTRAST MARKDOWN
+           ============================================================ */
+        .documentation-wrapper {
+            flex: 1;
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 5rem 1.5rem;
+        }
+
+        .markdown-engine {
+            color: var(--text-main) !important;
+        }
+
+        .markdown-engine h1 { font-size: 3rem; font-weight: 800; margin-bottom: 2rem; color: var(--oi-primary); }
+        .markdown-engine h2 { font-size: 2rem; font-weight: 700; margin-top: 3.5rem; border-bottom: 2px solid var(--card-border); padding-bottom: 0.75rem; color: var(--text-main); }
+        .markdown-engine p { font-size: 1.125rem; line-height: 1.8; margin-bottom: 1.75rem; color: var(--text-main); }
+
+        /* High-Contrast Code Blocks */
+        .markdown-engine code {
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--code-bg);
+            color: var(--code-text) !important;
+            padding: 0.2rem 0.5rem;
+            border-radius: 6px;
+            font-size: 0.95em;
+            font-weight: 500;
+        }
+
+        .markdown-engine pre {
+            background: var(--code-bg) !important;
+            padding: 1.5rem;
+            border-radius: 12px;
+            overflow-x: auto;
+            margin-bottom: 2rem;
+            border: 1px solid var(--card-border);
+        }
+
+        .markdown-engine pre code {
+            background: transparent !important;
+            padding: 0;
+            color: var(--code-text) !important;
+        }
+
+        /* ============================================================
+           PINNED FOOTER
+           ============================================================ */
+        .custom-footer {
+            flex-shrink: 0;
+            width: 100%;
+            background: var(--bg-body);
+            border-top: 1px solid var(--card-border);
+            padding: 5rem 1.5rem;
+            margin-top: auto;
+            text-align: center;
+        }
+
+        .theme-btn {
+            cursor: pointer;
+            background: var(--card-bg);
+            color: var(--text-main);
+            border: 2px solid var(--card-border);
+            padding: 0.5rem 1rem;
+            border-radius: 12px;
+            font-weight: 800;
+            font-size: 0.75rem;
+        }
+
         @media (max-width: 768px) {
-            .hero h2 {
-                font-size: 2rem;
-            }
-
-            .hero p {
-                font-size: 1.1rem;
-            }
-
-            .hero .search-bar {
-                width: 80%;
-            }
-
-            .cards-container {
-                margin: 2rem 1rem;
-            }
-
-            .card {
-                padding: 1.5rem;
-            }
+            .hero-title { font-size: 2.5rem; }
+            .tile-grid-system { grid-template-columns: 1fr; }
         }
     </style>
 
@@ -540,58 +615,297 @@
 
         <div class="container">
             <div class="row">
-    <!-- Hero Section -->
-    <div class="hero">
-        <h2>Search the Documentation</h2>
-        <p>Quickly find what you're looking for by searching through our extensive documentation.</p>
-        <input type="text" id="mkdocs-search-input" class="search-bar" placeholder="Search the documentation" />
-    </div>
+    <nav class="navbar-hardened">
+        <a href="../.." class="logo-text">
+            OI <span style="color:var(--oi-primary)">DOCS</span>
+        </a>
+        <button id="master-theme-toggle" class="theme-btn">
+            DARK MODE
+        </button>
+    </nav>
 
-    <!-- Featured Docs Section -->
-    <div class="cards-container">
-        <div class="card">
-            <h3>Getting Started</h3>
-            <p>Learn how to set up and get started with OpenIndiana from scratch.</p>
-        </div>
-        <div class="card">
-            <h3>System Administration</h3>
-            <p>Explore system administration tasks for managing OpenIndiana servers.</p>
-        </div>
-        <div class="card">
-            <h3>Networking</h3>
-            <p>Understand networking configurations and management in OpenIndiana.</p>
-        </div>
-        <div class="card">
-            <h3>Advanced Features</h3>
-            <p>Dive deep into the advanced features and capabilities of OpenIndiana.</p>
-        </div>
-    </div>
+    
+        <main class="documentation-wrapper">
+            <article class="markdown-engine">
+                <!--
 
-    <!-- Footer Section -->
-    <div class="footer">
-        <p>© 2026 OpenIndiana Maintainers</p>
-        <p><a href="https://www.openindiana.org/">Visit the official site</a></p>
-    </div>
+The contents of this Documentation are subject to the Public Documentation License Version 1.01
+(the "License"); you may only use this Documentation if you comply with the terms of this License.
+A copy of the License is available at http://illumos.org/license/PDL.
+
+The Original Documentation is _________________.
+
+The Initial Writer of the Original Documentation is Alexander Pyhalov Copyright (C) 2019.
+All Rights Reserved. (Initial Writer contact(s):________________[Insert hyperlink/alias]).
+
+Contributor(s):   Andreas Wacknitz, Michal Nowak
+
+Portions created by Andreas Wacknitz are Copyright (C) 2019.
+Portions created by Michal Nowak are Copyright (C) 2019.
+
+Portions created by ______ are Copyright (C)_________[Insert year(s)].
+All Rights Reserved. (Contributor contact(s):________________[Insert hyperlink/alias]).
+
+-->
+
+<h1 id="201910-release-notes">2019.10 Release notes</h1>
+<p>We are glad to announce that Hipster 2019.10 snapshot is available.</p>
+<table>
+<thead>
+<tr>
+<th>Image</th>
+<th>Checksum</th>
+<th>GPG signature</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="http://dlc.openindiana.org/isos/hipster/20191106/OI-hipster-gui-20191106.iso">OI-hipster-gui-20191106.iso</a></td>
+<td>[<a href="http://dlc.openindiana.org/isos/hipster/20191106/OI-hipster-gui-20191106.iso.sha256sum">SHA256</a>]</td>
+<td>[<a href="http://dlc.openindiana.org/isos/hipster/20191106/OI-hipster-gui-20191106.iso.sig">SIG</a>]</td>
+</tr>
+<tr>
+<td><a href="http://dlc.openindiana.org/isos/hipster/20191106/OI-hipster-gui-20191106.usb">OI-hipster-gui-20191106.usb</a></td>
+<td>[<a href="http://dlc.openindiana.org/isos/hipster/20191106/OI-hipster-gui-20191106.usb.sha256sum">SHA256</a>]</td>
+<td>[<a href="http://dlc.openindiana.org/isos/hipster/20191106/OI-hipster-gui-20191106.usb.sig">SIG</a>]</td>
+</tr>
+<tr>
+<td><a href="http://dlc.openindiana.org/isos/hipster/20191106/OI-hipster-text-20191106.iso">OI-hipster-text-20191106.iso</a></td>
+<td>[<a href="http://dlc.openindiana.org/isos/hipster/20191106/OI-hipster-text-20191106.iso.sha256sum">SHA256</a>]</td>
+<td>[<a href="http://dlc.openindiana.org/isos/hipster/20191106/OI-hipster-text-20191106.iso.sig">SIG</a>]</td>
+</tr>
+<tr>
+<td><a href="http://dlc.openindiana.org/isos/hipster/20191106/OI-hipster-text-20191106.usb">OI-hipster-text-20191106.usb</a></td>
+<td>[<a href="http://dlc.openindiana.org/isos/hipster/20191106/OI-hipster-text-20191106.usb.sha256sum">SHA256</a>]</td>
+<td>[<a href="http://dlc.openindiana.org/isos/hipster/20191106/OI-hipster-text-20191106.usb.sig">SIG</a>]</td>
+</tr>
+<tr>
+<td><a href="http://dlc.openindiana.org/isos/hipster/20191106/OI-hipster-minimal-20191106.iso">OI-hipster-minimal-20191106.iso</a></td>
+<td>[<a href="http://dlc.openindiana.org/isos/hipster/20191106/OI-hipster-minimal-20191106.iso.sha256sum">SHA256</a>]</td>
+<td>[<a href="http://dlc.openindiana.org/isos/hipster/20191106/OI-hipster-minimal-20191106.iso.sig">SIG</a>]</td>
+</tr>
+<tr>
+<td><a href="http://dlc.openindiana.org/isos/hipster/20191106/OI-hipster-minimal-20191106.usb">OI-hipster-minimal-20191106.usb</a></td>
+<td>[<a href="http://dlc.openindiana.org/isos/hipster/20191106/OI-hipster-minimal-20191106.usb.sha256sum">SHA256</a>]</td>
+<td>[<a href="http://dlc.openindiana.org/isos/hipster/20191106/OI-hipster-minimal-20191106.usb.sig">SIG</a>]</td>
+</tr>
+</tbody>
+</table>
+<p><a href="../../handbook/openindiana-download-mirrors/">List of mirrors</a></p>
+<h2 id="security">Security</h2>
+<p>This release is signed and verifiable by GPG. The OpenIndiana Release Engineering key has key id 0x3a021afadbe31887.</p>
+<p>The public key:</p>
+<pre><code>-----BEGIN PGP PUBLIC KEY BLOCK-----
+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
+cuYxZQalebJS
+=fC+/
+-----END PGP PUBLIC KEY BLOCK-----
+</code></pre>
+<p>How to verify:</p>
+<ul>
+<li>Download <code>&lt;ISO&gt;.sig</code> file from mirror</li>
+<li>Run: <code>gpg2 --verify &lt;ISO&gt;.sig &lt;ISO&gt;</code>. You should see the following output:</li>
+</ul>
+<pre><code>    gpg: Signature made November  5, 2019 at 05:40:09 PM UTC
+    gpg:                using RSA key F5E984E5ADD29578D45CC1FE3A021AFADBE31887
+    gpg: Good signature from &quot;OpenIndiana Release Engineering&quot; [ultimate]
+</code></pre>
+<p>Even if the output includes:</p>
+<pre><code>    gpg: WARNING: This key is not certified with a trusted signature!
+    gpg: There is no indication that the signature belongs to the owner.
+</code></pre>
+<p>The signature is still correct.</p>
+<h2 id="general-system-changes">General system changes</h2>
+<p>During this development cycle we've worked on updating IPS, migrating remaining OpenIndiana-specific applications to Python 3, rewriting some DDU closed binary blobs.</p>
+<h2 id="desktop-software-and-libraries">Desktop software and libraries</h2>
+<ul>
+<li>VirtualBox was updated to 6.0.14</li>
+<li>Xorg fonts, tools and libraries were updated.</li>
+<li>FreeType was updated to 2.10.1</li>
+<li>GTK 3 was updated to 3.24.12</li>
+<li>LightDM was updated to 1.30</li>
+<li>mpg123, x265, and mpack packages were added, x264 was updated</li>
+<li>Powerline, the nice status line, was added and integrated with Bash, tmux, and Vim</li>
+<li>Supplementary x11-init service was added to create necessary directories with root permissions prior to X11 applications startup</li>
+</ul>
+<h2 id="common-tools-and-libraries">Common tools and libraries</h2>
+<ul>
+<li>IPS was synced to the latest OmniOS CE version. Now it ships only Python 3.5 tools and libraries.<ul>
+<li>to build oi-userland after removing Python 2 pkg module you need to update the userland <a href="https://github.com/OpenIndiana/oi-userland/commit/fb10babbcfd65ff74cf439bc77a2186fd79ee2a7">build environment too</a>;</li>
+<li>to build gfx-drm you need latest <code>developer/build/onbld package</code>;</li>
+<li>to build illumos-gate you have to add <code>export BUILDPY2TOOLS="#"</code> to your illumos.sh.</li>
+</ul>
+</li>
+<li>DDU binaries, for which we missed sources, were rewritten, DDU was converted to Python 3.5</li>
+<li>Bash was updated</li>
+<li>top and htop now both report ARC and compressed ARC statistics</li>
+<li>Vim was updated to 8.1.1721, Nano was updated to 4.5</li>
+<li>Sudo was updated to 1.8.29</li>
+</ul>
+<h2 id="development-tools-and-libraries">Development tools and libraries</h2>
+<ul>
+<li>GCC compilers were updated to 7.4.0, 8.3.0, GCC 9.2 was added (note, GCC 6.5 is still the default oi-userland compiler)</li>
+<li>Clang 8.0 was added. Clang 4.0 was removed.</li>
+<li>Git was updated to 2.23.0.</li>
+<li>CMake was updated to 3.15.1.</li>
+<li>Rust was updated to 1.32.0.</li>
+<li>Python modules were updated.</li>
+<li>Golang 1.13 was added</li>
+</ul>
+<h2 id="server-software">Server software</h2>
+<ul>
+<li>MongoDB 4.0 was updated.</li>
+<li>Nginx was updated to 1.16.1.</li>
+<li>Samba was updated to 4.11.</li>
+<li>Node.js was updated to 12.13.0, 10.17.0, and 8.16.2</li>
+<li>BIND was updated to 9.14</li>
+<li>OpenLDAP was updated to 2.4.48</li>
+<li>tor was updated to 0.4.1.6</li>
+</ul>
+<p>A lot of other bug fixes and minor software updates are included.</p>
+<h2 id="illumos">illumos</h2>
+<p>As always, we are proud to ship the latest illumos-gate bits (<a href="https://github.com/illumos/illumos-gate/commit/87d7b64204c06f7d85b6dfec442ff0aba82efe9a">87d7b64</a>).</p>
+<p>Some of the more interesting changes include:</p>
+<ul>
+<li>illumos is now build with GCC 7 by default. GCC 4.4 is kept as a shadow compiler and for SPARC (not delivered by the OpenIndiana project)</li>
+<li><code>PAGER</code> variable is no longer being set. It used to be set to <code>/usr/bin/less -ins</code>, which caused problems for some users. <code>man(1)</code> still does paging via <code>/usr/bin/less -ins</code> when <code>PAGER</code> is not set.</li>
+<li><code>cxgbe</code> firmware and Intel microcode were updated</li>
+<li>Various improvements and fixes were ported from the ZFS on Linux project:<ul>
+<li>native data and metadata encryption</li>
+<li>sorted scans</li>
+<li>zpool ashift property is now tunable</li>
+<li>support UNMAP/TRIM for SSD (disabled by default)</li>
+<li>Log Spacemap</li>
+</ul>
+</li>
+<li>Old DRM and AGP code was removed, the <a href="https://github.com/illumos/gfx-drm/">GFX DRM gate</a> is the sole source of DRM code.</li>
+<li>Security:<ul>
+<li>The L1TF mitigation (CVE-2018-3646) was integrated.</li>
+<li>Multi-architectural data sampling mitigations (various CVEs) were implemented.</li>
+<li>Hyper-threading can be disabled.</li>
+<li>Kernel is built with retpolines.</li>
+</ul>
+</li>
+<li>A lot of SMB 3 features were merged:<ul>
+<li>continuously available shares,</li>
+<li>persistent handles</li>
+<li>signing, encryption</li>
+<li>ACLs</li>
+<li>named pipes</li>
+<li>extended attributes</li>
+<li>file level locking</li>
+</ul>
+</li>
+<li>A lot of old SPARC code (deprecated platforms and device drivers) was removed.</li>
+<li><code>zoneadm list</code>'s <code>-n</code> option lists non-global zones only.</li>
+<li><code>netstat</code> got the <code>-u</code> option to list PIDs associated with sockets</li>
+<li>NVMe improvements (e.g. drive firmware updates).</li>
+<li>mandoc was updated to 1.14.5.</li>
+<li>Code of Conduct was adopted.</li>
+<li>Rust got MDB symbol demangling support.</li>
+<li>XHCI polled mode is supported for USB keyboards.</li>
+<li><code>nawk</code> was updated to NAWK upstream circa 2018 code.</li>
+<li>The <code>NULL</code> macro is casted to type <code>void *</code> (a requirement POSIX.1-2008).</li>
+<li>The C.UTF-8 locale is provided.</li>
+<li>Added <code>reallocf(3C)</code> function.</li>
+<li>FreeBSD's pluggable congestion control framework was ported, enabling <a href="https://en.wikipedia.org/wiki/CUBIC_TCP">CUBIC</a> and <a href="https://tools.ietf.org/html/rfc6582">NewReno</a> algorithms, which have higher performance than "sunreno" in some circumstances.</li>
+<li>The default algorithm for new passwords is SHA512</li>
+<li>crontab(1) now supports "/step", e.g.: <code>*/2 * * * * echo "run every two minutes"</code></li>
+<li>UEFI boot improvements: <code>bootadm install-bootloader</code> (or <code>installboot</code> if run directly) now populates/maintains the ESP.</li>
+<li>Bug in our keyboard driver, which prevented SPICE display mechanism of the Linux KVM to work properly, was fixed.</li>
+</ul>
+<h2 id="other-activities">Other activities</h2>
+<p>A lot of work was done to update documentation from <a href="https://wiki.openindiana.org">outdated wiki</a> and move it to new <a href="https://docs.openindiana.org">docs site</a> and <a href="https://github.com/OpenIndiana/oi-userland/tree/oi/hipster/doc">oi-userland docs</a>.</p>
+<h2 id="contributors">Contributors</h2>
+<p>Following developers contributed to the 2019.10 snapshot with more than 600 commits. We very much appreciate their contributions: Adam Števko, Alexander Pyhalov, Andreas Grueninger, Andreas Wacknitz, Aurélien Larcher, Gary Mills, Henry Liebel, Jim Klimov, Michal Nowak, Nona Hansel, Rich Lowe, Rouven Weiler, Spencer Berger, Sven Schmeling, Till Wegmüller, Tim Mooney, and Toomas Soome.</p>
+            </article>
+        </main>
+    
+
+    <footer class="custom-footer">
+        <p class="font-black text-xs tracking-widest opacity-40 uppercase mb-8" style="color:var(--text-main)">OpenIndiana Project</p>
+        <div class="flex flex-wrap justify-center gap-12">
+            <a href="https://www.openindiana.org/" class="text-sm font-bold no-underline hover:underline" style="color:var(--oi-secondary)">Website</a>
+            <a href="https://github.com/openindiana" class="text-sm font-bold no-underline hover:underline" style="color:var(--oi-secondary)">GitHub</a>
+        </div>
+    </footer>
 
     <script>
-        // Dark mode toggle
-        const darkModeToggle = document.getElementById('darkModeToggle');
-        const body = document.body;
+        (function() {
+            const toggle = document.getElementById('master-theme-toggle');
+            const html = document.documentElement;
 
-        darkModeToggle.addEventListener('click', () => {
-            body.classList.toggle('dark-mode');
-            const isDarkMode = body.classList.contains('dark-mode');
-            localStorage.setItem('darkMode', isDarkMode);
-            darkModeToggle.textContent = isDarkMode ? '☀️' : '🌙';
-        });
+            const applyTheme = (theme) => {
+                if (theme === 'dark') {
+                    html.setAttribute('data-theme', 'dark');
+                    toggle.textContent = 'LIGHT MODE';
+                } else {
+                    html.removeAttribute('data-theme');
+                    toggle.textContent = 'DARK MODE';
+                }
+                localStorage.setItem('oi-docs-theme', theme);
+            };
 
-        // Load dark mode state from localStorage
-        if (localStorage.getItem('darkMode') === 'true') {
-            body.classList.add('dark-mode');
-            darkModeToggle.textContent = '☀️';
-        } else {
-            darkModeToggle.textContent = '🌙';
-        }
+            applyTheme(localStorage.getItem('oi-docs-theme') || 'light');
+
+            toggle.addEventListener('click', () => {
+                const current = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+                applyTheme(current);
+            });
+
+            setInterval(() => {
+                const results = document.getElementById('mkdocs-search-results');
+                if (results) {
+                    const descriptions = results.querySelectorAll('p');
+                    descriptions.forEach(d => d.style.display = 'none');
+                }
+            }, 150);
+        })();
     </script>
 
             </div>

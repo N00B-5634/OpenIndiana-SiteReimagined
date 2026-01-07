@@ -17,181 +17,256 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
         <script>hljs.highlightAll();</script>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono&display=swap" rel="stylesheet">
+
     <style>
+        /* ============================================================
+           FAIL-SAFE 1: NUCLEAR FOOTER REMOVAL
+           ============================================================ */
+        .md-footer,
+        .md-copyright,
+        .md-footer-meta,
+        footer:not(.custom-footer),
+        [role="contentinfo"],
+        .md-typeset hr,
+        .md-sidebar--secondary {
+            display: none !important;
+            visibility: hidden !important;
+            opacity: 0 !important;
+            height: 0 !important;
+            margin-top: 1000vh !important;
+            pointer-events: none !important;
+        }
+
+        /* ============================================================
+           GLOBAL DESIGN SYSTEM (HIGH CONTRAST EDITION)
+           ============================================================ */
+        :root {
+            --oi-primary: #8b5cf6;
+            --oi-secondary: #3b82f6;
+            --bg-body: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --card-bg: #ffffff;
+            --card-border: #e2e8f0;
+            --nav-bg: rgba(255, 255, 255, 0.9);
+            --code-bg: #f1f5f9;
+            --code-text: #1e293b;
+        }
+
+        [data-theme="dark"] {
+            --oi-primary: #a78bfa;
+            --oi-secondary: #60a5fa;
+            --bg-body: #020617;
+            /* CRITICAL FIX: Changed from gray to pure white */
+            --text-main: #ffffff;
+            --text-muted: #e2e8f0;
+            --card-bg: #0f172a;
+            --card-border: #334155;
+            --nav-bg: rgba(2, 6, 23, 0.95);
+            /* CRITICAL FIX: Darker background for code to make white text pop */
+            --code-bg: #1e293b;
+            --code-text: #ffffff;
+        }
+
+        html { scroll-behavior: smooth; }
+
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--background-color);
-            color: var(--text-color);
+            background-color: var(--bg-body);
+            color: var(--text-main);
             margin: 0;
             padding: 0;
-            transition: all 0.3s ease;
-        }
-
-        /* Color Variables */
-        :root {
-            --background-color: #1e293b;
-            --text-color: #e2e8f0;
-            --primary-color: #8b5cf6;
-            --secondary-color: #3b82f6;
-            --accent-color: #9333ea;
-            --card-background: #2d3748;
-            --card-border: #4a5568;
-            --button-bg: #3b82f6;
-            --button-hover-bg: #2563eb;
-            --footer-background: #111827;
-        }
-
-        .dark-mode {
-            --background-color: #111827;
-            --text-color: #e2e8f0;
-            --primary-color: #a78bfa;
-            --secondary-color: #60a5fa;
-            --accent-color: #9333ea;
-            --card-background: #334155;
-            --card-border: #4b5563;
-            --button-bg: #60a5fa;
-            --button-hover-bg: #3b82f6;
-            --footer-background: #1f2937;
-        }
-
-        /* Hero Section */
-        .hero {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 4rem 2rem;
-            text-align: center;
-            border-bottom: 2px solid var(--secondary-color);
-        }
-
-        .hero h2 {
-            font-size: 2.5rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-
-        .hero p {
-            font-size: 1.25rem;
-            margin-bottom: 2rem;
-        }
-
-        /* New Search Bar (Transparent, minimal) */
-        .hero .search-bar {
-            padding: 1rem;
-            width: 60%;
-            border-radius: 9999px; /* Fully rounded corners */
-            background-color: transparent; /* Transparent background */
-            color: var(--text-color);
-            font-size: 1.1rem;
-            margin: 0 auto;
-            border: none; /* Remove border */
-            box-shadow: none; /* No box shadow */
-            outline: none; /* Remove outline */
-        }
-
-        .hero .search-bar:focus {
-            color: var(--text-color); /* Keep the color same on focus */
-            background-color: transparent; /* Keep background transparent */
-        }
-
-        .hero .search-bar::placeholder {
-            color: #6b7280; /* Placeholder color */
-        }
-
-        /* Cards Section */
-        .cards-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 2rem;
-            margin: 2rem 1rem;
-        }
-
-        .card {
-            background-color: var(--card-background);
-            border: 1px solid var(--card-border);
-            border-radius: 0.75rem;
-            padding: 2rem;
-            transition: box-shadow 0.3s ease, transform 0.3s ease;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-
-        .card:hover {
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
-            transform: translateY(-5px);
-        }
-
-        .card h3 {
-            font-size: 1.75rem;
-            font-weight: 600;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-        }
-
-        .card p {
-            font-size: 1rem;
-            color: #6b7280;
-        }
-
-        /* Footer Section */
-        .footer {
-            background-color: var(--footer-background);
-            color: var(--text-color);
-            text-align: center;
-            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
             width: 100%;
-            margin-top: 2rem;
-            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+            overflow-x: hidden;
+            transition: background-color 0.2s ease;
         }
 
-        .footer a {
-            color: var(--primary-color);
+        /* ============================================================
+           NAVIGATION
+           ============================================================ */
+        .navbar-hardened {
+            position: sticky;
+            top: 0;
+            width: 100%;
+            z-index: 9999;
+            background: var(--nav-bg);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--card-border);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-text {
+            font-weight: 800;
+            font-size: 1.5rem;
+            letter-spacing: -0.05em;
             text-decoration: none;
+            color: var(--text-main) !important;
         }
 
-        .footer a:hover {
-            text-decoration: underline;
+        /* ============================================================
+           HOME PAGE: HERO & TILES
+           ============================================================ */
+        .hero-banner {
+            background: linear-gradient(135deg, var(--oi-primary), var(--oi-secondary));
+            color: white !important;
+            padding: 8rem 1rem 10rem 1rem;
+            text-align: center;
+            width: 100%;
         }
 
-        /* Button Styles */
-        .button {
-            background-color: var(--button-bg);
-            color: white;
-            padding: 1rem 2rem;
-            font-size: 1.125rem;
-            font-weight: 600;
-            border-radius: 0.375rem;
-            text-decoration: none;
-            transition: background-color 0.3s ease;
-            display: inline-block;
-            margin: 1rem;
+        .hero-title {
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            font-weight: 800;
+            letter-spacing: -0.05em;
+            margin-bottom: 1rem;
+            color: white !important;
         }
 
-        .button:hover {
-            background-color: var(--button-hover-bg);
+        .search-boundary {
+            max-width: 650px;
+            margin: -3rem auto 0;
+            position: relative;
+            z-index: 50;
+            padding: 0 1rem;
         }
 
-        /* Responsive Design */
+        .search-engine-input {
+            width: 100%;
+            padding: 1.25rem 1.75rem;
+            border-radius: 16px;
+            background: var(--card-bg);
+            border: 2px solid var(--card-border);
+            color: var(--text-main);
+            font-size: 1.1rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            outline: none;
+        }
+
+        .search-engine-input:focus {
+            border-color: var(--oi-primary);
+        }
+
+        #mkdocs-search-results {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            margin-top: 10px;
+            color: var(--text-main);
+        }
+
+        .home-main-layout {
+            max-width: 1200px;
+            margin: 5rem auto;
+            padding: 0 1.5rem;
+            width: 100%;
+        }
+
+        .tile-grid-system {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .nav-card-tile {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            padding: 4rem 2rem;
+            border-radius: 24px;
+            text-align: center;
+            text-decoration: none !important;
+            transition: all 0.2s ease;
+        }
+
+        .nav-card-tile:hover {
+            transform: translateY(-8px);
+            border-color: var(--oi-primary);
+        }
+
+        .nav-card-tile h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--oi-primary) !important;
+        }
+
+        /* ============================================================
+           READER VIEW: HIGH CONTRAST MARKDOWN
+           ============================================================ */
+        .documentation-wrapper {
+            flex: 1;
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 5rem 1.5rem;
+        }
+
+        .markdown-engine {
+            color: var(--text-main) !important;
+        }
+
+        .markdown-engine h1 { font-size: 3rem; font-weight: 800; margin-bottom: 2rem; color: var(--oi-primary); }
+        .markdown-engine h2 { font-size: 2rem; font-weight: 700; margin-top: 3.5rem; border-bottom: 2px solid var(--card-border); padding-bottom: 0.75rem; color: var(--text-main); }
+        .markdown-engine p { font-size: 1.125rem; line-height: 1.8; margin-bottom: 1.75rem; color: var(--text-main); }
+
+        /* High-Contrast Code Blocks */
+        .markdown-engine code {
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--code-bg);
+            color: var(--code-text) !important;
+            padding: 0.2rem 0.5rem;
+            border-radius: 6px;
+            font-size: 0.95em;
+            font-weight: 500;
+        }
+
+        .markdown-engine pre {
+            background: var(--code-bg) !important;
+            padding: 1.5rem;
+            border-radius: 12px;
+            overflow-x: auto;
+            margin-bottom: 2rem;
+            border: 1px solid var(--card-border);
+        }
+
+        .markdown-engine pre code {
+            background: transparent !important;
+            padding: 0;
+            color: var(--code-text) !important;
+        }
+
+        /* ============================================================
+           PINNED FOOTER
+           ============================================================ */
+        .custom-footer {
+            flex-shrink: 0;
+            width: 100%;
+            background: var(--bg-body);
+            border-top: 1px solid var(--card-border);
+            padding: 5rem 1.5rem;
+            margin-top: auto;
+            text-align: center;
+        }
+
+        .theme-btn {
+            cursor: pointer;
+            background: var(--card-bg);
+            color: var(--text-main);
+            border: 2px solid var(--card-border);
+            padding: 0.5rem 1rem;
+            border-radius: 12px;
+            font-weight: 800;
+            font-size: 0.75rem;
+        }
+
         @media (max-width: 768px) {
-            .hero h2 {
-                font-size: 2rem;
-            }
-
-            .hero p {
-                font-size: 1.1rem;
-            }
-
-            .hero .search-bar {
-                width: 80%;
-            }
-
-            .cards-container {
-                margin: 2rem 1rem;
-            }
-
-            .card {
-                padding: 1.5rem;
-            }
+            .hero-title { font-size: 2.5rem; }
+            .tile-grid-system { grid-template-columns: 1fr; }
         }
     </style>
 
@@ -540,58 +615,2149 @@
 
         <div class="container">
             <div class="row">
-    <!-- Hero Section -->
-    <div class="hero">
-        <h2>Search the Documentation</h2>
-        <p>Quickly find what you're looking for by searching through our extensive documentation.</p>
-        <input type="text" id="mkdocs-search-input" class="search-bar" placeholder="Search the documentation" />
-    </div>
+    <nav class="navbar-hardened">
+        <a href="../.." class="logo-text">
+            OI <span style="color:var(--oi-primary)">DOCS</span>
+        </a>
+        <button id="master-theme-toggle" class="theme-btn">
+            DARK MODE
+        </button>
+    </nav>
 
-    <!-- Featured Docs Section -->
-    <div class="cards-container">
-        <div class="card">
-            <h3>Getting Started</h3>
-            <p>Learn how to set up and get started with OpenIndiana from scratch.</p>
-        </div>
-        <div class="card">
-            <h3>System Administration</h3>
-            <p>Explore system administration tasks for managing OpenIndiana servers.</p>
-        </div>
-        <div class="card">
-            <h3>Networking</h3>
-            <p>Understand networking configurations and management in OpenIndiana.</p>
-        </div>
-        <div class="card">
-            <h3>Advanced Features</h3>
-            <p>Dive deep into the advanced features and capabilities of OpenIndiana.</p>
-        </div>
-    </div>
+    
+        <main class="documentation-wrapper">
+            <article class="markdown-engine">
+                <!--
 
-    <!-- Footer Section -->
-    <div class="footer">
-        <p>© 2026 OpenIndiana Maintainers</p>
-        <p><a href="https://www.openindiana.org/">Visit the official site</a></p>
-    </div>
+The contents of this Documentation are subject to the Public Documentation License Version 1.01
+(the "License"); you may only use this Documentation if you comply with the terms of this License.
+A copy of the License is available at http://illumos.org/license/PDL.
+
+The Original Documentation is _________________.
+
+The Initial Writer of the Original Documentation is Aurelien Larcher 2017.
+All Rights Reserved.
+
+Portions created by Ken Mays are Copyright (C) 2017.
+Portions created by Alexander Pyhalov are Copyright (C) 2019.
+
+-->
+
+<h1 id="graphics-stack">Graphics stack</h1>
+<p>Like most UNIX/Linux operating systems, OpenIndiana's GUI environment is based on
+the X Window System bundled with libraries and applications developed by
+the <a href="https://www.freedesktop.org/">freedesktop.org</a> community.</p>
+<p>Therefore the Graphic Stack is comprised of:
+* the opensource X11 display server Xorg, client libraries and utilities developed by the <a href="https://www.x.org/">X.org Project</a>,
+* an OpenGL implementation in the form of the opensource <a href="https://www.mesa3d.org/">Mesa</a> library,
+* and illumos kernel drivers for different graphics adapters provided by the <a href="https://github.com/illumos/gfx-drm">gfx-drm</a> gate,
+* together with the <a href="https://gitlab.freedesktop.org/mesa/drm">libdrm</a> implementing communication between kernel drivers and user-space components through the Direct Rendering Infrastructure (DRI) protocol.</p>
+<p>All these components can be installed using the unified build system <a href="https://github.com/OpenIndiana/oi-userland">oi-userland</a> or simply installed from the package repositories.</p>
+<p>Notes concerning different components are provided:</p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Scope</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#Xorg">Xorg</a></td>
+<td>Building the Xorg display server, protocol headers, client libraries and applications.</td>
+</tr>
+<tr>
+<td><a href="#Mesa">Mesa</a></td>
+<td>Building the Mesa library and testing OpenGL capabilities.</td>
+</tr>
+<tr>
+<td><a href="#Fonts">Fonts</a></td>
+<td>Packaging new fonts for OpenIndiana.</td>
+</tr>
+<tr>
+<td><a href="#Nvidia">Nvidia</a></td>
+<td>Installation of Nvidia's proprietary graphics driver for Solaris.</td>
+</tr>
+<tr>
+<td><a href="#gfx-drm">gfx-drm</a></td>
+<td>Building the illumos KMS drivers and libdrm from the gfx-drm gate.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="xorg">Xorg</h2>
+<p>All the Xorg components are build in oi-userland and located in the x11 directory:</p>
+<p><a href="https://github.com/OpenIndiana/oi-userland/tree/oi/hipster/components/x11">https://github.com/OpenIndiana/oi-userland/tree/oi/hipster/components/x11</a></p>
+<p>A bogus component is provided to rebuild the X11 gate:
+<a href="https://github.com/OpenIndiana/oi-userland/tree/oi/hipster/components/x11/x11-gate">https://github.com/OpenIndiana/oi-userland/tree/oi/hipster/components/x11/x11-gate</a></p>
+<p>The upstream Solaris code is located at:</p>
+<p><a href="https://github.com/oracle/solaris-userland/tree/master/components/x11">https://github.com/oracle/solaris-userland/tree/master/components/x11</a></p>
+<h2 id="mesa">Mesa</h2>
+<p>To build Mesa use the <a href="https://github.com/OpenIndiana/oi-userland/tree/oi/hipster/components/x11/mesa">x11/mesa</a> component.</p>
+<h2 id="fonts">Fonts</h2>
+<p>Font components in oi-userland are located in the <a href="https://github.com/OpenIndiana/oi-userland/tree/oi/hipster/components/fonts">components/fonts</a> directory.</p>
+<h2 id="nvidia">Nvidia</h2>
+<p>Nvidia provides Solaris x86-64/x86 packages of their proprietary driver for different families of graphic adapters.</p>
+<p>The Nvidia driver shipped with OpenIndiana is built using openindiana/nvidia-XXX <a href="https://github.com/OpenIndiana/oi-userland/tree/oi/hipster/components/openindiana/nvidia-470">e.g. openindiana/nvidia-470</a> component.</p>
+<p>The list of currently supported and legacy drivers is updated on the <a href="https://www.nvidia.com/object/unix.html">Unix Drivers</a> page.</p>
+<table>
+<thead>
+<tr>
+<th>Series</th>
+<th>Label</th>
+<th>Models</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>430.xx</td>
+<td>Current long lived branch</td>
+<td>Quadro RTX 4000-8000, Quadro, Quadro Blade, Quadro NVS, NVS</td>
+<td></td>
+</tr>
+<tr>
+<td>415.xx</td>
+<td>Current short lived branch</td>
+<td>Quadro RTX 4000-6000, Quadro, Quadro Blade, Quadro NVS, NVS</td>
+<td></td>
+</tr>
+<tr>
+<td>396.xx</td>
+<td>Legacy GPU</td>
+<td>GeForce 400 to Geforce GTX 10</td>
+<td>Driver 396.24</td>
+</tr>
+<tr>
+<td>340.xx</td>
+<td>Legacy GPU</td>
+<td>GeForce 8 to GeForce 700 series</td>
+<td>Driver 340.106 ; Delivers libvdpau as part of the package.</td>
+</tr>
+<tr>
+<td>304.xx</td>
+<td>Legacy GPU</td>
+<td>GeForce 6 to GeForce 600 series</td>
+<td>Driver 304.137</td>
+</tr>
+</tbody>
+</table>
+<p>The drivers series 340.xx, 390.xx, and 490.xx are currently part of oi-userland, others may be installed manually following Nvidia's instructions.</p>
+<p>The 390.xx drivers are current default.</p>
+<p>Note on switching driver versions</p>
+<pre><code># beadm create nvidia-460
+# beadm mount nvidia-460 /tmp/nvidia-460
+# pkg -R /tmp/nvidia-460 uninstall xorg-video nvidia nvidia-390
+# pkg -R /tmp/nvidia-460 install nvidia-460
+# beadm activate nvidia-460
+# init 6
+</code></pre>
+<p>Note on manual driver installations:</p>
+<pre><code># beadm create oi-nvidia
+# beadm mount oi-nvidia /mnt
+# pkg -R /mnt uninstall x11/server/xorg/driver/xorg-video driver/graphics/nvidia
+# /bin/sh NVIDIA-Solaris-x86-390.48.run --extract-only
+# cd NVIDIA-Solaris-x86-390.48
+# pkgadd -R /mnt -d . NVDAgraphics NVDAgraphicsr
+# bootadm update-archive -R /mnt
+# beadm unmount -f oi-nvidia
+# beadm activate oi-nvidia
+# init 6
+</code></pre>
+<h2 id="gfx-drm">gfx-drm</h2>
+<p>The gfx-drm gate consists of different kernel components for support of various graphic adapters in the illumos and the Direct Rendering Infrastructure (DRI) library, libdrm.</p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>libdrm</td>
+<td>The library enables communication between kernel components and user-space libraries through the DRI protocol.</td>
+</tr>
+<tr>
+<td>agpart</td>
+<td>Kernel driver for the Graphics Address Remapping Table (GART) / Graphics Translation Table (GTT) support.</td>
+</tr>
+<tr>
+<td>header-drm</td>
+<td>System headers for DRM/KMS kernel drivers and user-space libraries.</td>
+</tr>
+<tr>
+<td>i915</td>
+<td>Intel KMS driver for Intel Graphics Media Accelerator (GMA) and Intel HD Graphics adapters.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="intel-kms-driver">Intel KMS driver</h3>
+<p>The xorg-video-intel package is the open-source 2D graphics driver for the X Window System as implemented by X.org. It supports a variety of Intel graphics chipsets including:</p>
+<ul>
+<li>i810/i810e/i810-dc100,i815,</li>
+<li>i830M,845G,852GM,855GM,865G,</li>
+<li>915G/GM,945G/GM/GME,946GZ</li>
+<li>G/GM/GME/Q965,</li>
+<li>G/Q33,G/Q35,G41,G/Q43,G/GM/Q45</li>
+<li>PineView-M (Atom N400 series)</li>
+<li>PineView-D (Atom D400/D500 series)</li>
+<li>Intel(R) HD Graphics,</li>
+<li>Intel(R) Iris(TM) Graphics,</li>
+<li>Intel(R) Iris(TM) Pro Graphics.</li>
+</ul>
+<p>Open source kernel driver(s) by Oracle:</p>
+<p><a href="https://github.com/oracle/solaris-userland/tree/master/components/x11/kernel/sun-src">https://github.com/oracle/solaris-userland/tree/master/components/x11/kernel/sun-src</a></p>
+<p>The relevant kernel code is located in drm and i915 subfolders.</p>
+<p>An illumos port of Oracle code is available here:</p>
+<p><a href="https://github.com/illumos/gfx-drm">https://github.com/illumos/gfx-drm</a></p>
+<p>Martin Bochnig, creator of OpenSXCE, initially backported the S12 driver to illumos available in oi-userland until December 20, 2016.</p>
+<p>It was then superseeded by the new gate providing improvements to the gfx_private interface and agpgart driver, as well as containing userland libraries used by graphics, like libdrm.</p>
+<h4 id="references">References</h4>
+<p>Alan Coopersmith pointed to the following documents regarding DRI/KMS:</p>
+<ul>
+<li><a href="http://www.phoronix.com/scan.php?page=news_item&amp;px=Solaris-DRM-KMS-2015">http://www.phoronix.com/scan.php?page=news_item&amp;px=Solaris-DRM-KMS-2015</a></li>
+<li><a href="http://www.x.org/wiki/Events/XDC2015/Program/#Fishel_status_drm_i915_solaris">http://www.x.org/wiki/Events/XDC2015/Program/#Fishel_status_drm_i915_solaris</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Direct_Rendering_Manager">https://en.wikipedia.org/wiki/Direct_Rendering_Manager</a></li>
+<li><a href="http://dri.freedesktop.org/wiki/">http://dri.freedesktop.org/wiki/</a></li>
+<li><a href="https://wiki.archlinux.org/index.php/kernel_mode_setting">https://wiki.archlinux.org/index.php/kernel_mode_setting</a></li>
+<li><a href="https://web.archive.org/web/20170711030533/http://lanyrd.com/topics/x-window-system/">https://web.archive.org/web/20170711030533/http://lanyrd.com/topics/x-window-system/</a></li>
+</ul>
+<p>Additionally, information about driver development:</p>
+<ul>
+<li><a href="https://01.org/linuxgraphics">https://01.org/linuxgraphics</a></li>
+<li><a href="http://dri.freedesktop.org/docs/drm/">http://dri.freedesktop.org/docs/drm/</a></li>
+<li><a href="http://blog.ffwll.ch/2013/01/i915gem-crashcourse-overview.html">http://blog.ffwll.ch/2013/01/i915gem-crashcourse-overview.html</a></li>
+<li>blog posts from the i915 Linux maintainer <a href="http://blog.ffwll.ch/">http://blog.ffwll.ch/</a></li>
+</ul>
+<h4 id="known-issues">Known Issues</h4>
+<h5 id="sna">SNA</h5>
+<p>SNA may cause segmentation faults if enabled. If so, just disable SNA and you can copy the attached 20-intel-uxa.conf to /etc/X11/xorg.conf.d/.</p>
+<p>For now UXA mode is set by default.</p>
+<h4 id="sandy-bridge-gt1">Sandy Bridge GT1</h4>
+<p>A hardware bug required implementing a workaround in the Intel ringbuffer implementation, occasional 1-2 second hangs may occur.</p>
+<h4 id="gen-8">Gen &gt;= 8</h4>
+<p>Generation 8 (and later) devices are not supported at all.
+They require Intel ringbuffer support, which is not implemented.</p>
+<h3 id="hardware-matrix">Hardware Matrix</h3>
+<p>Reference:</p>
+<ul>
+<li><a href="https://github.com/torvalds/linux/blob/master/include/drm/i915_pciids.h">https://github.com/torvalds/linux/blob/master/include/drm/i915_pciids.h</a></li>
+<li><a href="https://en.wikipedia.org/wiki/List_of_Intel_graphics_processing_units">https://en.wikipedia.org/wiki/List_of_Intel_graphics_processing_units</a></li>
+<li><a href="http://src.illumos.org/source/xref/gfx-drm/usr/src/uts/intel/io/i915/i915_drv.c#294">http://src.illumos.org/source/xref/gfx-drm/usr/src/uts/intel/io/i915/i915_drv.c#294</a></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Generation</th>
+<th>Family</th>
+<th>Codename</th>
+<th>PCI id</th>
+<th>Model</th>
+<th>i915 support</th>
+<th>xf86-video-intel support</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2nd</td>
+<td>I830</td>
+<td>Almador</td>
+<td>0x3577</td>
+<td>I830M, I830MG</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>2nd</td>
+<td>I845G</td>
+<td>Brookdale</td>
+<td>0x2562</td>
+<td>I845G, I845GL, I845GV</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>2nd</td>
+<td>I85X</td>
+<td>Montara</td>
+<td>0x3582</td>
+<td>I855GM</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>2nd</td>
+<td>I85X</td>
+<td>Montara</td>
+<td>0x358e</td>
+<td>I855GM</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>2nd</td>
+<td>I865G</td>
+<td>Springdale</td>
+<td>0x2572</td>
+<td>I865G</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>3rd</td>
+<td>I915G</td>
+<td>Grantsdale</td>
+<td>0x2582</td>
+<td>I915G</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>3rd</td>
+<td>I915G</td>
+<td>Grantsdale</td>
+<td>0x258a</td>
+<td>E7221G</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>3rd</td>
+<td>I915GM</td>
+<td>Alviso</td>
+<td>0x2592</td>
+<td>I915GM</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>3rd</td>
+<td>I945G</td>
+<td>Lakeport</td>
+<td>0x2772</td>
+<td>I945G</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>3rd</td>
+<td>I945GM</td>
+<td>Calistoga</td>
+<td>0x27a2</td>
+<td>I945GM</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>3rd</td>
+<td>I945GM</td>
+<td>Calistoga</td>
+<td>0x27ae</td>
+<td>I945GME</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>3rd</td>
+<td>G33</td>
+<td>Bearlake</td>
+<td>0x29b2</td>
+<td>Q35G</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>3rd</td>
+<td>G33</td>
+<td>Bearlake</td>
+<td>0x29c2</td>
+<td>G33G</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>3rd</td>
+<td>G33</td>
+<td>Bearlake</td>
+<td>0x29d2</td>
+<td>Q33G</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>3rd</td>
+<td>PINEVIEW</td>
+<td>Pineview</td>
+<td>0xa001</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>3rd</td>
+<td>PINEVIEW</td>
+<td>Pineview</td>
+<td>0xa011</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>4th</td>
+<td>I965G</td>
+<td>Lakeport</td>
+<td>0x2972</td>
+<td>I946GZ</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>4th</td>
+<td>I965G</td>
+<td>Bearlake</td>
+<td>0x2982</td>
+<td>G35G</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>4th</td>
+<td>I965G</td>
+<td>Broadwater</td>
+<td>0x2992</td>
+<td>I965Q</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>4th</td>
+<td>I965G</td>
+<td>Broadwater</td>
+<td>0x29a2</td>
+<td>I965G</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>4th</td>
+<td>I965GM</td>
+<td>Crestline</td>
+<td>0x2a02</td>
+<td>I965GM</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>4th</td>
+<td>I965GM</td>
+<td>Crestline</td>
+<td>0x2a12</td>
+<td>I965GME</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>4th</td>
+<td>GM45</td>
+<td>Cantiga</td>
+<td>0x2a42</td>
+<td>GM45G</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>4th</td>
+<td>G45</td>
+<td>Eaglelake</td>
+<td>0x2e02</td>
+<td>IGDEG</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>4th</td>
+<td>G45</td>
+<td>Eaglelake</td>
+<td>0x2e12</td>
+<td>Q45G</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>4th</td>
+<td>G45</td>
+<td>Eaglelake</td>
+<td>0x2e22</td>
+<td>G45G</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>4th</td>
+<td>G45</td>
+<td>Eaglelake</td>
+<td>0x2e32</td>
+<td>G41G</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>4th</td>
+<td>G45</td>
+<td>Eaglelake</td>
+<td>0x2e42</td>
+<td>B43G</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>4th</td>
+<td>G45</td>
+<td>Eaglelake</td>
+<td>0x2e92</td>
+<td>B43G.1</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>5th</td>
+<td>IRONLAKE D</td>
+<td>Ironlake (Clarkdale)</td>
+<td>0x0042</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>5th</td>
+<td>IRONLAKE M</td>
+<td>Ironlake (Arrandale)</td>
+<td>0x0046</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>6th</td>
+<td>SANDY BRIDGE D</td>
+<td>Sandy Bridge</td>
+<td>0x0102</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>6th</td>
+<td>SANDY BRIDGE D</td>
+<td>Sandy Bridge</td>
+<td>0x0112</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>6th</td>
+<td>SANDY BRIDGE D</td>
+<td>Sandy Bridge</td>
+<td>0x0122</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>6th</td>
+<td>SANDY BRIDGE D</td>
+<td>Sandy Bridge</td>
+<td>0x010A</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>6th</td>
+<td>SANDY BRIDGE M</td>
+<td>Sandy Bridge</td>
+<td>0x0106</td>
+<td></td>
+<td>HW bug causes GPU hangs. Work-around in place, but one may see brief render delays.</td>
+<td></td>
+</tr>
+<tr>
+<td>6th</td>
+<td>SANDY BRIDGE M</td>
+<td>Sandy Bridge</td>
+<td>0x0116</td>
+<td></td>
+<td>HW bug causes GPU hangs. Work-around in place, but one may see brief render delays.</td>
+<td></td>
+</tr>
+<tr>
+<td>6th</td>
+<td>SANDY BRIDGE M</td>
+<td>Sandy Bridge</td>
+<td>0x0126</td>
+<td></td>
+<td>HW bug causes GPU hangs. Work-around in place, but one may see brief render delays.</td>
+<td></td>
+</tr>
+<tr>
+<td>7th</td>
+<td>IVY BRIDGE M</td>
+<td>Ivy Bridge</td>
+<td>0x0156</td>
+<td>GT1 mobile</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>7th</td>
+<td>IVY BRIDGE M</td>
+<td>Ivy Bridge</td>
+<td>0x0166</td>
+<td>GT2 mobile</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>7th</td>
+<td>IVY BRIDGE D</td>
+<td>Ivy Bridge</td>
+<td>0x0152</td>
+<td>GT1 desktop</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>7th</td>
+<td>IVY BRIDGE D</td>
+<td>Ivy Bridge</td>
+<td>0x0162</td>
+<td>GT2 desktop</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>7th</td>
+<td>IVY BRIDGE D</td>
+<td>Ivy Bridge</td>
+<td>0x015a</td>
+<td>GT1 server</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>7th</td>
+<td>IVY BRIDGE D</td>
+<td>Ivy Bridge</td>
+<td>0x016a</td>
+<td>GT2 server</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>7th</td>
+<td>HASWELL D</td>
+<td>Haswell</td>
+<td>0x0402</td>
+<td>GT1 desktop</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>7th</td>
+<td>HASWELL D</td>
+<td>Haswell</td>
+<td>0x0412</td>
+<td>GT2 desktop</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>7th</td>
+<td>HASWELL D</td>
+<td>Haswell</td>
+<td>0x0422</td>
+<td>GT3 desktop</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>7th</td>
+<td>HASWELL D</td>
+<td>Haswell</td>
+<td>0x040a</td>
+<td>GT1 server</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>7th</td>
+<td>HASWELL D</td>
+<td>Haswell</td>
+<td>0x041a</td>
+<td>GT2 server</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>7th</td>
+<td>HASWELL D</td>
+<td>Haswell</td>
+<td>0x042a</td>
+<td>GT3 server</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>7th</td>
+<td>HASWELL D</td>
+<td>Haswell</td>
+<td>0x040B</td>
+<td>GT1 reserved</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>7th</td>
+<td>HASWELL D</td>
+<td>Haswell</td>
+<td>0x041B</td>
+<td>GT2 reserved</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>7th</td>
+<td>HASWELL D</td>
+<td>Haswell</td>
+<td>0x042B</td>
+<td>GT3 reserved</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>7th</td>
+<td>HASWELL D</td>
+<td>Haswell</td>
+<td>0x040E</td>
+<td>GT1 reserved</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>7th</td>
+<td>HASWELL D</td>
+<td>Haswell</td>
+<td>0x041E</td>
+<td>GT2 reserved</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>7th</td>
+<td>HASWELL D</td>
+<td>Haswell</td>
+<td>0x042E</td>
+<td>GT3 reserved</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>7th</td>
+<td>HASWELL D</td>
+<td>Haswell</td>
+<td>0x0C02</td>
+<td>SDV GT1 desktop</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>7th</td>
+<td>HASWELL D</td>
+<td>Haswell</td>
+<td>0x0C12</td>
+<td>SDV GT2 desktop</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>7th</td>
+<td>HASWELL D</td>
+<td>Haswell</td>
+<td>0x0C22</td>
+<td>SDV GT3 desktop</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>7th</td>
+<td>HASWELL D</td>
+<td>Haswell</td>
+<td>0x0C0A</td>
+<td>SDV GT1 server</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>7th</td>
+<td>HASWELL D</td>
+<td>Haswell</td>
+<td>0x0C1A</td>
+<td>SDV GT2 server</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>7th</td>
+<td>HASWELL D</td>
+<td>Haswell</td>
+<td>0x0C2A</td>
+<td>SDV GT3 server</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>7th</td>
+<td>HASWELL D</td>
+<td>Haswell</td>
+<td>0x0C0B</td>
+<td>SDV GT1 reserved</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>7th</td>
+<td>HASWELL D</td>
+<td>Haswell</td>
+<td>0x0C1B</td>
+<td>SDV GT2 reserved</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>7th</td>
+<td>HASWELL D</td>
+<td>Haswell</td>
+<td>0x0C2B</td>
+<td>SDV GT3 reserved</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>7th</td>
+<td>HASWELL D</td>
+<td>Haswell</td>
+<td>0x0C0E</td>
+<td>SDV GT1 reserved</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>7th</td>
+<td>HASWELL D</td>
+<td>Haswell</td>
+<td>0x0C1E</td>
+<td>SDV GT2 reserved</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>7th</td>
+<td>HASWELL D</td>
+<td>Haswell</td>
+<td>0x0C2E</td>
+<td>SDV GT3 reserved</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>7th</td>
+<td>HASWELL D</td>
+<td>Haswell</td>
+<td>0x0A02</td>
+<td>ULT GT1 desktop</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>7th</td>
+<td>HASWELL D</td>
+<td>Haswell</td>
+<td>0x0A12</td>
+<td>ULT GT2 desktop</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>7th</td>
+<td>HASWELL D</td>
+<td>Haswell</td>
+<td>0x0A22</td>
+<td>ULT GT3 desktop</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>7th</td>
+<td>HASWELL D</td>
+<td>Haswell</td>
+<td>0x0A0A</td>
+<td>ULT GT1 server</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>7th</td>
+<td>HASWELL D</td>
+<td>Haswell</td>
+<td>0x0A1A</td>
+<td>ULT GT2 server</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>7th</td>
+<td>HASWELL D</td>
+<td>Haswell</td>
+<td>0x0A2A</td>
+<td>ULT GT3 server</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>7th</td>
+<td>HASWELL D</td>
+<td>Haswell</td>
+<td>0x0A0B</td>
+<td>ULT GT1 reserved</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>7th</td>
+<td>HASWELL D</td>
+<td>Haswell</td>
+<td>0x0A1B</td>
+<td>ULT GT2 reserved</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>7th</td>
+<td>HASWELL D</td>
+<td>Haswell</td>
+<td>0x0A2B</td>
+<td>ULT GT3 reserved</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>7th</td>
+<td>HASWELL D</td>
+<td>Haswell</td>
+<td>0x0D02</td>
+<td>CRW GT1 desktop</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>7th</td>
+<td>HASWELL D</td>
+<td>Haswell</td>
+<td>0x0D12</td>
+<td>CRW GT2 desktop</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>7th</td>
+<td>HASWELL D</td>
+<td>Haswell</td>
+<td>0x0D22</td>
+<td>CRW GT3 desktop</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>7th</td>
+<td>HASWELL D</td>
+<td>Haswell</td>
+<td>0x0D0A</td>
+<td>CRW GT1 server</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>7th</td>
+<td>HASWELL D</td>
+<td>Haswell</td>
+<td>0x0D1A</td>
+<td>CRW GT2 server</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>7th</td>
+<td>HASWELL D</td>
+<td>Haswell</td>
+<td>0x0D2A</td>
+<td>CRW GT3 server</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>7th</td>
+<td>HASWELL D</td>
+<td>Haswell</td>
+<td>0x0D0B</td>
+<td>CRW GT1 reserved</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>7th</td>
+<td>HASWELL D</td>
+<td>Haswell</td>
+<td>0x0D1B</td>
+<td>CRW GT2 reserved</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>7th</td>
+<td>HASWELL D</td>
+<td>Haswell</td>
+<td>0x0D2B</td>
+<td>CRW GT3 reserved</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>7th</td>
+<td>HASWELL D</td>
+<td>Haswell</td>
+<td>0x0D0E</td>
+<td>CRW GT1 reserved</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>7th</td>
+<td>HASWELL D</td>
+<td>Haswell</td>
+<td>0x0D1E</td>
+<td>CRW GT2 reserved</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>7th</td>
+<td>HASWELL D</td>
+<td>Haswell</td>
+<td>0x0D2E</td>
+<td>CRW GT3 reserved</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>7th</td>
+<td>HASWELL M</td>
+<td>Haswell</td>
+<td>0x0406</td>
+<td>GT1 mobile</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>7th</td>
+<td>HASWELL M</td>
+<td>Haswell</td>
+<td>0x0416</td>
+<td>GT2 mobile</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>7th</td>
+<td>HASWELL M</td>
+<td>Haswell</td>
+<td>0x0426</td>
+<td>GT2 mobile</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>7th</td>
+<td>HASWELL M</td>
+<td>Haswell</td>
+<td>0x0C06</td>
+<td>SDV GT1 mobile</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>7th</td>
+<td>HASWELL M</td>
+<td>Haswell</td>
+<td>0x0C16</td>
+<td>SDV GT2 mobile</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>7th</td>
+<td>HASWELL M</td>
+<td>Haswell</td>
+<td>0x0C26</td>
+<td>SDV GT3 mobile</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>7th</td>
+<td>HASWELL M</td>
+<td>Haswell</td>
+<td>0x0A06</td>
+<td>ULT GT1 mobile</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>7th</td>
+<td>HASWELL M</td>
+<td>Haswell</td>
+<td>0x0A16</td>
+<td>ULT GT2 mobile</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>7th</td>
+<td>HASWELL M</td>
+<td>Haswell</td>
+<td>0x0A26</td>
+<td>ULT GT3 mobile</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>7th</td>
+<td>HASWELL M</td>
+<td>Haswell</td>
+<td>0x0A0E</td>
+<td>ULX GT1 mobile</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>7th</td>
+<td>HASWELL M</td>
+<td>Haswell</td>
+<td>0x0A1E</td>
+<td>ULX GT2 mobile</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>7th</td>
+<td>HASWELL M</td>
+<td>Haswell</td>
+<td>0x0A2E</td>
+<td>ULT GT3 reserved</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>7th</td>
+<td>HASWELL M</td>
+<td>Haswell</td>
+<td>0x0D06</td>
+<td>CRW GT1 mobile</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>7th</td>
+<td>HASWELL M</td>
+<td>Haswell</td>
+<td>0x0D16</td>
+<td>CRW GT2 mobile</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>7th</td>
+<td>HASWELL M</td>
+<td>Haswell</td>
+<td>0x0D26</td>
+<td>CRW GT3 mobile</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>7th</td>
+<td>VALLEY VIEW M</td>
+<td>Valley View (Bay Trail)</td>
+<td>0x0f30</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>7th</td>
+<td>VALLEY VIEW M</td>
+<td>Valley View (Bay Trail)</td>
+<td>0x0f31</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>7th</td>
+<td>VALLEY VIEW M</td>
+<td>Valley View (Bay Trail)</td>
+<td>0x0f32</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>7th</td>
+<td>VALLEY VIEW M</td>
+<td>Valley View (Bay Trail)</td>
+<td>0x0f33</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>7th</td>
+<td>VALLEY VIEW M</td>
+<td>Valley View (Bay Trail)</td>
+<td>0x0157</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>7th</td>
+<td>VALLEY VIEW D</td>
+<td>Valley View (Bay Trail)</td>
+<td>0x0155</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>8th</td>
+<td>BROADWELL GT12M</td>
+<td>Broadwell</td>
+<td>0x1602</td>
+<td>GT1 ULT</td>
+<td>Gen &gt;=8 <strong>NOT</strong> supported at all.</td>
+<td></td>
+</tr>
+<tr>
+<td>8th</td>
+<td>BROADWELL GT12M</td>
+<td>Broadwell</td>
+<td>0x1606</td>
+<td>GT1 ULT</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>8th</td>
+<td>BROADWELL GT12M</td>
+<td>Broadwell</td>
+<td>0x160B</td>
+<td>GT1 Iris</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>8th</td>
+<td>BROADWELL GT12M</td>
+<td>Broadwell</td>
+<td>0x160E</td>
+<td>GT1 ULX</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>8th</td>
+<td>BROADWELL GT12M</td>
+<td>Broadwell</td>
+<td>0x1612</td>
+<td>GT2 Halo</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>8th</td>
+<td>BROADWELL GT12M</td>
+<td>Broadwell</td>
+<td>0x1616</td>
+<td>GT2 ULT</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>8th</td>
+<td>BROADWELL GT12M</td>
+<td>Broadwell</td>
+<td>0x161B</td>
+<td>GT2 ULT</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>8th</td>
+<td>BROADWELL GT12M</td>
+<td>Broadwell</td>
+<td>0x161E</td>
+<td>GT2 ULX</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>8th</td>
+<td>BROADWELL GT12D</td>
+<td>Broadwell</td>
+<td>0x160A</td>
+<td>GT1 Server</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>8th</td>
+<td>BROADWELL GT12D</td>
+<td>Broadwell</td>
+<td>0x160D</td>
+<td>GT1 Workstation</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>8th</td>
+<td>BROADWELL GT12D</td>
+<td>Broadwell</td>
+<td>0x161A</td>
+<td>GT2 Server</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>8th</td>
+<td>BROADWELL GT12D</td>
+<td>Broadwell</td>
+<td>0x161D</td>
+<td>GT2 Workstation</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>8th</td>
+<td>BROADWELL GT3M</td>
+<td>Broadwell</td>
+<td>0x1622</td>
+<td>GT3 ULT</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>8th</td>
+<td>BROADWELL GT3M</td>
+<td>Broadwell</td>
+<td>0x1626</td>
+<td>GT3 ULT</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>8th</td>
+<td>BROADWELL GT3M</td>
+<td>Broadwell</td>
+<td>0x162B</td>
+<td>GT3 Iris</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>8th</td>
+<td>BROADWELL GT3M</td>
+<td>Broadwell</td>
+<td>0x162E</td>
+<td>GT3 ULX</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>8th</td>
+<td>BROADWELL GT3D</td>
+<td>Broadwell</td>
+<td>0x162A</td>
+<td>GT3 Server</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>8th</td>
+<td>BROADWELL GT3D</td>
+<td>Broadwell</td>
+<td>0x162D</td>
+<td>GT3 Workstation</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>8th</td>
+<td>BROADWELL RSVDM</td>
+<td>Broadwell</td>
+<td>0x1632</td>
+<td>ULT</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>8th</td>
+<td>BROADWELL RSVDM</td>
+<td>Broadwell</td>
+<td>0x1636</td>
+<td>ULT</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>8th</td>
+<td>BROADWELL RSVDM</td>
+<td>Broadwell</td>
+<td>0x163B</td>
+<td>Iris</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>8th</td>
+<td>BROADWELL RSVDM</td>
+<td>Broadwell</td>
+<td>0x163E</td>
+<td>ULX</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>8th</td>
+<td>BROADWELL RSVDD</td>
+<td>Broadwell</td>
+<td>0x163A</td>
+<td>Server</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>8th</td>
+<td>BROADWELL RSVDD</td>
+<td>Broadwell</td>
+<td>0x163D</td>
+<td>Workstation</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>8th</td>
+<td>CHERRY VIEW</td>
+<td>Cherry View (Braswell, Cherry Trail)</td>
+<td>0x22b0</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>8th</td>
+<td>CHERRY VIEW</td>
+<td>Cherry View (Braswell, Cherry Trail)</td>
+<td>0x22b1</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>8th</td>
+<td>CHERRY VIEW</td>
+<td>Cherry View (Braswell, Cherry Trail)</td>
+<td>0x22b2</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>8th</td>
+<td>CHERRY VIEW</td>
+<td>Cherry View (Braswell, Cherry Trail)</td>
+<td>0x22b3</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>9th</td>
+<td>SKYLAKE GT1</td>
+<td>Skylake</td>
+<td>0x1906</td>
+<td>ULT GT1</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>9th</td>
+<td>SKYLAKE GT1</td>
+<td>Skylake</td>
+<td>0x190E</td>
+<td>ULX GT1</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>9th</td>
+<td>SKYLAKE GT1</td>
+<td>Skylake</td>
+<td>0x1902</td>
+<td>DT  GT1</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>9th</td>
+<td>SKYLAKE GT1</td>
+<td>Skylake</td>
+<td>0x190B</td>
+<td>Halo GT1</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>9th</td>
+<td>SKYLAKE GT1</td>
+<td>Skylake</td>
+<td>0x190A</td>
+<td>SRV GT1</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>9th</td>
+<td>SKYLAKE GT2</td>
+<td>Skylake</td>
+<td>0x1916</td>
+<td>ULT GT2</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>9th</td>
+<td>SKYLAKE GT2</td>
+<td>Skylake</td>
+<td>0x1921</td>
+<td>ULT GT2F</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>9th</td>
+<td>SKYLAKE GT2</td>
+<td>Skylake</td>
+<td>0x191E</td>
+<td>ULX GT2</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>9th</td>
+<td>SKYLAKE GT2</td>
+<td>Skylake</td>
+<td>0x1912</td>
+<td>DT  GT2</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>9th</td>
+<td>SKYLAKE GT2</td>
+<td>Skylake</td>
+<td>0x191B</td>
+<td>Halo GT2</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>9th</td>
+<td>SKYLAKE GT2</td>
+<td>Skylake</td>
+<td>0x191A</td>
+<td>SRV GT2</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>9th</td>
+<td>SKYLAKE GT2</td>
+<td>Skylake</td>
+<td>0x191D</td>
+<td>WKS GT2</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>9th</td>
+<td>SKYLAKE GT3</td>
+<td>Skylake</td>
+<td>0x1923</td>
+<td>ULT GT3</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>9th</td>
+<td>SKYLAKE GT3</td>
+<td>Skylake</td>
+<td>0x1926</td>
+<td>ULT GT3</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>9th</td>
+<td>SKYLAKE GT3</td>
+<td>Skylake</td>
+<td>0x1927</td>
+<td>ULT GT3</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>9th</td>
+<td>SKYLAKE GT3</td>
+<td>Skylake</td>
+<td>0x192B</td>
+<td>Halo GT3</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>9th</td>
+<td>SKYLAKE GT3</td>
+<td>Skylake</td>
+<td>0x192A</td>
+<td>SRV GT3</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>9th</td>
+<td>SKYLAKE GT4</td>
+<td>Skylake</td>
+<td>0x1932</td>
+<td>DT GT4</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>9th</td>
+<td>SKYLAKE GT4</td>
+<td>Skylake</td>
+<td>0x193B</td>
+<td>Halo GT4</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>9th</td>
+<td>SKYLAKE GT4</td>
+<td>Skylake</td>
+<td>0x193D</td>
+<td>WKS GT4</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>9th</td>
+<td>SKYLAKE GT4</td>
+<td>Skylake</td>
+<td>0x193A</td>
+<td>SRV GT4</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>9th</td>
+<td>BROXTON</td>
+<td>Goldmont (Apollo Lake)</td>
+<td>0x0A84</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>9th</td>
+<td>BROXTON</td>
+<td>Goldmont (Apollo Lake)</td>
+<td>0x1A84</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>9th</td>
+<td>BROXTON</td>
+<td>Goldmont (Apollo Lake)</td>
+<td>0x1A85</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>9th</td>
+<td>BROXTON</td>
+<td>Goldmont (Apollo Lake)</td>
+<td>0x5A84</td>
+<td>APL HD Graphics 505</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>9th</td>
+<td>BROXTON</td>
+<td>Goldmont (Apollo Lake)</td>
+<td>0x5A85</td>
+<td>APL HD Graphics 500</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>9th</td>
+<td>KABY LAKE GT1</td>
+<td>Kaby Lake</td>
+<td>0x5913</td>
+<td>ULT GT1.5</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>9th</td>
+<td>KABY LAKE GT1</td>
+<td>Kaby Lake</td>
+<td>0x5915</td>
+<td>ULX GT1.5</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>9th</td>
+<td>KABY LAKE GT1</td>
+<td>Kaby Lake</td>
+<td>0x5917</td>
+<td>DT  GT1.5</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>9th</td>
+<td>KABY LAKE GT1</td>
+<td>Kaby Lake</td>
+<td>0x5906</td>
+<td>ULT GT1</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>9th</td>
+<td>KABY LAKE GT1</td>
+<td>Kaby Lake</td>
+<td>0x590E</td>
+<td>ULX GT1</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>9th</td>
+<td>KABY LAKE GT1</td>
+<td>Kaby Lake</td>
+<td>0x5902</td>
+<td>DT  GT1</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>9th</td>
+<td>KABY LAKE GT1</td>
+<td>Kaby Lake</td>
+<td>0x5908</td>
+<td>Halo GT1</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>9th</td>
+<td>KABY LAKE GT1</td>
+<td>Kaby Lake</td>
+<td>0x590B</td>
+<td>Halo GT1</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>9th</td>
+<td>KABY LAKE GT1</td>
+<td>Kaby Lake</td>
+<td>0x590A</td>
+<td>SRV GT1</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>9th</td>
+<td>KABY LAKE GT2</td>
+<td>Kaby Lake</td>
+<td>0x5916</td>
+<td>ULT GT2</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>9th</td>
+<td>KABY LAKE GT2</td>
+<td>Kaby Lake</td>
+<td>0x5921</td>
+<td>ULT GT2F</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>9th</td>
+<td>KABY LAKE GT2</td>
+<td>Kaby Lake</td>
+<td>0x591E</td>
+<td>ULX GT2</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>9th</td>
+<td>KABY LAKE GT2</td>
+<td>Kaby Lake</td>
+<td>0x5912</td>
+<td>DT  GT2</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>9th</td>
+<td>KABY LAKE GT2</td>
+<td>Kaby Lake</td>
+<td>0x591B</td>
+<td>Halo GT2</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>9th</td>
+<td>KABY LAKE GT2</td>
+<td>Kaby Lake</td>
+<td>0x591A</td>
+<td>SRV GT2</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>9th</td>
+<td>KABY LAKE GT2</td>
+<td>Kaby Lake</td>
+<td>0x591D</td>
+<td>WKS GT2</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>9th</td>
+<td>KABY LAKE GT3</td>
+<td>Kaby Lake</td>
+<td>0x5923</td>
+<td>ULT GT3</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>9th</td>
+<td>KABY LAKE GT3</td>
+<td>Kaby Lake</td>
+<td>0x5926</td>
+<td>ULT GT3</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>9th</td>
+<td>KABY LAKE GT3</td>
+<td>Kaby Lake</td>
+<td>0x5927</td>
+<td>ULT GT3</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>9th</td>
+<td>KABY LAKE GT4</td>
+<td>Kaby Lake</td>
+<td>0x593B</td>
+<td>Halo GT4</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>9th</td>
+<td>COFFEE LAKE</td>
+<td>Coffee Lake</td>
+<td>0x3E90</td>
+<td>GT1</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>9th</td>
+<td>COFFEE LAKE</td>
+<td>Coffee Lake</td>
+<td>0x3E91</td>
+<td>DT GT2</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>9th</td>
+<td>COFFEE LAKE</td>
+<td>Coffee Lake</td>
+<td>0x3E92</td>
+<td>DT GT2</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>9th</td>
+<td>COFFEE LAKE</td>
+<td>Coffee Lake</td>
+<td>0x3E93</td>
+<td>GT1</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>9th</td>
+<td>COFFEE LAKE</td>
+<td>Coffee Lake</td>
+<td>0x3E94</td>
+<td>GT2</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>9th</td>
+<td>COFFEE LAKE</td>
+<td>Coffee Lake</td>
+<td>0x3E95</td>
+<td>GT3</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>9th</td>
+<td>COFFEE LAKE</td>
+<td>Coffee Lake</td>
+<td>0x3E96</td>
+<td>GT2</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>9th</td>
+<td>COFFEE LAKE</td>
+<td>Coffee Lake</td>
+<td>0x3E9B</td>
+<td>GT2</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>9th</td>
+<td>COFFEE LAKE</td>
+<td>Coffee Lake</td>
+<td>0x3EA6</td>
+<td>GT3</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>9th</td>
+<td>COFFEE LAKE</td>
+<td>Coffee Lake</td>
+<td>0x3EA7</td>
+<td>GT3</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>9th</td>
+<td>COFFEE LAKE</td>
+<td>Coffee Lake</td>
+<td>0x3EA8</td>
+<td>GT3</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>9th</td>
+<td>CANNON LAKE</td>
+<td>Cannon Lake</td>
+<td>0x5A52</td>
+<td>GT2</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>9th</td>
+<td>CANNON LAKE</td>
+<td>Cannon Lake</td>
+<td>0x5A5A</td>
+<td>GT2</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>9th</td>
+<td>CANNON LAKE</td>
+<td>Cannon Lake</td>
+<td>0x5A42</td>
+<td>GT2</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>9th</td>
+<td>CANNON LAKE</td>
+<td>Cannon Lake</td>
+<td>0x5A4A</td>
+<td>GT2</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>9th</td>
+<td>CANNON LAKE</td>
+<td>Cannon Lake</td>
+<td>0x5A51</td>
+<td>GT2</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>9th</td>
+<td>CANNON LAKE</td>
+<td>Cannon Lake</td>
+<td>0x5A59</td>
+<td>GT2</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>9th</td>
+<td>CANNON LAKE</td>
+<td>Cannon Lake</td>
+<td>0x5A41</td>
+<td>GT2</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>9th</td>
+<td>CANNON LAKE</td>
+<td>Cannon Lake</td>
+<td>0x5A49</td>
+<td>GT2</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>9th</td>
+<td>CANNON LAKE</td>
+<td>Cannon Lake</td>
+<td>0x5A71</td>
+<td>GT2</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>9th</td>
+<td>CANNON LAKE</td>
+<td>Cannon Lake</td>
+<td>0x5A79</td>
+<td>GT2</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="how-to-checkout-linux-drm-code-only">How to checkout Linux drm code only</h3>
+<pre><code class="language-bash">$ mkdir linux-drm
+$ cd linux-drm/
+$ git init
+$ git remote add origin https://github.com/freedesktop/drm-intel.git
+$ git config core.sparsecheckout true
+$ echo &quot;drivers/gpu/drm/*&quot; &gt;&gt; .git/info/sparse-checkout
+$ echo &quot;include/drm/*&quot; &gt;&gt; .git/info/sparse-checkout
+$ git pull --depth=1 origin drm-intel-fixes
+</code></pre>
+            </article>
+        </main>
+    
+
+    <footer class="custom-footer">
+        <p class="font-black text-xs tracking-widest opacity-40 uppercase mb-8" style="color:var(--text-main)">OpenIndiana Project</p>
+        <div class="flex flex-wrap justify-center gap-12">
+            <a href="https://www.openindiana.org/" class="text-sm font-bold no-underline hover:underline" style="color:var(--oi-secondary)">Website</a>
+            <a href="https://github.com/openindiana" class="text-sm font-bold no-underline hover:underline" style="color:var(--oi-secondary)">GitHub</a>
+        </div>
+    </footer>
 
     <script>
-        // Dark mode toggle
-        const darkModeToggle = document.getElementById('darkModeToggle');
-        const body = document.body;
+        (function() {
+            const toggle = document.getElementById('master-theme-toggle');
+            const html = document.documentElement;
 
-        darkModeToggle.addEventListener('click', () => {
-            body.classList.toggle('dark-mode');
-            const isDarkMode = body.classList.contains('dark-mode');
-            localStorage.setItem('darkMode', isDarkMode);
-            darkModeToggle.textContent = isDarkMode ? '☀️' : '🌙';
-        });
+            const applyTheme = (theme) => {
+                if (theme === 'dark') {
+                    html.setAttribute('data-theme', 'dark');
+                    toggle.textContent = 'LIGHT MODE';
+                } else {
+                    html.removeAttribute('data-theme');
+                    toggle.textContent = 'DARK MODE';
+                }
+                localStorage.setItem('oi-docs-theme', theme);
+            };
 
-        // Load dark mode state from localStorage
-        if (localStorage.getItem('darkMode') === 'true') {
-            body.classList.add('dark-mode');
-            darkModeToggle.textContent = '☀️';
-        } else {
-            darkModeToggle.textContent = '🌙';
-        }
+            applyTheme(localStorage.getItem('oi-docs-theme') || 'light');
+
+            toggle.addEventListener('click', () => {
+                const current = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+                applyTheme(current);
+            });
+
+            setInterval(() => {
+                const results = document.getElementById('mkdocs-search-results');
+                if (results) {
+                    const descriptions = results.querySelectorAll('p');
+                    descriptions.forEach(d => d.style.display = 'none');
+                }
+            }, 150);
+        })();
     </script>
 
             </div>

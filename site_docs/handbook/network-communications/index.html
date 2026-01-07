@@ -17,181 +17,256 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
         <script>hljs.highlightAll();</script>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono&display=swap" rel="stylesheet">
+
     <style>
+        /* ============================================================
+           FAIL-SAFE 1: NUCLEAR FOOTER REMOVAL
+           ============================================================ */
+        .md-footer,
+        .md-copyright,
+        .md-footer-meta,
+        footer:not(.custom-footer),
+        [role="contentinfo"],
+        .md-typeset hr,
+        .md-sidebar--secondary {
+            display: none !important;
+            visibility: hidden !important;
+            opacity: 0 !important;
+            height: 0 !important;
+            margin-top: 1000vh !important;
+            pointer-events: none !important;
+        }
+
+        /* ============================================================
+           GLOBAL DESIGN SYSTEM (HIGH CONTRAST EDITION)
+           ============================================================ */
+        :root {
+            --oi-primary: #8b5cf6;
+            --oi-secondary: #3b82f6;
+            --bg-body: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --card-bg: #ffffff;
+            --card-border: #e2e8f0;
+            --nav-bg: rgba(255, 255, 255, 0.9);
+            --code-bg: #f1f5f9;
+            --code-text: #1e293b;
+        }
+
+        [data-theme="dark"] {
+            --oi-primary: #a78bfa;
+            --oi-secondary: #60a5fa;
+            --bg-body: #020617;
+            /* CRITICAL FIX: Changed from gray to pure white */
+            --text-main: #ffffff;
+            --text-muted: #e2e8f0;
+            --card-bg: #0f172a;
+            --card-border: #334155;
+            --nav-bg: rgba(2, 6, 23, 0.95);
+            /* CRITICAL FIX: Darker background for code to make white text pop */
+            --code-bg: #1e293b;
+            --code-text: #ffffff;
+        }
+
+        html { scroll-behavior: smooth; }
+
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--background-color);
-            color: var(--text-color);
+            background-color: var(--bg-body);
+            color: var(--text-main);
             margin: 0;
             padding: 0;
-            transition: all 0.3s ease;
-        }
-
-        /* Color Variables */
-        :root {
-            --background-color: #1e293b;
-            --text-color: #e2e8f0;
-            --primary-color: #8b5cf6;
-            --secondary-color: #3b82f6;
-            --accent-color: #9333ea;
-            --card-background: #2d3748;
-            --card-border: #4a5568;
-            --button-bg: #3b82f6;
-            --button-hover-bg: #2563eb;
-            --footer-background: #111827;
-        }
-
-        .dark-mode {
-            --background-color: #111827;
-            --text-color: #e2e8f0;
-            --primary-color: #a78bfa;
-            --secondary-color: #60a5fa;
-            --accent-color: #9333ea;
-            --card-background: #334155;
-            --card-border: #4b5563;
-            --button-bg: #60a5fa;
-            --button-hover-bg: #3b82f6;
-            --footer-background: #1f2937;
-        }
-
-        /* Hero Section */
-        .hero {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 4rem 2rem;
-            text-align: center;
-            border-bottom: 2px solid var(--secondary-color);
-        }
-
-        .hero h2 {
-            font-size: 2.5rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-
-        .hero p {
-            font-size: 1.25rem;
-            margin-bottom: 2rem;
-        }
-
-        /* New Search Bar (Transparent, minimal) */
-        .hero .search-bar {
-            padding: 1rem;
-            width: 60%;
-            border-radius: 9999px; /* Fully rounded corners */
-            background-color: transparent; /* Transparent background */
-            color: var(--text-color);
-            font-size: 1.1rem;
-            margin: 0 auto;
-            border: none; /* Remove border */
-            box-shadow: none; /* No box shadow */
-            outline: none; /* Remove outline */
-        }
-
-        .hero .search-bar:focus {
-            color: var(--text-color); /* Keep the color same on focus */
-            background-color: transparent; /* Keep background transparent */
-        }
-
-        .hero .search-bar::placeholder {
-            color: #6b7280; /* Placeholder color */
-        }
-
-        /* Cards Section */
-        .cards-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 2rem;
-            margin: 2rem 1rem;
-        }
-
-        .card {
-            background-color: var(--card-background);
-            border: 1px solid var(--card-border);
-            border-radius: 0.75rem;
-            padding: 2rem;
-            transition: box-shadow 0.3s ease, transform 0.3s ease;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-
-        .card:hover {
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
-            transform: translateY(-5px);
-        }
-
-        .card h3 {
-            font-size: 1.75rem;
-            font-weight: 600;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-        }
-
-        .card p {
-            font-size: 1rem;
-            color: #6b7280;
-        }
-
-        /* Footer Section */
-        .footer {
-            background-color: var(--footer-background);
-            color: var(--text-color);
-            text-align: center;
-            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
             width: 100%;
-            margin-top: 2rem;
-            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+            overflow-x: hidden;
+            transition: background-color 0.2s ease;
         }
 
-        .footer a {
-            color: var(--primary-color);
+        /* ============================================================
+           NAVIGATION
+           ============================================================ */
+        .navbar-hardened {
+            position: sticky;
+            top: 0;
+            width: 100%;
+            z-index: 9999;
+            background: var(--nav-bg);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--card-border);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-text {
+            font-weight: 800;
+            font-size: 1.5rem;
+            letter-spacing: -0.05em;
             text-decoration: none;
+            color: var(--text-main) !important;
         }
 
-        .footer a:hover {
-            text-decoration: underline;
+        /* ============================================================
+           HOME PAGE: HERO & TILES
+           ============================================================ */
+        .hero-banner {
+            background: linear-gradient(135deg, var(--oi-primary), var(--oi-secondary));
+            color: white !important;
+            padding: 8rem 1rem 10rem 1rem;
+            text-align: center;
+            width: 100%;
         }
 
-        /* Button Styles */
-        .button {
-            background-color: var(--button-bg);
-            color: white;
-            padding: 1rem 2rem;
-            font-size: 1.125rem;
-            font-weight: 600;
-            border-radius: 0.375rem;
-            text-decoration: none;
-            transition: background-color 0.3s ease;
-            display: inline-block;
-            margin: 1rem;
+        .hero-title {
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            font-weight: 800;
+            letter-spacing: -0.05em;
+            margin-bottom: 1rem;
+            color: white !important;
         }
 
-        .button:hover {
-            background-color: var(--button-hover-bg);
+        .search-boundary {
+            max-width: 650px;
+            margin: -3rem auto 0;
+            position: relative;
+            z-index: 50;
+            padding: 0 1rem;
         }
 
-        /* Responsive Design */
+        .search-engine-input {
+            width: 100%;
+            padding: 1.25rem 1.75rem;
+            border-radius: 16px;
+            background: var(--card-bg);
+            border: 2px solid var(--card-border);
+            color: var(--text-main);
+            font-size: 1.1rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            outline: none;
+        }
+
+        .search-engine-input:focus {
+            border-color: var(--oi-primary);
+        }
+
+        #mkdocs-search-results {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            margin-top: 10px;
+            color: var(--text-main);
+        }
+
+        .home-main-layout {
+            max-width: 1200px;
+            margin: 5rem auto;
+            padding: 0 1.5rem;
+            width: 100%;
+        }
+
+        .tile-grid-system {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .nav-card-tile {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            padding: 4rem 2rem;
+            border-radius: 24px;
+            text-align: center;
+            text-decoration: none !important;
+            transition: all 0.2s ease;
+        }
+
+        .nav-card-tile:hover {
+            transform: translateY(-8px);
+            border-color: var(--oi-primary);
+        }
+
+        .nav-card-tile h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--oi-primary) !important;
+        }
+
+        /* ============================================================
+           READER VIEW: HIGH CONTRAST MARKDOWN
+           ============================================================ */
+        .documentation-wrapper {
+            flex: 1;
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 5rem 1.5rem;
+        }
+
+        .markdown-engine {
+            color: var(--text-main) !important;
+        }
+
+        .markdown-engine h1 { font-size: 3rem; font-weight: 800; margin-bottom: 2rem; color: var(--oi-primary); }
+        .markdown-engine h2 { font-size: 2rem; font-weight: 700; margin-top: 3.5rem; border-bottom: 2px solid var(--card-border); padding-bottom: 0.75rem; color: var(--text-main); }
+        .markdown-engine p { font-size: 1.125rem; line-height: 1.8; margin-bottom: 1.75rem; color: var(--text-main); }
+
+        /* High-Contrast Code Blocks */
+        .markdown-engine code {
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--code-bg);
+            color: var(--code-text) !important;
+            padding: 0.2rem 0.5rem;
+            border-radius: 6px;
+            font-size: 0.95em;
+            font-weight: 500;
+        }
+
+        .markdown-engine pre {
+            background: var(--code-bg) !important;
+            padding: 1.5rem;
+            border-radius: 12px;
+            overflow-x: auto;
+            margin-bottom: 2rem;
+            border: 1px solid var(--card-border);
+        }
+
+        .markdown-engine pre code {
+            background: transparent !important;
+            padding: 0;
+            color: var(--code-text) !important;
+        }
+
+        /* ============================================================
+           PINNED FOOTER
+           ============================================================ */
+        .custom-footer {
+            flex-shrink: 0;
+            width: 100%;
+            background: var(--bg-body);
+            border-top: 1px solid var(--card-border);
+            padding: 5rem 1.5rem;
+            margin-top: auto;
+            text-align: center;
+        }
+
+        .theme-btn {
+            cursor: pointer;
+            background: var(--card-bg);
+            color: var(--text-main);
+            border: 2px solid var(--card-border);
+            padding: 0.5rem 1rem;
+            border-radius: 12px;
+            font-weight: 800;
+            font-size: 0.75rem;
+        }
+
         @media (max-width: 768px) {
-            .hero h2 {
-                font-size: 2rem;
-            }
-
-            .hero p {
-                font-size: 1.1rem;
-            }
-
-            .hero .search-bar {
-                width: 80%;
-            }
-
-            .cards-container {
-                margin: 2rem 1rem;
-            }
-
-            .card {
-                padding: 1.5rem;
-            }
+            .hero-title { font-size: 2.5rem; }
+            .tile-grid-system { grid-template-columns: 1fr; }
         }
     </style>
 
@@ -540,58 +615,457 @@
 
         <div class="container">
             <div class="row">
-    <!-- Hero Section -->
-    <div class="hero">
-        <h2>Search the Documentation</h2>
-        <p>Quickly find what you're looking for by searching through our extensive documentation.</p>
-        <input type="text" id="mkdocs-search-input" class="search-bar" placeholder="Search the documentation" />
-    </div>
+    <nav class="navbar-hardened">
+        <a href="../.." class="logo-text">
+            OI <span style="color:var(--oi-primary)">DOCS</span>
+        </a>
+        <button id="master-theme-toggle" class="theme-btn">
+            DARK MODE
+        </button>
+    </nav>
 
-    <!-- Featured Docs Section -->
-    <div class="cards-container">
-        <div class="card">
-            <h3>Getting Started</h3>
-            <p>Learn how to set up and get started with OpenIndiana from scratch.</p>
-        </div>
-        <div class="card">
-            <h3>System Administration</h3>
-            <p>Explore system administration tasks for managing OpenIndiana servers.</p>
-        </div>
-        <div class="card">
-            <h3>Networking</h3>
-            <p>Understand networking configurations and management in OpenIndiana.</p>
-        </div>
-        <div class="card">
-            <h3>Advanced Features</h3>
-            <p>Dive deep into the advanced features and capabilities of OpenIndiana.</p>
-        </div>
-    </div>
+    
+        <main class="documentation-wrapper">
+            <article class="markdown-engine">
+                <!--
 
-    <!-- Footer Section -->
-    <div class="footer">
-        <p>© 2026 OpenIndiana Maintainers</p>
-        <p><a href="https://www.openindiana.org/">Visit the official site</a></p>
-    </div>
+The contents of this Documentation are subject to the Public Documentation License Version 1.01
+ (the "License"); you may only use this Documentation if you comply with the terms of this License.
+A copy of the License is available at http://illumos.org/license/PDL.
+
+
+The Original Documentation is _________________.
+
+The Initial Writer of the Original Documentation is ___________ Copyright (C)_________[Insert year(s)].
+All Rights Reserved. (Initial Writer contact(s):________________[Insert hyperlink/alias]).
+
+Contributor(s): ______________________________________.
+
+Portions created by ______ are Copyright (C)_________[Insert year(s)].
+All Rights Reserved. (Contributor contact(s):________________[Insert hyperlink/alias]).
+
+-->
+
+<h1 id="network-communications">Network Communications</h1>
+<div class="note" markdown="1">
+!!! note
+    This is a **DRAFT** document which may contain errors!
+
+    Help us improve and expand this site.
+
+    Please see the **Contrib** section for more details about joining the OpenIndiana Documentation Team.
+</div>
+
+<p>&lt; Place holder for Introduction content &gt;</p>
+<h2 id="ppp">PPP</h2>
+<p>&lt; Place holder for content &gt;</p>
+<h2 id="pppoe">PPPoE</h2>
+<p>&lt; Place holder for content &gt;</p>
+<h2 id="email">Email</h2>
+<p>&lt; Place holder for content &gt;</p>
+<h2 id="www-server">WWW server</h2>
+<ul>
+<li>Apache</li>
+<li>nginx</li>
+</ul>
+<h2 id="firewalls">Firewalls</h2>
+<p>Firewalls are used to filter network traffic based on rules set by the system administrator. Firewall can protect your personal computer or whole company's network from unauthorized network while allowing passage of legitimate network traffic.</p>
+<h3 id="ip-filter">IP Filter</h3>
+<p>OpenIndiana comes with built-in firewall, IP Filter. IP Filter is the stateful packet filtering and network address translation (NAT) mechanism. IP filter can filter any kind of traffic based on source or destination IP address or pool of IP addresses, source or destination ports, interface or direction of the network traffic. OpenIndiana IP Filter is derived from open source IPFilter software.</p>
+<div class="note" markdown="1">
+!!! note
+    To manage IP Filter rules one must assume a role that includes IP Filter Management profile rights or superuser (**root**).
+</div>
+
+<h3 id="ip-filter-configuration">IP Filter configuration</h3>
+<p>IP Filter is configured by loadable configurations files stored in <code>/etc/ipf</code>. One can create several configuration files in <code>/etc/ipf</code> for firewall configuration:</p>
+<ul>
+<li><strong>ipf.conf</strong> - stores packet filtering rules</li>
+<li><strong>ipnat.conf</strong> - defines NAT rules</li>
+<li><strong>ippol.conf</strong> - address pool configuration</li>
+</ul>
+<p>If IP Filter SMF service is enabled then the configured rules will be automatically loaded at every boot time of the operating system.</p>
+<h3 id="packet-filtering">Packet Filtering</h3>
+<p>IP Filter ruleset can be configured with the <a href="https://illumos.org/man/1M/ipf">ipf(1M)</a> or <code>/etc/ipf/ipf.conf</code> file. Rules are processed by the <em>"the last matching rule wins"</em> logic. This means that packet passing the IP Filter ruleset from the beggining and the action of the last rule that matched the packet is applied. There are two exceptions, which change this processing. The first one is the use of <strong>quick</strong> keyword, which will apply the rule on the packet and stop further filter rules checks. Another exception is the <strong>group</strong> keyword, which matches packet. Only rules with <strong>group</strong> keyword are used for packet processing.</p>
+<h4 id="filtering-rules-syntax">Filtering rules syntax</h4>
+<p>The following format is used to create filtering rules:</p>
+<p><strong>action [in|out] option keyword, keyword..</strong></p>
+<p>Every rule begins with the action. Action can be one of these:</p>
+<ul>
+<li><strong>block</strong> - denies packets from passing the filter</li>
+<li><strong>pass</strong> - allows packets to pass the filter</li>
+<li><strong>log</strong> - logs the packet. <a href="https://illumos.org/man/1M/ipmon">ipmon(1M)</a> is used to view the log file.</li>
+<li><strong>count</strong> - counts packet into the filter statistics. Use <a href="https://illumos.org/man/1M/ipfstat">ipfstat(1M)</a> to display the statistics.</li>
+<li><strong>skip</strong> number - skips the filter over number filtering rules</li>
+<li><strong>auth</strong> - user program is requested to perform packet authentification in order to decide if the packet should be passed or not</li>
+</ul>
+<p>Following the action, the next word is <strong>in</strong> or <strong>out</strong>. This determines in which direction rules are applied, e.g incoming or outgoing packets.</p>
+<p>The option keyword is next. One can choose from:</p>
+<ul>
+<li><strong>log</strong> - logs the packet is the packet matched the rule. Use <a href="https://illumos.org/man/1M/ipmon">ipmon(1M)</a> to view the log.</li>
+<li><strong>quick</strong> - rule with quick keyword is executed if packet matches it. No further rules checking is done.</li>
+<li><strong>on</strong> interface - rule is applied only on interface in both directions</li>
+<li><strong>dup-to</strong> interface - packet is copied and sent out on interface to specified IP address</li>
+<li><strong>to</strong> interface - packet is moved to an outbound queue on interface</li>
+</ul>
+<p>Next are the keywords that determine if the packet matches the rule. The following keywords shown here can be used:</p>
+<ul>
+<li><strong>tos</strong> - packet is filtered based on the type-of-service value written as decimal or hexadecimal integer.</li>
+<li><strong>ttl</strong>- packet is matched based on its time-to-live value.</li>
+<li><strong>proto</strong> - used to match a specific protocol. Any protocol name from /etc/protocols or its decimal representation can be used.</li>
+<li><strong>from/to/all/any</strong> - matches either source or destination IP address of the packet and the port number. All accepts packet from any source to any destination.</li>
+<li><strong>with</strong> - matches specified attributes associated with the packet. Inserted not/no in front of the keyword matches the packet only if the option is not present.</li>
+<li><strong>flags</strong> - filters based on TCP flags that are set.</li>
+<li><strong>icmp-type</strong> - filters based on ICMP type.</li>
+<li><strong>keep</strong> keep-options - determines whetever state should be kept for a packet. state stores information about the session and can be kept on TCP, UDP, and ICMP packets. The frags keeps information about packet fragments and apllies them to later fragments. This option allows matching packets to pass without further ruleset evalution.</li>
+<li><strong>head</strong> number - creates new group for filtering rules denoted by number.</li>
+<li><strong>group</strong> number - adds the rule to group number. The default group value is 0.</li>
+</ul>
+<p>In the following example we will block all incoming packet on igb0 from 10.0.0.0/8. This rule should be included in one's ruleset:</p>
+<p><code>block in quick on igb0 from 10.0.0.0/8 to any</code></p>
+<h4 id="address-pools">Address pools</h4>
+<p>Address pools group multiple IP addresses/networks into a single reference that can be used in IP Filter rules.</p>
+<h2 id="nat-network-address-translation">NAT (Network Address Translation)</h2>
+<p>NAT is used in case when one needs to do address or port translation. This happens when one wants to connect multiple computers at home and share the network connection or when one wants to do port forwarding. NAT on OpenIndiana is set up in <code>/etc/ipf/ipnat.conf</code> and work regarding NATs is done with <a href="https://illumos.org/man/1M/ipnat">ipnat(1M)</a>.</p>
+<h3 id="nat-rules-syntax">NAT rules syntax</h3>
+<p>To create NAT rules use the following syntax:</p>
+<p>command interface-name parameters</p>
+<p>Every rule begins with command from one of these:</p>
+<ul>
+<li><strong>map</strong> - maps one IP address or network to another IP address or network.</li>
+<li><strong>rdr</strong> - redirects packet from one IP address and port to another IP address and port.</li>
+<li><strong>bimap</strong> - creates bidirectorial NAT between an external and an internal IP address.</li>
+<li><strong>map-block</strong> - establishes static IP address-based translation.</li>
+</ul>
+<p>Interface named is used after command, e.g. <strong>igb0</strong>.</p>
+<p>To determine NAT configuration one has to use one of the following parameters:</p>
+<ul>
+<li><strong>ipmask</strong> - designates the network mask.</li>
+<li><strong>dstipmask</strong> - designates the address ipmask is translated to.</li>
+<li><strong>mapport</strong> - designates TCP or UDP protocols along with range of ports.</li>
+</ul>
+<p>Assuming we have an external IP address 10.0.0.1/24 on interface eg1000 and an internal range of 192.168.1.0/24. The example NAT rule would look like this:</p>
+<p><code>map eg1000 192.168.0.0/24 -&gt; 10.0.0.1/24</code></p>
+<div class="note" markdown="1">
+!!! note
+    NAT is not usable with IPv6 IP filter as NAT is deprecated in IPv6. NAT can be only used with IPv4 addresses.
+</div>
+
+<h2 id="advanced-networking">Advanced Networking</h2>
+<p>&lt; Place holder for content &gt;</p>
+<h2 id="crossbow">Crossbow</h2>
+<p>&lt; Place holder for content &gt;</p>
+<h2 id="hipster-as-a-nas">Hipster as a NAS</h2>
+<p>OpenIndiana provides several ways to share data with network clients.</p>
+<table>
+<thead>
+<tr>
+<th>Implementation</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CIFS</td>
+<td>Kernel based SMB file sharing solution offering ZFS integration, ease of use, and relatively simple configuration.</td>
+</tr>
+<tr>
+<td>SAMBA</td>
+<td>Modern userland based SMB file sharing solution providing support for newer SMB protocols (SMB 2.1) and better compatibility with modern Windows clients.</td>
+</tr>
+<tr>
+<td>NFS</td>
+<td>The Network File System was originally developed by Sun Microsystems.</td>
+</tr>
+</tbody>
+</table>
+<div class="info" markdown="1">
+!!! info "Documentation Team"
+    ITEMS TO WRITE ABOUT:
+
+    For a variation of configuring a home NAS - this could be done virtually as well
+
+    * Running OI as a VMware EXSI guest
+        * Local storage hardware is passed through to the OI guest and then shared via ISCSI, CIFS, NFS, etc.
+
+    For help writing this section, see the following OpenSolaris references:
+
+    * [Setting Up an OpenSolaris NAS Box](https://web.archive.org/web/20091008234550/http://developers.sun.com/openstorage/articles/opensolaris_nas.html)
+    * [Getting Started With the Solaris CIFS Service](https://web.archive.org/web/20091005070838/http://wiki.genunix.org/wiki/index.php/Getting_Started_With_the_Solaris_CIFS_Service)
+    * [How to enable guest access to a Solaris CIFS share](https://web.archive.org/web/20091021005616/http://blogs.sun.com/afshinsa/entry/how_to_enable_guest_access)
+    * [Solaris CIFS Service Troubleshooting](https://web.archive.org/web/20091126111451/http://wiki.genunix.org/wiki/index.php/Solaris_CIFS_Service_Troubleshooting)
+    * [What's New With Solaris CIFS](https://web.archive.org/web/20091124124935/http://wiki.genunix.org/wiki/index.php/What's_New_With_Solaris_CIFS)
+    * [CIFS Technical References](https://web.archive.org/web/20090725231658/http://wiki.genunix.org/wiki/index.php/CIFS_Technical_References)
+
+    Also have a look at the [OpenSolaris CIFS Administration Guide](https://docs.oracle.com/cd/E19120-01/open.solaris/820-2429/820-2429.pdf)
+</div>
+
+<h3 id="hipster-as-a-cifs-server-workgroup">Hipster as a CIFS server (workgroup)</h3>
+<p>&lt; Placeholder for introduction content &gt;</p>
+<h4 id="commands-used">Commands used</h4>
+<ul>
+<li><code>sharemgr</code> - configure and manage file sharing</li>
+<li><code>smbadm</code> - configure and manage CIFS local groups and users, and manage domain membership</li>
+<li><code>zfs</code> - configures ZFS file systems</li>
+<li><code>passwd</code> - change login password and password attributes</li>
+<li><code>chown</code> - change file ownership</li>
+</ul>
+<h4 id="configuration-steps">Configuration steps</h4>
+<p>Start by listing available storage pools.</p>
+<p><code>zfs list</code></p>
+<pre><code class="language-bash">NAME                           USED  AVAIL  REFER  MOUNTPOINT
+storage                        498K   899G    19K  /storage
+</code></pre>
+<p>Create your ZFS dataset to be shared via CIFS/SMB.</p>
+<pre><code class="language-bash">zfs create -o casesensitivity=mixed -o sharesmb=on storage/backup
+</code></pre>
+<p>Start the CIFS service.</p>
+<pre><code class="language-bash">svcadm enable -r smb/server
+</code></pre>
+<p>Join the CIFS server to a workgroup.</p>
+<pre><code class="language-bash">smbadm join -w WORKGROUP
+</code></pre>
+<p>Configure PAM authentication for the CIFS service.</p>
+<pre><code class="language-bash">echo &quot;other password required pam_smb_passwd.so.1 nowarn&quot; &gt;&gt; /etc/pam.conf
+</code></pre>
+<p>Reset the password for the local user accounts which will be used for remotely accessing the CIFS/SMB share.</p>
+<pre><code class="language-bash">passwd &lt;user_account&gt;
+</code></pre>
+<p>Set the share name to be used for the CIFS/SMB share.</p>
+<pre><code class="language-bash">zfs set sharesmb=name=backup storage/backup
+</code></pre>
+<p>Change the ownership of ZFS dataset to the user account which will be used for remotely accessing the CIFS/SMB share.</p>
+<pre><code class="language-bash">chown -R &lt;user_account&gt; /storage/backup
+</code></pre>
+<p>Verify everything is all set to go.</p>
+<p><code>sharemgr show -vp</code></p>
+<pre><code class="language-bash">default nfs=()
+smb smb=()
+        * /var/smb/cvol  smb=() &quot;&quot;
+                  c$=/var/smb/cvol       smb=(abe=&quot;false&quot; guestok=&quot;false&quot;)      &quot;Default Share&quot;
+zfs smb=()
+    zfs/storage/backup smb=()
+          backup=/storage/backup
+</code></pre>
+<p>You can create additional CIFS datasets using the following 4 commands.</p>
+<ul>
+<li><code>zfs create -o casesensitivity=mixed -o sharesmb=on &lt;pool_name/dataset_name&gt;</code></li>
+<li><code>zfs set sharesmb=name=&lt;new_share_name&gt; &lt;pool_name/dataset_name&gt;</code></li>
+<li><code>chown -R &lt;user_account&gt; &lt;path_to_dataset&gt;</code></li>
+<li><code>sharemgr show -vp</code></li>
+</ul>
+<h3 id="hipster-as-a-cifs-server-domain">Hipster as a CIFS server (domain)</h3>
+<p>&lt; Placeholder for introduction content &gt;</p>
+<h3 id="hipster-as-a-samba-server">Hipster as a SAMBA server</h3>
+<p>&lt; Place holder for content &gt;</p>
+<h3 id="configuring-nfs-client-connectivity">Configuring NFS client connectivity</h3>
+<p>OpenIndiana has built in NFS client support and automatic mounting capabilities for using remote NFS shares.</p>
+<h4 id="manually-mounting-remote-nfs-shares">Manually mounting remote NFS shares</h4>
+<p>The <a href="https://illumos.org/man/8/mount_nfs"><code>mount -F nfs</code></a> command is used to manually mount a remote share to a specified location.
+Two forms of remote host and path are supported, <code>host:/remote/path</code> and <code>nfs://host/remote/path</code>.
+For example, to mount the remote folder <code>example</code> on the server <code>hipster</code> to the local path <code>/mnt/example</code>, this command could be used:</p>
+<pre><code># mount -F nfs nfs://hipster/example /mnt/example/`
+</code></pre>
+<h4 id="automatically-mounting-remote-nfs-shares">Automatically mounting remote NFS shares</h4>
+<p>Automounting is provided by the <em>autofs</em> service. This enables automatic on demand mounting and unmounting of remote NFS shares.
+Compared to manually mounting NFS shares, this saves time and doesn't require root access once set up.
+Mounting specific (direct) remote shares requires configuring the <code>/etc/auto_master</code> and <code>/etc/auto_direct</code> files.</p>
+<div class="note" markdown="1">
+!!! note
+    *autofs* has many other features which are likely to be useful for larger networks with multiple users, such as automatic mounting of user home directories.
+    For more information, see [Solaris Network Services documentation](https://docs.oracle.com/cd/E23823_01/html/816-4555/rfsrefer-66.html).
+</div>
+
+<p>Before automounting can be used, the autofs daemon must be running. In OI it should be enabled by default:</p>
+<pre><code># svcs system/filesystem/autofs
+STATE          STIME    FMRI
+online         14:59:45 svc:/system/filesystem/autofs:default
+</code></pre>
+<p>If it is not already running, it can be enabled with <code>svcadm enable system/filesystem/autofs</code>.</p>
+<p>The paths for direct NFS shares are configured in <code>/etc/auto_direct</code>. For this file to be read by autofs, a new line must first be added to the end of <code>/etc/auto_master</code>:</p>
+<pre><code># Master map for automounter
+#
++auto_master
+/net            -hosts          -nosuid,nobrowse
+/home           auto_home       -nobrowse
+/-              auto_direct
+</code></pre>
+<p>The <code>/etc/auto_direct</code> file can then be created and populated. Entries consist of the local path to mount the NFS share, optional mount options, and the remote NFS path.
+Both the forms in the previous section for specifying the remote path are supported.
+For example, this configures two automatically mounted shares, one using the <code>ro</code> option (for read-only):</p>
+<pre><code>/mnt/example nfs://hipster/example
+/mnt/reference -ro hipster:/reference
+</code></pre>
+<p>For changes to these files to take effect, reboot or run the <code>automount</code> commmand.</p>
+<p>The <code>mount</code> command is used without arguments to list all current mounts, including any automatically mounted NFS locations and mount time (when the automatic mount was triggered).</p>
+<h3 id="configuring-cifssmb-client-connectivity">Configuring CIFS/SMB client connectivity</h3>
+<p>&lt; Place holder for content &gt;</p>
+<h4 id="adding-a-remote-share-using-the-linux-smbclient">Adding a remote share using the Linux smbclient</h4>
+<ul>
+<li><a href="http://www.tldp.org/HOWTO/SMB-HOWTO-8.html">Accessing an SMB Share With Linux Machines</a></li>
+</ul>
+<h4 id="adding-a-remote-share-using-the-kde-dolphin-file-manager-gui">Adding a remote share using the KDE Dolphin file manager GUI</h4>
+<ul>
+<li>In the left hand pane click <em>Network</em></li>
+<li>In the right hand pane click <em>Add Network Folder</em></li>
+<li>The Network Folder Wizard opens</li>
+<li>Select the radio button for <em>Microsoft Windows network drive</em> and click next</li>
+<li>Specify a name for the share - can be anything - this is just a label</li>
+<li>Specify the remote CIFS/SMB server name (or IP address)</li>
+<li>Specify the share name of the remote CIFS/SMB share</li>
+<li>Click the save and connect button</li>
+<li>You'll be prompted for a remote username and password</li>
+<li>Ensure the checkbox is marked to save credentials or you'll be asked for everything you do.</li>
+</ul>
+<h4 id="adding-a-remote-share-using-a-windows-client">Adding a remote share using a Windows client</h4>
+<p>&lt; Place holder for content &gt;</p>
+<h3 id="hipster-as-an-nfs-server">Hipster as an NFS server</h3>
+<p>&lt; Placeholder for introduction content &gt;</p>
+<h4 id="manual-pages">Manual pages</h4>
+<p>You can read more about the commands and files used or mentioned with the <code>man</code> pages, and at the provided links in the document.</p>
+<ul>
+<li><a href="https://illumos.org/man/5/dfstab">dfstab(5)</a></li>
+<li><a href="https://www.illumos.org/man/8/share_nfs">share_nfs(8)</a></li>
+<li><a href="https://www.illumos.org/man/8/share">share(8)</a></li>
+<li><a href="https://www.illumos.org/man/8/shareall">shareall(8)</a></li>
+<li><a href="https://www.illumos.org/man/8/svcadm">svcadm(8)</a></li>
+<li><a href="https://www.illumos.org/man/8/share">unshare(8)</a></li>
+</ul>
+<p>For example to view the full documentation for <code>share(8)</code> you can use this command:</p>
+<pre><code class="language-console">$ man share.8
+</code></pre>
+<h4 id="sharing-a-folder-with-nfs">Sharing a folder with NFS</h4>
+<p>To create a read-only temporary NFS share on an existing folder in this example <code>/nfs/example</code> you can use the following <a href="https://www.illumos.org/man/8/share">share(8)</a> command:</p>
+<pre><code class="language-console"># share -d example-share -F nfs -o ro /nfs/example
+</code></pre>
+<p>The flags provided can be described in a table such as the following:</p>
+<table>
+<thead>
+<tr>
+<th>Flag</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-d</td>
+<td>Adds a description for the share in this case <code>example-share</code></td>
+</tr>
+<tr>
+<td>-F</td>
+<td>Filesystem type, in this case NFS.</td>
+</tr>
+<tr>
+<td>-o</td>
+<td>Options for the NFS share in this case <code>ro</code></td>
+</tr>
+</tbody>
+</table>
+<p>If you want the share to be persistent, you can write it to the <a href="https://illumos.org/man/5/dfstab">dfstab(5)</a> by using the <code>-p</code> flag on the <a href="https://www.illumos.org/man/8/share">share(8)</a> command.</p>
+<p>You can then use the <a href="https://www.illumos.org/man/8/share">share(8)</a> command with no arguments to list shares as follows:</p>
+<pre><code class="language-console">$ share
+-               /nfs/example   ro   &quot;example-share&quot;
+</code></pre>
+<p>After this you can enable the <code>network/nfs/server</code> service with <a href="https://www.illumos.org/man/8/svcadm">svcadm(8)</a> using the following command:</p>
+<pre><code class="language-console"># svcadm enable network/nfs/server
+</code></pre>
+<p>And then use <a href="https://www.illumos.org/man/8/shareall">shareall(8)</a> to share it on the network as follows:</p>
+<pre><code class="language-console"># shareall
+</code></pre>
+<h4 id="using-an-access-list">Using an access list</h4>
+<p>An access list argument is a colon separated list, the access list may include the following:</p>
+<ul>
+<li>A hostname, which must be represented as a fully qualified DNS or LDAP name.</li>
+<li>A netgroup</li>
+<li>A domain name suffix</li>
+<li>A network, IP address or IP subnet</li>
+</ul>
+<p>This is an example of creating an NFS share that's read-only for everyone, but provide read-write and root access to a single IP address in this case <code>192.168.0.100</code>, IP addresses are prefixed with <code>@</code> as they are in the network components:</p>
+<pre><code class="language-console"># share -F nfs -o ro,rw=@192.168.0.100,root=@192.168.0.100 /nfs/example
+</code></pre>
+<h4 id="other-useful-nfs-options">Other useful NFS options</h4>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>nosuid</td>
+<td>Ignore attempts of clients setting suid bits.</td>
+</tr>
+<tr>
+<td>none=<em>access_list</em></td>
+<td>Deny all access to clients that match the access list.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="removing-an-nfs-share">Removing an NFS share</h4>
+<p>You can use the <a href="https://www.illumos.org/man/8/unshare">unshare(8)</a> utility with the NFS share folder as shown here:</p>
+<pre><code class="language-console"># unshare /nfs/example
+</code></pre>
+<h4 id="securing-nfs-with-kerberos">Securing NFS with Kerberos</h4>
+<p>&lt; Place holder for content &gt;</p>
+<h2 id="hipster-as-an-nis-server">Hipster as an NIS server</h2>
+<p>&lt; Place holder for content &gt;</p>
+<h2 id="hipster-as-an-ldap-server">Hipster as an LDAP server</h2>
+<p>&lt; Place holder for content &gt;</p>
+<h2 id="hipster-as-a-dhcp-server">Hipster as a DHCP server</h2>
+<p>&lt; Place holder for content &gt;</p>
+<h2 id="hipster-as-an-ftp-server">Hipster as an FTP server</h2>
+<p>&lt; Place holder for content &gt;</p>
+<h2 id="hipster-as-a-dns-server">Hipster as a DNS server</h2>
+<p>see https://docs.oracle.com/cd/E23824_01/html/821-1455/dnsref-31.html
+specifically pkg install pkg:/service/network/dns/bind</p>
+<h2 id="hipster-as-a-ntp-server">Hipster as a NTP server</h2>
+<p>&lt; Place holder for content &gt;</p>
+<h2 id="hipster-as-a-inetd-server">Hipster as a INETD server</h2>
+<p>&lt; Place holder for content &gt;</p>
+            </article>
+        </main>
+    
+
+    <footer class="custom-footer">
+        <p class="font-black text-xs tracking-widest opacity-40 uppercase mb-8" style="color:var(--text-main)">OpenIndiana Project</p>
+        <div class="flex flex-wrap justify-center gap-12">
+            <a href="https://www.openindiana.org/" class="text-sm font-bold no-underline hover:underline" style="color:var(--oi-secondary)">Website</a>
+            <a href="https://github.com/openindiana" class="text-sm font-bold no-underline hover:underline" style="color:var(--oi-secondary)">GitHub</a>
+        </div>
+    </footer>
 
     <script>
-        // Dark mode toggle
-        const darkModeToggle = document.getElementById('darkModeToggle');
-        const body = document.body;
+        (function() {
+            const toggle = document.getElementById('master-theme-toggle');
+            const html = document.documentElement;
 
-        darkModeToggle.addEventListener('click', () => {
-            body.classList.toggle('dark-mode');
-            const isDarkMode = body.classList.contains('dark-mode');
-            localStorage.setItem('darkMode', isDarkMode);
-            darkModeToggle.textContent = isDarkMode ? '☀️' : '🌙';
-        });
+            const applyTheme = (theme) => {
+                if (theme === 'dark') {
+                    html.setAttribute('data-theme', 'dark');
+                    toggle.textContent = 'LIGHT MODE';
+                } else {
+                    html.removeAttribute('data-theme');
+                    toggle.textContent = 'DARK MODE';
+                }
+                localStorage.setItem('oi-docs-theme', theme);
+            };
 
-        // Load dark mode state from localStorage
-        if (localStorage.getItem('darkMode') === 'true') {
-            body.classList.add('dark-mode');
-            darkModeToggle.textContent = '☀️';
-        } else {
-            darkModeToggle.textContent = '🌙';
-        }
+            applyTheme(localStorage.getItem('oi-docs-theme') || 'light');
+
+            toggle.addEventListener('click', () => {
+                const current = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+                applyTheme(current);
+            });
+
+            setInterval(() => {
+                const results = document.getElementById('mkdocs-search-results');
+                if (results) {
+                    const descriptions = results.querySelectorAll('p');
+                    descriptions.forEach(d => d.style.display = 'none');
+                }
+            }, 150);
+        })();
     </script>
 
             </div>

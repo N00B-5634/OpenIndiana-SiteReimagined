@@ -17,181 +17,256 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
         <script>hljs.highlightAll();</script>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono&display=swap" rel="stylesheet">
+
     <style>
+        /* ============================================================
+           FAIL-SAFE 1: NUCLEAR FOOTER REMOVAL
+           ============================================================ */
+        .md-footer,
+        .md-copyright,
+        .md-footer-meta,
+        footer:not(.custom-footer),
+        [role="contentinfo"],
+        .md-typeset hr,
+        .md-sidebar--secondary {
+            display: none !important;
+            visibility: hidden !important;
+            opacity: 0 !important;
+            height: 0 !important;
+            margin-top: 1000vh !important;
+            pointer-events: none !important;
+        }
+
+        /* ============================================================
+           GLOBAL DESIGN SYSTEM (HIGH CONTRAST EDITION)
+           ============================================================ */
+        :root {
+            --oi-primary: #8b5cf6;
+            --oi-secondary: #3b82f6;
+            --bg-body: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --card-bg: #ffffff;
+            --card-border: #e2e8f0;
+            --nav-bg: rgba(255, 255, 255, 0.9);
+            --code-bg: #f1f5f9;
+            --code-text: #1e293b;
+        }
+
+        [data-theme="dark"] {
+            --oi-primary: #a78bfa;
+            --oi-secondary: #60a5fa;
+            --bg-body: #020617;
+            /* CRITICAL FIX: Changed from gray to pure white */
+            --text-main: #ffffff;
+            --text-muted: #e2e8f0;
+            --card-bg: #0f172a;
+            --card-border: #334155;
+            --nav-bg: rgba(2, 6, 23, 0.95);
+            /* CRITICAL FIX: Darker background for code to make white text pop */
+            --code-bg: #1e293b;
+            --code-text: #ffffff;
+        }
+
+        html { scroll-behavior: smooth; }
+
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--background-color);
-            color: var(--text-color);
+            background-color: var(--bg-body);
+            color: var(--text-main);
             margin: 0;
             padding: 0;
-            transition: all 0.3s ease;
-        }
-
-        /* Color Variables */
-        :root {
-            --background-color: #1e293b;
-            --text-color: #e2e8f0;
-            --primary-color: #8b5cf6;
-            --secondary-color: #3b82f6;
-            --accent-color: #9333ea;
-            --card-background: #2d3748;
-            --card-border: #4a5568;
-            --button-bg: #3b82f6;
-            --button-hover-bg: #2563eb;
-            --footer-background: #111827;
-        }
-
-        .dark-mode {
-            --background-color: #111827;
-            --text-color: #e2e8f0;
-            --primary-color: #a78bfa;
-            --secondary-color: #60a5fa;
-            --accent-color: #9333ea;
-            --card-background: #334155;
-            --card-border: #4b5563;
-            --button-bg: #60a5fa;
-            --button-hover-bg: #3b82f6;
-            --footer-background: #1f2937;
-        }
-
-        /* Hero Section */
-        .hero {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 4rem 2rem;
-            text-align: center;
-            border-bottom: 2px solid var(--secondary-color);
-        }
-
-        .hero h2 {
-            font-size: 2.5rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-
-        .hero p {
-            font-size: 1.25rem;
-            margin-bottom: 2rem;
-        }
-
-        /* New Search Bar (Transparent, minimal) */
-        .hero .search-bar {
-            padding: 1rem;
-            width: 60%;
-            border-radius: 9999px; /* Fully rounded corners */
-            background-color: transparent; /* Transparent background */
-            color: var(--text-color);
-            font-size: 1.1rem;
-            margin: 0 auto;
-            border: none; /* Remove border */
-            box-shadow: none; /* No box shadow */
-            outline: none; /* Remove outline */
-        }
-
-        .hero .search-bar:focus {
-            color: var(--text-color); /* Keep the color same on focus */
-            background-color: transparent; /* Keep background transparent */
-        }
-
-        .hero .search-bar::placeholder {
-            color: #6b7280; /* Placeholder color */
-        }
-
-        /* Cards Section */
-        .cards-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 2rem;
-            margin: 2rem 1rem;
-        }
-
-        .card {
-            background-color: var(--card-background);
-            border: 1px solid var(--card-border);
-            border-radius: 0.75rem;
-            padding: 2rem;
-            transition: box-shadow 0.3s ease, transform 0.3s ease;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-
-        .card:hover {
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
-            transform: translateY(-5px);
-        }
-
-        .card h3 {
-            font-size: 1.75rem;
-            font-weight: 600;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-        }
-
-        .card p {
-            font-size: 1rem;
-            color: #6b7280;
-        }
-
-        /* Footer Section */
-        .footer {
-            background-color: var(--footer-background);
-            color: var(--text-color);
-            text-align: center;
-            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
             width: 100%;
-            margin-top: 2rem;
-            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+            overflow-x: hidden;
+            transition: background-color 0.2s ease;
         }
 
-        .footer a {
-            color: var(--primary-color);
+        /* ============================================================
+           NAVIGATION
+           ============================================================ */
+        .navbar-hardened {
+            position: sticky;
+            top: 0;
+            width: 100%;
+            z-index: 9999;
+            background: var(--nav-bg);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--card-border);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-text {
+            font-weight: 800;
+            font-size: 1.5rem;
+            letter-spacing: -0.05em;
             text-decoration: none;
+            color: var(--text-main) !important;
         }
 
-        .footer a:hover {
-            text-decoration: underline;
+        /* ============================================================
+           HOME PAGE: HERO & TILES
+           ============================================================ */
+        .hero-banner {
+            background: linear-gradient(135deg, var(--oi-primary), var(--oi-secondary));
+            color: white !important;
+            padding: 8rem 1rem 10rem 1rem;
+            text-align: center;
+            width: 100%;
         }
 
-        /* Button Styles */
-        .button {
-            background-color: var(--button-bg);
-            color: white;
-            padding: 1rem 2rem;
-            font-size: 1.125rem;
-            font-weight: 600;
-            border-radius: 0.375rem;
-            text-decoration: none;
-            transition: background-color 0.3s ease;
-            display: inline-block;
-            margin: 1rem;
+        .hero-title {
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            font-weight: 800;
+            letter-spacing: -0.05em;
+            margin-bottom: 1rem;
+            color: white !important;
         }
 
-        .button:hover {
-            background-color: var(--button-hover-bg);
+        .search-boundary {
+            max-width: 650px;
+            margin: -3rem auto 0;
+            position: relative;
+            z-index: 50;
+            padding: 0 1rem;
         }
 
-        /* Responsive Design */
+        .search-engine-input {
+            width: 100%;
+            padding: 1.25rem 1.75rem;
+            border-radius: 16px;
+            background: var(--card-bg);
+            border: 2px solid var(--card-border);
+            color: var(--text-main);
+            font-size: 1.1rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            outline: none;
+        }
+
+        .search-engine-input:focus {
+            border-color: var(--oi-primary);
+        }
+
+        #mkdocs-search-results {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            margin-top: 10px;
+            color: var(--text-main);
+        }
+
+        .home-main-layout {
+            max-width: 1200px;
+            margin: 5rem auto;
+            padding: 0 1.5rem;
+            width: 100%;
+        }
+
+        .tile-grid-system {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .nav-card-tile {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            padding: 4rem 2rem;
+            border-radius: 24px;
+            text-align: center;
+            text-decoration: none !important;
+            transition: all 0.2s ease;
+        }
+
+        .nav-card-tile:hover {
+            transform: translateY(-8px);
+            border-color: var(--oi-primary);
+        }
+
+        .nav-card-tile h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--oi-primary) !important;
+        }
+
+        /* ============================================================
+           READER VIEW: HIGH CONTRAST MARKDOWN
+           ============================================================ */
+        .documentation-wrapper {
+            flex: 1;
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 5rem 1.5rem;
+        }
+
+        .markdown-engine {
+            color: var(--text-main) !important;
+        }
+
+        .markdown-engine h1 { font-size: 3rem; font-weight: 800; margin-bottom: 2rem; color: var(--oi-primary); }
+        .markdown-engine h2 { font-size: 2rem; font-weight: 700; margin-top: 3.5rem; border-bottom: 2px solid var(--card-border); padding-bottom: 0.75rem; color: var(--text-main); }
+        .markdown-engine p { font-size: 1.125rem; line-height: 1.8; margin-bottom: 1.75rem; color: var(--text-main); }
+
+        /* High-Contrast Code Blocks */
+        .markdown-engine code {
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--code-bg);
+            color: var(--code-text) !important;
+            padding: 0.2rem 0.5rem;
+            border-radius: 6px;
+            font-size: 0.95em;
+            font-weight: 500;
+        }
+
+        .markdown-engine pre {
+            background: var(--code-bg) !important;
+            padding: 1.5rem;
+            border-radius: 12px;
+            overflow-x: auto;
+            margin-bottom: 2rem;
+            border: 1px solid var(--card-border);
+        }
+
+        .markdown-engine pre code {
+            background: transparent !important;
+            padding: 0;
+            color: var(--code-text) !important;
+        }
+
+        /* ============================================================
+           PINNED FOOTER
+           ============================================================ */
+        .custom-footer {
+            flex-shrink: 0;
+            width: 100%;
+            background: var(--bg-body);
+            border-top: 1px solid var(--card-border);
+            padding: 5rem 1.5rem;
+            margin-top: auto;
+            text-align: center;
+        }
+
+        .theme-btn {
+            cursor: pointer;
+            background: var(--card-bg);
+            color: var(--text-main);
+            border: 2px solid var(--card-border);
+            padding: 0.5rem 1rem;
+            border-radius: 12px;
+            font-weight: 800;
+            font-size: 0.75rem;
+        }
+
         @media (max-width: 768px) {
-            .hero h2 {
-                font-size: 2rem;
-            }
-
-            .hero p {
-                font-size: 1.1rem;
-            }
-
-            .hero .search-bar {
-                width: 80%;
-            }
-
-            .cards-container {
-                margin: 2rem 1rem;
-            }
-
-            .card {
-                padding: 1.5rem;
-            }
+            .hero-title { font-size: 2.5rem; }
+            .tile-grid-system { grid-template-columns: 1fr; }
         }
     </style>
 
@@ -540,58 +615,593 @@
 
         <div class="container">
             <div class="row">
-    <!-- Hero Section -->
-    <div class="hero">
-        <h2>Search the Documentation</h2>
-        <p>Quickly find what you're looking for by searching through our extensive documentation.</p>
-        <input type="text" id="mkdocs-search-input" class="search-bar" placeholder="Search the documentation" />
-    </div>
+    <nav class="navbar-hardened">
+        <a href="../.." class="logo-text">
+            OI <span style="color:var(--oi-primary)">DOCS</span>
+        </a>
+        <button id="master-theme-toggle" class="theme-btn">
+            DARK MODE
+        </button>
+    </nav>
 
-    <!-- Featured Docs Section -->
-    <div class="cards-container">
-        <div class="card">
-            <h3>Getting Started</h3>
-            <p>Learn how to set up and get started with OpenIndiana from scratch.</p>
-        </div>
-        <div class="card">
-            <h3>System Administration</h3>
-            <p>Explore system administration tasks for managing OpenIndiana servers.</p>
-        </div>
-        <div class="card">
-            <h3>Networking</h3>
-            <p>Understand networking configurations and management in OpenIndiana.</p>
-        </div>
-        <div class="card">
-            <h3>Advanced Features</h3>
-            <p>Dive deep into the advanced features and capabilities of OpenIndiana.</p>
-        </div>
-    </div>
+    
+        <main class="documentation-wrapper">
+            <article class="markdown-engine">
+                <!--
 
-    <!-- Footer Section -->
-    <div class="footer">
-        <p>© 2026 OpenIndiana Maintainers</p>
-        <p><a href="https://www.openindiana.org/">Visit the official site</a></p>
-    </div>
+The contents of this Documentation are subject to the Public Documentation License Version 1.01
+(the "License"); you may only use this Documentation if you comply with the terms of this License.
+A copy of the License is available at http://illumos.org/license/PDL.
+
+The Original Documentation is _________________.
+
+The Initial Writer of the Original Documentation is ___________ Copyright (C)_________[Insert year(s)].
+All Rights Reserved. (Initial Writer contact(s):________________[Insert hyperlink/alias]).
+
+Contributor(s): ______________________________________.
+
+Portions created by ______ are Copyright (C)_________[Insert year(s)].
+All Rights Reserved. (Contributor contact(s):________________[Insert hyperlink/alias]).
+
+-->
+
+<h1 id="getting-started-with-openindiana-docs">Getting Started with OpenIndiana Docs</h1>
+<p>The process for contributing to OpenIndiana Docs is simple and follows the same best practices used in the development of the OpenIndiana distribution.</p>
+<div class="note" markdown="1">
+!!! note
+    First and foremost, we understand using development tools and techniques to write end user documentation is not for everyone.
+    For this reason, we're happy to accept your contribution in any format you wish to provide.
+
+    After receiving your submission, we will review the document for conversion to markdown and subsequent incorporation into OpenIndiana Docs.
+    Contributions may be submitted in plain text, .doc, .docx, .odt, html, xml, latex, pdf, GitHub Gist, etc.
+
+    In summary, if you believe your contribution would be helpful to the greater OpenIndiana community, we'll be willing to review it.
+    For further information, please contact us via one of the methods provided below.
+
+    To make a suggestion or report a problem with a document, please make your request by submitting a [Github issue](https://github.com/OpenIndiana/oi-docs/issues).
+
+    The docs team can be reached via email: _**docs at openindiana.org**_.
+
+    You may also inquire via IRC:
+
+    * [#openindiana (libera.chat)](irc://irc.libera.chat/openindiana)
+    * [#oi-dev (libera.chat)](irc://irc.libera.chat/oi-dev)
+</div>
+
+<h2 id="prerequisites">Prerequisites</h2>
+<p>If you would like to make a contribution using the development tools, you must
+have a GitHub account. If you do not already have a GitHub account, sign up for
+a <a href="https://github.com">Github</a> account.</p>
+<h3 id="install-and-configure-git">Install and configure Git</h3>
+<table>
+<thead>
+<tr>
+<th>Operating System</th>
+<th>Command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Arch</td>
+<td><code>pacman -S git</code></td>
+</tr>
+<tr>
+<td>Centos/RHEL</td>
+<td><code>yum install git</code></td>
+</tr>
+<tr>
+<td>Debian/Mint/Ubuntu</td>
+<td><code>apt-get install git</code></td>
+</tr>
+<tr>
+<td>Fedora</td>
+<td><code>dnf install git</code></td>
+</tr>
+<tr>
+<td>OpenIndiana</td>
+<td><code>pkg install git</code></td>
+</tr>
+</tbody>
+</table>
+<div class="note" markdown="1">
+!!! note
+    After GIT is installed, be sure to configure your name and email address.
+
+    For further details about configuring GIT, see: <https://help.github.com/articles/set-up-git/>
+
+    Also, if you need a good book for quickly getting up to speed with GIT, see here: <https://git-scm.com/book/en/v2>
+
+    Fear not though, only basic git commands are required for working with OI-DOCS.
+</div>
+
+<h3 id="install-python-pip">Install python-pip</h3>
+<p>If your OS doesn't provide pre-packaged mkdocs, you'll need to install python-pip.
+This is not necessary on OpenIndiana.</p>
+<table>
+<thead>
+<tr>
+<th>Operating System</th>
+<th>Command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Arch</td>
+<td><code>pacman -S python-pip</code></td>
+</tr>
+<tr>
+<td>Centos/RHEL</td>
+<td><code>yum install python-pip</code></td>
+</tr>
+<tr>
+<td>Debian/Mint/Ubuntu</td>
+<td><code>apt-get install python-pip</code></td>
+</tr>
+<tr>
+<td>Fedora</td>
+<td>N/A - (Included with Fedora 25)</td>
+</tr>
+<tr>
+<td>OpenIndiana</td>
+<td>Not needed - (Use MkDocs IPS package)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="install-rubygems">Install rubygems</h3>
+<p>If your OS doesn't provide pre-packaged mdl, you'll need to install Ruby Gems.
+This is not necessary on OpenIndiana.</p>
+<table>
+<thead>
+<tr>
+<th>Operating System</th>
+<th>Command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Arch</td>
+<td><code>pacman -S ruby</code></td>
+</tr>
+<tr>
+<td>Centos/RHEL</td>
+<td><code>yum install rubygems</code></td>
+</tr>
+<tr>
+<td>Debian/Mint/Ubuntu</td>
+<td><code>apt-get install rubgems-integration</code></td>
+</tr>
+<tr>
+<td>Fedora</td>
+<td><code>dnf install rubygems</code></td>
+</tr>
+<tr>
+<td>OpenIndiana</td>
+<td>Not needed - (Use mdl IPS package)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="install-mkdocs">Install mkdocs</h3>
+<p>For OpenIndiana Hipster, MKDocs and all of it's dependencies have been packaged and are available in the OI Hipster repository.
+So, if you're already running Hipster, installing MKDocs is as simple as: <code>pkg install mkdocs</code>.
+However, the MKDocs Material theme may need to be installed additionally using <code>pip</code>.</p>
+<ul>
+<li>Most other operating systems: <code>pip install mkdocs-material</code></li>
+</ul>
+<p>After MKDocs has been installed, be sure to verify your installation with <code>mkdocs --version</code></p>
+<div class="note" markdown="1">
+!!! note
+    If you experience difficulties installing mkdocs, try using the python 3 version of `pip`.
+
+    For example:
+
+    * For Linux Mint 18, the python 3 version of `pip` would be `pip3`.
+</div>
+
+<h3 id="install-markdown-lint-mdl">Install Markdown Lint (mdl)</h3>
+<p>On OpenIndiana you can install mdl using standard package management tools:</p>
+<ul>
+<li><code>pkg install developer/documentation-tool/mdl</code></li>
+</ul>
+<p>For most operating systems:</p>
+<ul>
+<li><code>gem install mdl -v 0.4.0</code></li>
+</ul>
+<h3 id="install-markdown-plugin-for-vim-or-emacs-optional">Install Markdown plugin for VIM or Emacs (optional)</h3>
+<ul>
+<li><a href="https://github.com/plasticboy/vim-markdown/">https://github.com/plasticboy/vim-markdown/</a></li>
+<li><a href="https://www.emacswiki.org/emacs/MarkdownMode">https://www.emacswiki.org/emacs/MarkdownMode</a></li>
+</ul>
+<h3 id="install-pandoc-xetex-optional">Install Pandoc &amp; XeTex (optional)</h3>
+<p>For converting the docs to PDF, OI-Docs requires a Pandoc version of 2.8 (released 2019) or above and XeTex/XeLaTex.
+The latest versions of Pandoc are available (in .deb &amp; .tar.gz) from <a href="https://github.com/jgm/pandoc/releases">Pandoc GitHub releases</a>.
+Pandoc is not yet avalible packaged on OpenIndiana.</p>
+<table>
+<thead>
+<tr>
+<th>Operating System</th>
+<th>Command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Arch</td>
+<td><code>pacman -S pandoc</code></td>
+</tr>
+<tr>
+<td>Centos/RHEL</td>
+<td><code>yum install pandoc texlive-xetex</code></td>
+</tr>
+<tr>
+<td>Debian/Mint/Ubuntu</td>
+<td><code>apt-get install pandoc texlive-xetex</code></td>
+</tr>
+<tr>
+<td>Fedora</td>
+<td><code>dnf install pandoc texlive-xetex</code></td>
+</tr>
+<tr>
+<td>OpenIndiana</td>
+<td>Not packaged yet</td>
+</tr>
+</tbody>
+</table>
+<div class="note" markdown="1">
+!!! note
+    Not all OS distro repositories contain XeTex.
+    In this case it could be installed as part of a manual TeX Live installation.
+
+    As of Summer 2021, the version of Pandoc available from OS distro repositories may be too old (was the case for Centos/RHEL and Debian < 11).
+    In this case you can try and use the Pandoc GitHub release versions instead.
+</div>
+
+<h2 id="fork-the-openindiana-docs-repository">Fork the OpenIndiana Docs repository</h2>
+<ul>
+<li>Open your web browser to the <a href="https://github.com/OpenIndiana/oi-docs">OpenIndiana Docs GitHub Repository</a>.</li>
+<li>Click the <strong>Fork</strong> button found in the upper right hand corner of the page.<ul>
+<li>Forking creates a server side clone of the upstream repository.</li>
+<li>This clone is your own personal copy of the OpenIndiana Docs repository.</li>
+</ul>
+</li>
+</ul>
+<h2 id="create-a-local-clone-of-your-fork">Create a local clone of your fork</h2>
+<pre><code class="language-bash">git clone https://github.com/YOUR-USER-NAME/oi-docs.git
+</code></pre>
+<p>The local clone is where you will perform your work.
+Think of your local clone as your working copy of the repository.
+The local clone is also where you will commit your changes.
+Periodically you will push these local changes to your fork residing on Github.</p>
+<h2 id="add-the-upstream-repository">Add the upstream repository</h2>
+<pre><code class="language-bash">cd oi-docs
+git remote add upstream https://github.com/OpenIndiana/oi-docs.git
+</code></pre>
+<p>Verify things with <code>git remote -v</code></p>
+<p>You should now see:</p>
+<pre><code class="language-bash">origin  https://github.com/YOUR-USER-NAME/oi-docs.git (fetch)
+origin  https://github.com/YOUR-USER-NAME/oi-docs.git (push)
+upstream        https://github.com/OpenIndiana/oi-docs.git (fetch)
+upstream        https://github.com/OpenIndiana/oi-docs.git (push)
+</code></pre>
+<h2 id="sync-and-merge-changes-from-the-upstream-repository">Sync and merge changes from the upstream repository</h2>
+<p>Periodically you will want to <em>rebase</em> your local copy by bringing in changes from the upstream repository.
+In plain English, this means the upstream repository is locally registered so you can periodically <em>pull down</em> changes from the upstream master repository and merge them into your local clone.
+This way your local clone remains in synchronization with the master upstream repository.
+It is always a good idea to perform a pull from the upstream master repository prior to making changes to your local clone (working copy).</p>
+<pre><code class="language-bash">git pull upstream master
+</code></pre>
+<h2 id="openindiana-docs-site-structure-master-branch">OpenIndiana Docs site structure (master branch)</h2>
+<p>All site development occurs within the master branch.</p>
+<pre><code class="language-markdown">oi-docs/
+├── docs/
+├── link_validator.py
+├── makepdf.sh
+├── markdownlint-rules.rb
+├── mkdocs.yml
+├── pandoc/
+├── pdf/
+├── README.md
+└── site/
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Resource</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>oi-docs/</td>
+<td>site root folder</td>
+</tr>
+<tr>
+<td>docs/</td>
+<td>documentation root folder</td>
+</tr>
+<tr>
+<td>link_validator.py</td>
+<td>URL validation script</td>
+</tr>
+<tr>
+<td>makepdf.sh</td>
+<td>PDF Generation script</td>
+</tr>
+<tr>
+<td>markdownlint-rules.rb</td>
+<td>Markdown Lint configuration</td>
+</tr>
+<tr>
+<td>mkdocs.yml</td>
+<td>Site and menu configuration</td>
+</tr>
+<tr>
+<td>pandoc/</td>
+<td>Pandoc configuration files folder (for makepdf.sh)</td>
+</tr>
+<tr>
+<td>pdf/</td>
+<td>Generated PDFs folder</td>
+</tr>
+<tr>
+<td>README.md</td>
+<td>Git readme</td>
+</tr>
+<tr>
+<td>site/</td>
+<td>Live preview folder (no edits)</td>
+</tr>
+</tbody>
+</table>
+<div class="caution" markdown="1">
+!!! danger "Caution"
+    * Please do **NOT** perform any work within the `site/` or `pdf/` folder.
+        * `site/` is a temporary folder created by MkDocs when the site is run locally in preview mode.
+        * `pdf/` is a temporary folder for storing locally generated PDFs.
+    * Also, please do **NOT** perform any work within the gh-pages branch.
+        * The gh-branch is destroyed and rebuilt each time the site is deployed to GitHub pages.
+</div>
+
+<pre><code class="language-markdown">docs/
+├── books/
+├── community-hcl/
+├── contrib/
+├── dev/
+├── favicon.ico
+├── handbook/
+├── index.md
+├── misc/
+├── Openindiana.png
+├── release-notes/
+└── retired/
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Resource</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>books/</td>
+<td>Legacy OpenSolaris Books</td>
+</tr>
+<tr>
+<td>contrib/</td>
+<td>Contributor guidance docs</td>
+</tr>
+<tr>
+<td>community-hcl/</td>
+<td>Community HCL docs</td>
+</tr>
+<tr>
+<td>dev/</td>
+<td>Development oriented docs</td>
+</tr>
+<tr>
+<td>favicon.ico</td>
+<td>Site favicon icon</td>
+</tr>
+<tr>
+<td>handbook/</td>
+<td>OpenIndiana handbook docs</td>
+</tr>
+<tr>
+<td>index.md</td>
+<td>Site front page</td>
+</tr>
+<tr>
+<td>misc/</td>
+<td>Miscellaneous docs</td>
+</tr>
+<tr>
+<td>Openindiana.png</td>
+<td>OpenIndiana project graphic</td>
+</tr>
+<tr>
+<td>release-notes/</td>
+<td>Release Notes docs</td>
+</tr>
+<tr>
+<td>retired</td>
+<td>Deprecated docs, etc.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="make-some-changes">Make some changes</h2>
+<p>Open your favorite text editor and begin authoring content.</p>
+<p>For example: <code>vim somefile.md</code> or <code>emacs somefile.md</code></p>
+<p>Some text editors (Atom, VIM, etc.) natively include Markdown syntax highlighting (or offer it as a plugin).</p>
+<div class="note" markdown="1">
+!!! note
+    Major changes should be performed within a separate branch, appropriately named to reflect the changes being made.
+</div>
+
+<p>For a list of subject to write about:</p>
+<ul>
+<li>See the site TODO list.</li>
+<li>Have a look at the site Github issues list.</li>
+<li>See the <a href="../topics/">Topics</a> page for a list of suggestions and TODO's.</li>
+<li>Write a new tutorial, or complete a small section of the handbook, etc.</li>
+<li>Consult with other doc team contributors for even more ideas.</li>
+</ul>
+<h2 id="adding-new-pages-to-the-site-menu">Adding new pages to the site menu</h2>
+<p>Site configuration settings and menus are located in <code>mkdocs.yml</code>.
+To add a page to the menu, simply add a line to this file.
+See the code snippet below for examples.</p>
+<pre><code class="language-markdown">- Docs:
+        - 'OpenIndiana Code of Conduct': misc/conduct.md
+        - 'OpenIndiana FAQ': misc/faq.md
+        - 'OpenIndiana Handbook': handbook/handbook.md
+        - OpenSolaris Books:
+                - 'Book Index': books/index.md
+                - 'Basic Administration': books/basic.md
+                - 'Advanced Administration': books/advanced.md
+                - 'Solaris Express Administration': books/express.md
+                - 'Trusted Extensions Administration': books/trusted.md
+                - 'Development Titles': books/develop.md
+</code></pre>
+<h2 id="visualize-your-changes-using-live-preview">Visualize your changes using live preview</h2>
+<p>To assist with the content authoring process, it may be helpful to visualize your changes using a live preview.</p>
+<ul>
+<li>From the root of the <code>oi-docs/</code> directory:<ul>
+<li>Type: <code>mkdocs serve</code> and press enter.</li>
+<li>Open your web browser to 127.0.0.1:8000.</li>
+</ul>
+</li>
+</ul>
+<p>Each time you save your changes, the site page is automatically reloaded within your web browser.</p>
+<p>To shut down the live preview web server, use <code>CTRL</code> + <code>C</code>.</p>
+<div class="note" markdown="1">
+!!! note
+    If you wish to preview your changes on a remotely networked system or on a networked mobile device such as a tablet, the site can also be served on your LAN IP address.
+
+    To do so, issue the following command: `mkdocs serve --dev-addr=0.0.0.0:8000`
+</div>
+
+<h2 id="running-markdown-lint-locally">Running Markdown Lint (locally)</h2>
+<p>Markdown Lint is used to check your changes for Markdown syntax errors.
+Prior to submitting a pull request (PR), please consider running Markdown Lint locally on your computer.</p>
+<p>From the root of the <code>oi-docs/</code> directory, execute the following command:</p>
+<pre><code class="language-bash">mdl -s markdownlint-rules.rb .
+</code></pre>
+<p>Markdown Lint will automatically traverse the entire folder structure looking for problems.
+Alternately you may also run <code>mdl</code> on a specific file.
+Simply replace the period (.) with the path to the file.</p>
+<div class="note" markdown="1">
+!!! note
+    Before you can run `mdl`, it may be necessary to modify your `$PATH` variable:
+    see “[Install Markdown Lint](#install-markdown-lint-mdl)” above.
+</div>
+
+<h2 id="generating-pdfs-locally">Generating PDFs (locally)</h2>
+<p>Pandoc (via XeLaTex) is used to create PDF versions of pages.
+The <code>makepdf.sh</code> bash script automatically moves through a subset of the docs directories creating a PDF for every Markdown file.
+Prior to submitting a pull request (PR), please consider running the Pandoc PDF generation script locally on your computer to ensure no Pandoc incompatibilities have been introduced.</p>
+<p>To convert multiple pages to PDF, execute the following command from the root of the <code>oi-docs/</code> directory:</p>
+<pre><code class="language-bash">./makepdf.sh
+</code></pre>
+<p>This will produce PDF versions (placed in <code>oi-docs/pdf/</code>) of most of the doc pages.
+Not all pages are suitible for conversion yet, some contain incompatible HTML which needs to be fixed before they can be converted.</p>
+<p>To convert a single file, the <code>-f</code> option can be used.
+Likewise, the <code>-d</code> option can be used for converting files all files in a given directory.</p>
+<p>By default the PDFs are styled/formatted to look similar to the HTML docs produced by MkDocs.
+This can be changed using the <code>-s</code> option.
+Currently the only other option is 'opensolaris' which produces PDFs in the style of OpenSolaris Solbook documentation.</p>
+<p>The formatting and restyling required for the PDFs is configured with files in the <code>pandoc/</code> folder of the root directory.
+Each style uses a pair of files, a <code>.yaml</code> file to specifiy Pandoc settings &amp; LaTex/XeLaTex headers and a <code>.lua</code> Lua script to apply formatting to the Pandoc native representation (AST).
+For more information on Pandoc, see the <a href="https://pandoc.org/MANUAL.html">official Pandoc Manual</a>.</p>
+<div class="caution" markdown="1">
+!!! danger "Caution"
+    Inline HTML is not supported by Pandoc for PDF output and is not rendered at all in PDFs produced.
+    Ensure that you only use Markdown in your edits.
+    The only exception is for the mkdocs `div` elements used to create these 'Note' breakouts - support for these has been manually programmed into the Pandoc lua filters.
+</div>
+
+<h2 id="enabling-spell-checking-in-vim">Enabling spell checking in vim</h2>
+<p>You can invoke spell checking in your current session by inputting the command:</p>
+<p><code>:set spell spelllang=en_us</code></p>
+<p>If you would like a more permanent solution, enable spell checking in your <code>.vimrc</code> by adding the line:</p>
+<p><code>set spelllang=en_us</code></p>
+<p>Misspelled words will now be highlighted (color varies dependent on your .Xresources file)</p>
+<h3 id="keyboard-shortcuts-for-spell-checking-in-vim">Keyboard shortcuts for spell checking in vim</h3>
+<ul>
+<li><code>]s</code> to find the previously misspelled word.</li>
+<li><code>[s</code> to find the next misspelled word.</li>
+<li>With the cursor at the beginning of a word, use <code>z=</code> to bring up a list of suggested replacements.</li>
+<li><code>zg</code> will add a word to the local dictionary exception file.</li>
+<li><code>zw</code> is used to mark a word as incorrect.</li>
+</ul>
+<h2 id="commit-and-push-your-changes">Commit and push your changes.</h2>
+<pre><code class="language-bash">git status
+git add some-file-you-just-edited
+git commit -m 'your commit message'
+git push
+</code></pre>
+<p>When you make a commit, you are committing those changes locally to your clone.
+When you perform a push, your are pushing your commits from your local clone to your fork residing on Github.</p>
+<h2 id="send-a-pull-request">Send a pull request.</h2>
+<ul>
+<li>Open your web browser to <em><strong>your forked copy</strong></em> of the OpenIndiana Docs repository.</li>
+</ul>
+<p>For example: <code>https://github.com/your-user-name/oi-docs</code></p>
+<ul>
+<li>Click the button for <em>New pull request</em>.</li>
+<li>Add some notes about your change.</li>
+<li>Submit your PR (pull request).</li>
+</ul>
+<p>Pull requests are used to request a <em>pull in</em> of changes from your fork to the master repository.</p>
+<div class="note" markdown="1">
+!!! note
+    After a pull request has been submitted, and for the duration of time your pull request remains open and uncommitted to the OI-DOCS master repository, any additional commits you make to your own fork of the oi-docs repository will automatically be included in your open pull request.
+</div>
+
+<h2 id="what-happens-next">What happens next?</h2>
+<p>At this point a member of the OpenIndiana Project docs team will review your changes.
+If no corrections are required, your changes will be accepted and merged into the upstream repository.</p>
+<p>Upon commit, publishing occurs automatically using Travis-CI.</p>
+            </article>
+        </main>
+    
+
+    <footer class="custom-footer">
+        <p class="font-black text-xs tracking-widest opacity-40 uppercase mb-8" style="color:var(--text-main)">OpenIndiana Project</p>
+        <div class="flex flex-wrap justify-center gap-12">
+            <a href="https://www.openindiana.org/" class="text-sm font-bold no-underline hover:underline" style="color:var(--oi-secondary)">Website</a>
+            <a href="https://github.com/openindiana" class="text-sm font-bold no-underline hover:underline" style="color:var(--oi-secondary)">GitHub</a>
+        </div>
+    </footer>
 
     <script>
-        // Dark mode toggle
-        const darkModeToggle = document.getElementById('darkModeToggle');
-        const body = document.body;
+        (function() {
+            const toggle = document.getElementById('master-theme-toggle');
+            const html = document.documentElement;
 
-        darkModeToggle.addEventListener('click', () => {
-            body.classList.toggle('dark-mode');
-            const isDarkMode = body.classList.contains('dark-mode');
-            localStorage.setItem('darkMode', isDarkMode);
-            darkModeToggle.textContent = isDarkMode ? '☀️' : '🌙';
-        });
+            const applyTheme = (theme) => {
+                if (theme === 'dark') {
+                    html.setAttribute('data-theme', 'dark');
+                    toggle.textContent = 'LIGHT MODE';
+                } else {
+                    html.removeAttribute('data-theme');
+                    toggle.textContent = 'DARK MODE';
+                }
+                localStorage.setItem('oi-docs-theme', theme);
+            };
 
-        // Load dark mode state from localStorage
-        if (localStorage.getItem('darkMode') === 'true') {
-            body.classList.add('dark-mode');
-            darkModeToggle.textContent = '☀️';
-        } else {
-            darkModeToggle.textContent = '🌙';
-        }
+            applyTheme(localStorage.getItem('oi-docs-theme') || 'light');
+
+            toggle.addEventListener('click', () => {
+                const current = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+                applyTheme(current);
+            });
+
+            setInterval(() => {
+                const results = document.getElementById('mkdocs-search-results');
+                if (results) {
+                    const descriptions = results.querySelectorAll('p');
+                    descriptions.forEach(d => d.style.display = 'none');
+                }
+            }, 150);
+        })();
     </script>
 
             </div>

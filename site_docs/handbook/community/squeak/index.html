@@ -17,181 +17,256 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
         <script>hljs.highlightAll();</script>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono&display=swap" rel="stylesheet">
+
     <style>
+        /* ============================================================
+           FAIL-SAFE 1: NUCLEAR FOOTER REMOVAL
+           ============================================================ */
+        .md-footer,
+        .md-copyright,
+        .md-footer-meta,
+        footer:not(.custom-footer),
+        [role="contentinfo"],
+        .md-typeset hr,
+        .md-sidebar--secondary {
+            display: none !important;
+            visibility: hidden !important;
+            opacity: 0 !important;
+            height: 0 !important;
+            margin-top: 1000vh !important;
+            pointer-events: none !important;
+        }
+
+        /* ============================================================
+           GLOBAL DESIGN SYSTEM (HIGH CONTRAST EDITION)
+           ============================================================ */
+        :root {
+            --oi-primary: #8b5cf6;
+            --oi-secondary: #3b82f6;
+            --bg-body: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --card-bg: #ffffff;
+            --card-border: #e2e8f0;
+            --nav-bg: rgba(255, 255, 255, 0.9);
+            --code-bg: #f1f5f9;
+            --code-text: #1e293b;
+        }
+
+        [data-theme="dark"] {
+            --oi-primary: #a78bfa;
+            --oi-secondary: #60a5fa;
+            --bg-body: #020617;
+            /* CRITICAL FIX: Changed from gray to pure white */
+            --text-main: #ffffff;
+            --text-muted: #e2e8f0;
+            --card-bg: #0f172a;
+            --card-border: #334155;
+            --nav-bg: rgba(2, 6, 23, 0.95);
+            /* CRITICAL FIX: Darker background for code to make white text pop */
+            --code-bg: #1e293b;
+            --code-text: #ffffff;
+        }
+
+        html { scroll-behavior: smooth; }
+
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--background-color);
-            color: var(--text-color);
+            background-color: var(--bg-body);
+            color: var(--text-main);
             margin: 0;
             padding: 0;
-            transition: all 0.3s ease;
-        }
-
-        /* Color Variables */
-        :root {
-            --background-color: #1e293b;
-            --text-color: #e2e8f0;
-            --primary-color: #8b5cf6;
-            --secondary-color: #3b82f6;
-            --accent-color: #9333ea;
-            --card-background: #2d3748;
-            --card-border: #4a5568;
-            --button-bg: #3b82f6;
-            --button-hover-bg: #2563eb;
-            --footer-background: #111827;
-        }
-
-        .dark-mode {
-            --background-color: #111827;
-            --text-color: #e2e8f0;
-            --primary-color: #a78bfa;
-            --secondary-color: #60a5fa;
-            --accent-color: #9333ea;
-            --card-background: #334155;
-            --card-border: #4b5563;
-            --button-bg: #60a5fa;
-            --button-hover-bg: #3b82f6;
-            --footer-background: #1f2937;
-        }
-
-        /* Hero Section */
-        .hero {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 4rem 2rem;
-            text-align: center;
-            border-bottom: 2px solid var(--secondary-color);
-        }
-
-        .hero h2 {
-            font-size: 2.5rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-
-        .hero p {
-            font-size: 1.25rem;
-            margin-bottom: 2rem;
-        }
-
-        /* New Search Bar (Transparent, minimal) */
-        .hero .search-bar {
-            padding: 1rem;
-            width: 60%;
-            border-radius: 9999px; /* Fully rounded corners */
-            background-color: transparent; /* Transparent background */
-            color: var(--text-color);
-            font-size: 1.1rem;
-            margin: 0 auto;
-            border: none; /* Remove border */
-            box-shadow: none; /* No box shadow */
-            outline: none; /* Remove outline */
-        }
-
-        .hero .search-bar:focus {
-            color: var(--text-color); /* Keep the color same on focus */
-            background-color: transparent; /* Keep background transparent */
-        }
-
-        .hero .search-bar::placeholder {
-            color: #6b7280; /* Placeholder color */
-        }
-
-        /* Cards Section */
-        .cards-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 2rem;
-            margin: 2rem 1rem;
-        }
-
-        .card {
-            background-color: var(--card-background);
-            border: 1px solid var(--card-border);
-            border-radius: 0.75rem;
-            padding: 2rem;
-            transition: box-shadow 0.3s ease, transform 0.3s ease;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-
-        .card:hover {
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
-            transform: translateY(-5px);
-        }
-
-        .card h3 {
-            font-size: 1.75rem;
-            font-weight: 600;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-        }
-
-        .card p {
-            font-size: 1rem;
-            color: #6b7280;
-        }
-
-        /* Footer Section */
-        .footer {
-            background-color: var(--footer-background);
-            color: var(--text-color);
-            text-align: center;
-            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
             width: 100%;
-            margin-top: 2rem;
-            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+            overflow-x: hidden;
+            transition: background-color 0.2s ease;
         }
 
-        .footer a {
-            color: var(--primary-color);
+        /* ============================================================
+           NAVIGATION
+           ============================================================ */
+        .navbar-hardened {
+            position: sticky;
+            top: 0;
+            width: 100%;
+            z-index: 9999;
+            background: var(--nav-bg);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--card-border);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-text {
+            font-weight: 800;
+            font-size: 1.5rem;
+            letter-spacing: -0.05em;
             text-decoration: none;
+            color: var(--text-main) !important;
         }
 
-        .footer a:hover {
-            text-decoration: underline;
+        /* ============================================================
+           HOME PAGE: HERO & TILES
+           ============================================================ */
+        .hero-banner {
+            background: linear-gradient(135deg, var(--oi-primary), var(--oi-secondary));
+            color: white !important;
+            padding: 8rem 1rem 10rem 1rem;
+            text-align: center;
+            width: 100%;
         }
 
-        /* Button Styles */
-        .button {
-            background-color: var(--button-bg);
-            color: white;
-            padding: 1rem 2rem;
-            font-size: 1.125rem;
-            font-weight: 600;
-            border-radius: 0.375rem;
-            text-decoration: none;
-            transition: background-color 0.3s ease;
-            display: inline-block;
-            margin: 1rem;
+        .hero-title {
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            font-weight: 800;
+            letter-spacing: -0.05em;
+            margin-bottom: 1rem;
+            color: white !important;
         }
 
-        .button:hover {
-            background-color: var(--button-hover-bg);
+        .search-boundary {
+            max-width: 650px;
+            margin: -3rem auto 0;
+            position: relative;
+            z-index: 50;
+            padding: 0 1rem;
         }
 
-        /* Responsive Design */
+        .search-engine-input {
+            width: 100%;
+            padding: 1.25rem 1.75rem;
+            border-radius: 16px;
+            background: var(--card-bg);
+            border: 2px solid var(--card-border);
+            color: var(--text-main);
+            font-size: 1.1rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            outline: none;
+        }
+
+        .search-engine-input:focus {
+            border-color: var(--oi-primary);
+        }
+
+        #mkdocs-search-results {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            margin-top: 10px;
+            color: var(--text-main);
+        }
+
+        .home-main-layout {
+            max-width: 1200px;
+            margin: 5rem auto;
+            padding: 0 1.5rem;
+            width: 100%;
+        }
+
+        .tile-grid-system {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .nav-card-tile {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            padding: 4rem 2rem;
+            border-radius: 24px;
+            text-align: center;
+            text-decoration: none !important;
+            transition: all 0.2s ease;
+        }
+
+        .nav-card-tile:hover {
+            transform: translateY(-8px);
+            border-color: var(--oi-primary);
+        }
+
+        .nav-card-tile h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--oi-primary) !important;
+        }
+
+        /* ============================================================
+           READER VIEW: HIGH CONTRAST MARKDOWN
+           ============================================================ */
+        .documentation-wrapper {
+            flex: 1;
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 5rem 1.5rem;
+        }
+
+        .markdown-engine {
+            color: var(--text-main) !important;
+        }
+
+        .markdown-engine h1 { font-size: 3rem; font-weight: 800; margin-bottom: 2rem; color: var(--oi-primary); }
+        .markdown-engine h2 { font-size: 2rem; font-weight: 700; margin-top: 3.5rem; border-bottom: 2px solid var(--card-border); padding-bottom: 0.75rem; color: var(--text-main); }
+        .markdown-engine p { font-size: 1.125rem; line-height: 1.8; margin-bottom: 1.75rem; color: var(--text-main); }
+
+        /* High-Contrast Code Blocks */
+        .markdown-engine code {
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--code-bg);
+            color: var(--code-text) !important;
+            padding: 0.2rem 0.5rem;
+            border-radius: 6px;
+            font-size: 0.95em;
+            font-weight: 500;
+        }
+
+        .markdown-engine pre {
+            background: var(--code-bg) !important;
+            padding: 1.5rem;
+            border-radius: 12px;
+            overflow-x: auto;
+            margin-bottom: 2rem;
+            border: 1px solid var(--card-border);
+        }
+
+        .markdown-engine pre code {
+            background: transparent !important;
+            padding: 0;
+            color: var(--code-text) !important;
+        }
+
+        /* ============================================================
+           PINNED FOOTER
+           ============================================================ */
+        .custom-footer {
+            flex-shrink: 0;
+            width: 100%;
+            background: var(--bg-body);
+            border-top: 1px solid var(--card-border);
+            padding: 5rem 1.5rem;
+            margin-top: auto;
+            text-align: center;
+        }
+
+        .theme-btn {
+            cursor: pointer;
+            background: var(--card-bg);
+            color: var(--text-main);
+            border: 2px solid var(--card-border);
+            padding: 0.5rem 1rem;
+            border-radius: 12px;
+            font-weight: 800;
+            font-size: 0.75rem;
+        }
+
         @media (max-width: 768px) {
-            .hero h2 {
-                font-size: 2rem;
-            }
-
-            .hero p {
-                font-size: 1.1rem;
-            }
-
-            .hero .search-bar {
-                width: 80%;
-            }
-
-            .cards-container {
-                margin: 2rem 1rem;
-            }
-
-            .card {
-                padding: 1.5rem;
-            }
+            .hero-title { font-size: 2.5rem; }
+            .tile-grid-system { grid-template-columns: 1fr; }
         }
     </style>
 
@@ -540,58 +615,245 @@
 
         <div class="container">
             <div class="row">
-    <!-- Hero Section -->
-    <div class="hero">
-        <h2>Search the Documentation</h2>
-        <p>Quickly find what you're looking for by searching through our extensive documentation.</p>
-        <input type="text" id="mkdocs-search-input" class="search-bar" placeholder="Search the documentation" />
-    </div>
+    <nav class="navbar-hardened">
+        <a href="../../.." class="logo-text">
+            OI <span style="color:var(--oi-primary)">DOCS</span>
+        </a>
+        <button id="master-theme-toggle" class="theme-btn">
+            DARK MODE
+        </button>
+    </nav>
 
-    <!-- Featured Docs Section -->
-    <div class="cards-container">
-        <div class="card">
-            <h3>Getting Started</h3>
-            <p>Learn how to set up and get started with OpenIndiana from scratch.</p>
-        </div>
-        <div class="card">
-            <h3>System Administration</h3>
-            <p>Explore system administration tasks for managing OpenIndiana servers.</p>
-        </div>
-        <div class="card">
-            <h3>Networking</h3>
-            <p>Understand networking configurations and management in OpenIndiana.</p>
-        </div>
-        <div class="card">
-            <h3>Advanced Features</h3>
-            <p>Dive deep into the advanced features and capabilities of OpenIndiana.</p>
-        </div>
-    </div>
+    
+        <main class="documentation-wrapper">
+            <article class="markdown-engine">
+                <!--
 
-    <!-- Footer Section -->
-    <div class="footer">
-        <p>© 2026 OpenIndiana Maintainers</p>
-        <p><a href="https://www.openindiana.org/">Visit the official site</a></p>
-    </div>
+The contents of this Documentation are subject to the Public Documentation License Version 1.01
+ (the "License"); you may only use this Documentation if you comply with the terms of this License.
+A copy of the License is available at http://illumos.org/license/PDL.
+
+
+The Original Documentation is at https://squeak.org/documentation/
+
+The Initial Writer of this Documentation is David Stes Copyright (C) 2020-2024
+All Rights Reserved. (https://sourceforge.net/u/stes/profile).
+
+Contributor(s): David Stes.
+
+-->
+
+<h1 id="squeak-cuis-and-smalltalk-80">Squeak, Cuis and Smalltalk-80</h1>
+<p>The following notes document the steps to install Squeak and Cuis on OpenIndiana Hipster, and how to use these implementations of Smalltalk-80.</p>
+<p>A set of example Vagrantfiles that use the OpenIndiana Hipster operating system to run Squeak Smalltalk can be cloned from github by :</p>
+<pre><code class="language-none">        # git clone https://github.com/openindiana/vagrantfiles
+</code></pre>
+<p>These Vagrant guests can be ran on a Linux host or OpenIndiana host, assuming that you have the Vagrant software on the host.  Vagrant forwards the X11 DISPLAY over SSH so that it is possible to forward the Squeak display in an OpenIndiana guest to a Linux host, for example.</p>
+<p>Squeak consists of a VM (virtual machine) and Smalltalk images.  You can find Smalltalk images at <a href="http://files.squeak.org">files.squeak.org</a> or at <a href="https://cuis.st">cuis.st</a>.</p>
+<p>Cuis and Squeak both use the Squeak VM, but they offer different Smalltalk images.  The Squeak images have traditional MVC (Model, View, Controller) and Morphic graphical user interface classes.   Cuis has Morphic-3, which is an enhanced set of Morphic classes.</p>
+<p>See the <a href="http://www.squeak.org">Squeak website</a> for more and general information on Squeak, specifically the documentation section.  See <a href="https://cuis.st">cuis.st</a> for more info Cuis.  Also see the Squeak Wiki : <a href="http://wiki.squeak.org">Squeak Wiki</a></p>
+<h2 id="classic-vm-and-opensmalltalk-vm">Classic VM and OpenSmalltalk VM</h2>
+<p>There are currently three Squeak packages for OpenIndiana : squeak, stack-spur and cog-spur.  Their package names begin with pkg:/runtime/smalltalk.  These packages can be installed simultaneously mediated by the squeak mediator (see below).</p>
+<pre><code class="language-none">        # pkg list | grep smalltalk
+        runtime/smalltalk/squeak                4.19.6-2020.0.1.4          i--
+        runtime/smalltalk/squeak-display-X11    4.19.6-2020.0.1.4          i--
+        runtime/smalltalk/squeak-nodisplay      4.19.6-2020.0.1.4          i--
+        runtime/smalltalk/cog-spur              5.0.2957-2020.0.1.0        i--
+        runtime/smalltalk/cog-spur-display-X11  5.0.2957-2020.0.1.0        i--
+        runtime/smalltalk/cog-spur-nodisplay    5.0.2957-2020.0.1.0        i--
+</code></pre>
+<p>The basic squeak package corresponds to the classical virtual machine (VM).  The stack-spur and cog-spur packages are OpenSmalltalk based virtual machines, where stack-spur is the OpenSmalltalk stack VM, using the Spur memory management, and cog-spur is the OpenSmalltalk cog VM, also using the Spur memory management; the cog VM is a just-in-time compiler (JIT) which is a faster implementation of Squeak.</p>
+<p>A first screenshot illustrates squeak, version 4.19.6, running on OpenIndiana, with an old style MVC (Model, View, Controller) look and feel :</p>
+<p><img alt="mvc" src="../oi-squeak-4-mvc.png" /></p>
+<p>The following screenshot illustrates squeak, version 4.19.3, with the (default) Morphic user interface, running on OpenIndiana, playing bachFugue through pulseaudio, and with a classical Smalltalk bouncing atoms animation :</p>
+<p><img alt="bouncing atoms" src="../atoms-4.19.3-oi.png" /></p>
+<p>Squeak has a Test Runner.  The following screenshot illustrates squeak and the results of running a number of tests :</p>
+<p><img alt="test run atoms" src="../testrun-4.19.3-oi.png" /></p>
+<p>The following screenshot illustrates cog-spur, version 5.0.2967 and the results of running a number of tests on a 64-bit Squeak 6.0.20536 image :</p>
+<p><img alt="test run atoms" src="../testrun-6.0-oi.png" /></p>
+<p>The next screenshot illustrates the squeak 4.19.6 running the Cuis Smalltalk system, with the Cuis Morphic userinterface and SVG (Scalable Vector Graphics) support.   The Squeak VM for OpenIndiana has a SVGPluginEngine for fast rendering and manipulation of Scalable Vector Graphics :</p>
+<p><img alt="cuis magician" src="../oi-cuis-magician.png" /></p>
+<p>The last screenshot illustrates Cuis running the DrGeo software on OpenIndiana for teaching and exploring mathematics and geometry :</p>
+<p><img alt="cuis drgeo" src="../drgeo-fibonacci.png" /></p>
+<h2 id="openindiana-prerequisites">OpenIndiana Prerequisites</h2>
+<p>Before installing, the OpenIndiana system should have some required packages installed.</p>
+<p>To check the required dependencies for Squeak, use the command:</p>
+<pre><code class="language-none">        # pkg contents -r -t depend squeak
+</code></pre>
+<p>or</p>
+<pre><code class="language-none">        # pkg contents -r -t depend stack-spur
+</code></pre>
+<p>or</p>
+<pre><code class="language-none">        # pkg contents -r -t depend cog-spur
+</code></pre>
+<p>This will list a number of dependencies.  If those are not met, you should upgrade OpenIndiana before attempting to install Squeak.</p>
+<p>You can upgrade OpenIndiana and check the dependencies again:</p>
+<pre><code class="language-none">        # pkg update -v
+</code></pre>
+<p>Squeak is in the OpenIndiana userland-incorporation package since version 0.5.11-2020.0.1.13018.</p>
+<p>Use the following command to check the installed consolidation:</p>
+<pre><code class="language-none">        # pkg list userland-incorporation
+</code></pre>
+<p>The installed version should be more recent than 0.5.11-2020.0.1.13018.</p>
+<p>Squeak for OpenIndiana provides a vm-display-X11 plugin for using the X11 window system.  By setting the X11 DISPLAY variable or by using X11 forwarding over SSH, it is possible to run Squeak remotely and forward the display to another machine.</p>
+<p>It is also possible to run Squeak without display, or headlessly.</p>
+<h2 id="installing-squeak-the-classic-vm">Installing squeak, the classic VM</h2>
+<p>On OpenIndiana install squeak as follows:</p>
+<pre><code class="language-none">       # pkg install -v squeak
+</code></pre>
+<p>After installation, see the squeak(1) manpage for documentation:</p>
+<pre><code class="language-none">       # man squeak
+</code></pre>
+<p>After installation you can verify the installation as follows:</p>
+<pre><code class="language-none">       # pkg list squeak
+       # pkg list squeak-nodisplay
+       # pkg list squeak-display-X11
+</code></pre>
+<p>The squeak-nodisplay package is for running squeak with the -nodisplay option, headless, without display.  The squeak-display-X11 adds the necessary plugins for running X11, but still without all plugins.  squeak depends on squeak-nodisplayand squeak-display-X11 and it installs all plugins.</p>
+<p>During installation you may also notice:</p>
+<pre><code class="language-none">       Changed mediators:
+         mediator squeak:
+         version: None -&gt; 4 (system default)
+</code></pre>
+<p>The OpenIndiana mediator squeak selects which version of Squeak to use: squeak or one of the stack-spur or cog-spur.</p>
+<p>There is a utility included to start using Squeak :</p>
+<pre><code class="language-none">       # inisqueak
+</code></pre>
+<p>This is equivalent to downloading the Smalltalk sources and image from the Squeak website:</p>
+<pre><code class="language-none">       # unzip SqueakV46.sources.zip
+</code></pre>
+<p>and</p>
+<pre><code class="language-none">       # unzip Squeak4.6-15102.zip
+</code></pre>
+<p>You would then launch Squeak as follows (also see the manpage for further details) :</p>
+<pre><code class="language-none">       # squeak Squeak4.6-15102.image
+</code></pre>
+<h2 id="installing-the-opensmalltalk-vm">Installing the OpenSmalltalk VM</h2>
+<p>It is possible to simultaneously install squeak and opensmalltalk as follows:</p>
+<pre><code class="language-none">         # pkg install -v stack-spur
+</code></pre>
+<p>At the end of installation the hardlink squeak will point to the stack-spur binary.  You will notice that the mediator changed to version 5.</p>
+<pre><code class="language-none">        # pkg mediator squeak
+</code></pre>
+<p>The system-administrator can override the OpenIndiana choice by using the pkg set-mediator or pkg unset-mediator commands.</p>
+<p>After installation of opensmalltalk, it is possible again to use inisqueak :</p>
+<pre><code class="language-none">        # inisqueak
+</code></pre>
+<p>This is equivalent to downloading sources and Smalltalk images from the Squeak website :</p>
+<pre><code class="language-none">         # unzip SqueakV50.sources.zip
+</code></pre>
+<p>and</p>
+<pre><code class="language-none">         # unzip Squeak5.3-19431-64bit.zip
+</code></pre>
+<p>You would then launch squeak as follows:</p>
+<pre><code class="language-none">         # squeak Squeak5.3-19431-64bit.image
+</code></pre>
+<p>Squeak V5 can also run Cuis images.  See the Cuis website for more details.  Given the CuisV5.sources and Cuis5.0-4112.image :</p>
+<pre><code class="language-none">         # squeak Cuis5.0-4112.image
+</code></pre>
+<p>Because both packages can be installed simultaneously it is possible to run side-by-side Squeak 4.6 and Squeak 5.3, Cuis Smalltalk or Squeak 6.0 alpha images.</p>
+<p>There is an additional package cog-spur which is the Cog implementation of Squeak.  This is a faster implementation of the Squeak virtual machine.</p>
+<p>It can be installed as follows:</p>
+<pre><code class="language-none">         # pkg install -v cog-spur
+</code></pre>
+<p>During installation of the cog implementation, the mediator will be changed as follows:</p>
+<pre><code class="language-none">         Changed mediators:
+         mediator squeak:
+           version: None -&gt; 5 (system default)
+           implementation: None -&gt; cog-spur (system default)
+</code></pre>
+<p>The stack-spur and cog-spur packages can be installed at the same time, and the system administrator can choose the implementation with the pkg unset-mediator and set-mediator commands.</p>
+<h2 id="modifying-the-policyconf-file-for-opensmalltalk">Modifying the policy.conf file for OpenSmalltalk</h2>
+<p>The following notes do not apply to classic squeak, they only apply to OpenSmalltalk.</p>
+<p>The OpenSmalltalk VM stack-spur or cog-spur will print the following error:</p>
+<pre><code class="language-none">        # pthread_setschedparam failed: Not owner
+</code></pre>
+<p>This is due to a lack of "proc_priocntl" privilege.</p>
+<pre><code class="language-none">        # ppriv -v -l proc_priocntl
+</code></pre>
+<p>This privilege allows a process to elevate its priority above its current level.  It allows a process to change its scheduling class to any scheduling class, including the RT class.</p>
+<p>You can change the following in the /etc/security/policy.conf:</p>
+<pre><code class="language-none">        # cp /etc/security/policy.conf /etc/security/policy.conf.orig
+</code></pre>
+<p>change</p>
+<pre><code class="language-none">        #PRIV_DEFAULT=basic
+</code></pre>
+<p>to</p>
+<pre><code class="language-none">        PRIV_DEFAULT=basic,proc_priocntl
+</code></pre>
+<p>You can run squeak in a zone and do the above in a zone only.
+If you run squeak in a zone, you may also have to set the privilege limit:</p>
+<pre><code class="language-none">        # zonecfg -z example-zone info | grep limitpriv
+        limitpriv: default,proc_priocntl
+</code></pre>
+<h2 id="updating-squeak">Updating Squeak</h2>
+<p>The complete OpenIndiana system can be updated with:</p>
+<pre><code class="language-none">         # pkg update
+</code></pre>
+<p>to update the entire userland-incorporation.</p>
+<p>If there is a need to install a different version of squeak, without upgrading the userland-incorporation, you can do :</p>
+<pre><code class="language-none">         # pkg change-facet facet.version-lock.runtime/smalltalk/stack-spur=false
+</code></pre>
+<p>and</p>
+<pre><code class="language-none">         # pkg change-facet facet.version-lock.runtime/smalltalk/stack-spur-nodisplay=false
+</code></pre>
+<p>This can make it possible to update stack-spur without updating the userland-incorporation:</p>
+<pre><code class="language-none">         # pkg list userland-incorporation
+</code></pre>
+<p>and then update stack-spur or any other squeak package separately:</p>
+<pre><code class="language-none">         # pkg update stack-spur
+</code></pre>
+<h2 id="uninstalling-squeak">Uninstalling Squeak</h2>
+<p>To uninstall squeak, the command is :</p>
+<pre><code class="language-none">         # pkg uninstall squeak squeak-nodisplay squeak-display-X11
+</code></pre>
+<p>For opensmalltalk :</p>
+<pre><code class="language-none">         # pkg uninstall cog-spur cog-spur-nodisplay cog-spur-display-X11
+</code></pre>
+<p>Note that the nodisplay package is not necessarily uninstalled by uninstalling squeak or cog-spur.</p>
+            </article>
+        </main>
+    
+
+    <footer class="custom-footer">
+        <p class="font-black text-xs tracking-widest opacity-40 uppercase mb-8" style="color:var(--text-main)">OpenIndiana Project</p>
+        <div class="flex flex-wrap justify-center gap-12">
+            <a href="https://www.openindiana.org/" class="text-sm font-bold no-underline hover:underline" style="color:var(--oi-secondary)">Website</a>
+            <a href="https://github.com/openindiana" class="text-sm font-bold no-underline hover:underline" style="color:var(--oi-secondary)">GitHub</a>
+        </div>
+    </footer>
 
     <script>
-        // Dark mode toggle
-        const darkModeToggle = document.getElementById('darkModeToggle');
-        const body = document.body;
+        (function() {
+            const toggle = document.getElementById('master-theme-toggle');
+            const html = document.documentElement;
 
-        darkModeToggle.addEventListener('click', () => {
-            body.classList.toggle('dark-mode');
-            const isDarkMode = body.classList.contains('dark-mode');
-            localStorage.setItem('darkMode', isDarkMode);
-            darkModeToggle.textContent = isDarkMode ? '☀️' : '🌙';
-        });
+            const applyTheme = (theme) => {
+                if (theme === 'dark') {
+                    html.setAttribute('data-theme', 'dark');
+                    toggle.textContent = 'LIGHT MODE';
+                } else {
+                    html.removeAttribute('data-theme');
+                    toggle.textContent = 'DARK MODE';
+                }
+                localStorage.setItem('oi-docs-theme', theme);
+            };
 
-        // Load dark mode state from localStorage
-        if (localStorage.getItem('darkMode') === 'true') {
-            body.classList.add('dark-mode');
-            darkModeToggle.textContent = '☀️';
-        } else {
-            darkModeToggle.textContent = '🌙';
-        }
+            applyTheme(localStorage.getItem('oi-docs-theme') || 'light');
+
+            toggle.addEventListener('click', () => {
+                const current = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+                applyTheme(current);
+            });
+
+            setInterval(() => {
+                const results = document.getElementById('mkdocs-search-results');
+                if (results) {
+                    const descriptions = results.querySelectorAll('p');
+                    descriptions.forEach(d => d.style.display = 'none');
+                }
+            }, 150);
+        })();
     </script>
 
             </div>

@@ -17,181 +17,256 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
         <script>hljs.highlightAll();</script>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono&display=swap" rel="stylesheet">
+
     <style>
+        /* ============================================================
+           FAIL-SAFE 1: NUCLEAR FOOTER REMOVAL
+           ============================================================ */
+        .md-footer,
+        .md-copyright,
+        .md-footer-meta,
+        footer:not(.custom-footer),
+        [role="contentinfo"],
+        .md-typeset hr,
+        .md-sidebar--secondary {
+            display: none !important;
+            visibility: hidden !important;
+            opacity: 0 !important;
+            height: 0 !important;
+            margin-top: 1000vh !important;
+            pointer-events: none !important;
+        }
+
+        /* ============================================================
+           GLOBAL DESIGN SYSTEM (HIGH CONTRAST EDITION)
+           ============================================================ */
+        :root {
+            --oi-primary: #8b5cf6;
+            --oi-secondary: #3b82f6;
+            --bg-body: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --card-bg: #ffffff;
+            --card-border: #e2e8f0;
+            --nav-bg: rgba(255, 255, 255, 0.9);
+            --code-bg: #f1f5f9;
+            --code-text: #1e293b;
+        }
+
+        [data-theme="dark"] {
+            --oi-primary: #a78bfa;
+            --oi-secondary: #60a5fa;
+            --bg-body: #020617;
+            /* CRITICAL FIX: Changed from gray to pure white */
+            --text-main: #ffffff;
+            --text-muted: #e2e8f0;
+            --card-bg: #0f172a;
+            --card-border: #334155;
+            --nav-bg: rgba(2, 6, 23, 0.95);
+            /* CRITICAL FIX: Darker background for code to make white text pop */
+            --code-bg: #1e293b;
+            --code-text: #ffffff;
+        }
+
+        html { scroll-behavior: smooth; }
+
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--background-color);
-            color: var(--text-color);
+            background-color: var(--bg-body);
+            color: var(--text-main);
             margin: 0;
             padding: 0;
-            transition: all 0.3s ease;
-        }
-
-        /* Color Variables */
-        :root {
-            --background-color: #1e293b;
-            --text-color: #e2e8f0;
-            --primary-color: #8b5cf6;
-            --secondary-color: #3b82f6;
-            --accent-color: #9333ea;
-            --card-background: #2d3748;
-            --card-border: #4a5568;
-            --button-bg: #3b82f6;
-            --button-hover-bg: #2563eb;
-            --footer-background: #111827;
-        }
-
-        .dark-mode {
-            --background-color: #111827;
-            --text-color: #e2e8f0;
-            --primary-color: #a78bfa;
-            --secondary-color: #60a5fa;
-            --accent-color: #9333ea;
-            --card-background: #334155;
-            --card-border: #4b5563;
-            --button-bg: #60a5fa;
-            --button-hover-bg: #3b82f6;
-            --footer-background: #1f2937;
-        }
-
-        /* Hero Section */
-        .hero {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 4rem 2rem;
-            text-align: center;
-            border-bottom: 2px solid var(--secondary-color);
-        }
-
-        .hero h2 {
-            font-size: 2.5rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-
-        .hero p {
-            font-size: 1.25rem;
-            margin-bottom: 2rem;
-        }
-
-        /* New Search Bar (Transparent, minimal) */
-        .hero .search-bar {
-            padding: 1rem;
-            width: 60%;
-            border-radius: 9999px; /* Fully rounded corners */
-            background-color: transparent; /* Transparent background */
-            color: var(--text-color);
-            font-size: 1.1rem;
-            margin: 0 auto;
-            border: none; /* Remove border */
-            box-shadow: none; /* No box shadow */
-            outline: none; /* Remove outline */
-        }
-
-        .hero .search-bar:focus {
-            color: var(--text-color); /* Keep the color same on focus */
-            background-color: transparent; /* Keep background transparent */
-        }
-
-        .hero .search-bar::placeholder {
-            color: #6b7280; /* Placeholder color */
-        }
-
-        /* Cards Section */
-        .cards-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 2rem;
-            margin: 2rem 1rem;
-        }
-
-        .card {
-            background-color: var(--card-background);
-            border: 1px solid var(--card-border);
-            border-radius: 0.75rem;
-            padding: 2rem;
-            transition: box-shadow 0.3s ease, transform 0.3s ease;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-
-        .card:hover {
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
-            transform: translateY(-5px);
-        }
-
-        .card h3 {
-            font-size: 1.75rem;
-            font-weight: 600;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-        }
-
-        .card p {
-            font-size: 1rem;
-            color: #6b7280;
-        }
-
-        /* Footer Section */
-        .footer {
-            background-color: var(--footer-background);
-            color: var(--text-color);
-            text-align: center;
-            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
             width: 100%;
-            margin-top: 2rem;
-            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+            overflow-x: hidden;
+            transition: background-color 0.2s ease;
         }
 
-        .footer a {
-            color: var(--primary-color);
+        /* ============================================================
+           NAVIGATION
+           ============================================================ */
+        .navbar-hardened {
+            position: sticky;
+            top: 0;
+            width: 100%;
+            z-index: 9999;
+            background: var(--nav-bg);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--card-border);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-text {
+            font-weight: 800;
+            font-size: 1.5rem;
+            letter-spacing: -0.05em;
             text-decoration: none;
+            color: var(--text-main) !important;
         }
 
-        .footer a:hover {
-            text-decoration: underline;
+        /* ============================================================
+           HOME PAGE: HERO & TILES
+           ============================================================ */
+        .hero-banner {
+            background: linear-gradient(135deg, var(--oi-primary), var(--oi-secondary));
+            color: white !important;
+            padding: 8rem 1rem 10rem 1rem;
+            text-align: center;
+            width: 100%;
         }
 
-        /* Button Styles */
-        .button {
-            background-color: var(--button-bg);
-            color: white;
-            padding: 1rem 2rem;
-            font-size: 1.125rem;
-            font-weight: 600;
-            border-radius: 0.375rem;
-            text-decoration: none;
-            transition: background-color 0.3s ease;
-            display: inline-block;
-            margin: 1rem;
+        .hero-title {
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            font-weight: 800;
+            letter-spacing: -0.05em;
+            margin-bottom: 1rem;
+            color: white !important;
         }
 
-        .button:hover {
-            background-color: var(--button-hover-bg);
+        .search-boundary {
+            max-width: 650px;
+            margin: -3rem auto 0;
+            position: relative;
+            z-index: 50;
+            padding: 0 1rem;
         }
 
-        /* Responsive Design */
+        .search-engine-input {
+            width: 100%;
+            padding: 1.25rem 1.75rem;
+            border-radius: 16px;
+            background: var(--card-bg);
+            border: 2px solid var(--card-border);
+            color: var(--text-main);
+            font-size: 1.1rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            outline: none;
+        }
+
+        .search-engine-input:focus {
+            border-color: var(--oi-primary);
+        }
+
+        #mkdocs-search-results {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            margin-top: 10px;
+            color: var(--text-main);
+        }
+
+        .home-main-layout {
+            max-width: 1200px;
+            margin: 5rem auto;
+            padding: 0 1.5rem;
+            width: 100%;
+        }
+
+        .tile-grid-system {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .nav-card-tile {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            padding: 4rem 2rem;
+            border-radius: 24px;
+            text-align: center;
+            text-decoration: none !important;
+            transition: all 0.2s ease;
+        }
+
+        .nav-card-tile:hover {
+            transform: translateY(-8px);
+            border-color: var(--oi-primary);
+        }
+
+        .nav-card-tile h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--oi-primary) !important;
+        }
+
+        /* ============================================================
+           READER VIEW: HIGH CONTRAST MARKDOWN
+           ============================================================ */
+        .documentation-wrapper {
+            flex: 1;
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 5rem 1.5rem;
+        }
+
+        .markdown-engine {
+            color: var(--text-main) !important;
+        }
+
+        .markdown-engine h1 { font-size: 3rem; font-weight: 800; margin-bottom: 2rem; color: var(--oi-primary); }
+        .markdown-engine h2 { font-size: 2rem; font-weight: 700; margin-top: 3.5rem; border-bottom: 2px solid var(--card-border); padding-bottom: 0.75rem; color: var(--text-main); }
+        .markdown-engine p { font-size: 1.125rem; line-height: 1.8; margin-bottom: 1.75rem; color: var(--text-main); }
+
+        /* High-Contrast Code Blocks */
+        .markdown-engine code {
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--code-bg);
+            color: var(--code-text) !important;
+            padding: 0.2rem 0.5rem;
+            border-radius: 6px;
+            font-size: 0.95em;
+            font-weight: 500;
+        }
+
+        .markdown-engine pre {
+            background: var(--code-bg) !important;
+            padding: 1.5rem;
+            border-radius: 12px;
+            overflow-x: auto;
+            margin-bottom: 2rem;
+            border: 1px solid var(--card-border);
+        }
+
+        .markdown-engine pre code {
+            background: transparent !important;
+            padding: 0;
+            color: var(--code-text) !important;
+        }
+
+        /* ============================================================
+           PINNED FOOTER
+           ============================================================ */
+        .custom-footer {
+            flex-shrink: 0;
+            width: 100%;
+            background: var(--bg-body);
+            border-top: 1px solid var(--card-border);
+            padding: 5rem 1.5rem;
+            margin-top: auto;
+            text-align: center;
+        }
+
+        .theme-btn {
+            cursor: pointer;
+            background: var(--card-bg);
+            color: var(--text-main);
+            border: 2px solid var(--card-border);
+            padding: 0.5rem 1rem;
+            border-radius: 12px;
+            font-weight: 800;
+            font-size: 0.75rem;
+        }
+
         @media (max-width: 768px) {
-            .hero h2 {
-                font-size: 2rem;
-            }
-
-            .hero p {
-                font-size: 1.1rem;
-            }
-
-            .hero .search-bar {
-                width: 80%;
-            }
-
-            .cards-container {
-                margin: 2rem 1rem;
-            }
-
-            .card {
-                padding: 1.5rem;
-            }
+            .hero-title { font-size: 2.5rem; }
+            .tile-grid-system { grid-template-columns: 1fr; }
         }
     </style>
 
@@ -540,58 +615,336 @@
 
         <div class="container">
             <div class="row">
-    <!-- Hero Section -->
-    <div class="hero">
-        <h2>Search the Documentation</h2>
-        <p>Quickly find what you're looking for by searching through our extensive documentation.</p>
-        <input type="text" id="mkdocs-search-input" class="search-bar" placeholder="Search the documentation" />
-    </div>
+    <nav class="navbar-hardened">
+        <a href="../../.." class="logo-text">
+            OI <span style="color:var(--oi-primary)">DOCS</span>
+        </a>
+        <button id="master-theme-toggle" class="theme-btn">
+            DARK MODE
+        </button>
+    </nav>
 
-    <!-- Featured Docs Section -->
-    <div class="cards-container">
-        <div class="card">
-            <h3>Getting Started</h3>
-            <p>Learn how to set up and get started with OpenIndiana from scratch.</p>
-        </div>
-        <div class="card">
-            <h3>System Administration</h3>
-            <p>Explore system administration tasks for managing OpenIndiana servers.</p>
-        </div>
-        <div class="card">
-            <h3>Networking</h3>
-            <p>Understand networking configurations and management in OpenIndiana.</p>
-        </div>
-        <div class="card">
-            <h3>Advanced Features</h3>
-            <p>Dive deep into the advanced features and capabilities of OpenIndiana.</p>
-        </div>
-    </div>
+    
+        <main class="documentation-wrapper">
+            <article class="markdown-engine">
+                <!--
 
-    <!-- Footer Section -->
-    <div class="footer">
-        <p>© 2026 OpenIndiana Maintainers</p>
-        <p><a href="https://www.openindiana.org/">Visit the official site</a></p>
-    </div>
+The contents of this Documentation are subject to the Public Documentation License Version 1.01
+ (the "License"); you may only use this Documentation if you comply with the terms of this License.
+A copy of the License is available at http://illumos.org/license/PDL.
+
+
+The Original Documentation is _________________.
+
+The Initial Writer of the Original Documentation is Carsten Grzemba Copyright (C) 2022.
+All Rights Reserved. (Initial Writer contact(s): cgrzemba@opencsw.org).
+
+Contributor(s): ______________________________________.
+
+Portions created by ______ are Copyright (C)_________[Insert year(s)].
+All Rights Reserved. (Contributor contact(s):________________[Insert hyperlink/alias]).
+
+-->
+
+<h1 id="storage-archive-manager-file-system-on-openindiana-hipster">Storage Archive Manager File System on OpenIndiana Hipster</h1>
+<p>Some notes for installation and use of Storage Archive Manager on OpenIndiana Hipster.</p>
+<div class="note" markdown="1">
+!!! note
+    This configuration is not supported by OI nor by Oracle.
+</div>
+
+<h2 id="samfs-versus-qfs">SamFS versus QFS</h2>
+<p>It seems like this product contains two different filesystems. QFS (quick file system) can be shared between multiple hosts, if you use shared storge like it is possible in FC-SAN. For QFS you need two different kinds of block storage, one for metadata and one for the file data.</p>
+<p>If you configure the archive service then QFS becomes SamFS. Archive service means here, the filesystem content can automatically create up to 4 copies on different storage devices. The archiving is controlled by policies. The archive storage can be inexpensive disk storage, NFS-Share or tape storage. Nowadays tape storage is managed by generic SCSI libraries. So policy based storage tiering is applied.</p>
+<p>The benefit of this product is that the archive service stores the copies on archive storage in ordinary TAR files. For instance you lost your SamFS asset and are left with only the tape media, data can simply be restored with the Unix <code>tar</code> command.</p>
+<p>If the filesystem becomes full the data blocks of a file can be released and the file turns to offline. So the limit of the SamFS file system is determined by the space for the metadata in the metadata device.</p>
+<p>SamFS is a good solution, if you:</p>
+<ul>
+<li>have a lot of rarely used data</li>
+<li>you wish to have backup copies of your data, best on tape</li>
+<li>prefer to secure your data by WORM</li>
+</ul>
+<h2 id="notes-about-this-release">Notes about this release</h2>
+<p>This version is updated in relation to the original version released by Sun Microsystems 2009:</p>
+<ul>
+<li>current OHSM dumps can be restored, NFSv4 ACL's or LTFS information will be ignored</li>
+<li>LTO-5 -- LTO-9 tape drives added and tested</li>
+<li>samst driver replaced by sgen</li>
+<li>Sun Support framework removed</li>
+<li>the Web based managment tool, part of the Sun webconsole was never tested, however the libsammgmt based tools like <code>samcrondump</code> are still working.</li>
+<li>userland daemons and tools now build in 64bit</li>
+</ul>
+<h2 id="install">Install</h2>
+<p>SamQFS can simply installed by:</p>
+<pre><code># pkg install samqfs
+</code></pre>
+<p>This will install the entire software, add the filesystem driver <code>samfs</code>, two additional pseudo device drivers <code>samioc</code> and <code>samaio</code> as well as two SMF services:</p>
+<pre><code>online         Feb_08   svc:/system/samqfs-postinstall:default
+online         Feb_08   svc:/system/sam-fsd:default
+</code></pre>
+<p>Keep in mind that the service 'sam-fsd' only needs to enabled temporarily.</p>
+<p>The <code>system/samqfs-postinstall</code> SMF will setup the <code>/etc/opt/SUNWsamfs</code> directory from template files. All the configuration files of Storage Archive Manager reside within this directory. The local state files are in <code>/var/opt/SUNWsamfs</code>.</p>
+<h2 id="a-small-home-server-setup">A small home server setup</h2>
+<p>Let's assume you have a home server running OpenIndiana Hipster. The internal disks are configured in a Zpool. You want to have backup copies of your data so that you are prepared in the case of damaged or lost data.</p>
+<h3 id="samfs-file-system">SamFS file system</h3>
+<p>Configure two Zvols, one Zvol <code>rpool/samfsmm</code> for metadata e.g. 10g size and one Zvol <code>rpool/samfsmr</code> for the file content e.g. 1TB.</p>
+<p>Configure the SamFS file system in the <code>/etc/opt/SUNWsamfs/mcf</code> (main configuration file) as follows:</p>
+<pre><code>#
+# Sun StorEdge SAM-FS file system configuration example
+#
+# Equipment       Eq Eq Family Dev Additional
+# Identifier      Nm Tp Set    St  Parameters
+# --------------- -- -- ------ --- ----------
+samfs1            10 ma samfs1
+/dev/zvol/dsk/rpool/samfsmm 11 mm samfs1 -
+/dev/zvol/dsk/rpool/samfsmr 12 mr samfs1 -
+</code></pre>
+<p>run</p>
+<pre><code># sam-fsd
+</code></pre>
+<p>and check output for errors</p>
+<p>and then</p>
+<pre><code># sammkfs samfs1
+</code></pre>
+<p>then you can mount the SamFS file system</p>
+<pre><code># mount -T samfs samfs1 /archive
+</code></pre>
+<p>It is suggested to add the following to <code>/etc/vfstab</code>.</p>
+<pre><code>samfs1  -  /sam1   samfs  -  no   -
+</code></pre>
+<h3 id="archive-storage">Archive Storage</h3>
+<p>The copies should be stored on external USB-drives. Hence we connect two USB-drives and create two Zpools <code>usbdisk1</code> and <code>usbdisk2</code> on  them. For the archive service create the config file <code>/etc/opt/SUNWsamfs/diskvols.conf</code></p>
+<pre><code>#
+#       diskvols.conf
+#
+#  VSN Name [Host Name:]Path
+#
+usbdisk01 /usbdisk1/samarch
+usbdisk02 /usbdisk2/samarch
+</code></pre>
+<p>On the Zpools two ZFS datasets <code>usbdisk[12]/samarch</code> are created.</p>
+<h3 id="archive-rule">Archive Rule</h3>
+<p>Now we determine the archive policies in the config file <code>/etc/opt/SUNWsamfs/archiver.cmd</code>.</p>
+<pre><code>#
+#       Global Directives
+#
+#
+logfile = /var/opt/SUNWsamfs/logs/archiver.log
+#
+#
+#       File System Directives
+#
+fs = samfs1
+        1 4m -norelease
+        2 16m
+#
+#       VSN Directives
+#
+vsns
+samfs1.1 dk usbdisk01
+samfs1.2 dk usbdisk02
+endvsns
+</code></pre>
+<p>We define to create 2 copies of your data files on <code>/archive</code>, after 4 minutes write the first copy on <code>usbdisk1</code>, the second after 16m on <code>usbdisk02</code>. The file should stay online on the filesystem until the second copy is made.</p>
+<h3 id="check-the-configuration">check the configuration</h3>
+<pre><code># sam-fsd
+...
+# archiver -lv
+...
+</code></pre>
+<h3 id="activate-the-configuration">activate the configuration</h3>
+<pre><code># samd config
+# pkill -HUP sam-fsd
+</code></pre>
+<h2 id="a-vtl-setup">A VTL setup</h2>
+<p>For use of a SCSI Tape Library we have to configure <code>sgen</code> for use with an autochanger
+run the following:</p>
+<pre><code>update_drv -a -i '&quot;scsiclass,08&quot;' sgen
+</code></pre>
+<p>If no physical tape library is available, the Quadstor VTL is a simple alternative.</p>
+<p>https://www.quadstor.com/</p>
+<p>The VTL will connected via ISCSI. Install ISCSI client:</p>
+<pre><code>root@oi-sr:~# pkg install network/iscsi/initiator
+</code></pre>
+<p>If you have successfully configured ISCSI initiator, then you can see ISCSI devices. In this example we see a Quantum i500 VTL with two tape drives:</p>
+<pre><code>root@oi-sr:~# iscsiadm list target -S
+Target: iqn.2006-06.com.quadstor.vtl.i500.drive2
+        Alias: -
+        TPGT: 1
+        ISID: 4000002a0000
+        Connections: 1
+        LUN: 0
+             Vendor:  IBM
+             Product: ULT3580-TD8
+             OS Device Name: /dev/rmt/2n
+
+Target: iqn.2006-06.com.quadstor.vtl.i500.drive1
+        Alias: -
+        TPGT: 1
+        ISID: 4000002a0000
+        Connections: 1
+        LUN: 0
+             Vendor:  IBM
+             Product: ULT3580-TD8
+             OS Device Name: /dev/rmt/3n
+
+Target: iqn.2006-06.com.quadstor.vtl.i500.autoloader
+        Alias: -
+        TPGT: 1
+        ISID: 4000002a0000
+        Connections: 1
+        LUN: 0
+             Vendor:  QUANTUM
+             Product: Scalar i500
+             OS Device Name: /dev/scsi/changer/c1t0d0
+
+</code></pre>
+<p>Now you are ready to configure the tape library for SamFS. Add to the /etc/opt/SUNWsamfs/mcf:</p>
+<pre><code>/dev/scsi/changer/c1t0d0 50 rb i500 on i500
+/dev/rmt/1cbn   51      tp      i500     on
+/dev/rmt/2cbn   52      tp      i500     on
+</code></pre>
+<p>Unfortunately the inquiry of the virtual LTO-8 devices does not work, therefore the config has to be manually added to '/kernel/drv/st.conf'</p>
+<pre><code>tape-config-list= &quot;IBM     ULT3580-TD8&quot;, &quot;IBM     ULT3580-TD8&quot;, &quot;CFGIBMULT3580TD8&quot;;
+
+CFGIBMULT3580TD8 = 2,0x3B,0,0x1018619,4,0x5C,0x5D,0x5E,0x5E,3,60,2340,600,2940,960,960,65535;
+</code></pre>
+<h2 id="samfs-at-work">SamFS at work</h2>
+<p>If a SAM files system is mounted, the following system state is seen:</p>
+<p>Three kernel modules are loaded:</p>
+<pre><code>$ modinfo | grep SAM-QFS
+204 fffffffff8158000  e8450   6   1  samfs (SAM-QFS: Storage Archiving Mgmt)
+205 fffffffff7e787b8    9a0 312   1  samioc (SAM-QFS system call interface)
+206 fffffffff8096000   15b8 314   1  samaio (SAM-QFS pseudo AIO driver)
+</code></pre>
+<p>Two SMF's are online</p>
+<pre><code>$ svcs | grep sam
+online         Feb._07  svc:/system/sam-fsd:default
+online         Feb._07  svc:/system/samqfs-postinstall:default
+</code></pre>
+<p>In userland the services are controled by the sam-fsd</p>
+<pre><code>$ ptree `pgrep sam-fsd`
+568    /opt/SUNWsamfs/sbin/sam-fsd -D
+  617    sam-archiverd
+    737    sam-arfind samfs1
+  618    sam-stagealld
+  619    sam-stagerd
+</code></pre>
+<p>Once you have tape-library configured the library daemons will be started.</p>
+<pre><code>$ ptree `pgrep sam-fsd`
+9043   /opt/SUNWsamfs/sbin/sam-fsd -D
+  9044   sam-stagealld
+  9054   sam-archiverd
+    9057   sam-arfind samfsfc
+    9058   sam-arfind samfs1
+  9055   sam-stagerd
+  9528   sam-amld
+    9530   sam-catserverd 201326610 201326611
+    9829   sam-scannerd 201326610 201326611
+    9830   sam-robotsd 201326610 201326611
+      9854   sam-genericd 201326610 201326611 50
+      9855   sam-genericd 201326610 201326611 60
+      9872   sam-stkd 201326610 201326611 70
+        9885 /opt/SUNWsamfs/sbin/ssi_so 9885 50025 23
+        9895 sam-stk_helper 201326610 70
+    9831   sam-rpcd 201326610 201326611
+</code></pre>
+<p>In this example two SAM file systems 'samfsfc' and 'samfs1' are mounted and two libraries configured, one of them via ACSLS. The RPC service is started for remote controlling the SamFS.</p>
+<h2 id="samfs-usage">SamFS usage</h2>
+<p>A SamFS filesystem can never be become full as long as the archive storage is not full. Because the SamFS is a hierachical filesystem it can release data blocks of files which not needed in the moment. On SamFS such file is called 'offline'.</p>
+<p>If an attempt is made to open a file which is offline the stager will copy the data blocks back from archive storage.</p>
+<h3 id="file-versioning">File versioning</h3>
+<p>If you change a file the archive service will automatically create new archive copies.</p>
+<p>It is recommended to save the metadata of the filesystem (inodes) for situations where you have to recover the SamFS filesystem.</p>
+<p>With assistance of such metadata dumps you are able to recover older versions of the files also.</p>
+<h2 id="samfs-administration">SamFS administration</h2>
+<p>Too much CLI for you? There is a more comfortable terminal tool available: <code>/opt/SUNWsamfs/sbin/samu</code>.
+<img alt="samu" src="../../images/samqfs/samu.png" /></p>
+<p>These are some of common CLI tools for filesystems. However in SamFS the prefix 's' is added.</p>
+<table>
+<thead>
+<tr>
+<th>Unix command</th>
+<th>SamFS command</th>
+<th>notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ls</td>
+<td>sls</td>
+<td>most commonly user with option <code>-D</code></td>
+</tr>
+<tr>
+<td>find</td>
+<td>sfind</td>
+<td>extended to manage finding archive copies</td>
+</tr>
+<tr>
+<td>du</td>
+<td>sdu</td>
+<td>shows real filesystem usage</td>
+</tr>
+<tr>
+<td>tar</td>
+<td>star</td>
+<td>handles SamFS archives</td>
+</tr>
+</tbody>
+</table>
+<p>Detailed explanation of all commands as well as configuration examples can be found in the manual pages.</p>
+<h1 id="external-documentation-references">External documentation references</h1>
+<p>An overview on Wikipedia</p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/QFS">SAM-QFS</a></li>
+</ul>
+<p>Product documentation from wikis.[sun|oracle].com</p>
+<ul>
+<li><a href="http://web.archive.org/web/20150515215725/https://wikis.oracle.com/display/SAMQFS/Sun+SAM-QFS+5.2">Sun SAM-QFS</a></li>
+</ul>
+            </article>
+        </main>
+    
+
+    <footer class="custom-footer">
+        <p class="font-black text-xs tracking-widest opacity-40 uppercase mb-8" style="color:var(--text-main)">OpenIndiana Project</p>
+        <div class="flex flex-wrap justify-center gap-12">
+            <a href="https://www.openindiana.org/" class="text-sm font-bold no-underline hover:underline" style="color:var(--oi-secondary)">Website</a>
+            <a href="https://github.com/openindiana" class="text-sm font-bold no-underline hover:underline" style="color:var(--oi-secondary)">GitHub</a>
+        </div>
+    </footer>
 
     <script>
-        // Dark mode toggle
-        const darkModeToggle = document.getElementById('darkModeToggle');
-        const body = document.body;
+        (function() {
+            const toggle = document.getElementById('master-theme-toggle');
+            const html = document.documentElement;
 
-        darkModeToggle.addEventListener('click', () => {
-            body.classList.toggle('dark-mode');
-            const isDarkMode = body.classList.contains('dark-mode');
-            localStorage.setItem('darkMode', isDarkMode);
-            darkModeToggle.textContent = isDarkMode ? '☀️' : '🌙';
-        });
+            const applyTheme = (theme) => {
+                if (theme === 'dark') {
+                    html.setAttribute('data-theme', 'dark');
+                    toggle.textContent = 'LIGHT MODE';
+                } else {
+                    html.removeAttribute('data-theme');
+                    toggle.textContent = 'DARK MODE';
+                }
+                localStorage.setItem('oi-docs-theme', theme);
+            };
 
-        // Load dark mode state from localStorage
-        if (localStorage.getItem('darkMode') === 'true') {
-            body.classList.add('dark-mode');
-            darkModeToggle.textContent = '☀️';
-        } else {
-            darkModeToggle.textContent = '🌙';
-        }
+            applyTheme(localStorage.getItem('oi-docs-theme') || 'light');
+
+            toggle.addEventListener('click', () => {
+                const current = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+                applyTheme(current);
+            });
+
+            setInterval(() => {
+                const results = document.getElementById('mkdocs-search-results');
+                if (results) {
+                    const descriptions = results.querySelectorAll('p');
+                    descriptions.forEach(d => d.style.display = 'none');
+                }
+            }, 150);
+        })();
     </script>
 
             </div>

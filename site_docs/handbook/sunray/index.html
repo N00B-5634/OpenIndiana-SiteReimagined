@@ -17,181 +17,256 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
         <script>hljs.highlightAll();</script>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono&display=swap" rel="stylesheet">
+
     <style>
+        /* ============================================================
+           FAIL-SAFE 1: NUCLEAR FOOTER REMOVAL
+           ============================================================ */
+        .md-footer,
+        .md-copyright,
+        .md-footer-meta,
+        footer:not(.custom-footer),
+        [role="contentinfo"],
+        .md-typeset hr,
+        .md-sidebar--secondary {
+            display: none !important;
+            visibility: hidden !important;
+            opacity: 0 !important;
+            height: 0 !important;
+            margin-top: 1000vh !important;
+            pointer-events: none !important;
+        }
+
+        /* ============================================================
+           GLOBAL DESIGN SYSTEM (HIGH CONTRAST EDITION)
+           ============================================================ */
+        :root {
+            --oi-primary: #8b5cf6;
+            --oi-secondary: #3b82f6;
+            --bg-body: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --card-bg: #ffffff;
+            --card-border: #e2e8f0;
+            --nav-bg: rgba(255, 255, 255, 0.9);
+            --code-bg: #f1f5f9;
+            --code-text: #1e293b;
+        }
+
+        [data-theme="dark"] {
+            --oi-primary: #a78bfa;
+            --oi-secondary: #60a5fa;
+            --bg-body: #020617;
+            /* CRITICAL FIX: Changed from gray to pure white */
+            --text-main: #ffffff;
+            --text-muted: #e2e8f0;
+            --card-bg: #0f172a;
+            --card-border: #334155;
+            --nav-bg: rgba(2, 6, 23, 0.95);
+            /* CRITICAL FIX: Darker background for code to make white text pop */
+            --code-bg: #1e293b;
+            --code-text: #ffffff;
+        }
+
+        html { scroll-behavior: smooth; }
+
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--background-color);
-            color: var(--text-color);
+            background-color: var(--bg-body);
+            color: var(--text-main);
             margin: 0;
             padding: 0;
-            transition: all 0.3s ease;
-        }
-
-        /* Color Variables */
-        :root {
-            --background-color: #1e293b;
-            --text-color: #e2e8f0;
-            --primary-color: #8b5cf6;
-            --secondary-color: #3b82f6;
-            --accent-color: #9333ea;
-            --card-background: #2d3748;
-            --card-border: #4a5568;
-            --button-bg: #3b82f6;
-            --button-hover-bg: #2563eb;
-            --footer-background: #111827;
-        }
-
-        .dark-mode {
-            --background-color: #111827;
-            --text-color: #e2e8f0;
-            --primary-color: #a78bfa;
-            --secondary-color: #60a5fa;
-            --accent-color: #9333ea;
-            --card-background: #334155;
-            --card-border: #4b5563;
-            --button-bg: #60a5fa;
-            --button-hover-bg: #3b82f6;
-            --footer-background: #1f2937;
-        }
-
-        /* Hero Section */
-        .hero {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 4rem 2rem;
-            text-align: center;
-            border-bottom: 2px solid var(--secondary-color);
-        }
-
-        .hero h2 {
-            font-size: 2.5rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-
-        .hero p {
-            font-size: 1.25rem;
-            margin-bottom: 2rem;
-        }
-
-        /* New Search Bar (Transparent, minimal) */
-        .hero .search-bar {
-            padding: 1rem;
-            width: 60%;
-            border-radius: 9999px; /* Fully rounded corners */
-            background-color: transparent; /* Transparent background */
-            color: var(--text-color);
-            font-size: 1.1rem;
-            margin: 0 auto;
-            border: none; /* Remove border */
-            box-shadow: none; /* No box shadow */
-            outline: none; /* Remove outline */
-        }
-
-        .hero .search-bar:focus {
-            color: var(--text-color); /* Keep the color same on focus */
-            background-color: transparent; /* Keep background transparent */
-        }
-
-        .hero .search-bar::placeholder {
-            color: #6b7280; /* Placeholder color */
-        }
-
-        /* Cards Section */
-        .cards-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 2rem;
-            margin: 2rem 1rem;
-        }
-
-        .card {
-            background-color: var(--card-background);
-            border: 1px solid var(--card-border);
-            border-radius: 0.75rem;
-            padding: 2rem;
-            transition: box-shadow 0.3s ease, transform 0.3s ease;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-
-        .card:hover {
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
-            transform: translateY(-5px);
-        }
-
-        .card h3 {
-            font-size: 1.75rem;
-            font-weight: 600;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-        }
-
-        .card p {
-            font-size: 1rem;
-            color: #6b7280;
-        }
-
-        /* Footer Section */
-        .footer {
-            background-color: var(--footer-background);
-            color: var(--text-color);
-            text-align: center;
-            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
             width: 100%;
-            margin-top: 2rem;
-            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+            overflow-x: hidden;
+            transition: background-color 0.2s ease;
         }
 
-        .footer a {
-            color: var(--primary-color);
+        /* ============================================================
+           NAVIGATION
+           ============================================================ */
+        .navbar-hardened {
+            position: sticky;
+            top: 0;
+            width: 100%;
+            z-index: 9999;
+            background: var(--nav-bg);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--card-border);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-text {
+            font-weight: 800;
+            font-size: 1.5rem;
+            letter-spacing: -0.05em;
             text-decoration: none;
+            color: var(--text-main) !important;
         }
 
-        .footer a:hover {
-            text-decoration: underline;
+        /* ============================================================
+           HOME PAGE: HERO & TILES
+           ============================================================ */
+        .hero-banner {
+            background: linear-gradient(135deg, var(--oi-primary), var(--oi-secondary));
+            color: white !important;
+            padding: 8rem 1rem 10rem 1rem;
+            text-align: center;
+            width: 100%;
         }
 
-        /* Button Styles */
-        .button {
-            background-color: var(--button-bg);
-            color: white;
-            padding: 1rem 2rem;
-            font-size: 1.125rem;
-            font-weight: 600;
-            border-radius: 0.375rem;
-            text-decoration: none;
-            transition: background-color 0.3s ease;
-            display: inline-block;
-            margin: 1rem;
+        .hero-title {
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            font-weight: 800;
+            letter-spacing: -0.05em;
+            margin-bottom: 1rem;
+            color: white !important;
         }
 
-        .button:hover {
-            background-color: var(--button-hover-bg);
+        .search-boundary {
+            max-width: 650px;
+            margin: -3rem auto 0;
+            position: relative;
+            z-index: 50;
+            padding: 0 1rem;
         }
 
-        /* Responsive Design */
+        .search-engine-input {
+            width: 100%;
+            padding: 1.25rem 1.75rem;
+            border-radius: 16px;
+            background: var(--card-bg);
+            border: 2px solid var(--card-border);
+            color: var(--text-main);
+            font-size: 1.1rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            outline: none;
+        }
+
+        .search-engine-input:focus {
+            border-color: var(--oi-primary);
+        }
+
+        #mkdocs-search-results {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            margin-top: 10px;
+            color: var(--text-main);
+        }
+
+        .home-main-layout {
+            max-width: 1200px;
+            margin: 5rem auto;
+            padding: 0 1.5rem;
+            width: 100%;
+        }
+
+        .tile-grid-system {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .nav-card-tile {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            padding: 4rem 2rem;
+            border-radius: 24px;
+            text-align: center;
+            text-decoration: none !important;
+            transition: all 0.2s ease;
+        }
+
+        .nav-card-tile:hover {
+            transform: translateY(-8px);
+            border-color: var(--oi-primary);
+        }
+
+        .nav-card-tile h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--oi-primary) !important;
+        }
+
+        /* ============================================================
+           READER VIEW: HIGH CONTRAST MARKDOWN
+           ============================================================ */
+        .documentation-wrapper {
+            flex: 1;
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 5rem 1.5rem;
+        }
+
+        .markdown-engine {
+            color: var(--text-main) !important;
+        }
+
+        .markdown-engine h1 { font-size: 3rem; font-weight: 800; margin-bottom: 2rem; color: var(--oi-primary); }
+        .markdown-engine h2 { font-size: 2rem; font-weight: 700; margin-top: 3.5rem; border-bottom: 2px solid var(--card-border); padding-bottom: 0.75rem; color: var(--text-main); }
+        .markdown-engine p { font-size: 1.125rem; line-height: 1.8; margin-bottom: 1.75rem; color: var(--text-main); }
+
+        /* High-Contrast Code Blocks */
+        .markdown-engine code {
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--code-bg);
+            color: var(--code-text) !important;
+            padding: 0.2rem 0.5rem;
+            border-radius: 6px;
+            font-size: 0.95em;
+            font-weight: 500;
+        }
+
+        .markdown-engine pre {
+            background: var(--code-bg) !important;
+            padding: 1.5rem;
+            border-radius: 12px;
+            overflow-x: auto;
+            margin-bottom: 2rem;
+            border: 1px solid var(--card-border);
+        }
+
+        .markdown-engine pre code {
+            background: transparent !important;
+            padding: 0;
+            color: var(--code-text) !important;
+        }
+
+        /* ============================================================
+           PINNED FOOTER
+           ============================================================ */
+        .custom-footer {
+            flex-shrink: 0;
+            width: 100%;
+            background: var(--bg-body);
+            border-top: 1px solid var(--card-border);
+            padding: 5rem 1.5rem;
+            margin-top: auto;
+            text-align: center;
+        }
+
+        .theme-btn {
+            cursor: pointer;
+            background: var(--card-bg);
+            color: var(--text-main);
+            border: 2px solid var(--card-border);
+            padding: 0.5rem 1rem;
+            border-radius: 12px;
+            font-weight: 800;
+            font-size: 0.75rem;
+        }
+
         @media (max-width: 768px) {
-            .hero h2 {
-                font-size: 2rem;
-            }
-
-            .hero p {
-                font-size: 1.1rem;
-            }
-
-            .hero .search-bar {
-                width: 80%;
-            }
-
-            .cards-container {
-                margin: 2rem 1rem;
-            }
-
-            .card {
-                padding: 1.5rem;
-            }
+            .hero-title { font-size: 2.5rem; }
+            .tile-grid-system { grid-template-columns: 1fr; }
         }
     </style>
 
@@ -540,58 +615,292 @@
 
         <div class="container">
             <div class="row">
-    <!-- Hero Section -->
-    <div class="hero">
-        <h2>Search the Documentation</h2>
-        <p>Quickly find what you're looking for by searching through our extensive documentation.</p>
-        <input type="text" id="mkdocs-search-input" class="search-bar" placeholder="Search the documentation" />
-    </div>
+    <nav class="navbar-hardened">
+        <a href="../.." class="logo-text">
+            OI <span style="color:var(--oi-primary)">DOCS</span>
+        </a>
+        <button id="master-theme-toggle" class="theme-btn">
+            DARK MODE
+        </button>
+    </nav>
 
-    <!-- Featured Docs Section -->
-    <div class="cards-container">
-        <div class="card">
-            <h3>Getting Started</h3>
-            <p>Learn how to set up and get started with OpenIndiana from scratch.</p>
-        </div>
-        <div class="card">
-            <h3>System Administration</h3>
-            <p>Explore system administration tasks for managing OpenIndiana servers.</p>
-        </div>
-        <div class="card">
-            <h3>Networking</h3>
-            <p>Understand networking configurations and management in OpenIndiana.</p>
-        </div>
-        <div class="card">
-            <h3>Advanced Features</h3>
-            <p>Dive deep into the advanced features and capabilities of OpenIndiana.</p>
-        </div>
-    </div>
+    
+        <main class="documentation-wrapper">
+            <article class="markdown-engine">
+                <!--
 
-    <!-- Footer Section -->
-    <div class="footer">
-        <p>© 2026 OpenIndiana Maintainers</p>
-        <p><a href="https://www.openindiana.org/">Visit the official site</a></p>
-    </div>
+The contents of this Documentation are subject to the Public Documentation License Version 1.01
+ (the "License"); you may only use this Documentation if you comply with the terms of this License.
+A copy of the License is available at http://illumos.org/license/PDL.
+
+
+The Original Documentation is _________________.
+
+The Initial Writer of the Original Documentation is Carsten Grzemba Copyright (C) 2020.
+All Rights Reserved. (Initial Writer contact(s): cgrzemba@opencsw.org).
+
+Contributor(s): ______________________________________.
+
+Portions created by ______ are Copyright (C)_________[Insert year(s)].
+All Rights Reserved. (Contributor contact(s):________________[Insert hyperlink/alias]).
+
+-->
+
+<p><img src = "../../Openindiana.png"></p>
+<h1 id="hipster-handbook-sun-ray-software">Hipster Handbook - Sun Ray Software</h1>
+<p>Some notes for installation of Sun Ray Software on OpenIndiana Hipster. Sun Ray Software is used to drive desktop sessions on SunRay Thin Clients (desktop unit: DTU).</p>
+<p><i class="fa fa-info-circle fa-lg" aria-hidden="true"></i> <strong>NOTE:</strong></p>
+<div class="well">
+This configuration is not supported by OI nor by Oracle.
+</div>
+<p><i class="fa fa-info-circle fa-lg" aria-hidden="true"></i> <strong>NOTE:</strong></p>
+<div class="well">
+Since GNOME is replaced by Mate in Hipster, installation is a little bit more difficult. For Sun Ray it is still necessary to use GNOME GDM and some other GNOME applications. But it is possible to use Mate desktop for user session with its applications like pluma or atril.
+
+</div>
+
+<h2 id="install-prerequisites">Install Prerequisites</h2>
+<p>If you have installed new Hipster, it is necessary to install GNOME packages for GDM and its greeter-session. For user session 'Mate Session' will be used, it is no longer necessary to install other packages needed by Gnome Session (only Gnome packages which Mate session still uses).</p>
+<p>Install packages from publisher openindiana.org which is nessesary to run SunRay Software. This will do the package sunray-essential for you.</p>
+<pre><code># pkg install sunray-essential
+</code></pre>
+<p>This will install all necessary packages for using GDM and Sun Ray Software tools on OI Hipster.</p>
+<h2 id="install-sun-ray-server-software">Install Sun Ray Server Software</h2>
+<p>Sun Ray Software still can be downloaded at http://edelivery.oracle.com (registration required). Download the Software for Solaris x86-64</p>
+<p>Extract the archives.</p>
+<p>Install IPS packages of the Sun Ray Software from the local repository</p>
+<pre><code class="language-shell"># pkg set-publisher -g &lt;extractdirectory&gt;/srs_5.4.5.0-Solaris_11plus.i386/IPS.i386/ sunray
+# pkg install SUNWut-srss SUNWut-srwc
+</code></pre>
+<p>Due to package dependencies following packages will be installed:</p>
+<pre><code>SUNWut-srss (sunray)                              5.4.5.0.38-0.0             i--
+SUNWuta (sunray)                                  4.5.4.0.38-0.0             i--
+SUNWutdso (sunray)                                3.5.0.0.2-0.0              i--
+SUNWutdsr (sunray)                                3.5.0.0.2-0.0              i--
+SUNWutesa (sunray)                                4.5.0.0.44-0.0             i--
+SUNWutgsm (sunray)                                4.5.0.0.44-0.0             i--
+SUNWuti (sunray)                                  4.5.5.0.38-0.0             i--
+SUNWutid (sunray)                                 4.5.5.0.38-0.0             i--
+SUNWutk (sunray)                                  4.5.0.0.44-0.0             i--
+SUNWutm (sunray)                                  4.5.4.0.38-0.0             i--
+SUNWuto (sunray)                                  4.5.4.0.38-0.0             i--
+SUNWutps (sunray)                                 4.5.0.0.44-0.0             i--
+SUNWutr (sunray)                                  4.5.0.0.44-0.0             i--
+SUNWutref (sunray)                                4.5.0.0.44-0.0             i--
+SUNWutscr (sunray)                                4.5.4.0.38-0.0             i--
+SUNWutsrs (sunray)                                4.5.5.0.38-0.0             i--
+SUNWutstk (sunray)                                4.5.0.0.44-0.0             i--
+SUNWutsto (sunray)                                4.5.0.0.44-0.0             i--
+SUNWutstr (sunray)                                4.5.0.0.44-0.0             i--
+SUNWutsvt (sunray)                                1.1.0.0.3-0.0              i--
+SUNWuttsc (sunray)                                2.6.4.0.11-0.0             i--
+SUNWuttscd (sunray)                               2.6.4.0.11-0.0             i--
+SUNWuttscr (sunray)                               2.6.4.0.11-0.0             i--
+SUNWutu (sunray)                                  4.5.0.0.44-0.0             i--
+SUNWutwa (sunray)                                 4.5.2.0.5-0.0              i--
+SUNWutwar (sunray)                                4.5.0.0.44-0.0             i--
+SUNWutwh (sunray)                                 4.5.0.0.44-0.0             i--
+SUNWutwl (sunray)                                 4.5.0.0.44-0.0             i--
+</code></pre>
+<p>To enable Sun Ray Software utilities to use ISC DHCP server, we take patches located in path <code>/opt/SUNWut/utils</code> from the package sunray/oi-adaptions.</p>
+<pre><code class="language-shell"># pkg install sunray/oi-adaptions
+# /opt/SUNWut/utils/apply_patches
+</code></pre>
+<p>For using the ISC-DHCP server instead of the Sun DHCP Server:</p>
+<pre><code class="language-shell"># rm /etc/opt/SUNWut/dhcp
+# ln -s /opt/SUNWut/lib/dhcp/isc /etc/opt/SUNWut/dhcp
+</code></pre>
+<h3 id="note-on-java-runtime-environment">Note on Java Runtime Environment</h3>
+<p>The Sun Ray Software needs the Sun/Oracle JRE 1.7 (32 bit) which can be downloaded from the Oracle Website and unpacked in a location where you like, eg. <code>/opt/SUNWut/jre</code>. The link <code>/etc/opt/SUNWut/jre</code> should set to the JRE install path.</p>
+<pre><code># rm /etc/opt/SUNWut/jre
+# ln -s /opt/SUNWut/jre/jre1.7.0_80 /etc/opt/SUNWut/jre
+</code></pre>
+<h2 id="basic-configuration">Basic Configuration</h2>
+<p>You can run <code>utconfig</code> and <code>utadm</code> the way described in the <a href="https://docs.oracle.com/cd/E35310_01/index.html">Sun Ray Software</a> document.</p>
+<p>run utconfig and choose the defaults</p>
+<pre><code># utconfig
+
+</code></pre>
+<p>For configuring SunRay network on a dedicated network interface, e.g bge1, use the following command. This will configure the ISC DHCP server.</p>
+<pre><code># utadm -a bge1
+</code></pre>
+<p><i class="fa fa-info-circle fa-lg" aria-hidden="true"></i> <strong>NOTE:</strong></p>
+<div class="well">
+If the script seems to hang, press `Enter` or `Y/N`. Some times the YesNo output is not shown.
+<br>
+If setup of /etc/inet/dhcpd4.conf failed, unconfigure with 'utadm -d bge1' and remove files in '/etc/opt/SUNWut/net/dhcp/' and the custom line in /etc/network. Then retry the configuration with `utadm -a` 
+</div>
+
+<p>If you have to use a shared network, use the command</p>
+<pre><code># utadm -A &lt;sever IP address&gt;
+</code></pre>
+<p>run utpolicy</p>
+<pre><code># utpolicy -a -z both -m -D
+</code></pre>
+<p>Now the Sun Ray server installation is ready to serve your Sun Ray DTU. For more configuration options you can use the Oracle/Sun documentation.</p>
+<h3 id="gdm">GDM</h3>
+<p>the GDM service has to be enabled. lightdm should not run however.</p>
+<pre><code># svcadm enable graphical-login/gdm
+# svcadm disable graphical-login/lightdm
+</code></pre>
+<h3 id="gdm-greeter">GDM greeter</h3>
+<p>On greeter login choose session <code>Mate</code>, <code>Gnome</code> is not available for user session on OpenIndiana.</p>
+<h3 id="some-panel-applets-crash">Some Panel applets crash</h3>
+<p>If some panel applets crash at session startup, e.g. clock, trash, timeslider, change panel property - background and select 'no'. The default is 'backgroundimage'.</p>
+<h3 id="login-screen-gdm-greeter-wont-reapear-after-logout">Login Screen (gdm-greeter) won't reapear after logout</h3>
+<p>After logout the gdm-login won't reappear. That's why the script in <code>/opt/SUNWut/lib/gdm/revivesrsession.py</code> is installed, and is called by the <code>/etc/opt/SUNWut/gdm/SunRayPostSession/helpers/revivesession</code> helper script.</p>
+<h3 id="multihead-group-configuration">Multihead group configuration</h3>
+<p>Up 16 SunRay Thin Clients can be grouped to a multihead setup, where multiple monitors will be used for a single user session. For two clients this can be done with:</p>
+<pre><code>$ /opt/SUNWut/bin/utxconfig -m on -R 2x1 -S 0,1
+</code></pre>
+<p>Since GTK 3.10 multi screen setup is not supported anymore. The command line option <code>--display</code> whith a dot value greate 0 will not work any more (e.g.: earlier the command <code>firefox --display=:11.1</code> has started firefox on the second display).</p>
+<p>metacity or marco will manage only the default screen. For multihead setup it is now necessary to enable 'xinerama' mode, so that the Window manager expands the screen across all DTU's in a group.</p>
+<pre><code>$ opt/SUNWut/bin/utxconfig -x on
+</code></pre>
+<p>Refer to the original documentation from Oracle for configuration in general: <a href="https://docs.oracle.com/cd/E35310_01/E35309/html/MultipleMonitor.html">Multiple Monitor Configurations</a></p>
+<h3 id="configure-isc-dhcp-server-manually">Configure ISC DHCP server manually</h3>
+<p>Sun Ray Server on Hipster has to use DHCP scripts for <code>isc-dhcp-server</code> like on Linux. Instead of using <code>utadm</code> for configuration, it is possible to configure DHCP manually. Here an example:</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sunray Server Hostname:</td>
+<td>oi-sr-bge1</td>
+</tr>
+<tr>
+<td>Sunray Server IF name:</td>
+<td>bge1</td>
+</tr>
+<tr>
+<td>SunRay Server LAN domain name:</td>
+<td>sunray.lan</td>
+</tr>
+<tr>
+<td>Sunray Server IP address:</td>
+<td>192.168.128.1</td>
+</tr>
+<tr>
+<td>DNS servers:</td>
+<td>192.168.128.6, 192.168.128.1</td>
+</tr>
+</tbody>
+</table>
+<p><code>/etc/inet/dhcpd4.conf</code> contains:</p>
+<pre><code>ddns-update-style none;
+
+# option definitions common to all supported networks...
+option domain-name &quot;sunray.lan&quot;;
+option domain-name-servers 192.168.128.6, 192.168.128.1;
+option subnet-mask 255.255.255.0;
+option broadcast-address 192.168.128.255;
+option routers 192.168.128.2;
+option space SunRay;
+option SunRay.Intf code 33 = text;
+option SunRay.Intf &quot;bge1&quot;;
+option SunRay.AuthSrvr code 21 = ip-address;
+option SunRay.AuthSrvr 192.168.128.1;
+option SunRay.AltAuth code 35 = array of ip-address;
+option SunRay.AltAuth 192.168.128.2;
+option SunRay.FWSrvr code 31 = ip-address;
+option SunRay.FWSrvr 192.168.128.2;
+option SunRay.NewTVer code 23 = text;
+option SunRay.NewTVer &quot;11.1.7.0_38_2016.10.27.13.09&quot;;
+option SunRay.AuthPort code 22 = integer 16;
+option SunRay.AuthPort 7009;
+option SunRay.LogHost  code 24 = ip-address;
+option SunRay.LogHost 192.168.1.2;
+option SunRay.LogKern code 25 = integer 8;
+option SunRay.LogKern 6;
+option SunRay.LogNet code 26 = integer 8;
+option SunRay.LogNet 6;
+option SunRay.LogUSB code 27 = integer 8;
+option SunRay.LogUSB 6;
+option SunRay.LogVid code 28 = integer 8;
+option SunRay.LogVid 6;
+option SunRay.LogAppl code 29 = integer 8;
+option SunRay.LogAppl 6;
+option SunRay.sunray-servers code 68 = text;
+option SunRay.sunray-servers &quot;oi-sr-bge1.sunray.lan&quot;;
+option SunRay.sunray-config-servers code 67 = text;
+option SunRay.sunray-config-servers &quot;oi-sr-bge1.sunray.lan&quot;;
+
+default-lease-time 86400;
+max-lease-time 86400;
+authoritative;
+
+class &quot;sun&quot; {
+  match if substring (option vendor-class-identifier, 0, 4) = &quot;SUNW&quot;;
+}
+
+log-facility local7;
+
+host sr1.sunray.lan {
+  hardware ethernet 00:14:4f:57:a0:c1;
+  fixed-address 192.168.128.50;
+  vendor-option-space SunRay;
+}
+
+subnet 192.168.128.0 netmask 255.255.255.0 {
+    pool { 
+        allow members of &quot;sun&quot;;
+        range 192.168.128.51 192.168.128.59;
+    }
+}
+</code></pre>
+<p>Vendor specific DHCP options are described in the <a href="https://docs.oracle.com/cd/E25749_01/E25745/html/Alternate-Client-Initialization-Reqs-Using-DHCP.html#Alternate-Vendor-Specific-DHCP-Options">Sun Ray Software: Alternate Client Initialization Reqs Using DHCP</a> document.</p>
+<h2 id="rdp-client">RDP client</h2>
+<p>Sun Ray Server Sofware delivers a own RDP client <code>uttsc</code>.  The client <code>uttsc</code> is not compatible with the current authentication protocols of MS Windows versions, so we do not want to support it on OpenIndiana in the future.</p>
+<p>A good replacement is <code>xfreerdp</code>. You can install this</p>
+<pre><code class="language-shell"># pkg install desktop/remote-desktop/freerdp
+</code></pre>
+            </article>
+        </main>
+    
+
+    <footer class="custom-footer">
+        <p class="font-black text-xs tracking-widest opacity-40 uppercase mb-8" style="color:var(--text-main)">OpenIndiana Project</p>
+        <div class="flex flex-wrap justify-center gap-12">
+            <a href="https://www.openindiana.org/" class="text-sm font-bold no-underline hover:underline" style="color:var(--oi-secondary)">Website</a>
+            <a href="https://github.com/openindiana" class="text-sm font-bold no-underline hover:underline" style="color:var(--oi-secondary)">GitHub</a>
+        </div>
+    </footer>
 
     <script>
-        // Dark mode toggle
-        const darkModeToggle = document.getElementById('darkModeToggle');
-        const body = document.body;
+        (function() {
+            const toggle = document.getElementById('master-theme-toggle');
+            const html = document.documentElement;
 
-        darkModeToggle.addEventListener('click', () => {
-            body.classList.toggle('dark-mode');
-            const isDarkMode = body.classList.contains('dark-mode');
-            localStorage.setItem('darkMode', isDarkMode);
-            darkModeToggle.textContent = isDarkMode ? '☀️' : '🌙';
-        });
+            const applyTheme = (theme) => {
+                if (theme === 'dark') {
+                    html.setAttribute('data-theme', 'dark');
+                    toggle.textContent = 'LIGHT MODE';
+                } else {
+                    html.removeAttribute('data-theme');
+                    toggle.textContent = 'DARK MODE';
+                }
+                localStorage.setItem('oi-docs-theme', theme);
+            };
 
-        // Load dark mode state from localStorage
-        if (localStorage.getItem('darkMode') === 'true') {
-            body.classList.add('dark-mode');
-            darkModeToggle.textContent = '☀️';
-        } else {
-            darkModeToggle.textContent = '🌙';
-        }
+            applyTheme(localStorage.getItem('oi-docs-theme') || 'light');
+
+            toggle.addEventListener('click', () => {
+                const current = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+                applyTheme(current);
+            });
+
+            setInterval(() => {
+                const results = document.getElementById('mkdocs-search-results');
+                if (results) {
+                    const descriptions = results.querySelectorAll('p');
+                    descriptions.forEach(d => d.style.display = 'none');
+                }
+            }, 150);
+        })();
     </script>
 
             </div>

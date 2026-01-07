@@ -17,181 +17,256 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
         <script>hljs.highlightAll();</script>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono&display=swap" rel="stylesheet">
+
     <style>
+        /* ============================================================
+           FAIL-SAFE 1: NUCLEAR FOOTER REMOVAL
+           ============================================================ */
+        .md-footer,
+        .md-copyright,
+        .md-footer-meta,
+        footer:not(.custom-footer),
+        [role="contentinfo"],
+        .md-typeset hr,
+        .md-sidebar--secondary {
+            display: none !important;
+            visibility: hidden !important;
+            opacity: 0 !important;
+            height: 0 !important;
+            margin-top: 1000vh !important;
+            pointer-events: none !important;
+        }
+
+        /* ============================================================
+           GLOBAL DESIGN SYSTEM (HIGH CONTRAST EDITION)
+           ============================================================ */
+        :root {
+            --oi-primary: #8b5cf6;
+            --oi-secondary: #3b82f6;
+            --bg-body: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --card-bg: #ffffff;
+            --card-border: #e2e8f0;
+            --nav-bg: rgba(255, 255, 255, 0.9);
+            --code-bg: #f1f5f9;
+            --code-text: #1e293b;
+        }
+
+        [data-theme="dark"] {
+            --oi-primary: #a78bfa;
+            --oi-secondary: #60a5fa;
+            --bg-body: #020617;
+            /* CRITICAL FIX: Changed from gray to pure white */
+            --text-main: #ffffff;
+            --text-muted: #e2e8f0;
+            --card-bg: #0f172a;
+            --card-border: #334155;
+            --nav-bg: rgba(2, 6, 23, 0.95);
+            /* CRITICAL FIX: Darker background for code to make white text pop */
+            --code-bg: #1e293b;
+            --code-text: #ffffff;
+        }
+
+        html { scroll-behavior: smooth; }
+
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--background-color);
-            color: var(--text-color);
+            background-color: var(--bg-body);
+            color: var(--text-main);
             margin: 0;
             padding: 0;
-            transition: all 0.3s ease;
-        }
-
-        /* Color Variables */
-        :root {
-            --background-color: #1e293b;
-            --text-color: #e2e8f0;
-            --primary-color: #8b5cf6;
-            --secondary-color: #3b82f6;
-            --accent-color: #9333ea;
-            --card-background: #2d3748;
-            --card-border: #4a5568;
-            --button-bg: #3b82f6;
-            --button-hover-bg: #2563eb;
-            --footer-background: #111827;
-        }
-
-        .dark-mode {
-            --background-color: #111827;
-            --text-color: #e2e8f0;
-            --primary-color: #a78bfa;
-            --secondary-color: #60a5fa;
-            --accent-color: #9333ea;
-            --card-background: #334155;
-            --card-border: #4b5563;
-            --button-bg: #60a5fa;
-            --button-hover-bg: #3b82f6;
-            --footer-background: #1f2937;
-        }
-
-        /* Hero Section */
-        .hero {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 4rem 2rem;
-            text-align: center;
-            border-bottom: 2px solid var(--secondary-color);
-        }
-
-        .hero h2 {
-            font-size: 2.5rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-
-        .hero p {
-            font-size: 1.25rem;
-            margin-bottom: 2rem;
-        }
-
-        /* New Search Bar (Transparent, minimal) */
-        .hero .search-bar {
-            padding: 1rem;
-            width: 60%;
-            border-radius: 9999px; /* Fully rounded corners */
-            background-color: transparent; /* Transparent background */
-            color: var(--text-color);
-            font-size: 1.1rem;
-            margin: 0 auto;
-            border: none; /* Remove border */
-            box-shadow: none; /* No box shadow */
-            outline: none; /* Remove outline */
-        }
-
-        .hero .search-bar:focus {
-            color: var(--text-color); /* Keep the color same on focus */
-            background-color: transparent; /* Keep background transparent */
-        }
-
-        .hero .search-bar::placeholder {
-            color: #6b7280; /* Placeholder color */
-        }
-
-        /* Cards Section */
-        .cards-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 2rem;
-            margin: 2rem 1rem;
-        }
-
-        .card {
-            background-color: var(--card-background);
-            border: 1px solid var(--card-border);
-            border-radius: 0.75rem;
-            padding: 2rem;
-            transition: box-shadow 0.3s ease, transform 0.3s ease;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-
-        .card:hover {
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
-            transform: translateY(-5px);
-        }
-
-        .card h3 {
-            font-size: 1.75rem;
-            font-weight: 600;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-        }
-
-        .card p {
-            font-size: 1rem;
-            color: #6b7280;
-        }
-
-        /* Footer Section */
-        .footer {
-            background-color: var(--footer-background);
-            color: var(--text-color);
-            text-align: center;
-            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
             width: 100%;
-            margin-top: 2rem;
-            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+            overflow-x: hidden;
+            transition: background-color 0.2s ease;
         }
 
-        .footer a {
-            color: var(--primary-color);
+        /* ============================================================
+           NAVIGATION
+           ============================================================ */
+        .navbar-hardened {
+            position: sticky;
+            top: 0;
+            width: 100%;
+            z-index: 9999;
+            background: var(--nav-bg);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--card-border);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-text {
+            font-weight: 800;
+            font-size: 1.5rem;
+            letter-spacing: -0.05em;
             text-decoration: none;
+            color: var(--text-main) !important;
         }
 
-        .footer a:hover {
-            text-decoration: underline;
+        /* ============================================================
+           HOME PAGE: HERO & TILES
+           ============================================================ */
+        .hero-banner {
+            background: linear-gradient(135deg, var(--oi-primary), var(--oi-secondary));
+            color: white !important;
+            padding: 8rem 1rem 10rem 1rem;
+            text-align: center;
+            width: 100%;
         }
 
-        /* Button Styles */
-        .button {
-            background-color: var(--button-bg);
-            color: white;
-            padding: 1rem 2rem;
-            font-size: 1.125rem;
-            font-weight: 600;
-            border-radius: 0.375rem;
-            text-decoration: none;
-            transition: background-color 0.3s ease;
-            display: inline-block;
-            margin: 1rem;
+        .hero-title {
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            font-weight: 800;
+            letter-spacing: -0.05em;
+            margin-bottom: 1rem;
+            color: white !important;
         }
 
-        .button:hover {
-            background-color: var(--button-hover-bg);
+        .search-boundary {
+            max-width: 650px;
+            margin: -3rem auto 0;
+            position: relative;
+            z-index: 50;
+            padding: 0 1rem;
         }
 
-        /* Responsive Design */
+        .search-engine-input {
+            width: 100%;
+            padding: 1.25rem 1.75rem;
+            border-radius: 16px;
+            background: var(--card-bg);
+            border: 2px solid var(--card-border);
+            color: var(--text-main);
+            font-size: 1.1rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            outline: none;
+        }
+
+        .search-engine-input:focus {
+            border-color: var(--oi-primary);
+        }
+
+        #mkdocs-search-results {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            margin-top: 10px;
+            color: var(--text-main);
+        }
+
+        .home-main-layout {
+            max-width: 1200px;
+            margin: 5rem auto;
+            padding: 0 1.5rem;
+            width: 100%;
+        }
+
+        .tile-grid-system {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .nav-card-tile {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            padding: 4rem 2rem;
+            border-radius: 24px;
+            text-align: center;
+            text-decoration: none !important;
+            transition: all 0.2s ease;
+        }
+
+        .nav-card-tile:hover {
+            transform: translateY(-8px);
+            border-color: var(--oi-primary);
+        }
+
+        .nav-card-tile h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--oi-primary) !important;
+        }
+
+        /* ============================================================
+           READER VIEW: HIGH CONTRAST MARKDOWN
+           ============================================================ */
+        .documentation-wrapper {
+            flex: 1;
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 5rem 1.5rem;
+        }
+
+        .markdown-engine {
+            color: var(--text-main) !important;
+        }
+
+        .markdown-engine h1 { font-size: 3rem; font-weight: 800; margin-bottom: 2rem; color: var(--oi-primary); }
+        .markdown-engine h2 { font-size: 2rem; font-weight: 700; margin-top: 3.5rem; border-bottom: 2px solid var(--card-border); padding-bottom: 0.75rem; color: var(--text-main); }
+        .markdown-engine p { font-size: 1.125rem; line-height: 1.8; margin-bottom: 1.75rem; color: var(--text-main); }
+
+        /* High-Contrast Code Blocks */
+        .markdown-engine code {
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--code-bg);
+            color: var(--code-text) !important;
+            padding: 0.2rem 0.5rem;
+            border-radius: 6px;
+            font-size: 0.95em;
+            font-weight: 500;
+        }
+
+        .markdown-engine pre {
+            background: var(--code-bg) !important;
+            padding: 1.5rem;
+            border-radius: 12px;
+            overflow-x: auto;
+            margin-bottom: 2rem;
+            border: 1px solid var(--card-border);
+        }
+
+        .markdown-engine pre code {
+            background: transparent !important;
+            padding: 0;
+            color: var(--code-text) !important;
+        }
+
+        /* ============================================================
+           PINNED FOOTER
+           ============================================================ */
+        .custom-footer {
+            flex-shrink: 0;
+            width: 100%;
+            background: var(--bg-body);
+            border-top: 1px solid var(--card-border);
+            padding: 5rem 1.5rem;
+            margin-top: auto;
+            text-align: center;
+        }
+
+        .theme-btn {
+            cursor: pointer;
+            background: var(--card-bg);
+            color: var(--text-main);
+            border: 2px solid var(--card-border);
+            padding: 0.5rem 1rem;
+            border-radius: 12px;
+            font-weight: 800;
+            font-size: 0.75rem;
+        }
+
         @media (max-width: 768px) {
-            .hero h2 {
-                font-size: 2rem;
-            }
-
-            .hero p {
-                font-size: 1.1rem;
-            }
-
-            .hero .search-bar {
-                width: 80%;
-            }
-
-            .cards-container {
-                margin: 2rem 1rem;
-            }
-
-            .card {
-                padding: 1.5rem;
-            }
+            .hero-title { font-size: 2.5rem; }
+            .tile-grid-system { grid-template-columns: 1fr; }
         }
     </style>
 
@@ -540,58 +615,317 @@
 
         <div class="container">
             <div class="row">
-    <!-- Hero Section -->
-    <div class="hero">
-        <h2>Search the Documentation</h2>
-        <p>Quickly find what you're looking for by searching through our extensive documentation.</p>
-        <input type="text" id="mkdocs-search-input" class="search-bar" placeholder="Search the documentation" />
-    </div>
+    <nav class="navbar-hardened">
+        <a href="../.." class="logo-text">
+            OI <span style="color:var(--oi-primary)">DOCS</span>
+        </a>
+        <button id="master-theme-toggle" class="theme-btn">
+            DARK MODE
+        </button>
+    </nav>
 
-    <!-- Featured Docs Section -->
-    <div class="cards-container">
-        <div class="card">
-            <h3>Getting Started</h3>
-            <p>Learn how to set up and get started with OpenIndiana from scratch.</p>
-        </div>
-        <div class="card">
-            <h3>System Administration</h3>
-            <p>Explore system administration tasks for managing OpenIndiana servers.</p>
-        </div>
-        <div class="card">
-            <h3>Networking</h3>
-            <p>Understand networking configurations and management in OpenIndiana.</p>
-        </div>
-        <div class="card">
-            <h3>Advanced Features</h3>
-            <p>Dive deep into the advanced features and capabilities of OpenIndiana.</p>
-        </div>
-    </div>
+    
+        <main class="documentation-wrapper">
+            <article class="markdown-engine">
+                <!--
 
-    <!-- Footer Section -->
-    <div class="footer">
-        <p>© 2026 OpenIndiana Maintainers</p>
-        <p><a href="https://www.openindiana.org/">Visit the official site</a></p>
-    </div>
+The contents of this Documentation are subject to the Public Documentation License Version 1.01
+(the "License"); you may only use this Documentation if you comply with the terms of this License.
+A copy of the License is available at http://illumos.org/license/PDL.
+
+The Original Documentation is _________________.
+
+The Initial Writer of the Original Documentation is Alexander Pyhalov Copyright (C) 2018.
+All Rights Reserved. (Initial Writer contact(s):________________[Insert hyperlink/alias]).
+
+Contributor(s):   Andreas Wacknitz, Michal Nowak, Tim Mooney
+
+Portions created by Andreas Wacknitz are Copyright (C) 2018.
+Portions created by Michal Nowak are Copyright (C) 2018.
+Portions created by Tim Mooney are Copyright (C) 2018.
+
+Portions created by ______ are Copyright (C)_________[Insert year(s)].
+All Rights Reserved. (Contributor contact(s):________________[Insert hyperlink/alias]).
+
+-->
+
+<h1 id="201810-release-notes">2018.10 Release notes</h1>
+<p>We are glad to announce that Hipster 2018.10 snapshot is available.</p>
+<table>
+<thead>
+<tr>
+<th>Image</th>
+<th>Checksum</th>
+<th>GPG signature</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="http://dlc.openindiana.org/isos/hipster/20181023/OI-hipster-gui-20181023.iso">OI-hipster-gui-20181023.iso</a></td>
+<td>[<a href="http://dlc.openindiana.org/isos/hipster/20181023/OI-hipster-gui-20181023.iso.sha256sum">SHA256</a>]</td>
+<td>[<a href="http://dlc.openindiana.org/isos/hipster/20181023/OI-hipster-gui-20181023.iso.sig">SIG</a>]</td>
+</tr>
+<tr>
+<td><a href="http://dlc.openindiana.org/isos/hipster/20181023/OI-hipster-gui-20181023.usb">OI-hipster-gui-20181023.usb</a></td>
+<td>[<a href="http://dlc.openindiana.org/isos/hipster/20181023/OI-hipster-gui-20181023.usb.sha256sum">SHA256</a>]</td>
+<td>[<a href="http://dlc.openindiana.org/isos/hipster/20181023/OI-hipster-gui-20181023.usb.sig">SIG</a>]</td>
+</tr>
+<tr>
+<td><a href="http://dlc.openindiana.org/isos/hipster/20181023/OI-hipster-text-20181023.iso">OI-hipster-text-20181023.iso</a></td>
+<td>[<a href="http://dlc.openindiana.org/isos/hipster/20181023/OI-hipster-text-20181023.iso.sha256sum">SHA256</a>]</td>
+<td>[<a href="http://dlc.openindiana.org/isos/hipster/20181023/OI-hipster-text-20181023.iso.sig">SIG</a>]</td>
+</tr>
+<tr>
+<td><a href="http://dlc.openindiana.org/isos/hipster/20181023/OI-hipster-text-20181023.usb">OI-hipster-text-20181023.usb</a></td>
+<td>[<a href="http://dlc.openindiana.org/isos/hipster/20181023/OI-hipster-text-20181023.usb.sha256sum">SHA256</a>]</td>
+<td>[<a href="http://dlc.openindiana.org/isos/hipster/20181023/OI-hipster-text-20181023.usb.sig">SIG</a>]</td>
+</tr>
+<tr>
+<td><a href="http://dlc.openindiana.org/isos/hipster/20181023/OI-hipster-minimal-20181023.iso">OI-hipster-minimal-20181023.iso</a></td>
+<td>[<a href="http://dlc.openindiana.org/isos/hipster/20181023/OI-hipster-minimal-20181023.iso.sha256sum">SHA256</a>]</td>
+<td>[<a href="http://dlc.openindiana.org/isos/hipster/20181023/OI-hipster-minimal-20181023.iso.sig">SIG</a>]</td>
+</tr>
+<tr>
+<td><a href="http://dlc.openindiana.org/isos/hipster/20181023/OI-hipster-minimal-20181023.usb">OI-hipster-minimal-20181023.usb</a></td>
+<td>[<a href="http://dlc.openindiana.org/isos/hipster/20181023/OI-hipster-minimal-20181023.usb.sha256sum">SHA256</a>]</td>
+<td>[<a href="http://dlc.openindiana.org/isos/hipster/20181023/OI-hipster-minimal-20181023.usb.sig">SIG</a>]</td>
+</tr>
+</tbody>
+</table>
+<p><a href="../../handbook/openindiana-download-mirrors/">List of mirrors</a></p>
+<h2 id="security">Security</h2>
+<p>This release is signed and verifiable by GPG. The OpenIndiana Release Engineering key has key id 0x3a021afadbe31887.</p>
+<p>The public key:</p>
+<pre><code>-----BEGIN PGP PUBLIC KEY BLOCK-----
+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
+cuYxZQalebJS
+=fC+/
+-----END PGP PUBLIC KEY BLOCK-----
+</code></pre>
+<p>How to verify:</p>
+<ul>
+<li>Download <code>&lt;ISO&gt;.sig</code> file from mirror</li>
+<li>Run: <code>gpg2 --verify &lt;ISO&gt;.sig &lt;ISO&gt;</code>. You should see the following output:</li>
+</ul>
+<pre><code>    gpg: Signature made October 23, 2018 at 03:15:31 PM UTC using RSA key ID DBE31887
+    gpg: Good signature from &quot;OpenIndiana Release Engineering&quot; [unknown]
+    Primary key fingerprint: F5E9 84E5 ADD2 9578 D45C  C1FE 3A02 1AFA DBE3 1887
+</code></pre>
+<p>Even if the output includes:</p>
+<pre><code>    gpg: WARNING: This key is not certified with a trusted signature!
+    gpg: There is no indication that the signature belongs to the owner.
+</code></pre>
+<p>The signature is still correct.</p>
+<h2 id="general-system-changes">General system changes</h2>
+<p>Work on delivering 64-bit-only applications continues: another batch of 50 components was migrated to 64-bit while most newly added software defaults to 64-bit.</p>
+<p>Note, that although ISO and USB images support booting in UEFI mode, it's still work in progress.
+VGA console is not supported when system is booted in UEFI mode and installer still misses some steps to create bootable UEFI images.</p>
+<p>Python 3.5 is now delivered and numerous Python modules were updated.
+Image Packaging System was fixed to work with updated modules.
+A lot of fixes from OmniOS CE IPS and Oracle IPS were integrated to OI IPS.</p>
+<p>Due to recent security fixes compatibilty with some Solaris applications was broken.
+Most noticeable one is VirtualBox.</p>
+<p>GCC 8 was added alongside GCC 6 and GCC 7: these compiler packages include modifications for building illumos.</p>
+<h2 id="late-news-known-issues">Late news (known issues)</h2>
+<p>It was found that due to bug in vmnat new OpenSSH client behind VMware NAT fails to communicate with outside servers (connection terminates with broken pipe after authentication). Recommended workaround is to add "IPQoS throughput" to your /etc/ssh/ssh_config.</p>
+<h2 id="desktop-software-and-libraries">Desktop software and libraries</h2>
+<ul>
+<li>MATE 1.20 was integrated.</li>
+<li>Xorg 1.19.6 is still shipped as main X server; Xorg 1.20 is in testing and could not make it for the snapshot.</li>
+<li>Xorg libraries and applications are updated to latest.</li>
+<li>Most Xorg driver modules were updated to latest unless DRM limitations prevented it.</li>
+<li>compiz updated to 0.8.14 and made compatible with the MATE desktop.</li>
+<li>Freetype was updated to 2.8.1, fontconfig was updated to 2.13.1.</li>
+<li>awesome was updated to 4.2.</li>
+<li>PulseAudio was updated to 12.2.</li>
+<li>Gstreamer was updated to 1.14.4</li>
+<li>GTK+2 was updated to 2.24.32. GTK+3 was updated to 3.24.1, Nimbus theme was rebased on to top of the B00merang Project theme and updated to work with new GTK+.</li>
+<li>glib2 was updated to 2.57.1.</li>
+<li>LightDM was updated to 1.26. LightDM GTK Greeter was updated to 2.0.5 and uses Nimbus theme.</li>
+<li>Firefox was updated to 52.9.0 (Firefox 60 ESR is in testing but not ready for the snapshot), Thunderbird was updated to 52.9.1.</li>
+<li>Pidgin was updated to 2.13.0.</li>
+<li>XScreenSaver was updated to 5.40.</li>
+<li>NVIDIA driver was updated to 340.107.</li>
+<li>Transmission was updated to 2.94.</li>
+<li>TigerVNC was updated to 1.8.0.</li>
+<li>open-vm-tools for VMware guests were updated to 10.3.0, desktop plugin was enabled.</li>
+<li>DBus was updated to 1.12.8, illumos HAL was made compatible.</li>
+<li>terminus and hack fonts were updated, FiraCode fonts were added.</li>
+<li>VLC 2.2.8 and multimedia libraries were migrated to 64-bit; VLC 3.0.4 is still in testing.</li>
+<li>Inkscape was updated to 0.92.3.</li>
+<li>libusb-1 was updated to 1.0.22.</li>
+</ul>
+<h2 id="common-tools-and-libraries">Common tools and libraries</h2>
+<ul>
+<li>Many utilities are now 64-bit-only.</li>
+<li>zsh, bash and pdsh shells were updated. zsh and bash syntax highlighting support was enhanced.</li>
+<li>Midnight Commander was updated to 4.8.21.</li>
+<li>curl was updated to 7.61.1.</li>
+<li>GNU awk was updated to 4.2.1, GNU sed was updated to 4.5, GNU findutils were updated to 4.6.0, GNU coreutils were updated to 8.30.</li>
+<li>git was updated to 2.19.1, mercurial (hg) was updated to 4.6.1.</li>
+<li>vim was updated to 8.1.436, nano and joe editors were updated as well.</li>
+<li>Ghostspcript was updated to 9.25.</li>
+<li>htop was ported to illumos and version 2.2.0 added, top now works correctly in batch mode.</li>
+<li>less was updated to version 530.</li>
+<li>mutt was updated to 1.10.1.</li>
+</ul>
+<h2 id="development-tools-and-libraries">Development tools and libraries</h2>
+<ul>
+<li>Added new compiler: GCC 8.2.0. openMPI was updated to 3.1.2, binutils were updated to 2.31.1.</li>
+<li>cmake was updated to 3.12.3.</li>
+<li>ninja was updated to 1.8.2.</li>
+<li>nasm was updated to 2.13.03.</li>
+<li>cpuid 1.6.3 was added.</li>
+<li>hwloc was updated to ABI incompatible 2.0.1.</li>
+<li>PETSc was updated to 3.7.7, eigen3 to 3.3.5, arpack to 3.6.3.</li>
+<li>clang is now compiled 64-bit-only.</li>
+<li>Python 3.5 was added, many python modules are now shipped for Python 3.5 as well as for 2.7 and 3.4.</li>
+<li>Python 3.4 was updated to 3.4.9, Python 2.7 was updated to 2.7.15.</li>
+<li>rust 1.29.1 was added.</li>
+<li>ccl (Clozure Common Lisp) version 1.11.5 was added and is used for compilation of pgloader instead of sbcl (Steel Bank Common Lisp).</li>
+<li>sbcl threading support was disabled, as it was broken after KPTI changes.</li>
+<li>OpenJDK 8 was updated to 1.8.172.</li>
+<li>libpqxx was updated to ABI-incompatible 6.2.4 version</li>
+<li>cherrypy was updated to 17.3.0.</li>
+<li>Pango was updated to 1.42.4.</li>
+<li>PCRE was updated to 8.42, PCRE2 10.31 was added.</li>
+<li>dejagnu was updated to 1.6.1.</li>
+</ul>
+<h2 id="server-software">Server software</h2>
+<ul>
+<li>KVM hypervisor was updated with patches from Joyent port to work with latest illumos. Now KVM zone brand is supported and users can manage their VMs as illumos zones (see documentation here).</li>
+<li>QEMU now supports GUI console (VNC and serial consoles are available as well).</li>
+<li>OpenSSH was updated to 7.8p1.</li>
+<li>PostgreSQL versions 9.4 thru 10 were updated to their latest minor versions.</li>
+<li>MariaDB 10.1 was updated, MariaDB 10.3 was added. Percona Server 5.6 and 5.7 were updated. Berkeley DB was updated as well.</li>
+<li>MongoDB 3.4 was updated. MongoDB 4.0 was added.</li>
+<li>Apache HTTP 2.4 was updated to 2.4.35.</li>
+<li>Apache Tomcat 6 was dropped. Tomcat 8 was updated to 8.0.53.</li>
+<li>Postfix was updated to 3.3.1. Configuration format was changed.</li>
+<li>Samba was updated to 4.8.5.</li>
+<li>Node.js was updated to 6.14.4 and 8.12.0, version 10.10.0 was added and version 7 was removed.</li>
+<li>Salstack 2018.3.2 was added.</li>
+<li>clamav was updated to 0.100.2.</li>
+<li>haproxy was updated to 1.8.14.</li>
+<li>znapzend 0.18.0 was added.</li>
+</ul>
+<p>A lot of other bug fixes and minor software updates are included.</p>
+<p>Automated test tool/framework performs installation image generation and testing on a regular basis.</p>
+<p>Userland components were patched to build with GCC 8.2 and published to the testing repository.</p>
+<h2 id="illumos">illumos</h2>
+<p>As always, we are proud to ship the latest illumos-gate bits (<a href="https://github.com/illumos/illumos-gate/commit/42a3762">42a3762</a>).</p>
+<h3 id="drivers">Drivers</h3>
+<ul>
+<li><a href="https://github.com/illumos/illumos-gate/commit/14b24e2b79293068c8e016a69ef1d872fb5e2fd5">9506</a> QLogic QL41000/45000 series devices are supported.</li>
+<li><a href="https://github.com/illumos/illumos-gate/commit/db083a4d72c304c6b3b8782fde3c03d66a9ccf88">9693</a> NVMe from ESXi 6.7 is now usable.</li>
+<li><a href="https://github.com/illumos/illumos-gate/commit/64216313af8955ed170cf25df29a04c18b3e0296">9249</a> NVMe works as a system crash dump device.</li>
+</ul>
+<h3 id="new-features">New features</h3>
+<ul>
+<li><a href="https://github.com/illumos/illumos-gate/commit/ab618543cc6fc4bc273c077ef5d247961cdb29d4">8158</a> Named Threads API was added.</li>
+<li><a href="https://github.com/illumos/illumos-gate/commit/4226f635096bf9d814aa9fb335518c4855bbe3a3">6375</a> Native name demangling support for C++ was added (binary-only libdemangle.so from Sun Studio is still present).</li>
+<li><a href="https://github.com/illumos/illumos-gate/commit/fd6d41c5025e9fb45a115fc82d86e9983d1e9fd6">9815</a> Basic AHCI enclosure services.</li>
+<li><a href="https://github.com/illumos/illumos-gate/commit/047c81d31d0f571d6652e97143cd15281de61e84">1700</a> Add SCSI UNMAP support.</li>
+<li><a href="https://github.com/illumos/illumos-gate/commit/591e0e133f9980083db5d64ac33a30bcc3382ff7">8115</a> Parallel <code>zfs mount</code> is now supported.</li>
+<li><a href="https://github.com/illumos/illumos-gate/commit/8c3347c4989237d6ebeeb03a67b21a523fc105d6">9782</a> <code>eventfd(3C)</code> event notification works in zones.</li>
+<li><a href="https://github.com/illumos/illumos-gate/commit/83b4671e6262c5aa6b4f9fb5a384b1946dfc2e7f">9664</a> Support for UEFI32 (even on 64-bit machines) was added.</li>
+<li><a href="https://github.com/illumos/illumos-gate/commit/00efb5e1437d3912284689f1b0c13190e634e788">8548</a> <code>memset_s(3C)</code> was ported from FreeBSD.</li>
+</ul>
+<h3 id="important-changes">Important changes</h3>
+<ul>
+<li>A lot of fixes by Toomas Soome make illumos closer to be compiled by GCC 7 and newer compilers.</li>
+<li><a href="https://github.com/illumos/illumos-gate/commit/be4355ddcfa407e2d3e4a06973af5cbef6ccdbae">9812</a> headers are now free from excessive SUS compiler checks, hence application porting should be easier.</li>
+<li><a href="https://github.com/illumos/illumos-gate/commit/75383e32bbd38e24115eefe5dee272d42a5c723e">9627</a> 32-bit boot archive is not being generated.</li>
+<li><a href="https://github.com/illumos/illumos-gate/commit/4c28a617e3922d92a58e813a5b955eb526b9c386">9598</a> Eager FPU restore defeats side channel attacks. See <a href="https://nvd.nist.gov/vuln/detail/CVE-2018-3665">CVE-2018-3665</a>.</li>
+</ul>
+            </article>
+        </main>
+    
+
+    <footer class="custom-footer">
+        <p class="font-black text-xs tracking-widest opacity-40 uppercase mb-8" style="color:var(--text-main)">OpenIndiana Project</p>
+        <div class="flex flex-wrap justify-center gap-12">
+            <a href="https://www.openindiana.org/" class="text-sm font-bold no-underline hover:underline" style="color:var(--oi-secondary)">Website</a>
+            <a href="https://github.com/openindiana" class="text-sm font-bold no-underline hover:underline" style="color:var(--oi-secondary)">GitHub</a>
+        </div>
+    </footer>
 
     <script>
-        // Dark mode toggle
-        const darkModeToggle = document.getElementById('darkModeToggle');
-        const body = document.body;
+        (function() {
+            const toggle = document.getElementById('master-theme-toggle');
+            const html = document.documentElement;
 
-        darkModeToggle.addEventListener('click', () => {
-            body.classList.toggle('dark-mode');
-            const isDarkMode = body.classList.contains('dark-mode');
-            localStorage.setItem('darkMode', isDarkMode);
-            darkModeToggle.textContent = isDarkMode ? '☀️' : '🌙';
-        });
+            const applyTheme = (theme) => {
+                if (theme === 'dark') {
+                    html.setAttribute('data-theme', 'dark');
+                    toggle.textContent = 'LIGHT MODE';
+                } else {
+                    html.removeAttribute('data-theme');
+                    toggle.textContent = 'DARK MODE';
+                }
+                localStorage.setItem('oi-docs-theme', theme);
+            };
 
-        // Load dark mode state from localStorage
-        if (localStorage.getItem('darkMode') === 'true') {
-            body.classList.add('dark-mode');
-            darkModeToggle.textContent = '☀️';
-        } else {
-            darkModeToggle.textContent = '🌙';
-        }
+            applyTheme(localStorage.getItem('oi-docs-theme') || 'light');
+
+            toggle.addEventListener('click', () => {
+                const current = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+                applyTheme(current);
+            });
+
+            setInterval(() => {
+                const results = document.getElementById('mkdocs-search-results');
+                if (results) {
+                    const descriptions = results.querySelectorAll('p');
+                    descriptions.forEach(d => d.style.display = 'none');
+                }
+            }, 150);
+        })();
     </script>
 
             </div>

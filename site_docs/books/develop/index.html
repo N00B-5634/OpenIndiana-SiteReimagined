@@ -17,181 +17,256 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
         <script>hljs.highlightAll();</script>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono&display=swap" rel="stylesheet">
+
     <style>
+        /* ============================================================
+           FAIL-SAFE 1: NUCLEAR FOOTER REMOVAL
+           ============================================================ */
+        .md-footer,
+        .md-copyright,
+        .md-footer-meta,
+        footer:not(.custom-footer),
+        [role="contentinfo"],
+        .md-typeset hr,
+        .md-sidebar--secondary {
+            display: none !important;
+            visibility: hidden !important;
+            opacity: 0 !important;
+            height: 0 !important;
+            margin-top: 1000vh !important;
+            pointer-events: none !important;
+        }
+
+        /* ============================================================
+           GLOBAL DESIGN SYSTEM (HIGH CONTRAST EDITION)
+           ============================================================ */
+        :root {
+            --oi-primary: #8b5cf6;
+            --oi-secondary: #3b82f6;
+            --bg-body: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --card-bg: #ffffff;
+            --card-border: #e2e8f0;
+            --nav-bg: rgba(255, 255, 255, 0.9);
+            --code-bg: #f1f5f9;
+            --code-text: #1e293b;
+        }
+
+        [data-theme="dark"] {
+            --oi-primary: #a78bfa;
+            --oi-secondary: #60a5fa;
+            --bg-body: #020617;
+            /* CRITICAL FIX: Changed from gray to pure white */
+            --text-main: #ffffff;
+            --text-muted: #e2e8f0;
+            --card-bg: #0f172a;
+            --card-border: #334155;
+            --nav-bg: rgba(2, 6, 23, 0.95);
+            /* CRITICAL FIX: Darker background for code to make white text pop */
+            --code-bg: #1e293b;
+            --code-text: #ffffff;
+        }
+
+        html { scroll-behavior: smooth; }
+
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--background-color);
-            color: var(--text-color);
+            background-color: var(--bg-body);
+            color: var(--text-main);
             margin: 0;
             padding: 0;
-            transition: all 0.3s ease;
-        }
-
-        /* Color Variables */
-        :root {
-            --background-color: #1e293b;
-            --text-color: #e2e8f0;
-            --primary-color: #8b5cf6;
-            --secondary-color: #3b82f6;
-            --accent-color: #9333ea;
-            --card-background: #2d3748;
-            --card-border: #4a5568;
-            --button-bg: #3b82f6;
-            --button-hover-bg: #2563eb;
-            --footer-background: #111827;
-        }
-
-        .dark-mode {
-            --background-color: #111827;
-            --text-color: #e2e8f0;
-            --primary-color: #a78bfa;
-            --secondary-color: #60a5fa;
-            --accent-color: #9333ea;
-            --card-background: #334155;
-            --card-border: #4b5563;
-            --button-bg: #60a5fa;
-            --button-hover-bg: #3b82f6;
-            --footer-background: #1f2937;
-        }
-
-        /* Hero Section */
-        .hero {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 4rem 2rem;
-            text-align: center;
-            border-bottom: 2px solid var(--secondary-color);
-        }
-
-        .hero h2 {
-            font-size: 2.5rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-
-        .hero p {
-            font-size: 1.25rem;
-            margin-bottom: 2rem;
-        }
-
-        /* New Search Bar (Transparent, minimal) */
-        .hero .search-bar {
-            padding: 1rem;
-            width: 60%;
-            border-radius: 9999px; /* Fully rounded corners */
-            background-color: transparent; /* Transparent background */
-            color: var(--text-color);
-            font-size: 1.1rem;
-            margin: 0 auto;
-            border: none; /* Remove border */
-            box-shadow: none; /* No box shadow */
-            outline: none; /* Remove outline */
-        }
-
-        .hero .search-bar:focus {
-            color: var(--text-color); /* Keep the color same on focus */
-            background-color: transparent; /* Keep background transparent */
-        }
-
-        .hero .search-bar::placeholder {
-            color: #6b7280; /* Placeholder color */
-        }
-
-        /* Cards Section */
-        .cards-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 2rem;
-            margin: 2rem 1rem;
-        }
-
-        .card {
-            background-color: var(--card-background);
-            border: 1px solid var(--card-border);
-            border-radius: 0.75rem;
-            padding: 2rem;
-            transition: box-shadow 0.3s ease, transform 0.3s ease;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-
-        .card:hover {
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
-            transform: translateY(-5px);
-        }
-
-        .card h3 {
-            font-size: 1.75rem;
-            font-weight: 600;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-        }
-
-        .card p {
-            font-size: 1rem;
-            color: #6b7280;
-        }
-
-        /* Footer Section */
-        .footer {
-            background-color: var(--footer-background);
-            color: var(--text-color);
-            text-align: center;
-            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
             width: 100%;
-            margin-top: 2rem;
-            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+            overflow-x: hidden;
+            transition: background-color 0.2s ease;
         }
 
-        .footer a {
-            color: var(--primary-color);
+        /* ============================================================
+           NAVIGATION
+           ============================================================ */
+        .navbar-hardened {
+            position: sticky;
+            top: 0;
+            width: 100%;
+            z-index: 9999;
+            background: var(--nav-bg);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--card-border);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-text {
+            font-weight: 800;
+            font-size: 1.5rem;
+            letter-spacing: -0.05em;
             text-decoration: none;
+            color: var(--text-main) !important;
         }
 
-        .footer a:hover {
-            text-decoration: underline;
+        /* ============================================================
+           HOME PAGE: HERO & TILES
+           ============================================================ */
+        .hero-banner {
+            background: linear-gradient(135deg, var(--oi-primary), var(--oi-secondary));
+            color: white !important;
+            padding: 8rem 1rem 10rem 1rem;
+            text-align: center;
+            width: 100%;
         }
 
-        /* Button Styles */
-        .button {
-            background-color: var(--button-bg);
-            color: white;
-            padding: 1rem 2rem;
-            font-size: 1.125rem;
-            font-weight: 600;
-            border-radius: 0.375rem;
-            text-decoration: none;
-            transition: background-color 0.3s ease;
-            display: inline-block;
-            margin: 1rem;
+        .hero-title {
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            font-weight: 800;
+            letter-spacing: -0.05em;
+            margin-bottom: 1rem;
+            color: white !important;
         }
 
-        .button:hover {
-            background-color: var(--button-hover-bg);
+        .search-boundary {
+            max-width: 650px;
+            margin: -3rem auto 0;
+            position: relative;
+            z-index: 50;
+            padding: 0 1rem;
         }
 
-        /* Responsive Design */
+        .search-engine-input {
+            width: 100%;
+            padding: 1.25rem 1.75rem;
+            border-radius: 16px;
+            background: var(--card-bg);
+            border: 2px solid var(--card-border);
+            color: var(--text-main);
+            font-size: 1.1rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            outline: none;
+        }
+
+        .search-engine-input:focus {
+            border-color: var(--oi-primary);
+        }
+
+        #mkdocs-search-results {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            margin-top: 10px;
+            color: var(--text-main);
+        }
+
+        .home-main-layout {
+            max-width: 1200px;
+            margin: 5rem auto;
+            padding: 0 1.5rem;
+            width: 100%;
+        }
+
+        .tile-grid-system {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .nav-card-tile {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            padding: 4rem 2rem;
+            border-radius: 24px;
+            text-align: center;
+            text-decoration: none !important;
+            transition: all 0.2s ease;
+        }
+
+        .nav-card-tile:hover {
+            transform: translateY(-8px);
+            border-color: var(--oi-primary);
+        }
+
+        .nav-card-tile h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--oi-primary) !important;
+        }
+
+        /* ============================================================
+           READER VIEW: HIGH CONTRAST MARKDOWN
+           ============================================================ */
+        .documentation-wrapper {
+            flex: 1;
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 5rem 1.5rem;
+        }
+
+        .markdown-engine {
+            color: var(--text-main) !important;
+        }
+
+        .markdown-engine h1 { font-size: 3rem; font-weight: 800; margin-bottom: 2rem; color: var(--oi-primary); }
+        .markdown-engine h2 { font-size: 2rem; font-weight: 700; margin-top: 3.5rem; border-bottom: 2px solid var(--card-border); padding-bottom: 0.75rem; color: var(--text-main); }
+        .markdown-engine p { font-size: 1.125rem; line-height: 1.8; margin-bottom: 1.75rem; color: var(--text-main); }
+
+        /* High-Contrast Code Blocks */
+        .markdown-engine code {
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--code-bg);
+            color: var(--code-text) !important;
+            padding: 0.2rem 0.5rem;
+            border-radius: 6px;
+            font-size: 0.95em;
+            font-weight: 500;
+        }
+
+        .markdown-engine pre {
+            background: var(--code-bg) !important;
+            padding: 1.5rem;
+            border-radius: 12px;
+            overflow-x: auto;
+            margin-bottom: 2rem;
+            border: 1px solid var(--card-border);
+        }
+
+        .markdown-engine pre code {
+            background: transparent !important;
+            padding: 0;
+            color: var(--code-text) !important;
+        }
+
+        /* ============================================================
+           PINNED FOOTER
+           ============================================================ */
+        .custom-footer {
+            flex-shrink: 0;
+            width: 100%;
+            background: var(--bg-body);
+            border-top: 1px solid var(--card-border);
+            padding: 5rem 1.5rem;
+            margin-top: auto;
+            text-align: center;
+        }
+
+        .theme-btn {
+            cursor: pointer;
+            background: var(--card-bg);
+            color: var(--text-main);
+            border: 2px solid var(--card-border);
+            padding: 0.5rem 1rem;
+            border-radius: 12px;
+            font-weight: 800;
+            font-size: 0.75rem;
+        }
+
         @media (max-width: 768px) {
-            .hero h2 {
-                font-size: 2rem;
-            }
-
-            .hero p {
-                font-size: 1.1rem;
-            }
-
-            .hero .search-bar {
-                width: 80%;
-            }
-
-            .cards-container {
-                margin: 2rem 1rem;
-            }
-
-            .card {
-                padding: 1.5rem;
-            }
+            .hero-title { font-size: 2.5rem; }
+            .tile-grid-system { grid-template-columns: 1fr; }
         }
     </style>
 
@@ -540,58 +615,383 @@
 
         <div class="container">
             <div class="row">
-    <!-- Hero Section -->
-    <div class="hero">
-        <h2>Search the Documentation</h2>
-        <p>Quickly find what you're looking for by searching through our extensive documentation.</p>
-        <input type="text" id="mkdocs-search-input" class="search-bar" placeholder="Search the documentation" />
-    </div>
+    <nav class="navbar-hardened">
+        <a href="../.." class="logo-text">
+            OI <span style="color:var(--oi-primary)">DOCS</span>
+        </a>
+        <button id="master-theme-toggle" class="theme-btn">
+            DARK MODE
+        </button>
+    </nav>
 
-    <!-- Featured Docs Section -->
-    <div class="cards-container">
-        <div class="card">
-            <h3>Getting Started</h3>
-            <p>Learn how to set up and get started with OpenIndiana from scratch.</p>
-        </div>
-        <div class="card">
-            <h3>System Administration</h3>
-            <p>Explore system administration tasks for managing OpenIndiana servers.</p>
-        </div>
-        <div class="card">
-            <h3>Networking</h3>
-            <p>Understand networking configurations and management in OpenIndiana.</p>
-        </div>
-        <div class="card">
-            <h3>Advanced Features</h3>
-            <p>Dive deep into the advanced features and capabilities of OpenIndiana.</p>
-        </div>
-    </div>
+    
+        <main class="documentation-wrapper">
+            <article class="markdown-engine">
+                <!--
 
-    <!-- Footer Section -->
-    <div class="footer">
-        <p>© 2026 OpenIndiana Maintainers</p>
-        <p><a href="https://www.openindiana.org/">Visit the official site</a></p>
-    </div>
+The contents of this Documentation are subject to the Public Documentation License Version 1.01
+(the "License"); you may only use this Documentation if you comply with the terms of this License.
+A copy of the License is available at http://illumos.org/license/PDL.
+
+The Original Documentation is _________________.
+
+The Initial Writer of the Original Documentation is ___________ Copyright (C)_________[Insert year(s)].
+All Rights Reserved. (Initial Writer contact(s):________________[Insert hyperlink/alias]).
+
+Contributor(s): ______________________________________.
+
+Portions created by ______ are Copyright (C)_________[Insert year(s)].
+All Rights Reserved. (Contributor contact(s):________________[Insert hyperlink/alias]).
+
+-->
+
+<h1 id="development">Development</h1>
+<h2 id="solaris-dynamic-tracing-guide">Solaris Dynamic Tracing Guide</h2>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Document Link</td>
+<td><a href="http://dlc.openindiana.org/docs/osol/20090715/DYNMCTRCGGD/html/dynmctrcggd.html" target="_blank">Solaris Dynamic Tracing Guide</a></td>
+</tr>
+<tr>
+<td>Topics</td>
+<td>DTrace is a comprehensive dynamic tracing framework for the Solaris™ Operating System. DTrace provides a powerful infrastructure to permit administrators, developers, and service personnel to concisely answer arbitrary questions about the behavior of the operating system and user programs.</p>The Solaris Dynamic Tracing Guide describes how to use DTrace to observe, debug, and tune system behavior. This book also includes a complete reference for bundled DTrace observability tools and the <code>D</code> programming language.</td>
+</tr>
+<tr>
+<td>Relevancy to OpenIndiana Hipster</td>
+<td>To be determined</td>
+</tr>
+<tr>
+<td>Target Audience</td>
+<td>If you have ever wanted to understand the behavior of your system, DTrace is the tool for you. DTrace is a comprehensive dynamic tracing facility that is built into Solaris. The DTrace facility can be used to examine the behavior of user programs. The DTrace facility can also be used to examine the behavior of the operating system.</p>DTrace can be used by system administrators or application developers, and is suitable for use with live production systems. DTrace will allow you to explore your system to understand how it works, track down performance problems across many layers of software, or locate the cause of aberrant behavior. </p>As you'll see, DTrace lets you create your own custom programs to dynamically instrument the system and provide immediate, concise answers to arbitrary questions you can formulate using the DTrace <code>D</code> programming language. </p>DTrace allows all Solaris users to:<ul><li>Dynamically enable and manage thousands of probes</li><li>Dynamically associate logical predicates and actions with probes</li><li>Dynamically manage trace buffers and buffer policies</li><li>Display and examine trace data from the live system or a crash dump</li></ul></p>DTrace allows Solaris developers and administrators to:<ul><li>Implement custom scripts that use the DTrace facility</li><li>Implement layered tools that use DTrace to retrieve trace data</li></ul></td>
+</tr>
+<tr>
+<td>Requirements</td>
+<td>Basic familiarity with a programming language such as <code>C</code> or a scripting language such as <code>awk(1)</code> or <code>perl(1)</code> will help you learn DTrace and the <code>D</code> programming language faster, but you need not be an expert in any of these areas. If you have never written a program or script before in any language, Related Information provides references to other documents you might find useful.</td>
+</tr>
+</tbody>
+</table>
+<div class="note" markdown="1">
+!!! note
+    Updated by the illumos project, this title is available in a more recent version:
+    <a href="http://dtrace.org/guide/preface.html" target="_blank">Dynamic Tracing Guide</a>
+</div>
+
+<h2 id="solaris-modular-debugger-guide">Solaris Modular Debugger Guide</h2>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Document Link</td>
+<td><a href="http://dlc.openindiana.org/docs/osol/20090715/MODDEBUG/html/moddebug.html" target="_blank">Solaris Modular Debugger Guide</a></td>
+</tr>
+<tr>
+<td>Topics</td>
+<td>The Modular Debugger (MDB) is a highly extensible, general purpose debugging tool for the Solaris™ Operating System (Solaris OS). The Solaris Modular Debugger Guide describes how to use MDB to debug complex software systems, with a particular emphasis on the facilities available for debugging the Solaris kernel and associated device drivers and modules. It also includes a complete reference for and discussion of the MDB language syntax, debugger features, and MDB Module Programming API.</td>
+</tr>
+<tr>
+<td>Relevancy to OpenIndiana Hipster</td>
+<td>To be determined</td>
+</tr>
+<tr>
+<td>Target Audience</td>
+<td>If you were a detective and were investigating at the scene of a crime, you might interview the witnesses and ask them to describe what happened and who they saw. However, if there were no witnesses or these descriptions proved insufficient, you might consider collecting fingerprints and forensic evidence that could be examined for DNA to help solve the case.</p>Often, software program failures divide into analogous categories: problems that can be solved with source-level debugging tools, and problems that require low-level debugging facilities, examination of core files, and knowledge of assembly language to diagnose and correct.</p>MDB facilitates analysis of this second class of problems.</p>MDB is most useful when you are programming a complex low-level software system such as an operating system. The MDB debugging framework allows you to construct your own custom analysis tools to aid in the diagnosis of these low-level problems. MDB also provides a powerful set of built-in commands that enable you to analyze the state of your program at the assembly language level.</td>
+</tr>
+<tr>
+<td>Requirements</td>
+<td>Familiarity with assembly language programming and debugging</td>
+</tr>
+</tbody>
+</table>
+<div class="note" markdown="1">
+!!! note
+    Updated by the illumos project, this title is available in a more recent version:
+    <a href="https://illumos.org/books/mdb/preface.html" target="_blank">Modular Debugger Guide</a>
+</div>
+
+<h2 id="device-driver-tutorial">Device Driver Tutorial</h2>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Document Link</td>
+<td><a href="http://dlc.openindiana.org/docs/osol/20090715/DRIVERTUT/html/drivertut.html" target="_blank">Device Driver Tutorial</a></td>
+</tr>
+<tr>
+<td>Topics</td>
+<td>This Device Driver Tutorial is a hands-on guide that shows you how to develop a simple device driver for the Solaris™ Operating System (Solaris OS). Device Driver Tutorial also explains how device drivers work in the Solaris OS. This book is a companion to <em>Writing Device Drivers</em>.</p><em>Writing Device Drivers</em> is a thorough reference document that discusses many types of devices and drivers. Device Driver Tutorial examines complete drivers but does not provide a comprehensive treatment of all driver types. Device Driver Tutorial often points to Writing Device Drivers and other content for further information.</td>
+</tr>
+<tr>
+<td>Relevancy to OpenIndiana Hipster</td>
+<td>To be determined</td>
+</tr>
+<tr>
+<td>Target Audience</td>
+<td>You should read this tutorial if you need to develop, install, and configure device drivers for the Solaris OS. You also should read this book if you need to maintain existing drivers or add new functionality to existing Solaris OS drivers. Information about the kernel provided in this book also will help you troubleshoot any problems you might encounter installing or configuring Solaris systems.</td>
+</tr>
+<tr>
+<td>Requirements</td>
+<td>To write device drivers for the Solaris OS, you should have the following background:<ul><li>Be a confident C programmer</li><li>Have experience with data structures, especially with linked lists</li><li>Understand bit operations</li><li>Understand indirect function calls</li><li>Understand caching</li><li>Understand multi-threading (see the Multi-threaded Programming Guide)</li><li>Be familiar with a UNIX® shell</li><li>Understand the basics of UNIX system and I/O architecture</li></ul></p>The most important information you need to have to write a device driver are the characteristics of the device. Get a detailed specification for the device you want to drive.</p>Experience with Solaris OS compilers, debuggers, and other tools will be very helpful to you. You also need to understand where the file system fits with the kernel and the application layer. These topics are discussed in this tutorial.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="writing-device-drivers">Writing Device Drivers</h2>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Document Link</td>
+<td><a href="http://dlc.openindiana.org/docs/osol/20090715/DRIVER/html/driver.html" target="_blank">Writing Device Drivers</a></td>
+</tr>
+<tr>
+<td>Topics</td>
+<td>Writing Device Drivers provides information on developing drivers for:<ul><li>character-oriented devices</li><li>block-oriented devices</li><li>network devices</li><li>SCSI target and HBA devices</li><li>USB devices</li></ul></p>This book discusses how to develop multi-threaded reentrant device drivers for all architectures that conform to the Solaris OS DDI/DKI (Device Driver Interface, Driver-Kernel Interface). A common driver programming approach is described that enables drivers to be written without concern for platform-specific issues such as endianness and data ordering.</p>Additional topics include:<ul><li>hardening Solaris drivers</li><li>power management</li><li>driver auto-configuration</li><li>programmed I/O; Direct Memory Access (DMA)</li><li>device context management</li><li>compilation</li><li>installation</li><li>and testing drivers</li><li>debugging driver</li><li>porting Solaris drivers to a 64-bit environment</td>
+</tr>
+<tr>
+<td>Relevancy to OpenIndiana Hipster</td>
+<td>To be determined</td>
+</tr>
+<tr>
+<td>Target Audience</td>
+<td>This book is written for UNIX® programmers who are familiar with UNIX device drivers. Overview information is provided, but the book is not intended to serve as a general tutorial on device drivers.</td>
+</tr>
+<tr>
+<td>Requirements</td>
+<td>To be determined</td>
+</tr>
+</tbody>
+</table>
+<div class="note" markdown="1">
+!!! note
+    Updated by the illumos project, this title is available in a more recent version:
+    <a href="https://illumos.org/books/wdd/preface.html" target="_blank">Writing Device Drivers</a>
+</div>
+
+<h2 id="application-packaging-developers-guide">Application Packaging Developer's Guide</h2>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Document Link</td>
+<td><a href="http://dlc.openindiana.org/docs/osol/20090715/PACKINSTALL/html/packinstall.html" target="_blank">Application Packaging Developer's Guide</a></td>
+</tr>
+<tr>
+<td>Topics</td>
+<td>The Application Packaging Developers Guide provides step-by-step instructions and relevant background information for designing, building, and verifying packages. This guide also includes advanced techniques that you might find helpful during the package creation process.</td>
+</tr>
+<tr>
+<td>Relevancy to OpenIndiana Hipster</td>
+<td>To be determined</td>
+</tr>
+<tr>
+<td>Target Audience</td>
+<td>This book is intended for application developers whose responsibilities include designing and building packages. Though much of the book is directed towards novice package developers, it also contains information useful to more experienced package developers.</td>
+</tr>
+<tr>
+<td>Requirements</td>
+<td>To be determined</td>
+</tr>
+</tbody>
+</table>
+<h2 id="opensolaris-distribution-constructor-guide">OpenSolaris Distribution Constructor Guide</h2>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Document Link</td>
+<td><a href="http://dlc.openindiana.org/docs/osol/20090715/DistroConst/html/distroconst.html" target="_blank">OpenSolaris Distribution Constructor Guide</a></td>
+</tr>
+<tr>
+<td>Topics</td>
+<td>The distribution constructor is a tool that application developers can use to build their own custom OpenSolaris™ image which they can then distribute to their contacts and customers.</td>
+</tr>
+<tr>
+<td>Relevancy to OpenIndiana Hipster</td>
+<td>To be determined</td>
+</tr>
+<tr>
+<td>Target Audience</td>
+<td>To be determined</td>
+</tr>
+<tr>
+<td>Requirements</td>
+<td>To be determined</td>
+</tr>
+</tbody>
+</table>
+<h2 id="memory-and-thread-placement-optimization-developers-guide">Memory and Thread Placement Optimization Developer's Guide</h2>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Document Link</td>
+<td><a href="http://dlc.openindiana.org/docs/osol/20090715/MTPODG/html/mtpodg.html" target="_blank">Memory and Thread Placement Optimization Developer's Guide</a></td>
+</tr>
+<tr>
+<td>Topics</td>
+<td>The Memory and Thread Placement Optimization Developer's Guide provides information on locality groups and the technologies that are available to optimize the use of computing resources in the Solaris operating system.</td>
+</tr>
+<tr>
+<td>Relevancy to OpenIndiana Hipster</td>
+<td>To be determined</td>
+</tr>
+<tr>
+<td>Target Audience</td>
+<td>This book is intended for use by developers who are writing applications in an environment with multiple CPUs and a non-uniform memory architecture. The programming interfaces and tools that are described in this book give the developer control over the system's behavior and resource allocation.</td>
+</tr>
+<tr>
+<td>Requirements</td>
+<td>To be determined</td>
+</tr>
+</tbody>
+</table>
+<div class="note" markdown="1">
+!!! note
+    Updated by the illumos project, this title is available in a more recent version:
+    <a href="https://illumos.org/books/lgrps/preface.html" target="_blank">Memory and Thread Placement Optimization Developer's Guide</a>
+</div>
+
+<h2 id="solaris-containers-resource-management-and-solaris-zones-developers-guide">Solaris Containers: Resource Management and Solaris Zones Developer's Guide</h2>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Document Link</td>
+<td><a href="http://dlc.openindiana.org/docs/osol/20090715/RSCMGRDEVGD/html/rscmgrdevgd.html" target="_blank">Solaris Containers: Resource Management and Solaris Zones Developer's Guide</a></td>
+</tr>
+<tr>
+<td>Topics</td>
+<td>The Solaris Containers: Resource Management and Solaris Zones Developer's Guide describes how to write applications that partition and manage system resources and discusses which APIs to use. This book provides programming examples and a discussion of programming issues to consider when writing an application.</td>
+</tr>
+<tr>
+<td>Relevancy to OpenIndiana Hipster</td>
+<td>To be determined</td>
+</tr>
+<tr>
+<td>Target Audience</td>
+<td>This book is for application developers and ISVs who write applications that control or monitor the Solaris Operating System resources.</td>
+</tr>
+<tr>
+<td>Requirements</td>
+<td>To be determined</td>
+</tr>
+</tbody>
+</table>
+<h2 id="solaris-trusted-extensions-developers-guide">Solaris Trusted Extensions Developer's Guide</h2>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Document Link</td>
+<td><a href="http://dlc.openindiana.org/docs/osol/20090715/TRSOLDEV/html/trsoldev.html" target="_blank">Solaris Trusted Extensions Developer's Guide</a></td>
+</tr>
+<tr>
+<td>Topics</td>
+<td>Describes how to develop applications with Solaris Trusted Extensions. </p>The Solaris Trusted Extensions Developer's Guide describes how to use the application programming interfaces (APIs) to write new trusted applications for systems that are configured with the Solaris™ Trusted Extensions software.</td>
+</tr>
+<tr>
+<td>Relevancy to OpenIndiana Hipster</td>
+<td>To be determined</td>
+</tr>
+<tr>
+<td>Target Audience</td>
+<td>Developers, administrators</td>
+</tr>
+<tr>
+<td>Requirements</td>
+<td>Readers must be familiar with UNIX® programming and understand security policy concepts.</td>
+</tr>
+</tbody>
+</table>
+            </article>
+        </main>
+    
+
+    <footer class="custom-footer">
+        <p class="font-black text-xs tracking-widest opacity-40 uppercase mb-8" style="color:var(--text-main)">OpenIndiana Project</p>
+        <div class="flex flex-wrap justify-center gap-12">
+            <a href="https://www.openindiana.org/" class="text-sm font-bold no-underline hover:underline" style="color:var(--oi-secondary)">Website</a>
+            <a href="https://github.com/openindiana" class="text-sm font-bold no-underline hover:underline" style="color:var(--oi-secondary)">GitHub</a>
+        </div>
+    </footer>
 
     <script>
-        // Dark mode toggle
-        const darkModeToggle = document.getElementById('darkModeToggle');
-        const body = document.body;
+        (function() {
+            const toggle = document.getElementById('master-theme-toggle');
+            const html = document.documentElement;
 
-        darkModeToggle.addEventListener('click', () => {
-            body.classList.toggle('dark-mode');
-            const isDarkMode = body.classList.contains('dark-mode');
-            localStorage.setItem('darkMode', isDarkMode);
-            darkModeToggle.textContent = isDarkMode ? '☀️' : '🌙';
-        });
+            const applyTheme = (theme) => {
+                if (theme === 'dark') {
+                    html.setAttribute('data-theme', 'dark');
+                    toggle.textContent = 'LIGHT MODE';
+                } else {
+                    html.removeAttribute('data-theme');
+                    toggle.textContent = 'DARK MODE';
+                }
+                localStorage.setItem('oi-docs-theme', theme);
+            };
 
-        // Load dark mode state from localStorage
-        if (localStorage.getItem('darkMode') === 'true') {
-            body.classList.add('dark-mode');
-            darkModeToggle.textContent = '☀️';
-        } else {
-            darkModeToggle.textContent = '🌙';
-        }
+            applyTheme(localStorage.getItem('oi-docs-theme') || 'light');
+
+            toggle.addEventListener('click', () => {
+                const current = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+                applyTheme(current);
+            });
+
+            setInterval(() => {
+                const results = document.getElementById('mkdocs-search-results');
+                if (results) {
+                    const descriptions = results.querySelectorAll('p');
+                    descriptions.forEach(d => d.style.display = 'none');
+                }
+            }, 150);
+        })();
     </script>
 
             </div>

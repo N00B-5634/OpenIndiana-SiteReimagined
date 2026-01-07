@@ -17,181 +17,256 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
         <script>hljs.highlightAll();</script>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono&display=swap" rel="stylesheet">
+
     <style>
+        /* ============================================================
+           FAIL-SAFE 1: NUCLEAR FOOTER REMOVAL
+           ============================================================ */
+        .md-footer,
+        .md-copyright,
+        .md-footer-meta,
+        footer:not(.custom-footer),
+        [role="contentinfo"],
+        .md-typeset hr,
+        .md-sidebar--secondary {
+            display: none !important;
+            visibility: hidden !important;
+            opacity: 0 !important;
+            height: 0 !important;
+            margin-top: 1000vh !important;
+            pointer-events: none !important;
+        }
+
+        /* ============================================================
+           GLOBAL DESIGN SYSTEM (HIGH CONTRAST EDITION)
+           ============================================================ */
+        :root {
+            --oi-primary: #8b5cf6;
+            --oi-secondary: #3b82f6;
+            --bg-body: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --card-bg: #ffffff;
+            --card-border: #e2e8f0;
+            --nav-bg: rgba(255, 255, 255, 0.9);
+            --code-bg: #f1f5f9;
+            --code-text: #1e293b;
+        }
+
+        [data-theme="dark"] {
+            --oi-primary: #a78bfa;
+            --oi-secondary: #60a5fa;
+            --bg-body: #020617;
+            /* CRITICAL FIX: Changed from gray to pure white */
+            --text-main: #ffffff;
+            --text-muted: #e2e8f0;
+            --card-bg: #0f172a;
+            --card-border: #334155;
+            --nav-bg: rgba(2, 6, 23, 0.95);
+            /* CRITICAL FIX: Darker background for code to make white text pop */
+            --code-bg: #1e293b;
+            --code-text: #ffffff;
+        }
+
+        html { scroll-behavior: smooth; }
+
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--background-color);
-            color: var(--text-color);
+            background-color: var(--bg-body);
+            color: var(--text-main);
             margin: 0;
             padding: 0;
-            transition: all 0.3s ease;
-        }
-
-        /* Color Variables */
-        :root {
-            --background-color: #1e293b;
-            --text-color: #e2e8f0;
-            --primary-color: #8b5cf6;
-            --secondary-color: #3b82f6;
-            --accent-color: #9333ea;
-            --card-background: #2d3748;
-            --card-border: #4a5568;
-            --button-bg: #3b82f6;
-            --button-hover-bg: #2563eb;
-            --footer-background: #111827;
-        }
-
-        .dark-mode {
-            --background-color: #111827;
-            --text-color: #e2e8f0;
-            --primary-color: #a78bfa;
-            --secondary-color: #60a5fa;
-            --accent-color: #9333ea;
-            --card-background: #334155;
-            --card-border: #4b5563;
-            --button-bg: #60a5fa;
-            --button-hover-bg: #3b82f6;
-            --footer-background: #1f2937;
-        }
-
-        /* Hero Section */
-        .hero {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 4rem 2rem;
-            text-align: center;
-            border-bottom: 2px solid var(--secondary-color);
-        }
-
-        .hero h2 {
-            font-size: 2.5rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-
-        .hero p {
-            font-size: 1.25rem;
-            margin-bottom: 2rem;
-        }
-
-        /* New Search Bar (Transparent, minimal) */
-        .hero .search-bar {
-            padding: 1rem;
-            width: 60%;
-            border-radius: 9999px; /* Fully rounded corners */
-            background-color: transparent; /* Transparent background */
-            color: var(--text-color);
-            font-size: 1.1rem;
-            margin: 0 auto;
-            border: none; /* Remove border */
-            box-shadow: none; /* No box shadow */
-            outline: none; /* Remove outline */
-        }
-
-        .hero .search-bar:focus {
-            color: var(--text-color); /* Keep the color same on focus */
-            background-color: transparent; /* Keep background transparent */
-        }
-
-        .hero .search-bar::placeholder {
-            color: #6b7280; /* Placeholder color */
-        }
-
-        /* Cards Section */
-        .cards-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 2rem;
-            margin: 2rem 1rem;
-        }
-
-        .card {
-            background-color: var(--card-background);
-            border: 1px solid var(--card-border);
-            border-radius: 0.75rem;
-            padding: 2rem;
-            transition: box-shadow 0.3s ease, transform 0.3s ease;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-
-        .card:hover {
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
-            transform: translateY(-5px);
-        }
-
-        .card h3 {
-            font-size: 1.75rem;
-            font-weight: 600;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-        }
-
-        .card p {
-            font-size: 1rem;
-            color: #6b7280;
-        }
-
-        /* Footer Section */
-        .footer {
-            background-color: var(--footer-background);
-            color: var(--text-color);
-            text-align: center;
-            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
             width: 100%;
-            margin-top: 2rem;
-            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+            overflow-x: hidden;
+            transition: background-color 0.2s ease;
         }
 
-        .footer a {
-            color: var(--primary-color);
+        /* ============================================================
+           NAVIGATION
+           ============================================================ */
+        .navbar-hardened {
+            position: sticky;
+            top: 0;
+            width: 100%;
+            z-index: 9999;
+            background: var(--nav-bg);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--card-border);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-text {
+            font-weight: 800;
+            font-size: 1.5rem;
+            letter-spacing: -0.05em;
             text-decoration: none;
+            color: var(--text-main) !important;
         }
 
-        .footer a:hover {
-            text-decoration: underline;
+        /* ============================================================
+           HOME PAGE: HERO & TILES
+           ============================================================ */
+        .hero-banner {
+            background: linear-gradient(135deg, var(--oi-primary), var(--oi-secondary));
+            color: white !important;
+            padding: 8rem 1rem 10rem 1rem;
+            text-align: center;
+            width: 100%;
         }
 
-        /* Button Styles */
-        .button {
-            background-color: var(--button-bg);
-            color: white;
-            padding: 1rem 2rem;
-            font-size: 1.125rem;
-            font-weight: 600;
-            border-radius: 0.375rem;
-            text-decoration: none;
-            transition: background-color 0.3s ease;
-            display: inline-block;
-            margin: 1rem;
+        .hero-title {
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            font-weight: 800;
+            letter-spacing: -0.05em;
+            margin-bottom: 1rem;
+            color: white !important;
         }
 
-        .button:hover {
-            background-color: var(--button-hover-bg);
+        .search-boundary {
+            max-width: 650px;
+            margin: -3rem auto 0;
+            position: relative;
+            z-index: 50;
+            padding: 0 1rem;
         }
 
-        /* Responsive Design */
+        .search-engine-input {
+            width: 100%;
+            padding: 1.25rem 1.75rem;
+            border-radius: 16px;
+            background: var(--card-bg);
+            border: 2px solid var(--card-border);
+            color: var(--text-main);
+            font-size: 1.1rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            outline: none;
+        }
+
+        .search-engine-input:focus {
+            border-color: var(--oi-primary);
+        }
+
+        #mkdocs-search-results {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            margin-top: 10px;
+            color: var(--text-main);
+        }
+
+        .home-main-layout {
+            max-width: 1200px;
+            margin: 5rem auto;
+            padding: 0 1.5rem;
+            width: 100%;
+        }
+
+        .tile-grid-system {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .nav-card-tile {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            padding: 4rem 2rem;
+            border-radius: 24px;
+            text-align: center;
+            text-decoration: none !important;
+            transition: all 0.2s ease;
+        }
+
+        .nav-card-tile:hover {
+            transform: translateY(-8px);
+            border-color: var(--oi-primary);
+        }
+
+        .nav-card-tile h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--oi-primary) !important;
+        }
+
+        /* ============================================================
+           READER VIEW: HIGH CONTRAST MARKDOWN
+           ============================================================ */
+        .documentation-wrapper {
+            flex: 1;
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 5rem 1.5rem;
+        }
+
+        .markdown-engine {
+            color: var(--text-main) !important;
+        }
+
+        .markdown-engine h1 { font-size: 3rem; font-weight: 800; margin-bottom: 2rem; color: var(--oi-primary); }
+        .markdown-engine h2 { font-size: 2rem; font-weight: 700; margin-top: 3.5rem; border-bottom: 2px solid var(--card-border); padding-bottom: 0.75rem; color: var(--text-main); }
+        .markdown-engine p { font-size: 1.125rem; line-height: 1.8; margin-bottom: 1.75rem; color: var(--text-main); }
+
+        /* High-Contrast Code Blocks */
+        .markdown-engine code {
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--code-bg);
+            color: var(--code-text) !important;
+            padding: 0.2rem 0.5rem;
+            border-radius: 6px;
+            font-size: 0.95em;
+            font-weight: 500;
+        }
+
+        .markdown-engine pre {
+            background: var(--code-bg) !important;
+            padding: 1.5rem;
+            border-radius: 12px;
+            overflow-x: auto;
+            margin-bottom: 2rem;
+            border: 1px solid var(--card-border);
+        }
+
+        .markdown-engine pre code {
+            background: transparent !important;
+            padding: 0;
+            color: var(--code-text) !important;
+        }
+
+        /* ============================================================
+           PINNED FOOTER
+           ============================================================ */
+        .custom-footer {
+            flex-shrink: 0;
+            width: 100%;
+            background: var(--bg-body);
+            border-top: 1px solid var(--card-border);
+            padding: 5rem 1.5rem;
+            margin-top: auto;
+            text-align: center;
+        }
+
+        .theme-btn {
+            cursor: pointer;
+            background: var(--card-bg);
+            color: var(--text-main);
+            border: 2px solid var(--card-border);
+            padding: 0.5rem 1rem;
+            border-radius: 12px;
+            font-weight: 800;
+            font-size: 0.75rem;
+        }
+
         @media (max-width: 768px) {
-            .hero h2 {
-                font-size: 2rem;
-            }
-
-            .hero p {
-                font-size: 1.1rem;
-            }
-
-            .hero .search-bar {
-                width: 80%;
-            }
-
-            .cards-container {
-                margin: 2rem 1rem;
-            }
-
-            .card {
-                padding: 1.5rem;
-            }
+            .hero-title { font-size: 2.5rem; }
+            .tile-grid-system { grid-template-columns: 1fr; }
         }
     </style>
 
@@ -540,58 +615,451 @@
 
         <div class="container">
             <div class="row">
-    <!-- Hero Section -->
-    <div class="hero">
-        <h2>Search the Documentation</h2>
-        <p>Quickly find what you're looking for by searching through our extensive documentation.</p>
-        <input type="text" id="mkdocs-search-input" class="search-bar" placeholder="Search the documentation" />
-    </div>
+    <nav class="navbar-hardened">
+        <a href="../.." class="logo-text">
+            OI <span style="color:var(--oi-primary)">DOCS</span>
+        </a>
+        <button id="master-theme-toggle" class="theme-btn">
+            DARK MODE
+        </button>
+    </nav>
 
-    <!-- Featured Docs Section -->
-    <div class="cards-container">
-        <div class="card">
-            <h3>Getting Started</h3>
-            <p>Learn how to set up and get started with OpenIndiana from scratch.</p>
-        </div>
-        <div class="card">
-            <h3>System Administration</h3>
-            <p>Explore system administration tasks for managing OpenIndiana servers.</p>
-        </div>
-        <div class="card">
-            <h3>Networking</h3>
-            <p>Understand networking configurations and management in OpenIndiana.</p>
-        </div>
-        <div class="card">
-            <h3>Advanced Features</h3>
-            <p>Dive deep into the advanced features and capabilities of OpenIndiana.</p>
-        </div>
-    </div>
+    
+        <main class="documentation-wrapper">
+            <article class="markdown-engine">
+                <!--
 
-    <!-- Footer Section -->
-    <div class="footer">
-        <p>© 2026 OpenIndiana Maintainers</p>
-        <p><a href="https://www.openindiana.org/">Visit the official site</a></p>
-    </div>
+The contents of this Documentation are subject to the Public Documentation License Version 1.01
+(the "License"); you may only use this Documentation if you comply with the terms of this License.
+A copy of the License is available at http://illumos.org/license/PDL.
+
+The Original Documentation is _________________.
+
+The Initial Writer of the Original Documentation is ___________ Copyright (C)_________[Insert year(s)].
+All Rights Reserved. (Initial Writer contact(s):________________[Insert hyperlink/alias]).
+
+Contributor(s): ______________________________________.
+
+Portions created by ______ are Copyright (C)_________[Insert year(s)].
+All Rights Reserved. (Contributor contact(s):________________[Insert hyperlink/alias]).
+
+-->
+
+<h1 id="improving-the-openindiana-project">Improving the OpenIndiana Project</h1>
+<h4 id="notes">NOTES:</h4>
+<p>For expert community building guidance from a seasoned OpenSolaris veteran, see <a href="https://jimgrisanzio.wordpress.com/communities/">Jim Grisianzio's communities page</a>.</p>
+<h3 id="governance-board">Governance Board</h3>
+<p>At this time the OpenIndiana project does not have a formal governance board.
+Creating a formal governance board would help steer the OpenIndiana project.</p>
+<h3 id="code-of-conduct">Code of Conduct</h3>
+<p>At this time the OpenIndiana project does not have a formal code of conduct.
+Creating a formal code of conduct would be a healthy step towards ensuring harmony within the project.</p>
+<h3 id="public-relations">Public Relations</h3>
+<p>Public relations is an important aspect of project management, even if it's limited to updating 3rd party websites as to the current status of the project.</p>
+<h3 id="3rd-party-websites">3rd party websites</h3>
+<ul>
+<li>Distrowatch<ul>
+<li>For the next Distrowatch update, there is a mapping from DistroWatch to Hipster names:</li>
+<li><a href="http://hub.openindiana.ninja/?q#content/distrowatch-openindiana-hipster-packages">http://hub.openindiana.ninja/?q#content/distrowatch-openindiana-hipster-packages</a></li>
+</ul>
+</li>
+<li><a href="http://opensolaris.linuxfreedom.com/">http://opensolaris.linuxfreedom.com/</a> - didn't see OpenIndiana here anywhere (still showing OpenSolaris)</li>
+<li>Slashdot</li>
+<li>Phoronix</li>
+<li><a href="http://www.cyberciti.biz/">nixcraft</a></li>
+<li><a href="https://www.unixmen.com/">Unixmen</a></li>
+<li><a href="https://www.reddit.com/r/unix">Reddit r/unix</a></li>
+<li><a href="https://www.reddit.com/r/illumos">Reddit r/illumos</a></li>
+<li><a href="https://www.reddit.com/r/HomeServer/">Reddit r/homeserver</a></li>
+<li><a href="https://www.reddit.com/r/homelab/">Reddit r/homelab</a></li>
+<li><a href="http://www.servethehome.com/">servethehome</a></li>
+</ul>
+<h3 id="hipster-news">Hipster News</h3>
+<ul>
+<li>Current events with OI Hipster distro</li>
+<li>OI/illumos news stories</li>
+<li>Featured new packages</li>
+<li>Tips and Tricks</li>
+</ul>
+<h3 id="download-mirrors">Download mirrors</h3>
+<ul>
+<li>Some of the currently listed mirrors are offline or outdated.<ul>
+<li>Need to update the landing pages for some of the mirrors.</li>
+</ul>
+</li>
+<li>Really need a North American mirror.</li>
+<li>Provide more ways of trying out oi<ul>
+<li>Vagrant box for virtualbox is done</li>
+<li>KVM and VMware are still needed</li>
+</ul>
+</li>
+</ul>
+<h3 id="package-submission-and-maintenance">Package submission and maintenance</h3>
+<ul>
+<li>Make contributing and maintaining packages super easy - it should be dead simple to add new package</li>
+</ul>
+<h3 id="os-modernizations">OS Modernizations</h3>
+<ul>
+<li>Modernize our base system - cron, syslog, mta etc so people get a software they are expected to find on any modern linux distro</li>
+</ul>
+<h3 id="support-forum">Support forum</h3>
+<ul>
+<li>While the project as irc and ml, perhaps a user forum would be helpful as well.</li>
+</ul>
+<h3 id="other-periodic-website-updates">Other Periodic Website Updates</h3>
+<ul>
+<li>Publish new pictures for the Community and update the Roadmap every 6 months</li>
+</ul>
+<h3 id="software-wish-list-to-make-the-desktop-more-usable">Software wish list to make the desktop more usable</h3>
+<ul>
+<li>The desktop is really what makes OpenIndiana Hipster unique among all the different illumos distributions.<ul>
+<li>The project should really capitalize on the desktop, and by extension include lots of GUI software.</li>
+</ul>
+</li>
+</ul>
+<h3 id="alternate-desktops">Alternate Desktops</h3>
+<ul>
+<li><a href="http://mate-desktop.com/">Mate</a></li>
+<li><a href="https://www.kde.org/">KDE</a></li>
+<li><a href="https://github.com/linuxmint/Cinnamon">Cinnamon</a></li>
+</ul>
+<h3 id="audiovideo-editing">Audio/Video Editing</h3>
+<ul>
+<li><a href="http://www.audacityteam.org/">Audacity</a></li>
+<li><a href="https://handbrake.fr/">Handbrake</a></li>
+</ul>
+<h3 id="benchmarking-tools">Benchmarking tools</h3>
+<ul>
+<li><a href="http://www.phoronix-test-suite.com/">Phoronix Test Suite</a></li>
+</ul>
+<h3 id="development-tools">Development tools</h3>
+<ul>
+<li><a href="https://atom.io/">ATOM - Text Editor</a></li>
+<li><a href="http://www.vim.org/">GVIM - Text Editor</a></li>
+<li><a href="https://eclipse.org/">Eclipse - IDE</a></li>
+<li><a href="http://meldmerge.org/">Meld - Diff Viewer</a></li>
+<li><a href="https://www.sublimetext.com/3">Sublime - Text Editor</a></li>
+</ul>
+<h3 id="desktop-publishing">Desktop publishing</h3>
+<ul>
+<li><a href="http://www.scribus.net/">Scribus</a></li>
+<li><a href="https://inkscape.org/en/">Inkscape</a></li>
+<li><a href="https://www.calligra.org/">Calligra Suite</a></li>
+</ul>
+<h3 id="ebook-tools">Ebook Tools</h3>
+<ul>
+<li><a href="https://calibre-ebook.com/">Calibre</a></li>
+</ul>
+<h3 id="file-backup">File Backup</h3>
+<ul>
+<li><a href="https://www.code42.com/crashplan/">CrashPlan</a></li>
+</ul>
+<h3 id="file-sharing">File Sharing</h3>
+<ul>
+<li><a href="http://deluge-torrent.org/">Deluge</a></li>
+</ul>
+<h3 id="file-storage">File Storage</h3>
+<ul>
+<li><a href="http://www.dropbox.com">Dropbox</a></li>
+</ul>
+<h3 id="graphics">Graphics</h3>
+<ul>
+<li><a href="https://www.blender.org/">Blender</a></li>
+<li><a href="https://krita.org/">Krita</a></li>
+<li><a href="http://www.xaraxtreme.org/">Xara</a></li>
+<li><a href="http://www.povray.org/">POV-Ray</a></li>
+<li><a href="http://www.radiance-online.org/">Radiance</a></li>
+</ul>
+<h3 id="media-center">Media Center</h3>
+<ul>
+<li><a href="https://plex.tv/Plex">Media Server &amp; Plex Home Theater (client)</a></li>
+<li><a href="https://kodi.tv/">Kodi</a></li>
+</ul>
+<h3 id="password-manager">Password Manager</h3>
+<ul>
+<li><a href="http://keepass.info/">Keypass</a></li>
+</ul>
+<h3 id="photography">Photography</h3>
+<ul>
+<li><a href="http://www.darktable.org/">Darktable</a></li>
+<li><a href="http://rawtherapee.com/">RawTherapee</a></li>
+<li><a href="https://www.digikam.org/">Digikam</a></li>
+<li><a href="http://hugin.sourceforge.net/">Hugin</a></li>
+<li><a href="https://picasa.google.com/">Picasa</a></li>
+</ul>
+<h3 id="systems-automation">Systems Automation</h3>
+<ul>
+<li>Puppet - Hipster repo has package - version 3.6.2</li>
+</ul>
+<h3 id="system-monitoring">System Monitoring</h3>
+<ul>
+<li>Nagios (outdated - but might be a starting point) - <a href="https://www.opencsw.org/package/nagios/">https://www.opencsw.org/package/nagios/</a></li>
+</ul>
+<h3 id="virtualization-openindiana-as-a-host">Virtualization - OpenIndiana as a Host</h3>
+<ul>
+<li><a href="https://virt-manager.org/">Virt-Manager</a></li>
+<li><a href="http://www.ovirt.org/">O-virt</a></li>
+<li><a href="https://www.virtualbox.org/">Virtualbox</a></li>
+</ul>
+<h3 id="virtualization-openindiana-as-a-guest">Virtualization - OpenIndiana as a Guest</h3>
+<ul>
+<li><a href="http://www.spice-space.org/">Native Spice Protocol Support for an OpenIndiana Guest OS</a></li>
+<li><a href="https://my.vmware.com/web/vmware/details?productId#491&amp;downloadGroup#VMTOOLS1000">Native Vmware tools support for an OpenIndiana Guest OS</a></li>
+<li>Native Virtualbox support for an OpenIndiana Guest OS.</li>
+</ul>
+<h3 id="web-browsers">Web browsers</h3>
+<ul>
+<li><a href="http://www.chromium.org/Home">Chromium</a></li>
+</ul>
+<h3 id="suggestions-for-improving-elements-of-the-distro-itself">Suggestions for improving elements of the distro itself</h3>
+<ul>
+<li>Updated Custom desktop background for OI - Perhaps downloads from the website, or included in distro.</li>
+<li>Updated Custom splash screen for grub (or Forth bootloader)</li>
+<li>Updated "Welcome to OpenIndiana" desktop page.</li>
+<li>Update the welcome HTML: <a href="https://github.com/OpenIndiana/openindiana-welcome/blob/master/data/html/en/index.html">https://github.com/OpenIndiana/openindiana-welcome/blob/master/data/html/en/index.html</a></li>
+</ul>
+<h3 id="wiki-improvements">Wiki Improvements</h3>
+<h4 id="wiki-usability-on-mobile-devices">Wiki Usability on Mobile Devices</h4>
+<p>The OpenIndiana Wiki does not render well on mobile devices.</p>
+<ul>
+<li>The left hand navigation menu is completely absent when browsing the Wiki from Android phones and tablets.</li>
+</ul>
+<p>Possible solutions:</p>
+<ul>
+<li>Add in page navigation menus</li>
+<li>Replace the Wiki with a mobile aware Wiki</li>
+<li>Replace the Wiki with a user forum</li>
+<li>Replace the Wiki as part of a larger web presence transformation</li>
+</ul>
+<h4 id="need-to-create-a-wiki-style-guide">Need to Create a Wiki Style Guide</h4>
+<p>Should the Wiki be retained, it may be helpful to create a Wiki style guide.
+This would be very helpful by ensuring consistency between the different pages.
+It may also be helpful to modify the existing CSS to help improve the aesthetics of the site.</p>
+<h5 id="possible-suggestions">Possible suggestions</h5>
+<ul>
+<li>This would be very helpful for providing some consistency between different pages.<ul>
+<li>Use horizontal lines (top and bottom) to separate code blocks from the text body.</li>
+<li>Makes it easier to tell what is or isn't code.
+Also provides for a more efficient use of space (don't have to use so many line breaks).</li>
+</ul>
+</li>
+<li>Develop standards for displaying certain types of information...e.g. code blocks, commands, tips, warnings, info, etc.</li>
+<li>
+<p>consider whether it's possible to enable Wiki page navigation by placing breadcrumbs navigational elements within the page itself, rather than relying entirely on Wiki navigation menu in left hand navigation pane.</p>
+</li>
+<li>
+<p>Can look at other Illumos Wikis for ideas and inspiration</p>
+<ul>
+<li><a href="https://Wiki.smartos.org/display/DOC/Doc+Team+Notes">https://Wiki.smartos.org/display/DOC/Doc+Team+Notes</a></li>
+<li><a href="http://omnios.omniti.com/Wiki.php/WikiStart">http://omnios.omniti.com/Wiki.php/WikiStart</a></li>
+<li><a href="http://Wiki.illumos.org/display/illumos/illumos+Home">http://Wiki.illumos.org/display/illumos/illumos+Home</a></li>
+</ul>
+</li>
+</ul>
+<h4 id="some-notes-for-updating-wiki-pages">Some notes for updating Wiki pages</h4>
+<p>While replacing the Wiki with some kind of continuous integration content management system would likely be the most ideal solution, there are still things which can be done to help improve the Wiki.</p>
+<h5 id="clean-up-old-user-comments">Clean up old user comments</h5>
+<ul>
+<li>Many, many comments from 2010 - 2012.<ul>
+<li>Probably a good idea to clean these up and incorporated the information into the page as appropriate.</li>
+<li>Comments with such old timestamps suggests little site activity has occurred in last 4-5 years.</li>
+</ul>
+</li>
+</ul>
+<h5 id="mark-old-pages-for-deprecation">Mark old pages for deprecation</h5>
+<ul>
+<li>Go through the Wiki and mark content as obsolete.</li>
+<li>Retain items of value and either pull them into the new handbook (if it's helpful for new users), or set it aside for reference when updating the OpenSolaris books.</li>
+<li>Reorganize things which are not being moved.</li>
+</ul>
+<h3 id="wordpress-improvements">WordPress Improvements</h3>
+<p>Improve the presentation of reference materials</p>
+<h4 id="illumos-and-openindiana-hcls">illumos and OpenIndiana HCL's</h4>
+<ul>
+<li>Start a discussion about ways to improve and update this.</li>
+<li>Illumos HLC: <a href="https://www.illumos.org/hcl/">https://www.illumos.org/hcl/</a></li>
+</ul>
+<h4 id="publishing-man-pages-online">Publishing man pages online</h4>
+<ul>
+<li>Start a discussion about getting the Hipster man pages published.<ul>
+<li>illumos core man pages are available on illumos.org</li>
+<li>OI specific man pages are not published.</li>
+</ul>
+</li>
+</ul>
+<pre><code>&lt;leoric&gt; looking at Ubuntu dhcp.conf online man page, I thought it would be good to have automatic extractor and search interface, extracting man pages from package repository and publishing them on OI site...
+&lt;alanc&gt; http://illumos.org/man/ covers the illumos ones, but not all the other packages
+&lt;leoric&gt; I know about illumos man pages, but thought about all available man pages
+&lt;alanc&gt; yeah, I figured that's what you meant
+</code></pre>
+<h4 id="links-to-source-code">Links to source code</h4>
+<ul>
+<li>Talk about the links to the source code and what can be found in each repository.<ul>
+<li><a href="https://hg.openindiana.org/sustaining/">https://hg.openindiana.org/sustaining/</a></li>
+<li><a href="https://hg.openindiana.org/upstream/">https://hg.openindiana.org/upstream/</a></li>
+</ul>
+</li>
+</ul>
+<h4 id="the-future-of-openindianas-web-presence">The future of OpenIndiana's web presence</h4>
+<ul>
+<li>The current OI website is a marked improvement over what previously existed.
+But anything that is already good can be further improved.</li>
+<li>We should begin a strategic discussion about the future direction of web content in general.<ul>
+<li>e.g. do we continue using CMS systems, or start looking at static html?</li>
+</ul>
+</li>
+<li>Wondering if we can expand on the Hipster name, perhaps by theming the website in a similar manor.</li>
+<li>Hipster denotes something trendy, or in fashion, etc., the website theme should exploit this in some way.</li>
+<li>Could try something some like big fashionable buttons as follows:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Button label</th>
+<th>URL points to</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Get it</td>
+<td>Hipster Downloads</td>
+</tr>
+<tr>
+<td>Install it</td>
+<td>Installation Guidance/Tutorials/Instructions</td>
+</tr>
+<tr>
+<td>Use it</td>
+<td>Hipster Handbook</td>
+</tr>
+<tr>
+<td>Discuss it</td>
+<td>OI Mailing lists/IRC, etc.</td>
+</tr>
+<tr>
+<td>Extend it</td>
+<td>Developer Handbook</td>
+</tr>
+</tbody>
+</table>
+<h4 id="favicon">Favicon</h4>
+<ul>
+<li>Can we add the OI favicon to WordPress like we see on the Wiki?</li>
+</ul>
+<h4 id="mobile-devices">Mobile Devices</h4>
+<ul>
+<li>Due to the dark blue color scheme, this menu is hard to see and easily missed.<ul>
+<li>Maybe we should put something on the front page mentioning the mobile menu which is available in the upper left hand corner.</li>
+<li>Perhaps the color of the 3 bars mobile menu can be changed to white or something?</li>
+</ul>
+</li>
+</ul>
+<h4 id="other-thoughts-in-no-particular-order">Other Thoughts (in no particular order)</h4>
+<ul>
+<li>Add some links to the Community &gt; Getting Involved page.</li>
+<li><a href="http://echelog.com/logs/browse/oi-dev/">#oi-dev IRC chat archives</a></li>
+<li><a href="http://echelog.com/logs/browse/openindiana/">#openindiana IRC chat archives</a></li>
+<li><a href="http://openindiana.org/pipermail/oi-dev/">oi-dev mailing list archives</a></li>
+<li><a href="http://openindiana.org/pipermail/openindiana-discuss/">openindiana mailing list archives</a></li>
+<li>twitter @openindiana</li>
+</ul>
+<!-- [Already listed there but maybe it is more a matter of reorganizing the content for better readability - alarcher ] -->
+
+<ul>
+<li>
+<p>Have redirects (mailing lists, illumos links, etc., ) open into a new tab so OI webpage remains open.</p>
+</li>
+<li>
+<p>Move link to WIKI to a more prominent location (e.g. its own first level tab on home page). Wiki is currently listed last under documentation.</p>
+</li>
+</ul>
+<!-- [Agreed but after the Wiki is turned into something else than a pile of obsolete or unstructured info. Currently I do not want to direct people to this mess - alarcher] -->
+
+<ul>
+<li>More frequent updates to Latest News.</li>
+</ul>
+<!-- [Agreed but need people to write them... - alarcher] -->
+
+<ul>
+<li>
+<p>Community &gt; Security Advisories is misleading.</p>
+<ul>
+<li>This only leads to page to report problems, not view already reported advisories as the breadcrumbs would suggest.</li>
+<li>Perhaps we could find a way to make this more clear (e.g. Report security issues)</li>
+</ul>
+</li>
+<li>
+<p>Documentation &gt; Gallery - Lets update the screenshots - should be from Hipster.</p>
+</li>
+<li>
+<p>Remove old pingbacks.</p>
+<ul>
+<li>They don’t look to offer any real value (e.g. the download page has 68 pingbacks).</li>
+</ul>
+</li>
+</ul>
+<!-- [Already disabled, these are oldies - alarcher] -->
+
+<ul>
+<li>Blog aggregator</li>
+<li>Post old OpenSolaris docs (as they are updated)<ul>
+<li>As the books are updated, replace them.</li>
+</ul>
+</li>
+<li>
+<p>Provide PDF and Epub alternatives.</p>
+</li>
+<li>
+<p>Add list of mirrors, torrents, etc., to download page on website.</p>
+<ul>
+<li>Need to find more places to mirror, preferably some in north america too.</li>
+<li><a href="https://web.archive.org/web/20091223051956/http://www.opensolaris.com/get/index.jsp">Original list of mirrors</a></li>
+</ul>
+</li>
+</ul>
+            </article>
+        </main>
+    
+
+    <footer class="custom-footer">
+        <p class="font-black text-xs tracking-widest opacity-40 uppercase mb-8" style="color:var(--text-main)">OpenIndiana Project</p>
+        <div class="flex flex-wrap justify-center gap-12">
+            <a href="https://www.openindiana.org/" class="text-sm font-bold no-underline hover:underline" style="color:var(--oi-secondary)">Website</a>
+            <a href="https://github.com/openindiana" class="text-sm font-bold no-underline hover:underline" style="color:var(--oi-secondary)">GitHub</a>
+        </div>
+    </footer>
 
     <script>
-        // Dark mode toggle
-        const darkModeToggle = document.getElementById('darkModeToggle');
-        const body = document.body;
+        (function() {
+            const toggle = document.getElementById('master-theme-toggle');
+            const html = document.documentElement;
 
-        darkModeToggle.addEventListener('click', () => {
-            body.classList.toggle('dark-mode');
-            const isDarkMode = body.classList.contains('dark-mode');
-            localStorage.setItem('darkMode', isDarkMode);
-            darkModeToggle.textContent = isDarkMode ? '☀️' : '🌙';
-        });
+            const applyTheme = (theme) => {
+                if (theme === 'dark') {
+                    html.setAttribute('data-theme', 'dark');
+                    toggle.textContent = 'LIGHT MODE';
+                } else {
+                    html.removeAttribute('data-theme');
+                    toggle.textContent = 'DARK MODE';
+                }
+                localStorage.setItem('oi-docs-theme', theme);
+            };
 
-        // Load dark mode state from localStorage
-        if (localStorage.getItem('darkMode') === 'true') {
-            body.classList.add('dark-mode');
-            darkModeToggle.textContent = '☀️';
-        } else {
-            darkModeToggle.textContent = '🌙';
-        }
+            applyTheme(localStorage.getItem('oi-docs-theme') || 'light');
+
+            toggle.addEventListener('click', () => {
+                const current = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+                applyTheme(current);
+            });
+
+            setInterval(() => {
+                const results = document.getElementById('mkdocs-search-results');
+                if (results) {
+                    const descriptions = results.querySelectorAll('p');
+                    descriptions.forEach(d => d.style.display = 'none');
+                }
+            }, 150);
+        })();
     </script>
 
             </div>
