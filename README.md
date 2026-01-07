@@ -20,7 +20,7 @@ You might be wondering why I decided to make this change to the website. The ori
 
 ### Q: **Can I contribute to the project or provide feedback?**
 
-**A:** Yes, you can contribute or provide feedback. This is a one-person project, but I’m open to suggestions and improvements. If you have design ideas, technical input, or just general feedback, you can contact me at **ribsai@outlook.com**. I’ll review all submissions as time permits.
+**A:** Yes, you can contribute or provide feedback. This is a one-person project, but I’m open to suggestions and improvements. If you have design ideas, technical input, or just general feedback, you can open an issue. I’ll review all submissions as time permits.
 
 ### Q: **I [expletive] hate it! It looks so bad, make it better.**
 
