@@ -9,49 +9,12 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --oi-primary: #8b5cf6;
-            --oi-secondary: #3b82f6;
-            --oi-bg: #f8fafc;
-            --oi-text: #1e293b;
-            --oi-card-bg: #ffffff;
-            --oi-card-border: #e2e8f0;
-        }
-
-        .dark-mode {
-            --oi-primary: #a78bfa;
-            --oi-secondary: #60a5fa;
-            --oi-bg: #0f172a;
-            --oi-text: #e2e8f0;
-            --oi-card-bg: #1e293b;
-            --oi-card-border: #334155;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--oi-bg);
-            color: var(--oi-text);
-            transition: all 0.3s ease;
-        }
-
-        .oi-header {
-            background: linear-gradient(135deg, var(--oi-primary) 0%, var(--oi-secondary) 100%);
-            color: white;
-        }
-
-        .oi-card {
-            background-color: var(--oi-card-bg);
-            border: 1px solid var(--oi-card-border);
-            border-radius: 0.75rem;
-            transition: all 0.3s ease;
-        }
-
-        .gradient-text {
-            background: linear-gradient(90deg, var(--oi-primary), var(--oi-secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
+        :root { --oi-primary: #8b5cf6; --oi-secondary: #3b82f6; --oi-bg: #f8fafc; --oi-text: #1e293b; --oi-card-bg: #ffffff; --oi-card-border: #e2e8f0; }
+        .dark-mode { --oi-primary: #a78bfa; --oi-secondary: #60a5fa; --oi-bg: #0f172a; --oi-text: #e2e8f0; --oi-card-bg: #1e293b; --oi-card-border: #334155; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--oi-bg); color: var(--oi-text); transition: all 0.3s ease; }
+        .oi-header { background: linear-gradient(135deg, var(--oi-primary) 0%, var(--oi-secondary) 100%); color: white; }
+        .oi-card { background-color: var(--oi-card-bg); border: 1px solid var(--oi-card-border); border-radius: 0.75rem; transition: all 0.3s ease; }
+        .gradient-text { background: linear-gradient(90deg, var(--oi-primary), var(--oi-secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
     </style>
 </head>
 <body class="antialiased">
@@ -67,168 +30,103 @@
                 <a href="#about" class="hover:underline">About</a>
                 <a href="site_docs/index.html" class="hover:underline">Docs</a>
             </nav>
-            <button id="darkModeToggle" class="px-3 py-1 bg-white/20 rounded text-sm hover:bg-white/30 transition">
-                🌓 Toggle Mode
-            </button>
+            <button id="darkModeToggle" class="px-3 py-1 bg-white/20 rounded text-sm hover:bg-white/30 transition">ð Toggle Mode</button>
         </div>
     </header>
 
     <section class="container mx-auto px-4 py-20 text-center">
-        <h1 class="text-4xl md:text-6xl font-bold mb-6 gradient-text">
-            OpenIndiana: A Modern Illumos (OpenSolaris) Distribution
-        </h1>
-        <p class="text-xl max-w-3xl mx-auto mb-8 opacity-80">
-            OpenIndiana is a free, open-source operating system built on the Illumos kernel. It’s designed for developers, sysadmins, and enthusiasts who value stability, security, and advanced features like ZFS and DTrace, its powerful features make it great for both servers and desktop.
-        </p>
+        <h1 class="text-4xl md:text-6xl font-bold mb-6 gradient-text">OpenIndiana: A Modern Illumos Distribution</h1>
+        <p class="text-xl max-w-3xl mx-auto mb-8 opacity-80">Built on the Illumos kernel. Designed for developers and sysadmins who value ZFS, DTrace, and enterprise stability.</p>
         <div class="flex flex-wrap justify-center gap-4">
-            <a href="#downloads" class="inline-block px-6 py-3 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-lg hover:opacity-90 transition transform hover:scale-105">
-                Get Started
-            </a>
-            <a href="#community" class="inline-block px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition transform hover:scale-105">
-                Join Community
-            </a>
-            <a href="site_docs/index.html" class="inline-block px-6 py-3 bg-gray-800 text-white rounded-lg hover:bg-black transition transform hover:scale-105">
-                Read the Docs
-            </a>
+            <a href="#downloads" class="inline-block px-6 py-3 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-lg hover:opacity-90 transition transform hover:scale-105">Get Started</a>
+            <a href="site_docs/index.html" class="inline-block px-6 py-3 bg-gray-800 text-white rounded-lg hover:bg-black transition transform hover:scale-105">Read the Docs</a>
         </div>
     </section>
 
-    <section class="container mx-auto px-4 py-12">
-        <h2 class="text-3xl font-bold mb-12 text-center gradient-text">Why OpenIndiana?</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div class="oi-card p-6 text-center">
-                <div class="text-4xl mb-4">🔒</div>
-                <h3 class="text-xl font-semibold mb-2">Enterprise-Grade Stability</h3>
-                <p class="opacity-70">OpenIndiana is built on the Illumos kernel, offering the reliability and security that developers and sysadmins trust.</p>
-            </div>
-            <div class="oi-card p-6 text-center">
-                <div class="text-4xl mb-4">⚡</div>
-                <h3 class="text-xl font-semibold mb-2">Powerful Features</h3>
-                <p class="opacity-70">With ZFS, DTrace, and Crossbow, OpenIndiana provides the tools you need for modern infrastructure.</p>
-            </div>
-            <div class="oi-card p-6 text-center">
-                <div class="text-4xl mb-4">🤝</div>
-                <h3 class="text-xl font-semibold mb-2">Community Driven</h3>
-                <p class="opacity-70">OpenIndiana is maintained by a global community of volunteers. Everyone is welcome to contribute, please see docs.openindiana.org for more information.</p>
-            </div>
+    <section id="announcements" class="container mx-auto px-4 py-12">
+        <h2 class="text-3xl font-bold mb-8 text-center gradient-text">Latest Announcements</h2>
+        <div id="announcements-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="col-span-full text-center py-10 opacity-50 italic">Checking for updates...</div>
         </div>
     </section>
 
-    <section id="downloads" class="container mx-auto px-4 py-12">
+    <section id="downloads" class="container mx-auto px-4 py-12 border-t border-[var(--oi-card-border)] mt-12">
         <h2 class="text-3xl font-bold mb-8 text-center gradient-text">Get OpenIndiana</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 max-w-4xl mx-auto">
             <div class="oi-card p-6">
-                <h3 class="text-xl font-semibold mb-2">Live DVD (GUI)</h3>
-                <p class="opacity-70 mb-4">Bootable DVD image with a graphical installer.</p>
-                <a href="https://dlc.openindiana.org/isos/hipster/20251026/OI-hipster-gui-20251026.iso" class="text-blue-500 hover:underline">Download (ISO)</a>
+                <h3 class="text-xl font-semibold mb-2">Hipster GUI</h3>
+                <p class="opacity-70 mb-4">The modern rolling-release distribution with a desktop environment.</p>
+                <a href="https://dlc.openindiana.org/isos/hipster/" class="text-blue-500 font-medium hover:underline">Download ISO &rarr;</a>
             </div>
             <div class="oi-card p-6">
-                <h3 class="text-xl font-semibold mb-2">Text DVD</h3>
-                <p class="opacity-70 mb-4">Bootable DVD image with a text-based installer.</p>
-                <a href="https://dlc.openindiana.org/isos/hipster/20251026/OI-hipster-text-20251026.iso" class="text-blue-500 hover:underline">Download (ISO)</a>
-            </div>
-            <div class="oi-card p-6">
-                <h3 class="text-xl font-semibold mb-2">Live USB (GUI)</h3>
-                <p class="opacity-70 mb-4">Bootable USB image with a graphical installer.</p>
-                <a href="https://dlc.openindiana.org/isos/hipster/20251026/OI-hipster-gui-20251026.usb" class="text-blue-500 hover:underline">Download (USB)</a>
-            </div>
-            <div class="oi-card p-6">
-                <h3 class="text-xl font-semibold mb-2">Text USB</h3>
-                <p class="opacity-70 mb-4">Bootable USB image with a text-based installer.</p>
-                <a href="https://dlc.openindiana.org/isos/hipster/20251026/OI-hipster-text-20251026.usb" class="text-blue-500 hover:underline">Download (USB)</a>
+                <h3 class="text-xl font-semibold mb-2">Hipster Minimal</h3>
+                <p class="opacity-70 mb-4">Text-based installer for server environments and power users.</p>
+                <a href="https://dlc.openindiana.org/isos/hipster/" class="text-blue-500 font-medium hover:underline">Download ISO &rarr;</a>
             </div>
         </div>
     </section>
 
-    <section id="community" class="container mx-auto px-4 py-12">
-        <h2 class="text-3xl font-bold mb-8 text-center gradient-text">Join the Community</h2>
-        <div class="max-w-4xl mx-auto text-center">
-            <p class="mb-6 opacity-80">OpenIndiana is powered by a community of developers, sysadmins, and enthusiasts. Whether you're interested in coding, testing, or just learning, there's a place for you here.</p>
-            <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <a href="ircs://irc.libera.chat:6697/openindiana" class="oi-card p-4 flex items-center space-x-2 hover:opacity-80 transition">
-                    <span>💬</span><span>Chat on IRC.</span>
-                </a>
-                <a href="https://openindiana.org" class="oi-card p-4 flex items-center space-x-2 hover:opacity-80 transition">
-                    <span>📢</span><span>See Annoucements</span>
-                </a>
-                <a href="https://docs.openindiana.org/misc/openindiana/#what-books-are-available-to-help-with-learning-openindiana" class="oi-card p-4 flex items-center space-x-2 hover:opacity-80 transition">
-                    <span>📞</span><span>Other ways to contact OpenIndiana</span>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <section id="repos" class="container mx-auto px-4 py-12">
-        <h2 class="text-3xl font-bold mb-8 text-center gradient-text">Package Repositories</h2>
-        <div class="max-w-4xl mx-auto">
-            <p class="mb-6 opacity-80">OpenIndiana uses the Image Packaging System (IPS) for package management. You can add repositories to access a wide range of software.</p>
-            <div class="overflow-x-auto rounded-lg border border-[var(--oi-card-border)]">
-                <table class="min-w-full text-left">
-                    <thead class="bg-gray-50 dark:bg-gray-800/50">
-                        <tr>
-                            <th class="py-3 px-4 border-b border-[var(--oi-card-border)]">Publisher</th>
-                            <th class="py-3 px-4 border-b border-[var(--oi-card-border)]">URI</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="py-3 px-4 border-b border-[var(--oi-card-border)] font-medium">openindiana.org</td>
-                            <td class="py-3 px-4 border-b border-[var(--oi-card-border)]">
-                                <a href="http://pkg.openindiana.org/hipster" class="text-blue-500 hover:underline">http://pkg.openindiana.org/hipster</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="py-3 px-4 border-b border-[var(--oi-card-border)] font-medium">hipster-encumbered</td>
-                            <td class="py-3 px-4 border-b border-[var(--oi-card-border)]">
-                                <a href="http://pkg.openindiana.org/hipster-encumbered" class="text-blue-500 hover:underline">http://pkg.openindiana.org/hipster-encumbered</a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </section>
-
-    <section id="about" class="container mx-auto px-4 py-12 text-center">
-        <h2 class="text-3xl font-bold mb-8 gradient-text">About OpenIndiana</h2>
-        <div class="max-w-3xl mx-auto">
-            <p class="mb-4 opacity-80">OpenIndiana is a continuation of the OpenSolaris project, providing a free and open-source operating system based on the Illumos kernel. It is designed for developers, sysadmins, and enthusiasts who value stability, security, and advanced features.</p>
-            <p class="mb-4 opacity-80">The project is maintained by a global community of volunteers and is always looking for new contributors. Whether you're interested in coding, documentation, or testing, your help is welcome!</p>
-            <p class="opacity-80">For more information, visit the <a href="https://www.openindiana.org/" class="text-blue-500 hover:underline">official OpenIndiana website</a>.</p>
-        </div>
-    </section>
-
-    <footer class="bg-gray-900 text-white py-10 mt-12">
+    <footer class="bg-gray-900 text-white py-10 mt-20">
         <div class="container mx-auto px-4 text-center">
-            <div class="flex justify-center space-x-6 mb-4">
-                <a href="#" class="hover:text-purple-400 transition">GitHub</a>
-                <a href="#" class="hover:text-purple-400 transition">IRC</a>
-                <a href="#" class="hover:text-purple-400 transition">Twitter</a>
-                <a href="#" class="hover:text-purple-400 transition">Forum</a>
-            </div>
-            <p class="mb-2 text-gray-300"> OpenIndiana Maintainers. All rights reserved.</p>
-            <p class="text-sm text-gray-400 max-w-2xl mx-auto">
-                This is a derivative site. OpenIndiana is a registered trademark. For official information, visit <a href="https://www.openindiana.org/" class="hover:underline">openindiana.org</a>. <a href="https://illumos.org" class="hover:underline text-blue-400">Illumos</a> is also the source for OpenIndiana.
-            </p>
+            <p class="text-sm text-gray-400">OpenIndiana Project. Content licensed under CDDL/Creative Commons where applicable.</p>
         </div>
     </footer>
 
     <script>
+        // --- Theme Management ---
         const darkModeToggle = document.getElementById('darkModeToggle');
         function updateTheme(isDark) {
             document.body.classList.toggle('dark-mode', isDark);
-            darkModeToggle.textContent = isDark ? '☀️ Light Mode' : '🌓 Dark Mode';
+            darkModeToggle.textContent = isDark ? 'âï¸ Light Mode' : 'ð Dark Mode';
             localStorage.setItem('darkMode', isDark);
         }
+        darkModeToggle.addEventListener('click', () => updateTheme(!document.body.classList.contains('dark-mode')));
+        if (localStorage.getItem('darkMode') === 'true') updateTheme(true);
 
-        darkModeToggle.addEventListener('click', () => {
-            const isDark = !document.body.classList.contains('dark-mode');
-            updateTheme(isDark);
-        });
+        // --- Announcements Logic (Production Ready) ---
+        const list = document.getElementById('announcements-list');
 
-        if (localStorage.getItem('darkMode') === 'true') {
-            updateTheme(true);
+        async function fetchAnnouncements() {
+            try {
+                // Fetch from the local directory
+                const response = await fetch('./data.json');
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP Error: ${response.status}`);
+                }
+
+                const data = await response.json();
+                list.innerHTML = ''; // Clear the loading state
+
+                data.forEach(item => {
+                    const card = document.createElement('div');
+                    card.className = 'oi-card p-6 flex flex-col h-full';
+                    card.innerHTML = `
+                        <div class="flex-grow">
+                            <h3 class="text-xl font-semibold mb-1 text-[var(--oi-primary)]">${item.title}</h3>
+                            <p class="text-xs opacity-50 mb-4 font-medium uppercase tracking-wider">${item.date} â¢ ${item.author}</p>
+                            <div class="opacity-80 text-sm leading-relaxed">${item.content}</div>
+                        </div>
+                    `;
+                    list.appendChild(card);
+                });
+
+            } catch (err) {
+                // VISIBLE ERROR REPORTING
+                list.innerHTML = `
+                    <div class="col-span-full text-center p-8 bg-red-500/10 border border-red-500/20 rounded-xl">
+                        <p class="text-red-500 font-bold text-lg">â ï¸ Announcements Failed to Load</p>
+                        <p class="text-sm opacity-70 mt-2">Error: ${err.message}</p>
+                        <div class="mt-4 text-xs font-mono bg-black/5 p-2 rounded inline-block">
+                        
+                        </div>
+                    </div>
+                `;
+            }
         }
+
+        // Initialize
+        fetchAnnouncements();
     </script>
 </body>
 </html>
