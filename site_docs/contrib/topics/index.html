@@ -1,4 +1,4 @@
-/<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8">
@@ -20,7 +20,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono&display=swap" rel="stylesheet">
 
     <style>
-        /* THE SKIP LINK */
+        /* Skip Link */
         .skip-link {
             position: fixed; top: -100px; left: 50%; transform: translateX(-50%);
             background: #ffde59; color: #000 !important; padding: 1rem 2rem;
@@ -29,7 +29,7 @@
         }
         .skip-link:focus { top: 20px; outline: none; }
 
-        /* FOOTER REMOVAL */
+        /* Remove unwanted default MKDocs footer elements */
         .md-footer, .md-copyright, .md-footer-meta, footer:not(.custom-footer),
         [role="contentinfo"], .md-typeset hr, .md-sidebar--secondary {
             display: none !important;
@@ -40,8 +40,7 @@
             --bg-body: #ffffff; --text-main: #0f172a;
             --card-bg: #ffffff; --card-border: #e2e8f0;
             --nav-bg: rgba(255, 255, 255, 0.98);
-            --code-bg: #0f172a;
-            --code-text: #e2e8f0;
+            --code-bg: #0f172a; --code-text: #e2e8f0;
         }
 
         [data-theme="dark"] {
@@ -49,13 +48,14 @@
             --bg-body: #020617; --text-main: #ffffff;
             --card-bg: #0f172a; --card-border: #334155;
             --nav-bg: rgba(2, 6, 23, 0.98);
-            --code-bg: #000000;
-            --code-text: #e2e8f0;
+            --code-bg: #000000; --code-text: #e2e8f0;
         }
 
         body {
-            font-family: 'Inter', sans-serif; background-color: var(--bg-body);
-            color: var(--text-main); margin: 0; display: flex;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            margin: 0; display: flex;
             flex-direction: column; min-height: 100vh;
         }
 
@@ -75,9 +75,12 @@
 
         .hero-banner {
             background: linear-gradient(135deg, var(--oi-primary), var(--oi-secondary)) !important;
-            color: white !important; padding: 12rem 1rem; text-align: center;
+            color: white !important; padding: 8rem 1rem; text-align: center;
         }
-        .hero-title { font-size: clamp(2.5rem, 8vw, 4.5rem); font-weight: 800; letter-spacing: -0.05em; color: white !important; margin: 0; }
+        .hero-title {
+            font-size: clamp(2rem, 6vw, 3.5rem); /* smaller so full text fits */
+            font-weight: 800; letter-spacing: -0.03em; color: white !important; margin: 0;
+        }
 
         .documentation-container { display: flex; max-width: 1400px; margin: 0 auto; width: 100%; padding: 0 5%; }
         .sidebar-nav { width: 280px; position: sticky; top: 100px; height: fit-content; padding: 4rem 0; border-right: 1px solid var(--card-border); }
@@ -97,8 +100,8 @@
             font-size: 0.95rem;
         }
 
-        .markdown-engine h1 { font-size: 3.5rem; font-weight: 800; color: var(--oi-primary) !important; margin-bottom: 2rem; }
-        .custom-footer { border-top: 1px solid var(--card-border); padding: 4rem 5%; text-align: center; margin-top: auto; }
+        .markdown-engine h1 { font-size: 3rem; font-weight: 800; color: var(--oi-primary) !important; margin-bottom: 2rem; }
+        .custom-footer { border-top: 1px solid var(--card-border); padding: 4rem 5%; text-align: center; margin-top: auto; opacity: 0.8; }
         .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
     </style>
 
@@ -912,7 +915,7 @@ In contrast, Oracle dropped lp completely in the Solaris 11.0 release.</p>
     
 
     <footer class="custom-footer">
-        <div class="flex justify-between items-center opacity-60">
+        <div class="flex justify-between items-center">
             <p class="text-[10px] font-black uppercase tracking-widest">OpenIndiana Reimagined</p>
             <div class="flex gap-8">
                 <a href="https://www.openindiana.org/" class="font-bold text-sm no-underline hover:underline">Website</a>
@@ -944,13 +947,6 @@ In contrast, Oracle dropped lp completely in the Solaris 11.0 release.</p>
             };
             applyTheme(localStorage.getItem('oi-theme-v5') || 'light');
             toggle.addEventListener('click', () => applyTheme(html.hasAttribute('data-theme') ? 'light' : 'dark'));
-
-            setInterval(() => {
-                const results = document.getElementById('mkdocs-search-results');
-                if (results) {
-                    results.querySelectorAll('p').forEach(d => d.style.display = 'none');
-                }
-            }, 150);
         })();
     </script>
 
