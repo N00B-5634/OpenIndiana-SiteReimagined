@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+/<!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8">
@@ -40,8 +40,8 @@
             --bg-body: #ffffff; --text-main: #0f172a;
             --card-bg: #ffffff; --card-border: #e2e8f0;
             --nav-bg: rgba(255, 255, 255, 0.98);
-            --code-bg: #0f172a; /* STICKY DARK CODE BG */
-            --code-text: #ffffff;
+            --code-bg: #0f172a;
+            --code-text: #e2e8f0;
         }
 
         [data-theme="dark"] {
@@ -50,7 +50,7 @@
             --card-bg: #0f172a; --card-border: #334155;
             --nav-bg: rgba(2, 6, 23, 0.98);
             --code-bg: #000000;
-            --code-text: #ffffff;
+            --code-text: #e2e8f0;
         }
 
         body {
@@ -59,7 +59,6 @@
             flex-direction: column; min-height: 100vh;
         }
 
-        /* NAVBAR WITH INTEGRATED SEARCH */
         .navbar-hardened {
             position: sticky; top: 0; z-index: 9999; background: var(--nav-bg);
             backdrop-filter: blur(12px); border-bottom: 1px solid var(--card-border);
@@ -74,19 +73,16 @@
             color: var(--text-main); font-size: 0.9rem; outline: none;
         }
 
-        /* HERO AREA - PURPLE GRADIENT RESTORED */
         .hero-banner {
             background: linear-gradient(135deg, var(--oi-primary), var(--oi-secondary)) !important;
             color: white !important; padding: 12rem 1rem; text-align: center;
         }
         .hero-title { font-size: clamp(2.5rem, 8vw, 4.5rem); font-weight: 800; letter-spacing: -0.05em; color: white !important; margin: 0; }
 
-        /* READER VIEW STYLES */
         .documentation-container { display: flex; max-width: 1400px; margin: 0 auto; width: 100%; padding: 0 5%; }
         .sidebar-nav { width: 280px; position: sticky; top: 100px; height: fit-content; padding: 4rem 0; border-right: 1px solid var(--card-border); }
         .documentation-wrapper { flex: 1; padding: 6rem 0; max-width: 900px; }
 
-        /* TERMINAL / CODE BLOCKS - FORCED DARK */
         .markdown-engine pre {
             background-color: var(--code-bg) !important;
             padding: 1.5rem; border-radius: 12px;
@@ -468,6 +464,12 @@
         </div>
 
         <div class="flex gap-3 shrink-0">
+            <a href="../index.html"
+               class="px-4 py-2 border-2 rounded-xl font-bold text-[10px] uppercase flex items-center"
+               style="border-color:var(--card-border); color:var(--text-main);">
+                Go to main page.
+            </a>
+
             <button id="a11y-toggle" class="px-3 py-1.5 border-2 rounded-lg font-bold text-[9px] uppercase opacity-60 hover:opacity-100" style="border-color:var(--card-border)">
                 W3C Access
             </button>
