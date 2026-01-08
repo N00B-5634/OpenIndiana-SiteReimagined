@@ -1,4 +1,4 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
@@ -114,7 +114,7 @@
         </div>
     </section>
 
-      <section id="announcements" class="container mx-auto px-4 py-12">
+    <section id="announcements" class="container mx-auto px-4 py-12">
         <h2 class="text-3xl font-bold mb-8 text-center gradient-text">Latest Announcements</h2>
         <div id="announcements-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <div class="col-span-full text-center py-10 opacity-50 italic">Checking for updates...</div>
@@ -236,15 +236,17 @@
         if (localStorage.getItem('darkMode') === 'true') {
             updateTheme(true);
         }
-   // Fetch from the local directory
-                const response = await fetch('./data.json');
 
+        async function fetchAnnouncements() {
+            const list = document.getElementById('announcements-list');
+            try {
+                const response = await fetch('./data.json');
                 if (!response.ok) {
-                    throw new Error(` Error: ${response.status}`);
+                    throw new Error(`Error: ${response.status}`);
                 }
 
                 const data = await response.json();
-                list.innerHTML = ''; // Clear the loading state
+                list.innerHTML = '';
 
                 data.forEach(item => {
                     const card = document.createElement('div');
@@ -252,7 +254,7 @@
                     card.innerHTML = `
                         <div class="flex-grow">
                             <h3 class="text-xl font-semibold mb-1 text-[var(--oi-primary)]">${item.title}</h3>
-                            <p class="text-xs opacity-50 mb-4 font-medium uppercase tracking-wider">${item.date} â¢ ${item.author}</p>
+                            <p class="text-xs opacity-50 mb-4 font-medium uppercase tracking-wider">${item.date} • ${item.author}</p>
                             <div class="opacity-80 text-sm leading-relaxed">${item.content}</div>
                         </div>
                     `;
@@ -260,14 +262,11 @@
                 });
 
             } catch (err) {
-                // VISIBLE ERROR REPORTING
                 list.innerHTML = `
                     <div class="col-span-full text-center p-8 bg-red-500/10 border border-red-500/20 rounded-xl">
-                        <p class="text-red-500 font-bold text-lg">â ï¸ Announcements Failed to Load</p>
+                        <p class="text-red-500 font-bold text-lg">⚠️ Announcements Failed to Load</p>
                         <p class="text-sm opacity-70 mt-2">Error: ${err.message}</p>
-                        <div class="mt-4 text-xs font-mono bg-black/5 p-2 rounded inline-block">
-
-                        </div>
+                        <div class="mt-4 text-xs font-mono bg-black/5 p-2 rounded inline-block"></div>
                     </div>
                 `;
             }
