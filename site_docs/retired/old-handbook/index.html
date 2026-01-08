@@ -16,94 +16,104 @@
         <link href="../../css/style.css" rel="stylesheet">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
         <script>hljs.highlightAll();</script>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono&display=swap" rel="stylesheet">
 
-    <style>
-        /* Skip Link */
-        .skip-link {
-            position: fixed; top: -100px; left: 50%; transform: translateX(-50%);
-            background: #ffde59; color: #000 !important; padding: 1rem 2rem;
-            z-index: 10001; font-weight: 800; border: 3px solid black;
-            transition: top 0.3s ease;
-        }
-        .skip-link:focus { top: 20px; outline: none; }
+<style>
+/* Skip link */
+.skip-link {
+    position: fixed; top: -100px; left: 50%; transform: translateX(-50%);
+    background: #ffde59; color: #000 !important; padding: 1rem 2rem;
+    z-index: 10001; font-weight: 800; border: 3px solid black;
+    transition: top 0.3s ease;
+}
+.skip-link:focus { top: 20px; outline: none; }
 
-        /* Remove unwanted default MKDocs footer elements */
-        .md-footer, .md-copyright, .md-footer-meta, footer:not(.custom-footer),
-        [role="contentinfo"], .md-typeset hr, .md-sidebar--secondary {
-            display: none !important;
-        }
+/* Remove unwanted MKDocs footers and lines */
+.md-footer, .md-copyright, .md-footer-meta, footer:not(.custom-footer),
+[role="contentinfo"], .md-typeset hr, .md-sidebar--secondary { display: none !important; }
 
-        :root {
-            --oi-primary: #8b5cf6; --oi-secondary: #3b82f6;
-            --bg-body: #ffffff; --text-main: #0f172a;
-            --card-bg: #ffffff; --card-border: #e2e8f0;
-            --nav-bg: rgba(255, 255, 255, 0.98);
-            --code-bg: #0f172a; --code-text: #e2e8f0;
-        }
+:root {
+    --oi-primary: #8b5cf6; --oi-secondary: #3b82f6;
+    --bg-body: #ffffff; --text-main: #0f172a;
+    --card-bg: #ffffff; --card-border: #e2e8f0;
+    --nav-bg: rgba(255, 255, 255, 0.98);
+    --code-bg: #0f172a; --code-text: #e2e8f0;
+}
 
-        [data-theme="dark"] {
-            --oi-primary: #a78bfa; --oi-secondary: #60a5fa;
-            --bg-body: #020617; --text-main: #ffffff;
-            --card-bg: #0f172a; --card-border: #334155;
-            --nav-bg: rgba(2, 6, 23, 0.98);
-            --code-bg: #000000; --code-text: #e2e8f0;
-        }
+[data-theme="dark"] {
+    --oi-primary: #a78bfa; --oi-secondary: #60a5fa;
+    --bg-body: #020617; --text-main: #ffffff;
+    --card-bg: #0f172a; --card-border: #334155;
+    --nav-bg: rgba(2, 6, 23, 0.98);
+    --code-bg: #000000; --code-text: #e2e8f0;
+}
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-body);
-            color: var(--text-main);
-            margin: 0; display: flex;
-            flex-direction: column; min-height: 100vh;
-        }
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-body);
+    color: var(--text-main);
+    margin: 0; display: flex;
+    flex-direction: column; min-height: 100vh;
+}
 
-        .navbar-hardened {
-            position: sticky; top: 0; z-index: 9999; background: var(--nav-bg);
-            backdrop-filter: blur(12px); border-bottom: 1px solid var(--card-border);
-            padding: 0.75rem 5%; display: flex; justify-content: space-between; align-items: center;
-            gap: 2rem;
-        }
+/* Navbar */
+.navbar-hardened {
+    position: sticky; top: 0; z-index: 9999; background: var(--nav-bg);
+    backdrop-filter: blur(12px); border-bottom: 1px solid var(--card-border);
+    padding: 0.75rem 5%; display: flex; justify-content: space-between; align-items: center;
+    gap: 2rem;
+}
+.header-search-wrap { flex: 1; max-width: 500px; position: relative; }
+.header-search-input {
+    width: 100%; padding: 0.6rem 1.25rem; border-radius: 12px;
+    background: var(--card-bg); border: 2px solid var(--card-border);
+    color: var(--text-main); font-size: 0.9rem; outline: none;
+}
 
-        .header-search-wrap { flex: 1; max-width: 500px; position: relative; }
-        .header-search-input {
-            width: 100%; padding: 0.6rem 1.25rem; border-radius: 12px;
-            background: var(--card-bg); border: 2px solid var(--card-border);
-            color: var(--text-main); font-size: 0.9rem; outline: none;
-        }
+/* Fullscreen hero */
+.hero-banner {
+    background: linear-gradient(135deg, var(--oi-primary), var(--oi-secondary)) !important;
+    color: white !important;
+    height: 100vh; /* Full screen */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 1rem;
+}
+.hero-title {
+    font-size: clamp(2.5rem, 6vw, 3.5rem);
+    font-weight: 800; letter-spacing: -0.03em; margin: 0;
+}
+.hero-subtitle {
+    font-size: 1.25rem; margin-top: 1rem; opacity: 0.9;
+}
 
-        .hero-banner {
-            background: linear-gradient(135deg, var(--oi-primary), var(--oi-secondary)) !important;
-            color: white !important; padding: 8rem 1rem; text-align: center;
-        }
-        .hero-title {
-            font-size: clamp(2rem, 6vw, 3.5rem); /* smaller so full text fits */
-            font-weight: 800; letter-spacing: -0.03em; color: white !important; margin: 0;
-        }
+/* Docs layout */
+.documentation-container { display: flex; max-width: 1400px; margin: 0 auto; width: 100%; padding: 0 5%; }
+.sidebar-nav { width: 280px; position: sticky; top: 100px; height: fit-content; padding: 4rem 0; border-right: 1px solid var(--card-border); }
+.documentation-wrapper { flex: 1; padding: 6rem 0; max-width: 900px; }
 
-        .documentation-container { display: flex; max-width: 1400px; margin: 0 auto; width: 100%; padding: 0 5%; }
-        .sidebar-nav { width: 280px; position: sticky; top: 100px; height: fit-content; padding: 4rem 0; border-right: 1px solid var(--card-border); }
-        .documentation-wrapper { flex: 1; padding: 6rem 0; max-width: 900px; }
+/* Code blocks */
+.markdown-engine pre {
+    background-color: var(--code-bg) !important;
+    padding: 1.5rem; border-radius: 12px;
+    border: 1px solid var(--card-border); margin: 2rem 0; overflow-x: auto;
+}
+.markdown-engine pre code {
+    color: var(--code-text) !important;
+    background: transparent !important;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.95rem;
+}
+.markdown-engine h1 { font-size: 3rem; font-weight: 800; color: var(--oi-primary) !important; margin-bottom: 2rem; }
 
-        .markdown-engine pre {
-            background-color: var(--code-bg) !important;
-            padding: 1.5rem; border-radius: 12px;
-            border: 1px solid var(--card-border);
-            margin: 2rem 0;
-            overflow-x: auto;
-        }
-        .markdown-engine pre code {
-            color: var(--code-text) !important;
-            background: transparent !important;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.95rem;
-        }
-
-        .markdown-engine h1 { font-size: 3rem; font-weight: 800; color: var(--oi-primary) !important; margin-bottom: 2rem; }
-        .custom-footer { border-top: 1px solid var(--card-border); padding: 4rem 5%; text-align: center; margin-top: auto; opacity: 0.8; }
-        .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
-    </style>
+/* Footer */
+.custom-footer { border-top: 1px solid var(--card-border); padding: 2rem 5%; text-align: center; margin-top: auto; }
+.custom-footer a { text-decoration: none; color: var(--text-main); font-weight: bold; }
+</style>
 
     </head>
 
@@ -450,83 +460,81 @@
 
         <div class="container">
             <div class="row">
-    <a href="#main-content" class="skip-link">Skip to Content</a>
+<a href="#main-content" class="skip-link">Skip to Content</a>
 
-    <nav class="navbar-hardened">
-        <a href="../.." class="font-extrabold text-2xl shrink-0" style="color:var(--text-main)">
-            OI <span style="color:var(--oi-primary)">DOCS</span>
+<nav class="navbar-hardened">
+    <a href="../.." class="font-extrabold text-2xl shrink-0" style="color:var(--text-main)">
+        OI <span style="color:var(--oi-primary)">DOCS</span>
+    </a>
+
+    <div class="header-search-wrap">
+        <form role="search" onsubmit="return false;">
+            <label for="mkdocs-search-query" class="sr-only">Search</label>
+            <input type="text" id="mkdocs-search-query" class="header-search-input"
+                   placeholder="Search docs..." autocomplete="off">
+        </form>
+    </div>
+
+    <div class="flex gap-3 shrink-0">
+        <a href="https://n00b-5634.github.io/OpenIndiana-SiteReimagined/"
+           class="px-4 py-2 border-2 rounded-xl font-bold text-[10px] uppercase flex items-center"
+           style="border-color:var(--card-border); color:var(--text-main);">
+            Go to main page
         </a>
+        <button id="a11y-toggle" class="px-3 py-1.5 border-2 rounded-lg font-bold text-[9px] uppercase opacity-60 hover:opacity-100" style="border-color:var(--card-border)">
+            W3C Access
+        </button>
+        <button id="master-theme-toggle" class="px-4 py-2 border-2 rounded-xl font-bold text-[10px] uppercase" style="border-color:var(--card-border)">
+            DARK MODE
+        </button>
+    </div>
+</nav>
 
-        <div class="header-search-wrap">
-            <form role="search" onsubmit="return false;">
-                <label for="mkdocs-search-query" class="sr-only">Search</label>
-                <input type="text" id="mkdocs-search-query" class="header-search-input"
-                       placeholder="Search docs..." autocomplete="off">
-            </form>
-            <div id="mkdocs-search-results" class="absolute top-full left-0 right-0 mt-2 rounded-xl shadow-2xl overflow-hidden" style="background:var(--card-bg); z-index: 100;"></div>
-        </div>
 
-        <div class="flex gap-3 shrink-0">
-            <a href="https://n00b-5634.github.io/OpenIndiana-SiteReimagined/"
-               class="px-4 py-2 border-2 rounded-xl font-bold text-[10px] uppercase flex items-center"
-               style="border-color:var(--card-border); color:var(--text-main);">
-                Go to main page.
-            </a>
-
-            <button id="a11y-toggle" class="px-3 py-1.5 border-2 rounded-lg font-bold text-[9px] uppercase opacity-60 hover:opacity-100" style="border-color:var(--card-border)">
-                W3C Access
-            </button>
-            <button id="master-theme-toggle" class="px-4 py-2 border-2 rounded-xl font-bold text-[10px] uppercase" style="border-color:var(--card-border)">
-                DARK MODE
-            </button>
-        </div>
-    </nav>
-
-    
-        <div class="documentation-container">
-            <aside class="sidebar-nav">
-                <p class="text-[10px] font-black uppercase tracking-widest opacity-40 mb-8">Navigation</p>
-                
-                    <a href="../.." class="block mb-4 text-sm font-bold no-underline hover:text-[var(--oi-primary)] text-[var(--text-main)]">
-                        Welcome to OpenIndiana Reimagined
-                    </a>
-                
-                    <a href="../.." class="block mb-4 text-sm font-bold no-underline hover:text-[var(--oi-primary)] text-[var(--text-main)]">
-                        Books
-                    </a>
-                
-                    <a href="../.." class="block mb-4 text-sm font-bold no-underline hover:text-[var(--oi-primary)] text-[var(--text-main)]">
-                        Community hcl
-                    </a>
-                
-                    <a href="../.." class="block mb-4 text-sm font-bold no-underline hover:text-[var(--oi-primary)] text-[var(--text-main)]">
-                        Contrib
-                    </a>
-                
-                    <a href="../.." class="block mb-4 text-sm font-bold no-underline hover:text-[var(--oi-primary)] text-[var(--text-main)]">
-                        Dev
-                    </a>
-                
-                    <a href="../.." class="block mb-4 text-sm font-bold no-underline hover:text-[var(--oi-primary)] text-[var(--text-main)]">
-                        Handbook
-                    </a>
-                
-                    <a href="../.." class="block mb-4 text-sm font-bold no-underline hover:text-[var(--oi-primary)] text-[var(--text-main)]">
-                        Misc
-                    </a>
-                
-                    <a href="../.." class="block mb-4 text-sm font-bold no-underline hover:text-[var(--oi-primary)] text-[var(--text-main)]">
-                        Release notes
-                    </a>
-                
-                    <a href="../.." class="block mb-4 text-sm font-bold no-underline hover:text-[var(--oi-primary)] text-[var(--oi-primary)]">
-                        Retired
-                    </a>
-                
-            </aside>
-            <main id="main-content" class="documentation-wrapper">
-                <article class="markdown-engine">
-                    <h1 id="todo-booting">TODO: Booting</h1>
+<div class="documentation-container">
+    <aside class="sidebar-nav">
+        <p class="text-[10px] font-black uppercase tracking-widest opacity-40 mb-8">Navigation</p>
+        
+        <a href="../.." class="block mb-4 text-sm font-bold no-underline hover:text-[var(--oi-primary)] text-[var(--text-main)]">
+            Welcome to OpenIndiana Reimagined
+        </a>
+        
+        <a href="../.." class="block mb-4 text-sm font-bold no-underline hover:text-[var(--oi-primary)] text-[var(--text-main)]">
+            Books
+        </a>
+        
+        <a href="../.." class="block mb-4 text-sm font-bold no-underline hover:text-[var(--oi-primary)] text-[var(--text-main)]">
+            Community hcl
+        </a>
+        
+        <a href="../.." class="block mb-4 text-sm font-bold no-underline hover:text-[var(--oi-primary)] text-[var(--text-main)]">
+            Contrib
+        </a>
+        
+        <a href="../.." class="block mb-4 text-sm font-bold no-underline hover:text-[var(--oi-primary)] text-[var(--text-main)]">
+            Dev
+        </a>
+        
+        <a href="../.." class="block mb-4 text-sm font-bold no-underline hover:text-[var(--oi-primary)] text-[var(--text-main)]">
+            Handbook
+        </a>
+        
+        <a href="../.." class="block mb-4 text-sm font-bold no-underline hover:text-[var(--oi-primary)] text-[var(--text-main)]">
+            Misc
+        </a>
+        
+        <a href="../.." class="block mb-4 text-sm font-bold no-underline hover:text-[var(--oi-primary)] text-[var(--text-main)]">
+            Release notes
+        </a>
+        
+        <a href="../.." class="block mb-4 text-sm font-bold no-underline hover:text-[var(--oi-primary)] text-[var(--oi-primary)]">
+            Retired
+        </a>
+        
+    </aside>
+    <main id="main-content" class="documentation-wrapper">
+        <article class="markdown-engine">
+            <h1 id="todo-booting">TODO: Booting</h1>
 <ul>
 <li>Can OpenIndiana boot on a system with a UEFI BIOS?</li>
 <li>Does secure boot need to be disabled?</li>
@@ -536,46 +544,43 @@
 http://technodrone.blogspot.com/2012/05/openindiana-installation-walkthrough.html</p>
 <p>Installation videos:
 https://www.youtube.com/watch?v#VVWP_5oAy3w</p>
-                </article>
-            </main>
-        </div>
-    
+        </article>
+    </main>
+</div>
 
-    <footer class="custom-footer">
-        <div class="flex justify-between items-center">
-            <p class="text-[10px] font-black uppercase tracking-widest">OpenIndiana Reimagined</p>
-            <div class="flex gap-8">
-                <a href="https://www.openindiana.org/" class="font-bold text-sm no-underline hover:underline">Website</a>
-                <a href="https://github.com/openindiana" class="font-bold text-sm no-underline hover:underline">GitHub</a>
-            </div>
-        </div>
-    </footer>
 
-    <script>
-        (function() {
-            const toggle = document.getElementById('master-theme-toggle');
-            const a11yBtn = document.getElementById('a11y-toggle');
-            const html = document.documentElement;
+<footer class="custom-footer">
+    <div class="flex justify-center gap-8 opacity-80">
+        <a href="https://www.openindiana.org/" class="hover:underline">Website</a>
+        <a href="https://github.com/openindiana" class="hover:underline">GitHub</a>
+    </div>
+</footer>
 
-            a11yBtn.addEventListener('click', () => {
-                html.classList.toggle('a11y-mode');
-                a11yBtn.textContent = html.classList.contains('a11y-mode') ? "Standard Mode" : "W3C Access";
-            });
+<script>
+(function() {
+    const toggle = document.getElementById('master-theme-toggle');
+    const a11yBtn = document.getElementById('a11y-toggle');
+    const html = document.documentElement;
 
-            const applyTheme = (theme) => {
-                if (theme === 'dark') {
-                    html.setAttribute('data-theme', 'dark');
-                    toggle.textContent = 'LIGHT MODE';
-                } else {
-                    html.removeAttribute('data-theme');
-                    toggle.textContent = 'DARK MODE';
-                }
-                localStorage.setItem('oi-theme-v5', theme);
-            };
-            applyTheme(localStorage.getItem('oi-theme-v5') || 'light');
-            toggle.addEventListener('click', () => applyTheme(html.hasAttribute('data-theme') ? 'light' : 'dark'));
-        })();
-    </script>
+    a11yBtn.addEventListener('click', () => {
+        html.classList.toggle('a11y-mode');
+        a11yBtn.textContent = html.classList.contains('a11y-mode') ? "Standard Mode" : "W3C Access";
+    });
+
+    const applyTheme = (theme) => {
+        if (theme === 'dark') {
+            html.setAttribute('data-theme', 'dark');
+            toggle.textContent = 'LIGHT MODE';
+        } else {
+            html.removeAttribute('data-theme');
+            toggle.textContent = 'DARK MODE';
+        }
+        localStorage.setItem('oi-theme-v5', theme);
+    };
+    applyTheme(localStorage.getItem('oi-theme-v5') || 'light');
+    toggle.addEventListener('click', () => applyTheme(html.hasAttribute('data-theme') ? 'light' : 'dark'));
+})();
+</script>
 
             </div>
         </div>
