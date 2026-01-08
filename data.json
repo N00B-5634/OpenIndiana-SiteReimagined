@@ -1,20 +1,14 @@
 [
   {
-    "title": "New OpenIndiana Release!",
-    "date": "January 8, 2026",
-    "content": "We're excited to announce the latest release of OpenIndiana, featuring improved ZFS performance and updated drivers. <a href='#downloads' class='text-blue-500 hover:underline'>Download now</a>!",
+    "title": "Welcome ",
+    "date": "January 3, 2026",
+    "content": "Welcome to OpenIndiana Reimagined, a new look on the classic 'no-frills' OpenIndiana website, hope you enjoy. <a href='github.com/N00B-5634/OpenIndiana-SiteReimagined' class='text-blue-500 hover:underline'>Visit GitHub!</a>!",
     "author": "OpenIndiana Team"
   },
   {
-    "title": "Community IRC Meeting",
-    "date": "January 15, 2026",
-    "content": "Join us on IRC this Saturday at 2PM EST to discuss the future of OpenIndiana. All are welcome!",
-    "author": "Community Team"
-  },
-  {
-    "title": "Documentation Updates",
+    "title": "Docs have a new look",
     "date": "January 5, 2026",
-    "content": "Our documentation has been updated with new guides for ZFS and DTrace. Check out the <a href='site_docs/index.html' class='text-blue-500 hover:underline'>docs</a>!",
-    "author": "Docs Team"
+    "content": "I have made a new documentation site, that is experimental, included features are: W3C compatibility, and a modern fun look. Check it out.",
+    "author": "Ribhav Revalli"
   }
 ]
