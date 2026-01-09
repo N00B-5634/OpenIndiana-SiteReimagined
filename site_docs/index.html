@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="None">
-        
+
         <link rel="canonical" href="https://n00b-5634.github.io/OpenIndiana-SiteReimagined/">
         <link rel="shortcut icon" href="img/favicon.ico">
         <title>OpenIndiana Reimagined</title>
@@ -110,28 +110,46 @@ body {
     outline: none;
 }
 
-/* ===== Hero Banner ===== */
+/* ===== Hero Banner (FIXED!) ===== */
 .hero-banner {
     background: linear-gradient(135deg, var(--oi-primary), var(--oi-secondary)) !important;
     color: white !important;
-    height: 100vh;
+    min-height: 60vh; /* Not too tall */
+    width: 100%; /* Stretches side-to-side */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 0 1rem;
+    padding: 2rem;
+    box-sizing: border-box;
 }
 .hero-title {
-    font-size: clamp(2.5rem, 6vw, 3.5rem);
+    font-size: clamp(2rem, 5vw, 3rem); /* Adjusts to screen size */
     font-weight: 800;
     letter-spacing: -0.03em;
     margin: 0;
 }
 .hero-subtitle {
-    font-size: 1.25rem;
+    font-size: clamp(1rem, 3vw, 1.5rem); /* Adjusts to screen size */
     margin-top: 1rem;
     opacity: 0.9;
+}
+
+/* ===== Mobile-Friendly Navbar ===== */
+@media (max-width: 768px) {
+    .navbar-hardened {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+    }
+    .header-search-wrap {
+        width: 100%;
+    }
+    .flex.gap-3 {
+        width: 100%;
+        justify-content: space-between;
+    }
 }
 
 /* ===== Documentation Layout ===== */
@@ -268,27 +286,27 @@ body {
                             <li class="dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Books <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
-                                    
+
 <li>
     <a href="books/about/" class="dropdown-item">About</a>
 </li>
-                                    
+
 <li>
     <a href="books/advanced/" class="dropdown-item">Advanced</a>
 </li>
-                                    
+
 <li>
     <a href="books/basic/" class="dropdown-item">Basic</a>
 </li>
-                                    
+
 <li>
     <a href="books/develop/" class="dropdown-item">Develop</a>
 </li>
-                                    
+
 <li>
     <a href="books/express/" class="dropdown-item">Express</a>
 </li>
-                                    
+
 <li>
     <a href="books/trusted/" class="dropdown-item">Trusted</a>
 </li>
@@ -297,15 +315,15 @@ body {
                             <li class="dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Community hcl <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
-                                    
+
 <li>
     <a href="community-hcl/components/" class="dropdown-item">Components</a>
 </li>
-                                    
+
 <li>
     <a href="community-hcl/getting-hardware-info/" class="dropdown-item">Getting hardware info</a>
 </li>
-                                    
+
 <li>
     <a href="community-hcl/systems/" class="dropdown-item">Systems</a>
 </li>
@@ -314,35 +332,35 @@ body {
                             <li class="dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Contrib <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
-                                    
+
 <li>
     <a href="contrib/content/" class="dropdown-item">Content</a>
 </li>
-                                    
+
 <li>
     <a href="contrib/getting-started/" class="dropdown-item">Getting started</a>
 </li>
-                                    
+
 <li>
     <a href="contrib/git/" class="dropdown-item">Git</a>
 </li>
-                                    
+
 <li>
     <a href="contrib/markdown/" class="dropdown-item">Markdown</a>
 </li>
-                                    
+
 <li>
     <a href="contrib/roles/" class="dropdown-item">Roles</a>
 </li>
-                                    
+
 <li>
     <a href="contrib/style/" class="dropdown-item">Style</a>
 </li>
-                                    
+
 <li>
     <a href="contrib/tools/" class="dropdown-item">Tools</a>
 </li>
-                                    
+
 <li>
     <a href="contrib/topics/" class="dropdown-item">Topics</a>
 </li>
@@ -351,27 +369,27 @@ body {
                             <li class="dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Dev <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
-                                    
+
 <li>
     <a href="dev/building-openindiana/" class="dropdown-item">Building openindiana</a>
 </li>
-                                    
+
 <li>
     <a href="dev/distribution-constructor/" class="dropdown-item">Distribution constructor</a>
 </li>
-                                    
+
 <li>
     <a href="dev/existing-tasks/" class="dropdown-item">Existing tasks</a>
 </li>
-                                    
+
 <li>
     <a href="dev/graphics-stack/" class="dropdown-item">Graphics stack</a>
 </li>
-                                    
+
 <li>
     <a href="dev/repo-cleanup/" class="dropdown-item">Repo cleanup</a>
 </li>
-                                    
+
 <li>
     <a href="dev/userland/" class="dropdown-item">Userland</a>
 </li>
@@ -380,75 +398,75 @@ body {
                             <li class="dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Handbook <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
-                                    
+
 <li>
     <a href="handbook/appendix/" class="dropdown-item">Appendix</a>
 </li>
-                                    
+
 <li>
     <a href="handbook/common-tasks/" class="dropdown-item">Common tasks</a>
 </li>
-                                    
+
 <li>
     <a href="handbook/community/" class="dropdown-item">Community</a>
 </li>
-                                    
+
 <li>
     <a href="handbook/getting-started/" class="dropdown-item">Getting started</a>
 </li>
-                                    
+
 <li>
     <a href="handbook/legacy-branch/" class="dropdown-item">Legacy branch</a>
 </li>
-                                    
+
 <li>
     <a href="handbook/network-communications/" class="dropdown-item">Network communications</a>
 </li>
-                                    
+
 <li>
     <a href="handbook/openindiana-download-mirrors/" class="dropdown-item">Openindiana download mirrors</a>
 </li>
-                                    
+
 <li>
     <a href="handbook/pdfdocs/" class="dropdown-item">Pdfdocs</a>
 </li>
-                                    
+
 <li>
     <a href="handbook/sunray/" class="dropdown-item">Sunray</a>
 </li>
-                                    
+
 <li>
     <a href="handbook/systems-administration/" class="dropdown-item">Systems administration</a>
 </li>
-                                    
+
   <li class="dropdown-submenu">
     <a href="#" class="dropdown-item">Community</a>
     <ul class="dropdown-menu">
-            
+
 <li>
     <a href="handbook/community/inputmethod/" class="dropdown-item">Inputmethod</a>
 </li>
-            
+
 <li>
     <a href="handbook/community/oracledb/" class="dropdown-item">Oracledb</a>
 </li>
-            
+
 <li>
     <a href="handbook/community/quikstor/" class="dropdown-item">Quikstor</a>
 </li>
-            
+
 <li>
     <a href="handbook/community/samqfs/" class="dropdown-item">Samqfs</a>
 </li>
-            
+
 <li>
     <a href="handbook/community/squeak/" class="dropdown-item">Squeak</a>
 </li>
-            
+
 <li>
     <a href="handbook/community/texlive/" class="dropdown-item">Texlive</a>
 </li>
-            
+
 <li>
     <a href="handbook/community/vagrant/" class="dropdown-item">Vagrant</a>
 </li>
@@ -459,19 +477,19 @@ body {
                             <li class="dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Misc <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
-                                    
+
 <li>
     <a href="misc/conduct/" class="dropdown-item">Conduct</a>
 </li>
-                                    
+
 <li>
     <a href="misc/oi-docs/" class="dropdown-item">Oi docs</a>
 </li>
-                                    
+
 <li>
     <a href="misc/openindiana/" class="dropdown-item">Openindiana</a>
 </li>
-                                    
+
 <li>
     <a href="misc/pdl/" class="dropdown-item">PUBLIC DOCUMENTATION LICENSE</a>
 </li>
@@ -480,55 +498,55 @@ body {
                             <li class="dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Release notes <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
-                                    
+
 <li>
     <a href="release-notes/2015.03-release-notes/" class="dropdown-item">2015.03 release notes</a>
 </li>
-                                    
+
 <li>
     <a href="release-notes/2015.10-release-notes/" class="dropdown-item">2015.10 release notes</a>
 </li>
-                                    
+
 <li>
     <a href="release-notes/2016.04-release-notes/" class="dropdown-item">2016.04 release notes</a>
 </li>
-                                    
+
 <li>
     <a href="release-notes/2016.10-release-notes/" class="dropdown-item">2016.10 release notes</a>
 </li>
-                                    
+
 <li>
     <a href="release-notes/2017.04-release-notes/" class="dropdown-item">2017.04 release notes</a>
 </li>
-                                    
+
 <li>
     <a href="release-notes/2017.10-release-notes/" class="dropdown-item">2017.10 release notes</a>
 </li>
-                                    
+
 <li>
     <a href="release-notes/2018.04-release-notes/" class="dropdown-item">2018.04 release notes</a>
 </li>
-                                    
+
 <li>
     <a href="release-notes/2018.10-release-notes/" class="dropdown-item">2018.10 release notes</a>
 </li>
-                                    
+
 <li>
     <a href="release-notes/2019.04-release-notes/" class="dropdown-item">2019.04 release notes</a>
 </li>
-                                    
+
 <li>
     <a href="release-notes/2019.10-release-notes/" class="dropdown-item">2019.10 release notes</a>
 </li>
-                                    
+
 <li>
     <a href="release-notes/2020.04-release-notes/" class="dropdown-item">2020.04 release notes</a>
 </li>
-                                    
+
 <li>
     <a href="release-notes/2020.10-release-notes/" class="dropdown-item">2020.10 release notes</a>
 </li>
-                                    
+
 <li>
     <a href="release-notes/latest-changes/" class="dropdown-item">Latest changes</a>
 </li>
@@ -537,31 +555,31 @@ body {
                             <li class="dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Retired <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
-                                    
+
 <li>
     <a href="retired/" class="dropdown-item">Index</a>
 </li>
-                                    
+
 <li>
     <a href="retired/books/" class="dropdown-item">Books</a>
 </li>
-                                    
+
 <li>
     <a href="retired/bsd/" class="dropdown-item">Bsd</a>
 </li>
-                                    
+
 <li>
     <a href="retired/old-handbook/" class="dropdown-item">TODO: Booting</a>
 </li>
-                                    
+
 <li>
     <a href="retired/project/" class="dropdown-item">Project</a>
 </li>
-                                    
+
 <li>
     <a href="retired/sphinx/" class="dropdown-item">Sphinx</a>
 </li>
-                                    
+
 <li>
     <a href="retired/toolchain/" class="dropdown-item">Toolchain</a>
 </li>
@@ -622,13 +640,11 @@ body {
     </div>
 </nav>
 
-
 <header class="hero-banner">
     <h1 class="hero-title">Welcome to oi-docs reimagined</h1>
     <p class="hero-subtitle">Your secondary source for OpenIndiana resources.</p>
 </header>
 <main id="main-content"></main>
-
 
 <footer class="custom-footer">
     <div class="flex justify-center gap-8 opacity-80">
@@ -745,8 +761,3 @@ body {
 
     </body>
 </html>
-
-<!--
-MkDocs version : 1.5.2
-Build Date UTC : 2026-01-09 00:31:32.507360+00:00
--->
