@@ -46,9 +46,123 @@ body {
 }
 
 /* Styling for the Markdown Content specifically */
-.markdown-content h1, .markdown-content h2 { 
-    font-weight: bold; 
+.markdown-content h1, .markdown-content h2 {
+    font-weight: bold;
     margin-bottom: 1rem;
     color: var(--oi-primary);
 }
 .markdown-content p { margin-bottom: 1rem; opacity: 0.9; }
+
+/* Search Input (Header) */
+.header-search-input {
+    width: 100%;
+    padding: 0.6rem 1.25rem;
+    border-radius: 12px;
+    background: var(--oi-card-bg);
+    border: 2px solid var(--oi-card-border);
+    color: var(--oi-text);
+    font-size: 0.9rem;
+    outline: none;
+    transition: all 0.2s;
+}
+
+/* Search Modal Styling */
+#mkdocs_search_modal .modal-content {
+    background: var(--oi-card-bg);
+    border: 1px solid var(--oi-card-border);
+    border-radius: 12px;
+    color: var(--oi-text);
+}
+#mkdocs_search_modal .modal-header {
+    border-bottom: 1px solid var(--oi-card-border);
+}
+#mkdocs_search_modal .modal-body {
+    padding: 1.5rem;
+}
+#mkdocs_search_modal .modal-body p {
+    margin-bottom: 1rem;
+}
+#mkdocs_search_modal .form-control {
+    background: var(--oi-card-bg);
+    border: 1px solid var(--oi-card-border);
+    color: var(--oi-text);
+    border-radius: 8px;
+    padding: 0.75rem;
+    width: 100%;
+}
+#mkdocs_search_modal #mkdocs-search-results {
+    margin-top: 1rem;
+    max-height: 70vh;
+    overflow-y: auto;
+}
+#mkdocs_search_modal #mkdocs-search-results a {
+    color: var(--oi-primary);
+    text-decoration: none;
+    display: block;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--oi-card-border);
+}
+#mkdocs_search_modal #mkdocs-search-results a:hover {
+    opacity: 0.8;
+}
+
+/* Mobile search input */
+@media (max-width: 768px) {
+    .header-search-input {
+        padding: 0.75rem 1rem;
+        font-size: 1rem;
+    }
+    #mkdocs_search_modal .modal-dialog {
+        margin: 0;
+        width: 100%;
+        max-width: none;
+    }
+    #mkdocs_search_modal .modal-content {
+        border-radius: 0;
+    }
+}
+
+/* Hero Banner Fix */
+.hero-banner {
+    background: linear-gradient(135deg, var(--oi-primary), var(--oi-secondary)) !important;
+    color: white !important;
+    height: 60vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 1rem;
+    position: relative;
+    overflow: hidden;
+}
+.hero-title {
+    font-size: clamp(2.5rem, 6vw, 3.5rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    margin: 0;
+}
+.hero-subtitle {
+    font-size: 1.25rem;
+    margin-top: 1rem;
+    opacity: 0.9;
+}
+
+/* Navbar */
+.navbar-hardened {
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--oi-card-border);
+    padding: 0.75rem 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+}
+.dark-mode .navbar-hardened {
+    background: rgba(2, 6, 23, 0.98);
+}
