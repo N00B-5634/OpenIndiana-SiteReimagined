@@ -20,233 +20,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-<style>
-/* ===== Base & Reset ===== */
-:root {
-    --oi-primary: #8b5cf6;
-    --oi-secondary: #3b82f6;
-    --bg-body: #ffffff;
-    --text-main: #0f172a;
-    --card-bg: #ffffff;
-    --card-border: #e2e8f0;
-    --nav-bg: rgba(255, 255, 255, 0.98);
-    --code-bg: #0f172a;
-    --code-text: #e2e8f0;
-}
-[data-theme="dark"] {
-    --oi-primary: #a78bfa;
-    --oi-secondary: #60a5fa;
-    --bg-body: #020617;
-    --text-main: #ffffff;
-    --card-bg: #0f172a;
-    --card-border: #334155;
-    --nav-bg: rgba(2, 6, 23, 0.98);
-    --code-bg: #000000;
-    --code-text: #e2e8f0;
-}
-body {
-    font-family: 'Inter', sans-serif;
-    background-color: var(--bg-body);
-    color: var(--text-main);
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    line-height: 1.6;
-}
-
-/* ===== Accessibility ===== */
-.skip-link {
-    position: fixed;
-    top: -100px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #ffde59;
-    color: #000 !important;
-    padding: 1rem 2rem;
-    z-index: 10001;
-    font-weight: 800;
-    border: 3px solid black;
-    transition: top 0.3s ease;
-}
-.skip-link:focus {
-    top: 20px;
-    outline: none;
-}
-
-/* ===== MkDocs Overrides ===== */
-.md-footer, .md-copyright, .md-footer-meta, footer:not(.custom-footer),
-[role="contentinfo"], .md-typeset hr, .md-sidebar--secondary {
-    display: none !important;
-}
-
-/* ===== Navbar ===== */
-.navbar-hardened {
-    position: sticky;
-    top: 0;
-    z-index: 9999;
-    background: var(--nav-bg);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--card-border);
-    padding: 0.75rem 5%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 2rem;
-}
-.header-search-wrap {
-    flex: 1;
-    max-width: 500px;
-    position: relative;
-}
-.header-search-input {
-    width: 100%;
-    padding: 0.6rem 1.25rem;
-    border-radius: 12px;
-    background: var(--card-bg);
-    border: 2px solid var(--card-border);
-    color: var(--text-main);
-    font-size: 0.9rem;
-    outline: none;
-}
-
-/* ===== Hero Banner ===== */
-.hero-banner {
-    background: linear-gradient(135deg, var(--oi-primary), var(--oi-secondary)) !important;
-    color: white !important;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 0 1rem;
-}
-.hero-title {
-    font-size: clamp(2.5rem, 6vw, 3.5rem);
-    font-weight: 800;
-    letter-spacing: -0.03em;
-    margin: 0;
-}
-.hero-subtitle {
-    font-size: 1.25rem;
-    margin-top: 1rem;
-    opacity: 0.9;
-}
-
-/* ===== Documentation Layout ===== */
-.documentation-container {
-    display: flex;
-    max-width: 1400px;
-    margin: 0 auto;
-    width: 100%;
-    padding: 0 5%;
-}
-.sidebar-nav {
-    width: 280px;
-    position: sticky;
-    top: 100px;
-    height: fit-content;
-    padding: 4rem 0;
-    border-right: 1px solid var(--card-border);
-}
-.documentation-wrapper {
-    flex: 1;
-    padding: 6rem 0;
-    max-width: 900px;
-}
-
-/* ===== Code Blocks ===== */
-.markdown-engine pre {
-    background-color: var(--code-bg) !important;
-    padding: 1.5rem;
-    border-radius: 12px;
-    border: 1px solid var(--card-border);
-    margin: 2rem 0;
-    overflow-x: auto;
-}
-.markdown-engine pre code {
-    color: var(--code-text) !important;
-    background: transparent !important;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.95rem;
-}
-.markdown-engine h1 {
-    font-size: 3rem;
-    font-weight: 800;
-    color: var(--oi-primary) !important;
-    margin-bottom: 2rem;
-}
-
-/* ===== Cards ===== */
-.card {
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    border-radius: 12px;
-    padding: 1.5rem;
-    margin: 1.5rem 0;
-    transition: transform 0.2s, box-shadow 0.2s;
-}
-.card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-.card h3 {
-    color: var(--oi-primary);
-    font-weight: 700;
-    margin-top: 0;
-}
-
-/* ===== Footer ===== */
-.custom-footer {
-    border-top: 1px solid var(--card-border);
-    padding: 2rem 5%;
-    text-align: center;
-    margin-top: auto;
-}
-.custom-footer a {
-    text-decoration: none;
-    color: var(--text-main);
-    font-weight: bold;
-}
-
-/* ===== Sidebar Navigation ===== */
-.sidebar-nav a {
-    display: block;
-    margin-bottom: 0.75rem;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 0.9rem;
-    transition: color 0.2s;
-    padding: 0.5rem 0;
-}
-.sidebar-nav a:hover, .sidebar-nav a.active {
-    color: var(--oi-primary);
-}
-.sidebar-nav .nav-section-title {
-    text-transform: uppercase;
-    font-size: 0.7rem;
-    font-weight: 800;
-    letter-spacing: 0.1em;
-    opacity: 0.4;
-    margin-bottom: 1rem;
-    margin-top: 2rem;
-}
-
-/* ===== Icons & Buttons ===== */
-.icon-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.5rem 1rem;
-    border-radius: 8px;
-    transition: all 0.2s;
-}
-.icon-btn:hover {
-    background: rgba(139, 92, 246, 0.1);
-}
-</style>
-
     </head>
 
     <body>
@@ -664,9 +437,8 @@ body {
         </a>
         
     </aside>
-    <main id="main-content" class="documentation-wrapper">
-        <article class="markdown-engine">
-            <!--
+    <main id="main-content" class="documentation-wrapper markdown-engine">
+        <article><!--
 
 The contents of this Documentation are subject to the Public Documentation License Version 1.01
 (the "License"); you may only use this Documentation if you comply with the terms of this License.
@@ -782,8 +554,7 @@ For components coming from other source repositories manual intervention can be 
 <p>Note that the main OpenIndiana package repository also contains packages inherited from the now discontinued OpenIndiana /dev distribution.
 Such packages are available only in binary form and can be identified by a <code>2013.0.0.0</code> branch number.</p>
 <p>Twice per year the OpenIndiana developers create ISO images based on this repository using the <a href="../distribution-constructor/">Distribution Constructor</a>.</p>
-<p>If you want to build a customized ISO image you can publish necessary additional packages to your own repository and use <a href="../distribution-constructor/">Distribution Constructor</a> to create images with additional publishers and/or packages.</p>
-        </article>
+<p>If you want to build a customized ISO image you can publish necessary additional packages to your own repository and use <a href="../distribution-constructor/">Distribution Constructor</a> to create images with additional publishers and/or packages.</p></article>
     </main>
 </div>
 
@@ -822,6 +593,21 @@ Such packages are available only in binary form and can be identified by a <code
     applyTheme(localStorage.getItem('oi-theme-v5') || 'light');
     toggle.addEventListener('click', () => applyTheme(html.hasAttribute('data-theme') ? 'light' : 'dark'));
 })();
+
+// Initialize MkDocs search on page load
+document.addEventListener('DOMContentLoaded', function() {
+    if (typeof MkDocsSearch !== 'undefined') {
+        new MkDocsSearch({
+            inputSelector: '#mkdocs-search-query',
+            resultContainerSelector: '#mkdocs-search-results',
+            jsonDataUrl: 'search/search_index.json',
+        });
+    }
+    // Fix search modal for mobile
+    $('#mkdocs_search_modal').on('shown.bs.modal', function () {
+        $('#mkdocs-search-query').focus();
+    });
+});
 </script>
 
             </div>
