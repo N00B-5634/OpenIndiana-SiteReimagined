@@ -18,64 +18,103 @@
         <script>hljs.highlightAll();</script>
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
-/* Skip link */
-.skip-link {
-    position: fixed; top: -100px; left: 50%; transform: translateX(-50%);
-    background: #ffde59; color: #000 !important; padding: 1rem 2rem;
-    z-index: 10001; font-weight: 800; border: 3px solid black;
-    transition: top 0.3s ease;
-}
-.skip-link:focus { top: 20px; outline: none; }
-
-/* Remove unwanted MKDocs footers and lines */
-.md-footer, .md-copyright, .md-footer-meta, footer:not(.custom-footer),
-[role="contentinfo"], .md-typeset hr, .md-sidebar--secondary { display: none !important; }
-
+/* ===== Base & Reset ===== */
 :root {
-    --oi-primary: #8b5cf6; --oi-secondary: #3b82f6;
-    --bg-body: #ffffff; --text-main: #0f172a;
-    --card-bg: #ffffff; --card-border: #e2e8f0;
+    --oi-primary: #8b5cf6;
+    --oi-secondary: #3b82f6;
+    --bg-body: #ffffff;
+    --text-main: #0f172a;
+    --card-bg: #ffffff;
+    --card-border: #e2e8f0;
     --nav-bg: rgba(255, 255, 255, 0.98);
-    --code-bg: #0f172a; --code-text: #e2e8f0;
+    --code-bg: #0f172a;
+    --code-text: #e2e8f0;
 }
-
 [data-theme="dark"] {
-    --oi-primary: #a78bfa; --oi-secondary: #60a5fa;
-    --bg-body: #020617; --text-main: #ffffff;
-    --card-bg: #0f172a; --card-border: #334155;
+    --oi-primary: #a78bfa;
+    --oi-secondary: #60a5fa;
+    --bg-body: #020617;
+    --text-main: #ffffff;
+    --card-bg: #0f172a;
+    --card-border: #334155;
     --nav-bg: rgba(2, 6, 23, 0.98);
-    --code-bg: #000000; --code-text: #e2e8f0;
+    --code-bg: #000000;
+    --code-text: #e2e8f0;
 }
-
 body {
     font-family: 'Inter', sans-serif;
     background-color: var(--bg-body);
     color: var(--text-main);
-    margin: 0; display: flex;
-    flex-direction: column; min-height: 100vh;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    line-height: 1.6;
 }
 
-/* Navbar */
+/* ===== Accessibility ===== */
+.skip-link {
+    position: fixed;
+    top: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #ffde59;
+    color: #000 !important;
+    padding: 1rem 2rem;
+    z-index: 10001;
+    font-weight: 800;
+    border: 3px solid black;
+    transition: top 0.3s ease;
+}
+.skip-link:focus {
+    top: 20px;
+    outline: none;
+}
+
+/* ===== MkDocs Overrides ===== */
+.md-footer, .md-copyright, .md-footer-meta, footer:not(.custom-footer),
+[role="contentinfo"], .md-typeset hr, .md-sidebar--secondary {
+    display: none !important;
+}
+
+/* ===== Navbar ===== */
 .navbar-hardened {
-    position: sticky; top: 0; z-index: 9999; background: var(--nav-bg);
-    backdrop-filter: blur(12px); border-bottom: 1px solid var(--card-border);
-    padding: 0.75rem 5%; display: flex; justify-content: space-between; align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+    background: var(--nav-bg);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--card-border);
+    padding: 0.75rem 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     gap: 2rem;
 }
-.header-search-wrap { flex: 1; max-width: 500px; position: relative; }
+.header-search-wrap {
+    flex: 1;
+    max-width: 500px;
+    position: relative;
+}
 .header-search-input {
-    width: 100%; padding: 0.6rem 1.25rem; border-radius: 12px;
-    background: var(--card-bg); border: 2px solid var(--card-border);
-    color: var(--text-main); font-size: 0.9rem; outline: none;
+    width: 100%;
+    padding: 0.6rem 1.25rem;
+    border-radius: 12px;
+    background: var(--card-bg);
+    border: 2px solid var(--card-border);
+    color: var(--text-main);
+    font-size: 0.9rem;
+    outline: none;
 }
 
-/* Fullscreen hero */
+/* ===== Hero Banner ===== */
 .hero-banner {
     background: linear-gradient(135deg, var(--oi-primary), var(--oi-secondary)) !important;
     color: white !important;
-    height: 100vh; /* Full screen */
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -85,22 +124,46 @@ body {
 }
 .hero-title {
     font-size: clamp(2.5rem, 6vw, 3.5rem);
-    font-weight: 800; letter-spacing: -0.03em; margin: 0;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    margin: 0;
 }
 .hero-subtitle {
-    font-size: 1.25rem; margin-top: 1rem; opacity: 0.9;
+    font-size: 1.25rem;
+    margin-top: 1rem;
+    opacity: 0.9;
 }
 
-/* Docs layout */
-.documentation-container { display: flex; max-width: 1400px; margin: 0 auto; width: 100%; padding: 0 5%; }
-.sidebar-nav { width: 280px; position: sticky; top: 100px; height: fit-content; padding: 4rem 0; border-right: 1px solid var(--card-border); }
-.documentation-wrapper { flex: 1; padding: 6rem 0; max-width: 900px; }
+/* ===== Documentation Layout ===== */
+.documentation-container {
+    display: flex;
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+    padding: 0 5%;
+}
+.sidebar-nav {
+    width: 280px;
+    position: sticky;
+    top: 100px;
+    height: fit-content;
+    padding: 4rem 0;
+    border-right: 1px solid var(--card-border);
+}
+.documentation-wrapper {
+    flex: 1;
+    padding: 6rem 0;
+    max-width: 900px;
+}
 
-/* Code blocks */
+/* ===== Code Blocks ===== */
 .markdown-engine pre {
     background-color: var(--code-bg) !important;
-    padding: 1.5rem; border-radius: 12px;
-    border: 1px solid var(--card-border); margin: 2rem 0; overflow-x: auto;
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid var(--card-border);
+    margin: 2rem 0;
+    overflow-x: auto;
 }
 .markdown-engine pre code {
     color: var(--code-text) !important;
@@ -108,11 +171,80 @@ body {
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.95rem;
 }
-.markdown-engine h1 { font-size: 3rem; font-weight: 800; color: var(--oi-primary) !important; margin-bottom: 2rem; }
+.markdown-engine h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--oi-primary) !important;
+    margin-bottom: 2rem;
+}
 
-/* Footer */
-.custom-footer { border-top: 1px solid var(--card-border); padding: 2rem 5%; text-align: center; margin-top: auto; }
-.custom-footer a { text-decoration: none; color: var(--text-main); font-weight: bold; }
+/* ===== Cards ===== */
+.card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+.card h3 {
+    color: var(--oi-primary);
+    font-weight: 700;
+    margin-top: 0;
+}
+
+/* ===== Footer ===== */
+.custom-footer {
+    border-top: 1px solid var(--card-border);
+    padding: 2rem 5%;
+    text-align: center;
+    margin-top: auto;
+}
+.custom-footer a {
+    text-decoration: none;
+    color: var(--text-main);
+    font-weight: bold;
+}
+
+/* ===== Sidebar Navigation ===== */
+.sidebar-nav a {
+    display: block;
+    margin-bottom: 0.75rem;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: color 0.2s;
+    padding: 0.5rem 0;
+}
+.sidebar-nav a:hover, .sidebar-nav a.active {
+    color: var(--oi-primary);
+}
+.sidebar-nav .nav-section-title {
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    opacity: 0.4;
+    margin-bottom: 1rem;
+    margin-top: 2rem;
+}
+
+/* ===== Icons & Buttons ===== */
+.icon-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    transition: all 0.2s;
+}
+.icon-btn:hover {
+    background: rgba(139, 92, 246, 0.1);
+}
 </style>
 
     </head>
@@ -464,7 +596,7 @@ body {
 
 <nav class="navbar-hardened">
     <a href="../.." class="font-extrabold text-2xl shrink-0" style="color:var(--text-main)">
-        OI <span style="color:var(--oi-primary)">DOCS</span>
+        <i class="fas fa-book-open"></i> OI <span style="color:var(--oi-primary)">DOCS</span>
     </a>
 
     <div class="header-search-wrap">
@@ -477,15 +609,15 @@ body {
 
     <div class="flex gap-3 shrink-0">
         <a href="https://n00b-5634.github.io/OpenIndiana-SiteReimagined/"
-           class="px-4 py-2 border-2 rounded-xl font-bold text-[10px] uppercase flex items-center"
+           class="icon-btn px-4 py-2 border-2 rounded-xl font-bold text-[10px] uppercase flex items-center"
            style="border-color:var(--card-border); color:var(--text-main);">
-            Go to main page
+            <i class="fas fa-home"></i> Go to main page
         </a>
-        <button id="a11y-toggle" class="px-3 py-1.5 border-2 rounded-lg font-bold text-[9px] uppercase opacity-60 hover:opacity-100" style="border-color:var(--card-border)">
-            W3C Access
+        <button id="a11y-toggle" class="icon-btn px-3 py-1.5 border-2 rounded-lg font-bold text-[9px] uppercase opacity-60 hover:opacity-100" style="border-color:var(--card-border)">
+            <i class="fas fa-universal-access"></i> W3C Access
         </button>
-        <button id="master-theme-toggle" class="px-4 py-2 border-2 rounded-xl font-bold text-[10px] uppercase" style="border-color:var(--card-border)">
-            DARK MODE
+        <button id="master-theme-toggle" class="icon-btn px-4 py-2 border-2 rounded-xl font-bold text-[10px] uppercase" style="border-color:var(--card-border)">
+            <i class="fas fa-moon"></i> DARK MODE
         </button>
     </div>
 </nav>
@@ -493,42 +625,42 @@ body {
 
 <div class="documentation-container">
     <aside class="sidebar-nav">
-        <p class="text-[10px] font-black uppercase tracking-widest opacity-40 mb-8">Navigation</p>
+        <p class="nav-section-title">Navigation</p>
         
         <a href="../.." class="block mb-4 text-sm font-bold no-underline hover:text-[var(--oi-primary)] text-[var(--text-main)]">
-            Welcome to OpenIndiana Reimagined
+            <i class="fas fa-file-alt mr-2"></i> Welcome to OpenIndiana Reimagined
         </a>
         
         <a href="../.." class="block mb-4 text-sm font-bold no-underline hover:text-[var(--oi-primary)] text-[var(--text-main)]">
-            Books
+            <i class="fas fa-file-alt mr-2"></i> Books
         </a>
         
         <a href="../.." class="block mb-4 text-sm font-bold no-underline hover:text-[var(--oi-primary)] text-[var(--text-main)]">
-            Community hcl
+            <i class="fas fa-file-alt mr-2"></i> Community hcl
         </a>
         
         <a href="../.." class="block mb-4 text-sm font-bold no-underline hover:text-[var(--oi-primary)] text-[var(--text-main)]">
-            Contrib
+            <i class="fas fa-file-alt mr-2"></i> Contrib
         </a>
         
         <a href="../.." class="block mb-4 text-sm font-bold no-underline hover:text-[var(--oi-primary)] text-[var(--text-main)]">
-            Dev
+            <i class="fas fa-file-alt mr-2"></i> Dev
         </a>
         
         <a href="../.." class="block mb-4 text-sm font-bold no-underline hover:text-[var(--oi-primary)] text-[var(--oi-primary)]">
-            Handbook
+            <i class="fas fa-file-alt mr-2"></i> Handbook
         </a>
         
         <a href="../.." class="block mb-4 text-sm font-bold no-underline hover:text-[var(--oi-primary)] text-[var(--text-main)]">
-            Misc
+            <i class="fas fa-file-alt mr-2"></i> Misc
         </a>
         
         <a href="../.." class="block mb-4 text-sm font-bold no-underline hover:text-[var(--oi-primary)] text-[var(--text-main)]">
-            Release notes
+            <i class="fas fa-file-alt mr-2"></i> Release notes
         </a>
         
         <a href="../.." class="block mb-4 text-sm font-bold no-underline hover:text-[var(--oi-primary)] text-[var(--text-main)]">
-            Retired
+            <i class="fas fa-file-alt mr-2"></i> Retired
         </a>
         
     </aside>
@@ -751,8 +883,8 @@ Complete reinstall also can be a decent option.</p>
 
 <footer class="custom-footer">
     <div class="flex justify-center gap-8 opacity-80">
-        <a href="https://www.openindiana.org/" class="hover:underline">Website</a>
-        <a href="https://github.com/openindiana" class="hover:underline">GitHub</a>
+        <a href="https://www.openindiana.org/" class="hover:underline"><i class="fas fa-globe mr-1"></i> Website</a>
+        <a href="https://github.com/openindiana" class="hover:underline"><i class="fab fa-github mr-1"></i> GitHub</a>
     </div>
 </footer>
 
@@ -765,15 +897,18 @@ Complete reinstall also can be a decent option.</p>
     a11yBtn.addEventListener('click', () => {
         html.classList.toggle('a11y-mode');
         a11yBtn.textContent = html.classList.contains('a11y-mode') ? "Standard Mode" : "W3C Access";
+        a11yBtn.innerHTML = html.classList.contains('a11y-mode')
+            ? '<i class="fas fa-ban"></i> Standard Mode'
+            : '<i class="fas fa-universal-access"></i> W3C Access';
     });
 
     const applyTheme = (theme) => {
         if (theme === 'dark') {
             html.setAttribute('data-theme', 'dark');
-            toggle.textContent = 'LIGHT MODE';
+            toggle.innerHTML = '<i class="fas fa-sun"></i> LIGHT MODE';
         } else {
             html.removeAttribute('data-theme');
-            toggle.textContent = 'DARK MODE';
+            toggle.innerHTML = '<i class="fas fa-moon"></i> DARK MODE';
         }
         localStorage.setItem('oi-theme-v5', theme);
     };
