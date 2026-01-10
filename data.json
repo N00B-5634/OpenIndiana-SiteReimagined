@@ -19,5 +19,12 @@
     "content": "I'm exicited to announce a new update schedule! This schedule will be a little less frequent, although it'll contain big update. ",
     "author": "Ribhav Revalli (N00B-5634)",
     "id": "Updates"
+  },
+  {
+      "title": "New Bots",
+      "date": "January 10, 2026",
+      "content": "I added a JSON validater bot, and a mkdocs builder bot to aid with developement.",
+      "author": "Ribhav Revalli",
+      "id": "Github"
   }
 ]
