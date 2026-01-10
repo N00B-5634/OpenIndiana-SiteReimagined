@@ -30,5 +30,5 @@ if [ $? -eq 0 ]; then
     echo "Success! Your site is live."
     echo "URL: https://n00b-5634.github.io/OpenIndiana-SiteReimagined/"
 else
-    echo " Error: The push failed. Log dumped."
+    echo " Error: The push failed."
 fi
