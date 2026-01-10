@@ -115,7 +115,7 @@
     </section>
 
     <section id="announcements" class="container mx-auto px-4 py-12">
-        <h2 class="text-3xl font-bold mb-8 text-center gradient-text">Latest Announcements</h2>
+        <h2 class="text-3xl font-bold mb-8 text-center gradient-text">Announcements</h2>
         <div id="announcements-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <div class="col-span-full text-center py-10 opacity-50 italic">Checking for updates...</div>
         </div>
@@ -208,12 +208,9 @@
     <footer class="bg-gray-900 text-white py-10 mt-12">
         <div class="container mx-auto px-4 text-center">
             <div class="flex justify-center space-x-6 mb-4">
-                <a href="#" class="hover:text-purple-400 transition">GitHub</a>
-                <a href="#" class="hover:text-purple-400 transition">IRC</a>
-                <a href="#" class="hover:text-purple-400 transition">Twitter</a>
-                <a href="#" class="hover:text-purple-400 transition">Forum</a>
+                <a href="github.com/OpenIndiana" class="hover:text-purple-400 transition">GitHub</a>
             </div>
-            <p class="mb-2 text-gray-300"> OpenIndiana Maintainers. All rights reserved.</p>
+            <p class="mb-2 text-gray-300"> Built by N00B-5634.</p>
             <p class="text-sm text-gray-400 max-w-2xl mx-auto">
                 This is a derivative site. OpenIndiana is a registered trademark. For official information, visit <a href="https://www.openindiana.org/" class="hover:underline">openindiana.org</a>. <a href="https://illumos.org" class="hover:underline text-blue-400">Illumos</a> is also the source for OpenIndiana.
             </p>
@@ -254,7 +251,7 @@
                     card.innerHTML = `
                         <div class="flex-grow">
                             <h3 class="text-xl font-semibold mb-1 text-[var(--oi-primary)]">${item.title}</h3>
-                            <p class="text-xs opacity-50 mb-4 font-medium uppercase tracking-wider">${item.date} • ${item.author}</p>
+			    <p class="text-xs opacity-50 mb-4 font-medium uppercase tracking-wider">${item.date} • ${item.author} • ${item.id}  </p>
                             <div class="opacity-80 text-sm leading-relaxed">${item.content}</div>
                         </div>
                     `;

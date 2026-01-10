@@ -4,17 +4,20 @@
     "date": "January 3, 2026",
     "content": "Welcome to OpenIndiana Reimagined — a refreshed and modern approach to the classic OpenIndiana website. Our goal is to keep the original simplicity while improving design, navigation, and accessibility. Explore new features, and let us know what you think! <a href='https://github.com/N00B-5634/OpenIndiana-SiteReimagined' class='text-blue-500 hover:underline'>Visit GitHub!</a>",
     "author": "Ribhav Revalli (N00B-5634)"
+    "id": "General"
   },
   {
     "title": "Docs Have a New Look",
     "date": "January 5, 2026",
     "content": "The documentation site has been completely redesigned! This update focuses on W3C compatibility, modern accessibility standards, and a cleaner, more enjoyable reading experience. Expect lightning-fast load times and a fresh visual style. Check it out and share feedback through GitHub issues.",
     "author": "Ribhav Revalli (N00B-5634)"
+    "id": "Maintanence"
   },
   {
     "title": "Update Schedule",
     "date": "January 9, 2026",
     "content": "I'm exicited to announce a new update schedule! This schedule will be a little less frequent, although it'll contain big update. ",
-    "author": "Ribhav Revalli (N00B-5634) "
+    "author": "Ribhav Revalli (N00B-5634)"
+    "id": "Updates"
   }
 ]
