@@ -27,8 +27,31 @@ You might be wondering why I decided to make this change to the website. The ori
 
 **A:** While this site is not officially affiliated with OpenIndiana, it does link directly to the OpenIndiana website for downloads and resources. This site is a derivative project intended to reimagine the visual aspect of the OpenIndiana experience. For official information, support, and resources, please visit the **[OpenIndiana website](https://www.openindiana.org/)**.
 
+## Credits
+I am crediting everyone who has worked on the oi-docs project, or this project
+### License
+
+This project is under the [PDL](https://www.openoffice.org/licenses/PDL.html)
+license, unless stated otherwise in individual files.
+
+### Authors
+- [A. Gordon](https://github.com/agordon)
+- [Adam Števko](https://github.com/xen0l)
+- [Adrian Lucrèce Céleste (Previously known as: Theodore Seán Tubbs)](https://github.com/AdrianKoshka)
+- [Alexander Pyhalov](https://github.com/pyhalov)
+- [Benny](https://github.com/mebenn)
+- [Johnathan "ShaggyTwoDope" Jenkins](https://github.com/shaggytwodope)
+- [Lucas Sköldqvist](https://github.com/frusen)
+- [Michael Kruger](https://github.com/makruger)
+- [David Stes](https://sourceforge.net/u/stes/profile)
+- [/u/127b](https://www.reddit.com/user/127b)
+- [Andreas Wacknitz](https://github.com/AndWac)
+- [(Partially) Ribhav "N00B-5634" Revalli](https://www.github.com/N00B-5634)
+
 ## Final Thoughts
 
 Thank you for visiting **OpenIndiana Reimagined**. This site is an independent project, and I hope it offers a different perspective on the OpenIndiana operating system. If you’d like to share feedback or contribute to the project, please fork the repository and submit a pull request.
 
 That’s all. Thank you for your time.
+
+
