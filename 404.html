@@ -119,11 +119,16 @@
 <body>
     <div class="error-container">
         <div class="error-icon">
-            <span class="fa-stack fa-2x">
-                <i class="fa-solid fa-server fa-stack-1x"></i>
-                 <i class="fa-solid fa-triangle-exclamation fa-stack-1x" 
-           style=" font-size: 0.55em; margin-top: 10px; margin-left: 10px;"></i>
-        </div>
+    <span class="fa-stack fa-2x">
+        <!-- Base Layer: System Component -->
+        <i class="fa-solid fa-server fa-stack-1x"></i>
+        
+        <!-- Top Layer: Technical Status (Broken Link) -->
+        <i class="fa-solid fa-link-slash fa-stack-1x" 
+           style="font-size: 0.5em; margin-top: 10px; margin-left: 10px;"></i>
+    </span>
+            </div>
+
         <h1 class="error-title">Error 404: Invalid Page </h1>
         <p class="error-message">
             The page you are looking for does not exist, no longer exists, or has been moved.
