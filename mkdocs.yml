@@ -5,7 +5,7 @@ site_dir: site_docs
 theme:
   name: mkdocs
   custom_dir: overrides
-
+  favicon: favicon/favicon.ico
 plugins:
   - search
 
