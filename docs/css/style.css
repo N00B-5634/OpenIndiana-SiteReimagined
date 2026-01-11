@@ -341,3 +341,87 @@ body {
         margin: 0.5rem 0;
     }
 }
+/* ===== Markdown Engine Fixes ===== */
+.markdown-engine {
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+.markdown-engine h1,
+.markdown-engine h2,
+.markdown-engine h3,
+.markdown-engine h4,
+.markdown-engine h5,
+.markdown-engine h6 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    line-height: 1.3;
+}
+
+.markdown-engine h1 {
+    font-size: 2.25rem;
+    margin-top: 0;
+}
+
+.markdown-engine h2 {
+    font-size: 1.75rem;
+    border-bottom: 1px solid var(--card-border);
+    padding-bottom: 0.5rem;
+}
+
+.markdown-engine h3 {
+    font-size: 1.375rem;
+}
+
+.markdown-engine p {
+    margin-bottom: 1.25rem;
+}
+
+.markdown-engine ul,
+.markdown-engine ol {
+    margin-bottom: 1.25rem;
+    padding-left: 2rem;
+}
+
+.markdown-engine li {
+    margin-bottom: 0.5rem;
+}
+
+.markdown-engine pre {
+    margin: 1.5rem 0;
+}
+
+.markdown-engine blockquote {
+    border-left: 4px solid var(--oi-primary);
+    padding-left: 1.25rem;
+    margin-left: 0;
+    margin-bottom: 1.25rem;
+    color: var(--text-main);
+    opacity: 0.9;
+    font-style: italic;
+}
+
+.markdown-engine table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+}
+
+.markdown-engine th,
+.markdown-engine td {
+    border: 1px solid var(--card-border);
+    padding: 0.75rem;
+    text-align: left;
+}
+
+.markdown-engine th {
+    background-color: var(--card-bg);
+    font-weight: 600;
+}
+
+.markdown-engine hr {
+    border: 0;
+    border-top: 1px solid var(--card-border);
+    margin: 2rem 0;
+}
+
