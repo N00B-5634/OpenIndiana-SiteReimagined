@@ -121,6 +121,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/handbook/</loc>
+         <lastmod>2026-01-11</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/handbook/appendix/</loc>
          <lastmod>2026-01-11</lastmod>
          <changefreq>daily</changefreq>
@@ -222,6 +227,11 @@
     </url>
     <url>
          <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/misc/pdl/</loc>
+         <lastmod>2026-01-11</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/release-notes/</loc>
          <lastmod>2026-01-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
