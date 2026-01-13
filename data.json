@@ -26,5 +26,12 @@
       "content": "I added a JSON validater bot, and a mkdocs builder bot to aid with developement.",
       "author": "Ribhav Revalli",
       "id": "Github"
+  },
+ {"title": "Documents have been fixed for essentially the final time!",
+      "date": "January 12, 2026",
+      "content": "I have fixed the entire UI for docuements, other than simple CSS and search issues, major bugs should be gone.",
+      "author": "Ribhav Revalli",
+      "id": "Maintanence"
   }
+
 ]
