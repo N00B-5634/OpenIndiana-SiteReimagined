@@ -478,6 +478,15 @@ document.addEventListener('DOMContentLoaded', function() {
             searchResults.style.display = 'none';
         }, 200);
     });
+
+    // Highlight current page in navigation
+    const navLinks = document.querySelectorAll('.sidebar-nav a');
+    const currentPath = window.location.pathname;
+    navLinks.forEach(link => {
+        if (link.getAttribute('href') === currentPath) {
+            link.classList.add('text-[var(--oi-primary)]');
+        }
+    });
 });
 </script>
 
@@ -563,5 +572,5 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <!--
 MkDocs version : 1.5.2
-Build Date UTC : 2026-01-13 00:11:50.178416+00:00
+Build Date UTC : 2026-01-13 00:23:51.672132+00:00
 -->

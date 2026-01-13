@@ -417,43 +417,33 @@
 <div class="documentation-container">
     <aside class="sidebar-nav">
         <p class="nav-section-title">Navigation</p>
-        
-        <a href="../.." class="block mb-4 text-sm font-bold no-underline hover:text-[var(--oi-primary)] text-[var(--text-main)]">
+        <a href="/" class="block mb-4 text-sm font-bold no-underline hover:text-[var(--oi-primary)] text-[var(--text-main)]">
             <i class="fas fa-file-alt mr-2"></i> Home
         </a>
-        
-        <a href="../.." class="block mb-4 text-sm font-bold no-underline hover:text-[var(--oi-primary)] text-[var(--text-main)]">
+        <a href="/books/" class="block mb-4 text-sm font-bold no-underline hover:text-[var(--oi-primary)] text-[var(--text-main)]">
             <i class="fas fa-file-alt mr-2"></i> Books
         </a>
-        
-        <a href="../.." class="block mb-4 text-sm font-bold no-underline hover:text-[var(--oi-primary)] text-[var(--text-main)]">
+        <a href="/community_hcl/" class="block mb-4 text-sm font-bold no-underline hover:text-[var(--oi-primary)] text-[var(--text-main)]">
             <i class="fas fa-file-alt mr-2"></i> Community hcl
         </a>
-        
-        <a href="../.." class="block mb-4 text-sm font-bold no-underline hover:text-[var(--oi-primary)] text-[var(--text-main)]">
+        <a href="/contrib/" class="block mb-4 text-sm font-bold no-underline hover:text-[var(--oi-primary)] text-[var(--text-main)]">
             <i class="fas fa-file-alt mr-2"></i> Contrib
         </a>
-        
-        <a href="../.." class="block mb-4 text-sm font-bold no-underline hover:text-[var(--oi-primary)] text-[var(--text-main)]">
+        <a href="/dev/" class="block mb-4 text-sm font-bold no-underline hover:text-[var(--oi-primary)] text-[var(--text-main)]">
             <i class="fas fa-file-alt mr-2"></i> Dev
         </a>
-        
-        <a href="../.." class="block mb-4 text-sm font-bold no-underline hover:text-[var(--oi-primary)] text-[var(--text-main)]">
+        <a href="/handbook/" class="block mb-4 text-sm font-bold no-underline hover:text-[var(--oi-primary)] text-[var(--text-main)]">
             <i class="fas fa-file-alt mr-2"></i> Handbook
         </a>
-        
-        <a href="../.." class="block mb-4 text-sm font-bold no-underline hover:text-[var(--oi-primary)] text-[var(--text-main)]">
+        <a href="/misc/" class="block mb-4 text-sm font-bold no-underline hover:text-[var(--oi-primary)] text-[var(--text-main)]">
             <i class="fas fa-file-alt mr-2"></i> Misc
         </a>
-        
-        <a href="../.." class="block mb-4 text-sm font-bold no-underline hover:text-[var(--oi-primary)] text-[var(--oi-primary)]">
+        <a href="/release-notes/" class="block mb-4 text-sm font-bold no-underline hover:text-[var(--oi-primary)] text-[var(--text-main)]">
             <i class="fas fa-file-alt mr-2"></i> Release notes
         </a>
-        
-        <a href="../.." class="block mb-4 text-sm font-bold no-underline hover:text-[var(--oi-primary)] text-[var(--text-main)]">
+        <a href="/retired/" class="block mb-4 text-sm font-bold no-underline hover:text-[var(--oi-primary)] text-[var(--text-main)]">
             <i class="fas fa-file-alt mr-2"></i> Retired
         </a>
-        
     </aside>
     <main id="main-content" class="documentation-wrapper markdown-engine">
         <article><!--
@@ -735,6 +725,15 @@ document.addEventListener('DOMContentLoaded', function() {
         setTimeout(() => {
             searchResults.style.display = 'none';
         }, 200);
+    });
+
+    // Highlight current page in navigation
+    const navLinks = document.querySelectorAll('.sidebar-nav a');
+    const currentPath = window.location.pathname;
+    navLinks.forEach(link => {
+        if (link.getAttribute('href') === currentPath) {
+            link.classList.add('text-[var(--oi-primary)]');
+        }
     });
 });
 </script>
