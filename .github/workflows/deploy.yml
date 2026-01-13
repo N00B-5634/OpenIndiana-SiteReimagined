@@ -1,51 +1,46 @@
-name: Build and Update Site Docs
+name: JSON Validation
 
 on:
-  push:
-    branches:
-      - main
-    # Only run if files in /docs or mkdocs.yml change to save battery/time
+  pull_request:
     paths:
-      - 'docs/**'
-      - 'mkdocs.yml'
-      - 'requirements.txt'
+      - '*.json'
   workflow_dispatch:
-permissions:
-  contents: write
 
 jobs:
-  build:
+  validate-json:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-        with:
-          # This is important so it can push back to the repo
-          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.x'
-
-      - name: Install dependencies
+      - name: Validate JSON syntax and required fields
         run: |
-          python -m pip install --upgrade pip
-          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-          pip install mkdocs
+          set -e
+          for file in *.json; do
+            echo "Validating $file..."
 
-      - name: Build MkDocs
-        run: mkdocs build
+            # Syntax check
+            if ! jq empty "$file" 2>/dev/null; then
+              echo "Syntax error detected in $file."
+              exit 1
+            fi
 
-      - name: Commit and Push changes
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add site_docs/
-          # Only commit if there are actually changes to avoid errors
-          if git diff --staged --quiet; then
-            echo "No changes to docs."
-          else
-            git commit -m "Auto-build: Update site_docs from docs folder"
-            git push
-          fi
+            # Schema check: required fields in each object
+            missing_fields=false
+            length=$(jq 'length' "$file")
+            for i in $(seq 0 $((length - 1))); do
+              for field in id title date author content; do
+                if ! jq -e ".[$i] | has(\"$field\")" "$file" >/dev/null; then
+                  echo "ERROR: $file object #$i is missing required field: $field"
+                  missing_fields=true
+                fi
+              done
+            done
+
+            if [ "$missing_fields" = true ]; then
+              exit 1
+            fi
+
+            echo "Yay, $file passed syntax and schema validation!"
+          done
