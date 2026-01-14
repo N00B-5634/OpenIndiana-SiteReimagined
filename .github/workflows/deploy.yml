@@ -89,7 +89,3 @@ jobs:
               with open(search_index_path, 'w') as f:
                   json.dump(search_index, f, indent=2)
           "
-
-      - name: Deploy to GitHub Pages
-        if: github.ref == 'refs/heads/main'
-        run: mkdocs gh-deploy --force
