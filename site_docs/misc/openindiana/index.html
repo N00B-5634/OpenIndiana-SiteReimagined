@@ -499,11 +499,12 @@ This melding of software from many different open-source projects is similar to 
 <li>Oracle's Sun Studio has been replaced with the open source GNU GCC compiler.</li>
 <li>XVM (XEN) has been replaced with the illumos-kvm port.</li>
 </ul>
-<div class="note" markdown="1">
-!!! note
-    OpenIndiana Hipster's transition from Sun Studio to GCC has resulted in a discontinuance of C++ ABI compatibility with previous releases of OpenIndiana, Oracle Solaris, and OpenSolaris.
+<div class="note">
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>OpenIndiana Hipster's transition from Sun Studio to GCC has resulted in a discontinuance of C++ ABI compatibility with previous releases of OpenIndiana, Oracle Solaris, and OpenSolaris.</p>
 </div>
-
+</div>
 <h2 id="how-does-openindiana-compare-to-bsd-or-linux">How does OpenIndiana compare to BSD or Linux?</h2>
 <p>All of these operating systems follow the Unix paradigm and contain tools and commands which bear a similar resemblance, although specific feature sets and command usage may be dissimilar.
 If you are coming to OpenIndiana from either BSD or Linux, you will quickly learn these differences.
@@ -585,18 +586,22 @@ Ideally suited for both workstations and servers, simply choose the installer ty
 </tr>
 </tbody>
 </table>
-<div class="note" markdown="1">
-!!! note
-    * The legacy oi-dev-151x branch is no longer maintained.
-    * While upgrades to Hipster are possible, the most trouble free method is to perform a clean install.
+<div class="note">
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul>
+<li>The legacy oi-dev-151x branch is no longer maintained.</li>
+<li>While upgrades to Hipster are possible, the most trouble free method is to perform a clean install.</li>
+</ul>
 </div>
-
-<div class="caution" markdown="1">
-!!! danger "Caution"
-    Hipster is a rapid development branch where software versions are frequently updated.
-    While every package is tested to ensure stability, caution is nevertheless warranted when deploying Hipster into mission critical production environments.
 </div>
-
+<div class="caution">
+<div class="admonition danger">
+<p class="admonition-title">Caution</p>
+<p>Hipster is a rapid development branch where software versions are frequently updated.
+While every package is tested to ensure stability, caution is nevertheless warranted when deploying Hipster into mission critical production environments.</p>
+</div>
+</div>
 <h2 id="what-are-the-recommended-hardware-specifications">What are the recommended hardware specifications?</h2>
 <table>
 <thead>
@@ -614,14 +619,19 @@ Ideally suited for both workstations and servers, simply choose the installer ty
 </tr>
 </tbody>
 </table>
-<div class="note" markdown="1">
-!!! note
-    * For the best performance (and to reduce the possibility of disk swapping), allocate 4GB RAM or more.
-    * For desktops, ensure total system memory (RAM + swap) are at least 4GB or greater.
-    * The default size of the OpenIndiana swap file is 50% of installed memory.
-        * Minimum and maximum default swap allocations are 512MB and 32GB respectively.
+<div class="note">
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul>
+<li>For the best performance (and to reduce the possibility of disk swapping), allocate 4GB RAM or more.</li>
+<li>For desktops, ensure total system memory (RAM + swap) are at least 4GB or greater.</li>
+<li>The default size of the OpenIndiana swap file is 50% of installed memory.<ul>
+<li>Minimum and maximum default swap allocations are 512MB and 32GB respectively.</li>
+</ul>
+</li>
+</ul>
 </div>
-
+</div>
 <h2 id="does-openindiana-support-internationalization-and-localization">Does OpenIndiana support internationalization and localization?</h2>
 <p>Yes, when installing OpenIndiana, you may choose from 47 different keyboard layouts and 22 different languages.</p>
 <h2 id="does-openindiana-provide-security-and-bug-fixes">Does OpenIndiana provide security and bug fixes?</h2>
@@ -650,13 +660,14 @@ For detailed information about creating a bootable OpenIndiana DVD or USB flash 
 <p>OpenIndiana uses the network based <a href="https://en.wikipedia.org/wiki/Image_Packaging_System">Image Packaging System (IPS)</a>.
 For those coming to OpenIndiana from BSD or Linux, the IPS package manager will be an easy transition.
 You may also continue to use the legacy <code>pkgadd/pkgrm</code> commands.</p>
-<div class="note" markdown="1">
-!!! note
-    The OpenIndiana distribution provides a basic set of packages, along with some extras.
-    There are also 3rd party repositories which provide additional packages.
-    If you wish to contribute by helping to expand package availability, please read further down about how to get involved with the OpenIndiana project.
+<div class="note">
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The OpenIndiana distribution provides a basic set of packages, along with some extras.
+There are also 3rd party repositories which provide additional packages.
+If you wish to contribute by helping to expand package availability, please read further down about how to get involved with the OpenIndiana project.</p>
 </div>
-
+</div>
 <p>The following IPS repositories are available:</p>
 <table>
 <thead>
@@ -687,10 +698,10 @@ You may also continue to use the legacy <code>pkgadd/pkgrm</code> commands.</p>
 <h3 id="adding-a-new-publisher">Adding a new publisher</h3>
 <p><code>pkg set-publisher -g repository_url repository_name</code></p>
 <h3 id="changing-an-existing-publisher">Changing an existing publisher</h3>
-<pre><code class="language-bash">pkg set-publisher \
--G http://pkg.openindiana.org/hipster-2015 \
--g https://pkg.openindiana.org/hipster openindiana.org
-</code></pre>
+<div class="highlight"><pre><span></span><code>pkg<span class="w"> </span>set-publisher<span class="w"> </span><span class="se">\</span>
+-G<span class="w"> </span>http://pkg.openindiana.org/hipster-2015<span class="w"> </span><span class="se">\</span>
+-g<span class="w"> </span>https://pkg.openindiana.org/hipster<span class="w"> </span>openindiana.org
+</code></pre></div>
 <p>For further information about using the IPS <code>pkg</code> command consult the <a href="../../handbook/getting-started/#the-image-package-system-ips">Getting Started</a> section of the OpenIndiana Handbook as well as the pkg<sup>1</sup> man page included with OpenIndiana Hipster.</p>
 <h2 id="what-books-are-available-to-help-with-learning-openindiana">What books are available to help with learning OpenIndiana?</h2>
 <p>There are several resources which will assist you with learning to use OpenIndiana.
@@ -721,15 +732,15 @@ While somewhat dated now, these resources are largely still relevant.</p>
 </ul>
 </li>
 </ul>
-<div class="note" markdown="1">
-!!! note
-    An effort currently exists within the OpenIndiana community to review these books and provide errata.
-    A longer term goal is to use the errata to revise and condense these titles into a significantly smaller collection which more closely follows the current development state of OpenIndiana Hipster.
-
-    The documentation team is also working to produce an updated OpenIndiana handbook as well as task based tutorials.
-    If you wish to participate in this effort, please indicate your interest via the IRC channels or the mailing lists.
+<div class="note">
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>An effort currently exists within the OpenIndiana community to review these books and provide errata.
+A longer term goal is to use the errata to revise and condense these titles into a significantly smaller collection which more closely follows the current development state of OpenIndiana Hipster.</p>
+<p>The documentation team is also working to produce an updated OpenIndiana handbook as well as task based tutorials.
+If you wish to participate in this effort, please indicate your interest via the IRC channels or the mailing lists.</p>
 </div>
-
+</div>
 <h2 id="how-can-i-contact-openindiana-community">How can I contact OpenIndiana community?</h2>
 <p>There are several IRC channels and mailing lists, where you can discuss OpenIndiana and ask your questions to the wider community.</p>
 <p>Below is a list of OpenIndiana community resources you may find helpful:</p>

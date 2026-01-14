@@ -471,154 +471,154 @@ Contributor(s): David Stes.
 <p>Complete instructions from Hashicorp are available at :</p>
 <p><a href="https://www.vagrantup.com/docs/installation/source">https://www.vagrantup.com/docs/installation/source</a></p>
 <p>Create a ZFS filesystem (or just a directory) to install Ruby and Vagrant :</p>
-<pre><code class="language-none">        # zfs create -o mountpoint=/scratch rpool/scratch
-</code></pre>
+<div class="highlight"><pre><span></span><code>        # zfs create -o mountpoint=/scratch rpool/scratch
+</code></pre></div>
 <p>Make a non-root user the owner of that directory.  This is the user that you normally use to login into your OI system :</p>
-<pre><code class="language-none">        # chown &lt;some-user&gt; /scratch
-</code></pre>
+<div class="highlight"><pre><span></span><code>        # chown &lt;some-user&gt; /scratch
+</code></pre></div>
 <p>Install the OpenIndiana development tools if you do not already have them :</p>
-<pre><code class="language-none">        # pkg install build-essential
-</code></pre>
+<div class="highlight"><pre><span></span><code>        # pkg install build-essential
+</code></pre></div>
 <p>You can use gcc 7.5 to build a 32bit executable, or use gcc 10.3 to build a 64bit ruby executable :</p>
-<pre><code class="language-none">        # pkg install gcc-10
+<div class="highlight"><pre><span></span><code>        # pkg install gcc-10
         # pkg set-mediator -V 10 gcc
         # pkg mediator gcc
          MEDIATOR            VER. SRC. VERSION IMPL. SRC. IMPLEMENTATION
          gcc                 local     10      system
-</code></pre>
+</code></pre></div>
 <p>Check that automake and autoconf are installed :</p>
-<pre><code class="language-none">        # pkg install developer/build/autoconf
+<div class="highlight"><pre><span></span><code>        # pkg install developer/build/autoconf
         # pkg install developer/build/automake
-</code></pre>
+</code></pre></div>
 <p>Then as ordinary non-root user continue.</p>
 <p>As non-root user, you can now either build ruby from the git repo, or you can download a .tar.gz ruby source package.</p>
 <p>If you clone the git repo, then do :</p>
-<pre><code class="language-none">        $ cd /scratch
+<div class="highlight"><pre><span></span><code>        $ cd /scratch
         $ git clone https://github.com/ruby/ruby.git
         $ cd ruby
         $ git checkout ruby_3_0
         $ ./autogen.sh
-</code></pre>
+</code></pre></div>
 <p>The above commands set up the source tree using the autogen.sh script and checkout the 3.0 branch of ruby.</p>
 <p>On the other hand, if you download Ruby version 3.0.2 (or 3.0.3 when it will be released) from :</p>
 <p><a href="https://www.ruby-lang.org/en/downloads/">https://www.ruby-lang.org/en/downloads/</a></p>
 <p>then copy ruby-3.0.2.tar.gz to the scratch directory and extract it there :</p>
-<pre><code class="language-none">        $ cd /scratch
+<div class="highlight"><pre><span></span><code>        $ cd /scratch
         $ gtar xvfz ruby-3.0.2.tar.gz
-</code></pre>
+</code></pre></div>
 <p>In this case, make sure that the bison grammar ripper.y is NOT rebuilt on OI.  This is minor issue currently at time of writing these notes with bison.  The Ruby sources are generated with bison 3.5.1 while OI currently runs a more recent version of bison (3.8.2) :</p>
-<pre><code class="language-none">        $ ls -l ruby-3.0.2/ext/ripper/ripper.*
+<div class="highlight"><pre><span></span><code>        $ ls -l ruby-3.0.2/ext/ripper/ripper.*
         $ touch ruby-3.0.2/ext/ripper/ripper.c
-</code></pre>
+</code></pre></div>
 <p>You can verify that the grammar in the ruby source package is built using an older version of bison.  The touch command attempts to avoid a rebuild.</p>
-<pre><code class="language-none">        $ head ruby-3.0.2/ext/ripper/ripper.y
+<div class="highlight"><pre><span></span><code>        $ head ruby-3.0.2/ext/ripper/ripper.y
         $ ls -l ruby-3.0.2/ext/ripper/ripper.*
-</code></pre>
+</code></pre></div>
 <p>Then cd into the source directory of the downloaded source package :</p>
-<pre><code class="language-none">        $ cd ruby-3.0.2
-</code></pre>
+<div class="highlight"><pre><span></span><code>        $ cd ruby-3.0.2
+</code></pre></div>
 <p>Whether you have cloned the git repo, or downloaded the source package, continue now to configure Ruby 3.0.2 :</p>
 <p>A first option is to build ruby with O3 and g3 optimisation and without DTrace :</p>
-<pre><code class="language-none">        $ ./configure --disable-dtrace --with-gcc --prefix=/scratch/ruby-30
-</code></pre>
+<div class="highlight"><pre><span></span><code>        $ ./configure --disable-dtrace --with-gcc --prefix=/scratch/ruby-30
+</code></pre></div>
 <p>A second option, is to enable DTrace and build with O3 and g1 optimisation :</p>
-<pre><code class="language-none">        $ ./configure --enable-dtrace --with-gcc --prefix=/scratch/ruby-30 debugflags=&quot;-g1&quot;
-</code></pre>
+<div class="highlight"><pre><span></span><code>        $ ./configure --enable-dtrace --with-gcc --prefix=/scratch/ruby-30 debugflags=&quot;-g1&quot;
+</code></pre></div>
 <p>Note in the above, if you enable DTrace, that the debugflags is set to -g1 (level g1).  Currently there is a problem with the DTrace build and g3 level debug information, while with level 1 debug info, the build with DTrace enabled, works.</p>
 <p>Either way, whether you have configured Ruby 3.0.2 with or without DTrace, install it under /scratch/ruby-30 as follows :</p>
-<pre><code class="language-none">        $ gmake install
-</code></pre>
+<div class="highlight"><pre><span></span><code>        $ gmake install
+</code></pre></div>
 <p>Modify the PATH to use Ruby 3.0.2 :</p>
-<pre><code class="language-none">        $ PATH=/scratch/ruby-30/bin:$PATH
+<div class="highlight"><pre><span></span><code>        $ PATH=/scratch/ruby-30/bin:$PATH
         $ ruby --version
         ruby 3.0.3p150 (2021-11-06 revision 6d540c1b98) [i386-solaris2.11]
-</code></pre>
+</code></pre></div>
 <p>The ruby 3.0.3p150 string is from the git repo using the not-yet released ruby 3.0.3.  But the same procedure applies to ruby 2.7.4, 3.0.2 or even ruby 3.1.</p>
 <p>If you used gcc 10.3 for the build, you should see x64_64 instead of i386 because then you should have built a 64bit ruby instead.</p>
 <h2 id="installing-vagrant-from-source">Installing Vagrant from source</h2>
 <p>Complete instructions from Hashicorp are available at :</p>
 <p><a href="https://www.vagrantup.com/docs/installation/source">https://www.vagrantup.com/docs/installation/source</a></p>
 <p>Create a vagrant directory as ordinary non-root user (same login user as used for the installation of Ruby 3.0.2) :</p>
-<pre><code class="language-none">        $ mkdir /scratch/vagrant
-</code></pre>
+<div class="highlight"><pre><span></span><code>        $ mkdir /scratch/vagrant
+</code></pre></div>
 <p>Git clone the Vagrant source code :</p>
-<pre><code class="language-none">        $ cd /scratch/vagrant
+<div class="highlight"><pre><span></span><code>        $ cd /scratch/vagrant
         $ git clone https://github.com/hashicorp/vagrant.git .
-</code></pre>
+</code></pre></div>
 <p>Make sure that bundle and bundler commands are from Ruby 3.0.2 :</p>
-<pre><code class="language-none">        $ type bundler
+<div class="highlight"><pre><span></span><code>        $ type bundler
         bundler is a tracked alias for /scratch/ruby-30/bin/bundler
         ls /scratch/ruby-30/bin/
         bundle      htmldiff    listen      rdoc        rwinrm
         bundler     httpclient  racc        ri          rwinrmcp
         erb         irb         rake        rspec       thor
         gem         ldiff       rbs         ruby        typeprof
-</code></pre>
+</code></pre></div>
 <p>Follow the Hashicorp instructions for the install by running :</p>
-<pre><code class="language-none">        $ bundle install
-</code></pre>
+<div class="highlight"><pre><span></span><code>        $ bundle install
+</code></pre></div>
 <p>The above is a non-root installation into /scratch/ruby-30.</p>
 <p>Then create a binstub and add it to your path :</p>
-<pre><code class="language-none">        $ bundle --binstubs exec
+<div class="highlight"><pre><span></span><code>        $ bundle --binstubs exec
         $ PATH=/scratch/vagrant/exec:$PATH
-</code></pre>
+</code></pre></div>
 <p>Note that the above adds the directory exec, not bin, to the PATH.  There also is a bin directory but that's not the binstub directory.</p>
-<pre><code class="language-none">        $ type vagrant
+<div class="highlight"><pre><span></span><code>        $ type vagrant
         vagrant is a tracked alias for /scratch/vagrant/exec/vagrant
         $ vagrant --version
         Vagrant 2.2.20.dev
-</code></pre>
+</code></pre></div>
 <h2 id="virtualbox">VirtualBox</h2>
 <p>Vagrant can use multiple providers, but in this case we use VirtualBox as provider:</p>
-<pre><code class="language-none">        # pkg list virtualbox
+<div class="highlight"><pre><span></span><code>        # pkg list virtualbox
         NAME (PUBLISHER)                                  VERSION                    IFO
         system/virtualbox                                 6.1.30-2021.0.0.0          i--
-</code></pre>
+</code></pre></div>
 <p>Vagrant uses a Vagrantfile to describe the actions to build the virtual machine or machines.  Once you or someone else creates a single Vagrantfile, you just need to vagrant up and everything is installed and configured for you to work.</p>
 <p>If the Vagrantfile uses internal networks, check first that internal networks are defined in VirtualBox under the File menu (Host Network Manager).</p>
 <p>The following example shows a setup with two internal networks.  By default there will only be just one internal network :</p>
-<pre><code class="language-none">        # dladm show-phys | grep vbox
+<div class="highlight"><pre><span></span><code>        # dladm show-phys | grep vbox
         vboxnet0     Ethernet             up         1000   full      vboxnet0
         vboxnet1     Ethernet             up         1000   full      vboxnet1
-</code></pre>
+</code></pre></div>
 <p>On VirtualBox 6.1.30 it also seems necessary to set up a file in /etc/vbox :</p>
-<pre><code class="language-none">        $ cat /etc/vbox/networks.conf
+<div class="highlight"><pre><span></span><code>        $ cat /etc/vbox/networks.conf
         * 192.168.56.0/16 192.168.99.0/16
-</code></pre>
+</code></pre></div>
 <p>With the VBoxManage command, check the available internal networks:</p>
-<pre><code class="language-none">        $ VBoxManage list hostonlyifs | grep 192
+<div class="highlight"><pre><span></span><code>        $ VBoxManage list hostonlyifs | grep 192
         IPAddress:       192.168.56.1
         IPAddress:       192.168.99.1
-</code></pre>
+</code></pre></div>
 <p>The above example is for 2 internal networks.  By default only the 192.168.56.1 is setup by the default VirtualBox installation.</p>
 <h2 id="testing-vagrant-projects-from-oracle">Testing Vagrant projects from Oracle</h2>
 <p>Many Vagrantfile are provided, for example some are by Oracle, for testing products such as the Oracle Database.</p>
 <p>As ordinary login user do:</p>
-<pre><code class="language-none">        $ mkdir -p /scratch/oracle/vagrant-projects
-</code></pre>
+<div class="highlight"><pre><span></span><code>        $ mkdir -p /scratch/oracle/vagrant-projects
+</code></pre></div>
 <p>Then clone the Oracle vagrant projects :</p>
-<pre><code class="language-none">        $ cd /scratch/oracle/vagrant-projects
+<div class="highlight"><pre><span></span><code>        $ cd /scratch/oracle/vagrant-projects
         $ git clone https://github.com/oracle/vagrant-projects.git .
-</code></pre>
+</code></pre></div>
 <p>Some interesting Oracle Database products can be built :</p>
-<pre><code class="language-none">        $ cd /scratch/oracle/vagrant-projects
+<div class="highlight"><pre><span></span><code>        $ cd /scratch/oracle/vagrant-projects
         $ cd OracleDatabase/
         $ ls
         11.2.0.2   12.2.0.1   18.4.0-XE  21.3.0
         12.1.0.2   18.3.0     19.3.0     README.md
-</code></pre>
+</code></pre></div>
 <p>For example to build a 21.3 Oracle Database provided you can download from OTN (Oracle Tech Net) the LINUX.X64_213000_db_home.zip Oracle product :</p>
-<pre><code class="language-none">        $ cd 21.3.0
+<div class="highlight"><pre><span></span><code>        $ cd 21.3.0
         $ vagrant up
-        Bringing machine 'oracle-21c-vagrant' up with 'virtualbox' provider...
-        ==&gt; oracle-21c-vagrant: Importing base box 'oraclelinux/8'...
+        Bringing machine &#39;oracle-21c-vagrant&#39; up with &#39;virtualbox&#39; provider...
+        ==&gt; oracle-21c-vagrant: Importing base box &#39;oraclelinux/8&#39;...
         ==&gt; oracle-21c-vagrant: Matching MAC address for NAT networking...
 
         ... lots of messages ---
 
         oracle-21c-vagrant: Oracle Database 21c Enterprise Edition Release 21.0.0.0.0 - Production
         oracle-21c-vagrant: Version 21.3.0.0.0
-</code></pre>
+</code></pre></div>
 <p>This is an example Vagrantfile to deploy a VirtualBox VM called oracle-21c-vagrant running Linux and Oracle Database 21c.</p>
 <p>Many other Vagrantfiles exist in the cloud.</p>
 <h2 id="vagrant-and-pulseaudio">Vagrant and Pulseaudio</h2>
@@ -627,21 +627,21 @@ Contributor(s): David Stes.
 <p>On platforms with the paprefs executable, this can be configured using paprefs :</p>
 <p><img alt="paprefs" src="../paprefs.png" /></p>
 <p>If the paprefs command is not available, pulseaudio can be reconfigured with :</p>
-<pre><code class="language-none">        dconf load /org/freedesktop/pulseaudio/module-groups/ &lt;&lt;EOF
+<div class="highlight"><pre><span></span><code>        dconf load /org/freedesktop/pulseaudio/module-groups/ &lt;&lt;EOF
         [remote-access]
-        args0=''
-        args1=''
+        args0=&#39;&#39;
+        args1=&#39;&#39;
         enabled=true
-        name0='module-native-protocol-tcp'
-        name1='module-esound-protocol-tcp'
+        name0=&#39;module-native-protocol-tcp&#39;
+        name1=&#39;module-esound-protocol-tcp&#39;
         EOF
-</code></pre>
+</code></pre></div>
 <p>Check using the pax11publish or pactl info commands that pulseaudio accepts remote connections :</p>
-<pre><code class="language-none">        $ pax11publish
+<div class="highlight"><pre><span></span><code>        $ pax11publish
         Server: {f6f2af56ea9e3944e926c6b946197a34b}unix:/tmp/pulse-K2hFZViPE4v5/native tcp:somehost:4713 tcp6:somehost:4713
-</code></pre>
+</code></pre></div>
 <p>On the host or in the Vagrant VM the pactl info command can be used to test the connection to the pulse server that is running on the host :</p>
-<pre><code class="language-none">        $ pactl info
+<div class="highlight"><pre><span></span><code>        $ pactl info
         Server String: tcp:localhost:24713
         Library Protocol Version: 33
         Server Protocol Version: 33
@@ -654,16 +654,16 @@ Contributor(s): David Stes.
         Default Sink: oss_output.dsp0
         Default Source: oss_input.dsp0
         Cookie: a3f5:b8e8
-</code></pre>
+</code></pre></div>
 <p>Note that there is a Cookie that is normally set on the host and VM for authentication; it should not be required, but you could (if necessary) copy this cookie from the host to the VM (but this seems not needed usually).</p>
-<pre><code class="language-none">         cp $HOME/.config/pulse/cookie .
-</code></pre>
+<div class="highlight"><pre><span></span><code>         cp $HOME/.config/pulse/cookie .
+</code></pre></div>
 <h2 id="openindiana-vagrantfiles">OpenIndiana Vagrantfiles</h2>
 <p>See <a href="https://app.vagrantup.com/openindiana/boxes/hipster">https://app.vagrantup.com/openindiana/boxes/hipster</a>.</p>
 <p>The oi-userland repository has for example also a Vagrantfile that can be used to create a VM to host oi-userland (by Adam Stevko and Michal Nowak).</p>
 <p>A set of example Vagrantfiles that use the OpenIndiana Hipster operating system can be cloned from github by :</p>
-<pre><code class="language-none">        # git clone https://github.com/openindiana/vagrantfiles
-</code></pre>
+<div class="highlight"><pre><span></span><code>        # git clone https://github.com/openindiana/vagrantfiles
+</code></pre></div>
 <p>These examples create various virtual machines running OpenIndiana.</p></article>
     </main>
 </div>

@@ -465,22 +465,22 @@ Contributor(s): David Stes.
 <h1 id="squeak-cuis-and-smalltalk-80">Squeak, Cuis and Smalltalk-80</h1>
 <p>The following notes document the steps to install Squeak and Cuis on OpenIndiana Hipster, and how to use these implementations of Smalltalk-80.</p>
 <p>A set of example Vagrantfiles that use the OpenIndiana Hipster operating system to run Squeak Smalltalk can be cloned from github by :</p>
-<pre><code class="language-none">        # git clone https://github.com/openindiana/vagrantfiles
-</code></pre>
+<div class="highlight"><pre><span></span><code>        # git clone https://github.com/openindiana/vagrantfiles
+</code></pre></div>
 <p>These Vagrant guests can be ran on a Linux host or OpenIndiana host, assuming that you have the Vagrant software on the host.  Vagrant forwards the X11 DISPLAY over SSH so that it is possible to forward the Squeak display in an OpenIndiana guest to a Linux host, for example.</p>
 <p>Squeak consists of a VM (virtual machine) and Smalltalk images.  You can find Smalltalk images at <a href="http://files.squeak.org">files.squeak.org</a> or at <a href="https://cuis.st">cuis.st</a>.</p>
 <p>Cuis and Squeak both use the Squeak VM, but they offer different Smalltalk images.  The Squeak images have traditional MVC (Model, View, Controller) and Morphic graphical user interface classes.   Cuis has Morphic-3, which is an enhanced set of Morphic classes.</p>
 <p>See the <a href="http://www.squeak.org">Squeak website</a> for more and general information on Squeak, specifically the documentation section.  See <a href="https://cuis.st">cuis.st</a> for more info Cuis.  Also see the Squeak Wiki : <a href="http://wiki.squeak.org">Squeak Wiki</a></p>
 <h2 id="classic-vm-and-opensmalltalk-vm">Classic VM and OpenSmalltalk VM</h2>
 <p>There are currently three Squeak packages for OpenIndiana : squeak, stack-spur and cog-spur.  Their package names begin with pkg:/runtime/smalltalk.  These packages can be installed simultaneously mediated by the squeak mediator (see below).</p>
-<pre><code class="language-none">        # pkg list | grep smalltalk
+<div class="highlight"><pre><span></span><code>        # pkg list | grep smalltalk
         runtime/smalltalk/squeak                4.19.6-2020.0.1.4          i--
         runtime/smalltalk/squeak-display-X11    4.19.6-2020.0.1.4          i--
         runtime/smalltalk/squeak-nodisplay      4.19.6-2020.0.1.4          i--
         runtime/smalltalk/cog-spur              5.0.2957-2020.0.1.0        i--
         runtime/smalltalk/cog-spur-display-X11  5.0.2957-2020.0.1.0        i--
         runtime/smalltalk/cog-spur-nodisplay    5.0.2957-2020.0.1.0        i--
-</code></pre>
+</code></pre></div>
 <p>The basic squeak package corresponds to the classical virtual machine (VM).  The stack-spur and cog-spur packages are OpenSmalltalk based virtual machines, where stack-spur is the OpenSmalltalk stack VM, using the Spur memory management, and cog-spur is the OpenSmalltalk cog VM, also using the Spur memory management; the cog VM is a just-in-time compiler (JIT) which is a faster implementation of Squeak.</p>
 <p>A first screenshot illustrates squeak, version 4.19.6, running on OpenIndiana, with an old style MVC (Model, View, Controller) look and feel :</p>
 <p><img alt="mvc" src="../oi-squeak-4-mvc.png" /></p>
@@ -497,138 +497,138 @@ Contributor(s): David Stes.
 <h2 id="openindiana-prerequisites">OpenIndiana Prerequisites</h2>
 <p>Before installing, the OpenIndiana system should have some required packages installed.</p>
 <p>To check the required dependencies for Squeak, use the command:</p>
-<pre><code class="language-none">        # pkg contents -r -t depend squeak
-</code></pre>
+<div class="highlight"><pre><span></span><code>        # pkg contents -r -t depend squeak
+</code></pre></div>
 <p>or</p>
-<pre><code class="language-none">        # pkg contents -r -t depend stack-spur
-</code></pre>
+<div class="highlight"><pre><span></span><code>        # pkg contents -r -t depend stack-spur
+</code></pre></div>
 <p>or</p>
-<pre><code class="language-none">        # pkg contents -r -t depend cog-spur
-</code></pre>
+<div class="highlight"><pre><span></span><code>        # pkg contents -r -t depend cog-spur
+</code></pre></div>
 <p>This will list a number of dependencies.  If those are not met, you should upgrade OpenIndiana before attempting to install Squeak.</p>
 <p>You can upgrade OpenIndiana and check the dependencies again:</p>
-<pre><code class="language-none">        # pkg update -v
-</code></pre>
+<div class="highlight"><pre><span></span><code>        # pkg update -v
+</code></pre></div>
 <p>Squeak is in the OpenIndiana userland-incorporation package since version 0.5.11-2020.0.1.13018.</p>
 <p>Use the following command to check the installed consolidation:</p>
-<pre><code class="language-none">        # pkg list userland-incorporation
-</code></pre>
+<div class="highlight"><pre><span></span><code>        # pkg list userland-incorporation
+</code></pre></div>
 <p>The installed version should be more recent than 0.5.11-2020.0.1.13018.</p>
 <p>Squeak for OpenIndiana provides a vm-display-X11 plugin for using the X11 window system.  By setting the X11 DISPLAY variable or by using X11 forwarding over SSH, it is possible to run Squeak remotely and forward the display to another machine.</p>
 <p>It is also possible to run Squeak without display, or headlessly.</p>
 <h2 id="installing-squeak-the-classic-vm">Installing squeak, the classic VM</h2>
 <p>On OpenIndiana install squeak as follows:</p>
-<pre><code class="language-none">       # pkg install -v squeak
-</code></pre>
+<div class="highlight"><pre><span></span><code>       # pkg install -v squeak
+</code></pre></div>
 <p>After installation, see the squeak(1) manpage for documentation:</p>
-<pre><code class="language-none">       # man squeak
-</code></pre>
+<div class="highlight"><pre><span></span><code>       # man squeak
+</code></pre></div>
 <p>After installation you can verify the installation as follows:</p>
-<pre><code class="language-none">       # pkg list squeak
+<div class="highlight"><pre><span></span><code>       # pkg list squeak
        # pkg list squeak-nodisplay
        # pkg list squeak-display-X11
-</code></pre>
+</code></pre></div>
 <p>The squeak-nodisplay package is for running squeak with the -nodisplay option, headless, without display.  The squeak-display-X11 adds the necessary plugins for running X11, but still without all plugins.  squeak depends on squeak-nodisplayand squeak-display-X11 and it installs all plugins.</p>
 <p>During installation you may also notice:</p>
-<pre><code class="language-none">       Changed mediators:
+<div class="highlight"><pre><span></span><code>       Changed mediators:
          mediator squeak:
          version: None -&gt; 4 (system default)
-</code></pre>
+</code></pre></div>
 <p>The OpenIndiana mediator squeak selects which version of Squeak to use: squeak or one of the stack-spur or cog-spur.</p>
 <p>There is a utility included to start using Squeak :</p>
-<pre><code class="language-none">       # inisqueak
-</code></pre>
+<div class="highlight"><pre><span></span><code>       # inisqueak
+</code></pre></div>
 <p>This is equivalent to downloading the Smalltalk sources and image from the Squeak website:</p>
-<pre><code class="language-none">       # unzip SqueakV46.sources.zip
-</code></pre>
+<div class="highlight"><pre><span></span><code>       # unzip SqueakV46.sources.zip
+</code></pre></div>
 <p>and</p>
-<pre><code class="language-none">       # unzip Squeak4.6-15102.zip
-</code></pre>
+<div class="highlight"><pre><span></span><code>       # unzip Squeak4.6-15102.zip
+</code></pre></div>
 <p>You would then launch Squeak as follows (also see the manpage for further details) :</p>
-<pre><code class="language-none">       # squeak Squeak4.6-15102.image
-</code></pre>
+<div class="highlight"><pre><span></span><code>       # squeak Squeak4.6-15102.image
+</code></pre></div>
 <h2 id="installing-the-opensmalltalk-vm">Installing the OpenSmalltalk VM</h2>
 <p>It is possible to simultaneously install squeak and opensmalltalk as follows:</p>
-<pre><code class="language-none">         # pkg install -v stack-spur
-</code></pre>
+<div class="highlight"><pre><span></span><code>         # pkg install -v stack-spur
+</code></pre></div>
 <p>At the end of installation the hardlink squeak will point to the stack-spur binary.  You will notice that the mediator changed to version 5.</p>
-<pre><code class="language-none">        # pkg mediator squeak
-</code></pre>
+<div class="highlight"><pre><span></span><code>        # pkg mediator squeak
+</code></pre></div>
 <p>The system-administrator can override the OpenIndiana choice by using the pkg set-mediator or pkg unset-mediator commands.</p>
 <p>After installation of opensmalltalk, it is possible again to use inisqueak :</p>
-<pre><code class="language-none">        # inisqueak
-</code></pre>
+<div class="highlight"><pre><span></span><code>        # inisqueak
+</code></pre></div>
 <p>This is equivalent to downloading sources and Smalltalk images from the Squeak website :</p>
-<pre><code class="language-none">         # unzip SqueakV50.sources.zip
-</code></pre>
+<div class="highlight"><pre><span></span><code>         # unzip SqueakV50.sources.zip
+</code></pre></div>
 <p>and</p>
-<pre><code class="language-none">         # unzip Squeak5.3-19431-64bit.zip
-</code></pre>
+<div class="highlight"><pre><span></span><code>         # unzip Squeak5.3-19431-64bit.zip
+</code></pre></div>
 <p>You would then launch squeak as follows:</p>
-<pre><code class="language-none">         # squeak Squeak5.3-19431-64bit.image
-</code></pre>
+<div class="highlight"><pre><span></span><code>         # squeak Squeak5.3-19431-64bit.image
+</code></pre></div>
 <p>Squeak V5 can also run Cuis images.  See the Cuis website for more details.  Given the CuisV5.sources and Cuis5.0-4112.image :</p>
-<pre><code class="language-none">         # squeak Cuis5.0-4112.image
-</code></pre>
+<div class="highlight"><pre><span></span><code>         # squeak Cuis5.0-4112.image
+</code></pre></div>
 <p>Because both packages can be installed simultaneously it is possible to run side-by-side Squeak 4.6 and Squeak 5.3, Cuis Smalltalk or Squeak 6.0 alpha images.</p>
 <p>There is an additional package cog-spur which is the Cog implementation of Squeak.  This is a faster implementation of the Squeak virtual machine.</p>
 <p>It can be installed as follows:</p>
-<pre><code class="language-none">         # pkg install -v cog-spur
-</code></pre>
+<div class="highlight"><pre><span></span><code>         # pkg install -v cog-spur
+</code></pre></div>
 <p>During installation of the cog implementation, the mediator will be changed as follows:</p>
-<pre><code class="language-none">         Changed mediators:
+<div class="highlight"><pre><span></span><code>         Changed mediators:
          mediator squeak:
            version: None -&gt; 5 (system default)
            implementation: None -&gt; cog-spur (system default)
-</code></pre>
+</code></pre></div>
 <p>The stack-spur and cog-spur packages can be installed at the same time, and the system administrator can choose the implementation with the pkg unset-mediator and set-mediator commands.</p>
 <h2 id="modifying-the-policyconf-file-for-opensmalltalk">Modifying the policy.conf file for OpenSmalltalk</h2>
 <p>The following notes do not apply to classic squeak, they only apply to OpenSmalltalk.</p>
 <p>The OpenSmalltalk VM stack-spur or cog-spur will print the following error:</p>
-<pre><code class="language-none">        # pthread_setschedparam failed: Not owner
-</code></pre>
+<div class="highlight"><pre><span></span><code>        # pthread_setschedparam failed: Not owner
+</code></pre></div>
 <p>This is due to a lack of "proc_priocntl" privilege.</p>
-<pre><code class="language-none">        # ppriv -v -l proc_priocntl
-</code></pre>
+<div class="highlight"><pre><span></span><code>        # ppriv -v -l proc_priocntl
+</code></pre></div>
 <p>This privilege allows a process to elevate its priority above its current level.  It allows a process to change its scheduling class to any scheduling class, including the RT class.</p>
 <p>You can change the following in the /etc/security/policy.conf:</p>
-<pre><code class="language-none">        # cp /etc/security/policy.conf /etc/security/policy.conf.orig
-</code></pre>
+<div class="highlight"><pre><span></span><code>        # cp /etc/security/policy.conf /etc/security/policy.conf.orig
+</code></pre></div>
 <p>change</p>
-<pre><code class="language-none">        #PRIV_DEFAULT=basic
-</code></pre>
+<div class="highlight"><pre><span></span><code>        #PRIV_DEFAULT=basic
+</code></pre></div>
 <p>to</p>
-<pre><code class="language-none">        PRIV_DEFAULT=basic,proc_priocntl
-</code></pre>
+<div class="highlight"><pre><span></span><code>        PRIV_DEFAULT=basic,proc_priocntl
+</code></pre></div>
 <p>You can run squeak in a zone and do the above in a zone only.
 If you run squeak in a zone, you may also have to set the privilege limit:</p>
-<pre><code class="language-none">        # zonecfg -z example-zone info | grep limitpriv
+<div class="highlight"><pre><span></span><code>        # zonecfg -z example-zone info | grep limitpriv
         limitpriv: default,proc_priocntl
-</code></pre>
+</code></pre></div>
 <h2 id="updating-squeak">Updating Squeak</h2>
 <p>The complete OpenIndiana system can be updated with:</p>
-<pre><code class="language-none">         # pkg update
-</code></pre>
+<div class="highlight"><pre><span></span><code>         # pkg update
+</code></pre></div>
 <p>to update the entire userland-incorporation.</p>
 <p>If there is a need to install a different version of squeak, without upgrading the userland-incorporation, you can do :</p>
-<pre><code class="language-none">         # pkg change-facet facet.version-lock.runtime/smalltalk/stack-spur=false
-</code></pre>
+<div class="highlight"><pre><span></span><code>         # pkg change-facet facet.version-lock.runtime/smalltalk/stack-spur=false
+</code></pre></div>
 <p>and</p>
-<pre><code class="language-none">         # pkg change-facet facet.version-lock.runtime/smalltalk/stack-spur-nodisplay=false
-</code></pre>
+<div class="highlight"><pre><span></span><code>         # pkg change-facet facet.version-lock.runtime/smalltalk/stack-spur-nodisplay=false
+</code></pre></div>
 <p>This can make it possible to update stack-spur without updating the userland-incorporation:</p>
-<pre><code class="language-none">         # pkg list userland-incorporation
-</code></pre>
+<div class="highlight"><pre><span></span><code>         # pkg list userland-incorporation
+</code></pre></div>
 <p>and then update stack-spur or any other squeak package separately:</p>
-<pre><code class="language-none">         # pkg update stack-spur
-</code></pre>
+<div class="highlight"><pre><span></span><code>         # pkg update stack-spur
+</code></pre></div>
 <h2 id="uninstalling-squeak">Uninstalling Squeak</h2>
 <p>To uninstall squeak, the command is :</p>
-<pre><code class="language-none">         # pkg uninstall squeak squeak-nodisplay squeak-display-X11
-</code></pre>
+<div class="highlight"><pre><span></span><code>         # pkg uninstall squeak squeak-nodisplay squeak-display-X11
+</code></pre></div>
 <p>For opensmalltalk :</p>
-<pre><code class="language-none">         # pkg uninstall cog-spur cog-spur-nodisplay cog-spur-display-X11
-</code></pre>
+<div class="highlight"><pre><span></span><code>         # pkg uninstall cog-spur cog-spur-nodisplay cog-spur-display-X11
+</code></pre></div>
 <p>Note that the nodisplay package is not necessarily uninstalled by uninstalling squeak or cog-spur.</p></article>
     </main>
 </div>

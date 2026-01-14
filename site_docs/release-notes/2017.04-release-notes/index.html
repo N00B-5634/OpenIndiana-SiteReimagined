@@ -515,7 +515,7 @@ All Rights Reserved. (Contributor contact(s):________________[Insert hyperlink/a
 <h2 id="security-changes">Security changes</h2>
 <p>This release is the first one to be signed and verifiable by GPG. The OpenIndiana Release Engineering key has key id 0x3a021afadbe31887.</p>
 <p>The public key:</p>
-<pre><code>-----BEGIN PGP PUBLIC KEY BLOCK-----
+<div class="highlight"><pre><span></span><code>-----BEGIN PGP PUBLIC KEY BLOCK-----
 mQINBFkHrmsBEADCHjW1mu/SgnV0nshQO6Ma+mQ6NNumGN6NdCTaWyfvjLGde17o
 RBLLLVbt0+OpB3EW2Im+X6Zxnisq+V2LsFsamqGJXH84y0ubPxZH9y8O86CGBJPX
 USsG9rldpLkBAkHtxDrDAt4GyD5090Z9otH2RgBmjWTzEHqVBwrKEUUJkiWP0QUY
@@ -565,23 +565,23 @@ Stua8WJo5U4cN0abgrRAXnXXBWi2bNbYe8xnH+OsOghb1gRg3N99G/TthoziPQ1I
 cuYxZQalebJS
 =fC+/
 -----END PGP PUBLIC KEY BLOCK-----
-</code></pre>
+</code></pre></div>
 <p>How to verify:</p>
 <ul>
 <li>Download <code>&lt;ISO&gt;.sha256sum.asc</code> file from mirror</li>
 <li>Run: <code>gpg2 --verify &lt;ISO&gt;.sha256sum.asc</code>. You should see the following output:</li>
 </ul>
-<pre><code>    gpg: Signature made Tue May  2 14:29:55 2017 CEST
+<div class="highlight"><pre><span></span><code>    gpg: Signature made Tue May  2 14:29:55 2017 CEST
     gpg:                using RSA key 0x3A021AFADBE31887
     gpg: Good signature from &quot;OpenIndiana Release Engineering&quot; [unknown]
     gpg: WARNING: This key is not certified with a trusted signature!
     gpg:          There is no indication that the signature belongs to the owner.
     Primary key fingerprint: F5E9 84E5 ADD2 9578 D45C  C1FE 3A02 1AFA DBE3 1887
-</code></pre>
+</code></pre></div>
 <p>Even if the output includes:</p>
-<pre><code>    gpg: WARNING: This key is not certified with a trusted signature!
+<div class="highlight"><pre><span></span><code>    gpg: WARNING: This key is not certified with a trusted signature!
     gpg: There is no indication that the signature belongs to the owner.
-</code></pre>
+</code></pre></div>
 <p>The signature is still correct.
 * Run: <code>digest -a sha256 &lt;ISO&gt;</code> and check the ISO checksum as previously.</p>
 <h2 id="general-system-changes">General system changes</h2>
@@ -605,8 +605,8 @@ The issue is being investigated.</p>
 <p>Notice: if you upgrade from earlier versions, you can see errors about failing metainit service.
 It was removed from the system, but SMF fails to notice it.
 Just remove the service manually for now in this case:</p>
-<pre><code># svcadm disable -s svc:/system/metainit ; svccfg delete svc:/system/metainit
-</code></pre>
+<div class="highlight"><pre><span></span><code># svcadm disable -s svc:/system/metainit ; svccfg delete svc:/system/metainit
+</code></pre></div>
 <h2 id="desktop-software-and-libraries">Desktop software and libraries</h2>
 <ul>
 <li>Xorg was updated to 1.18.4, xorg libraries and drivers were updated.</li>

@@ -465,8 +465,8 @@ Contributor(s): David Stes.
 <h1 id="tex-live-typesetting-software">TeX Live Typesetting Software</h1>
 <p>The following notes document the steps to install <a href="http://tug.org/texlive">TeX Live</a> on OpenIndiana Hipster and how to update it using the tlmgr TeX Live package management tool.</p>
 <p>To test a virtual machine running TeXLive on OpenIndiana, you can also run the texlive2021 example Vagrantfiles in the vagrantfiles repository :</p>
-<pre><code class="language-none">        # git clone https://github.com/openindiana/vagrantfiles
-</code></pre>
+<div class="highlight"><pre><span></span><code>        # git clone https://github.com/openindiana/vagrantfiles
+</code></pre></div>
 <h2 id="tex-live-tlmgr-management-tool">TeX Live tlmgr Management Tool</h2>
 <p>The TeX Live Management Tool has both a command line interface and a GUI.  The GUI (tlmgr gui) uses Perl Tk and works on OpenIndiana.  The following screenshot illustrates tlmgr and the Opendiana MATE desktop :</p>
 <p><img alt="oi-tlmgr" src="../oi-tlmgr.png" /></p>
@@ -474,52 +474,52 @@ Contributor(s): David Stes.
 <p>See the full TeX Live guide at <a href="http://tug.org/texlive/doc/texlive-en/texlive-en.html#installation">http://tug.org/texlive</a> for detailed information.</p>
 <p>Download the TeX Live Cross Platform Installer from <a href="http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz">http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz</a>.</p>
 <p>There is a script in this package, called install-tl.   The goal is to install TeX Live using the cross platform installer as follows :</p>
-<pre><code class="language-none">        # install-tl
-</code></pre>
+<div class="highlight"><pre><span></span><code>        # install-tl
+</code></pre></div>
 <p>Before doing so, create a special BE (Boot Environment) if you plan to install TeX Live as root (installing as non-root user is recommended by TeX Live).</p>
-<pre><code class="language-none">        # beadm create -a texlive
-</code></pre>
+<div class="highlight"><pre><span></span><code>        # beadm create -a texlive
+</code></pre></div>
 <p>Alternatively create a snapshot of the BE to have a possibility to rollback.</p>
 <p>The install-tl script installs a utility called tlmgr, the package management utility for TeX Live and, in principle, tlmgr is able to remove (uninstall) a TeX Live installation:</p>
-<pre><code class="language-none">        # tlmgr remove --all
+<div class="highlight"><pre><span></span><code>        # tlmgr remove --all
         If you answer yes here the whole TeX Live installation here,
         under /usr/texlive/2020, will be removed!
         Remove TeX Live (y/N): y
         Ok, removing the whole installation:
-</code></pre>
+</code></pre></div>
 <p>A snapshot of the old BE or a special BE for TeX Live, allows one to rollback to the situation before install without having to use tlmgr to uninstall.</p>
 <p>After rebooting into a new BE, run the perl installer script :</p>
-<pre><code class="language-none">        # install-tl --help
-</code></pre>
+<div class="highlight"><pre><span></span><code>        # install-tl --help
+</code></pre></div>
 <p>If you wish to use the TeX Live GUI, install the OpenIndiana Perl Tk package (the tk-perl IPS package is available on OpenIndiana release 2022 or higher) :</p>
-<pre><code class="language-none">        # pkg install -v tk-perl
-</code></pre>
+<div class="highlight"><pre><span></span><code>        # pkg install -v tk-perl
+</code></pre></div>
 <p>Then run the TeX Live installer GUI as follows :</p>
-<pre><code class="language-none">        # install-tl --gui
-</code></pre>
+<div class="highlight"><pre><span></span><code>        # install-tl --gui
+</code></pre></div>
 <p>The next section discusses the interactive mode of the install-tl script.</p>
 <h2 id="tex-live-cross-platform-installer-main-menus">TeX Live Cross Platform Installer Main Menus</h2>
 <p>The cross platform installer version 57337 of install-tl incorrectly identifies OpenIndiana as Solaris on Intel :</p>
-<pre><code class="language-none">./install-tl --version
+<div class="highlight"><pre><span></span><code>./install-tl --version
 install-tl (TeX Live Cross Platform Installer) revision 57337
 TeX Live (https://tug.org/texlive) version 2020
-</code></pre>
+</code></pre></div>
 <p>The command to detect the platform is:</p>
-<pre><code class="language-none">./install-tl --print-arch
+<div class="highlight"><pre><span></span><code>./install-tl --print-arch
 i386-solaris
-</code></pre>
+</code></pre></div>
 <p>This is incorrect, but it may work in some cases.  Because OpenIndiana and Solaris are different systems, it may be necessary to download a TeX Live Cross Platform Installer script from the tlnet-archive, and use it with a --repository option.   For example, to install TeX Live 2023 :</p>
-<pre><code class="language-none"># ./install-tl --repository https://texlive.info/tlnet-archive/2023/10/10/tlnet/
-</code></pre>
-<p>It is also possible to download custom binaries, and install and use TeX Live with binaries that are not part of the original distribution :</p>
-<pre><code class="language-none"># ./install-tl --custom-bin=/tmp/foobin
-</code></pre>
+<p><div class="highlight"><pre><span></span><code># ./install-tl --repository https://texlive.info/tlnet-archive/2023/10/10/tlnet/
+</code></pre></div>
+It is also possible to download custom binaries, and install and use TeX Live with binaries that are not part of the original distribution :</p>
+<div class="highlight"><pre><span></span><code># ./install-tl --custom-bin=/tmp/foobin
+</code></pre></div>
 <p>See the instructions at <a href="http://tug.org/texlive/custom-bin.html">http://tug.org/texlive/custom-bin.html</a> for detailed information.</p>
 <p>The main menus in interactive mode are :</p>
-<pre><code class="language-none">./install-tl
+<div class="highlight"><pre><span></span><code>./install-tl
 Loading http://ctan.cs.uu.nl/systems/texlive/tlnet/tlpkg/texlive.tlpdb
 Installing TeX Live 2020 from: http://ctan.cs.uu.nl/systems/texlive/tlnet (verified)
-Platform: i386-solaris =&gt; 'Solaris on Intel x86'
+Platform: i386-solaris =&gt; &#39;Solaris on Intel x86&#39;
 Distribution: net  (downloading)
 Using URL: http://ctan.cs.uu.nl/systems/texlive/tlnet
 Directory for temporary files: /tmp/eCcsGDKJWY
@@ -553,14 +553,14 @@ Directory for temporary files: /tmp/eCcsGDKJWY
 
 Actions:
  &lt;I&gt; start installation to hard disk
- &lt;P&gt; save installation profile to 'texlive.profile' and exit
+ &lt;P&gt; save installation profile to &#39;texlive.profile&#39; and exit
  &lt;H&gt; help
  &lt;Q&gt; quit
 
 Enter command:
-</code></pre>
+</code></pre></div>
 <p>To add the 64bit executables go into menu "B" :</p>
-<pre><code class="language-none">===============================================================================
+<div class="highlight"><pre><span></span><code>===============================================================================
 Available platforms:
 
    a [ ] Cygwin on Intel x86 (i386-cygwin)
@@ -579,10 +579,10 @@ Available platforms:
    o [X] Solaris on Intel x86 (i386-solaris)
    p [ ] Solaris on x86_64 (x86_64-solaris)
    s [ ] Windows (win32)
-</code></pre>
+</code></pre></div>
 <p>Select "p" to add Solaris on x86_64 for the TeX Live binaries for that architecture.</p>
 <p>TeX Live works with "schemes"; the basic scheme (TeX and latex) requires about 270 MB of space :</p>
-<pre><code class="language-none">===============================================================================
+<div class="highlight"><pre><span></span><code>===============================================================================
 Select scheme:
 
  a [ ] full scheme (everything)
@@ -599,9 +599,9 @@ Select scheme:
 Actions: (disk space required: 270 MB)
  &lt;R&gt; return to main menu
  &lt;Q&gt; quit
-</code></pre>
+</code></pre></div>
 <p>The default installation is going to /usr/local/texlive/2020, but in the Directories menu this can be changed :</p>
-<pre><code class="language-none">Directories customization:
+<div class="highlight"><pre><span></span><code>Directories customization:
 
  &lt;1&gt; TEXDIR:         /usr/texlive/2020
      main tree:      /usr/texlive/2020/texmf-dist
@@ -612,9 +612,9 @@ Actions: (disk space required: 270 MB)
  &lt;5&gt; TEXMFVAR:       ~/.texlive2020/texmf-var
  &lt;6&gt; TEXMFCONFIG:    ~/.texlive2020/texmf-config
  &lt;7&gt; TEXMFHOME:      ~/texmf
-</code></pre>
+</code></pre></div>
 <p>The installer can also create symbolic links such as /usr/bin/tex to the /usr/texlive/2020 binaries, as can be set in the Options menu :</p>
-<pre><code class="language-none">===============================================================================
+<div class="highlight"><pre><span></span><code>===============================================================================
 Options customization:
 
  &lt;P&gt; use letter size instead of A4 by default: [ ]
@@ -626,10 +626,10 @@ Options customization:
             binaries to: /usr/bin
             manpages to: /usr/share/man
                 info to: /usr/share/info
-</code></pre>
+</code></pre></div>
 <h2 id="tex-live-package-manager-queries">TeX Live Package Manager Queries</h2>
 <p>After installation of TeX Live, it is possible to make queries on what is exactly installed :</p>
-<pre><code class="language-none"># tlmgr info schemes
+<div class="highlight"><pre><span></span><code># tlmgr info schemes
 i scheme-basic: basic scheme (plain and latex)
   scheme-context: ConTeXt scheme
   scheme-full: full scheme (everything)
@@ -639,14 +639,14 @@ i scheme-infraonly: infrastructure-only scheme (no TeX at all)
 i scheme-minimal: minimal scheme (plain only)
   scheme-small: small scheme (basic + xetex, metapost, a few languages)
   scheme-tetex: teTeX scheme (more than medium, but nowhere near full)
-</code></pre>
+</code></pre></div>
 <p>The above output shows that scheme-minimal, scheme-infraonly and scheme-basic were installed.</p>
 <p>New updates can be retrieved from the repository.  Unless a special repository was used during installation (with the --repository switch for install-tl), the output of the default package repository can be something like :</p>
-<pre><code class="language-none"># tlmgr option repository
+<div class="highlight"><pre><span></span><code># tlmgr option repository
 Default package repository (repository): http://ctan.cs.uu.nl/systems/texlive/tlnet
-</code></pre>
+</code></pre></div>
 <p>Information on specific packages can be obtained with tlmgr :</p>
-<pre><code class="language-none"># tlmgr info babel
+<div class="highlight"><pre><span></span><code># tlmgr info babel
 package:     babel
 category:    Package
 shortdesc:   Multilingual support for Plain TeX or LaTeX
@@ -662,31 +662,31 @@ cat-related: polyglossia
 cat-contact-repository: https://github.com/latex3/babel
 cat-contact-bugs: https://github.com/latex3/babel/issues
 collection:  collection-latex
-</code></pre>
+</code></pre></div>
 <h2 id="tex-live-updating">TeX Live Updating</h2>
 <p>Suppose that you have installed a version of TeX Live from a specific date :</p>
-<pre><code class="language-none"># ./install-tl --repository https://texlive.info/tlnet-archive/2020/12/28/tlnet/
-</code></pre>
+<div class="highlight"><pre><span></span><code># ./install-tl --repository https://texlive.info/tlnet-archive/2020/12/28/tlnet/
+</code></pre></div>
 <p>After installation, you have TeX Live from December 28, 2020.</p>
 <p>It is possible then to change the repository and update to the latest version.</p>
-<pre><code class="language-none"># tlmgr option repository https://texlive.info/tlnet-archive/2021/01/28/tlnet
+<div class="highlight"><pre><span></span><code># tlmgr option repository https://texlive.info/tlnet-archive/2021/01/28/tlnet
 tlmgr: setting default package repository to https://texlive.info/tlnet-archive/2021/01/28/tlnet
 tlmgr: updating /usr/texlive/2020/tlpkg/texlive.tlpdb
-</code></pre>
+</code></pre></div>
 <p>To update the packages of TeX Live to the default repository :</p>
-<pre><code class="language-none"># tlmgr update --all
-</code></pre>
+<div class="highlight"><pre><span></span><code># tlmgr update --all
+</code></pre></div>
 <p>The TeX Live package management tool has its own mechanism of making backups:</p>
-<pre><code class="language-none">/usr/texlive/2020/tlpkg/backups
-</code></pre>
+<div class="highlight"><pre><span></span><code>/usr/texlive/2020/tlpkg/backups
+</code></pre></div>
 <h2 id="removing-tex-live">Removing TeX Live</h2>
 <p>In principle, tlmgr is able to remove (uninstall) a TeX Live installation:</p>
-<pre><code class="language-none">        # tlmgr remove --all
+<div class="highlight"><pre><span></span><code>        # tlmgr remove --all
         If you answer yes here the whole TeX Live installation here,
         under /usr/texlive/2020, will be removed!
         Remove TeX Live (y/N): y
         Ok, removing the whole installation:
-</code></pre>
+</code></pre></div>
 <p>If you have made a BE (boot environment) from before the TeX Live installation you can also rollback to an older BE as an alternative to uninstalling the software with tlmgr.</p></article>
     </main>
 </div>

@@ -8,6 +8,10 @@ theme:
   favicon: favicon/favicon.ico
 plugins:
   - search
-
+markdown_extensions:
+  - attr_list
+  - md_in_html
+  - pymdownx.superfences
+  - admonition
 extra_css:
   - css/style.css

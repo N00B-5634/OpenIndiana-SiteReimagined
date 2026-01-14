@@ -466,27 +466,24 @@ All Rights Reserved. (Contributor contact(s):________________[Insert hyperlink/a
 
 <h1 id="getting-started-with-openindiana-docs">Getting Started with OpenIndiana Docs</h1>
 <p>The process for contributing to OpenIndiana Docs is simple and follows the same best practices used in the development of the OpenIndiana distribution.</p>
-<div class="note" markdown="1">
-!!! note
-    First and foremost, we understand using development tools and techniques to write end user documentation is not for everyone.
-    For this reason, we're happy to accept your contribution in any format you wish to provide.
-
-    After receiving your submission, we will review the document for conversion to markdown and subsequent incorporation into OpenIndiana Docs.
-    Contributions may be submitted in plain text, .doc, .docx, .odt, html, xml, latex, pdf, GitHub Gist, etc.
-
-    In summary, if you believe your contribution would be helpful to the greater OpenIndiana community, we'll be willing to review it.
-    For further information, please contact us via one of the methods provided below.
-
-    To make a suggestion or report a problem with a document, please make your request by submitting a [Github issue](https://github.com/OpenIndiana/oi-docs/issues).
-
-    The docs team can be reached via email: _**docs at openindiana.org**_.
-
-    You may also inquire via IRC:
-
-    * [#openindiana (libera.chat)](irc://irc.libera.chat/openindiana)
-    * [#oi-dev (libera.chat)](irc://irc.libera.chat/oi-dev)
+<div class="note">
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>First and foremost, we understand using development tools and techniques to write end user documentation is not for everyone.
+For this reason, we're happy to accept your contribution in any format you wish to provide.</p>
+<p>After receiving your submission, we will review the document for conversion to markdown and subsequent incorporation into OpenIndiana Docs.
+Contributions may be submitted in plain text, .doc, .docx, .odt, html, xml, latex, pdf, GitHub Gist, etc.</p>
+<p>In summary, if you believe your contribution would be helpful to the greater OpenIndiana community, we'll be willing to review it.
+For further information, please contact us via one of the methods provided below.</p>
+<p>To make a suggestion or report a problem with a document, please make your request by submitting a <a href="https://github.com/OpenIndiana/oi-docs/issues">Github issue</a>.</p>
+<p>The docs team can be reached via email: <em><strong>docs at openindiana.org</strong></em>.</p>
+<p>You may also inquire via IRC:</p>
+<ul>
+<li><a href="irc://irc.libera.chat/openindiana">#openindiana (libera.chat)</a></li>
+<li><a href="irc://irc.libera.chat/oi-dev">#oi-dev (libera.chat)</a></li>
+</ul>
 </div>
-
+</div>
 <h2 id="prerequisites">Prerequisites</h2>
 <p>If you would like to make a contribution using the development tools, you must
 have a GitHub account. If you do not already have a GitHub account, sign up for
@@ -522,17 +519,15 @@ a <a href="https://github.com">Github</a> account.</p>
 </tr>
 </tbody>
 </table>
-<div class="note" markdown="1">
-!!! note
-    After GIT is installed, be sure to configure your name and email address.
-
-    For further details about configuring GIT, see: <https://help.github.com/articles/set-up-git/>
-
-    Also, if you need a good book for quickly getting up to speed with GIT, see here: <https://git-scm.com/book/en/v2>
-
-    Fear not though, only basic git commands are required for working with OI-DOCS.
+<div class="note">
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>After GIT is installed, be sure to configure your name and email address.</p>
+<p>For further details about configuring GIT, see: <https://help.github.com/articles/set-up-git/></p>
+<p>Also, if you need a good book for quickly getting up to speed with GIT, see here: <a href="https://git-scm.com/book/en/v2">https://git-scm.com/book/en/v2</a></p>
+<p>Fear not though, only basic git commands are required for working with OI-DOCS.</p>
 </div>
-
+</div>
 <h3 id="install-python-pip">Install python-pip</h3>
 <p>If your OS doesn't provide pre-packaged mkdocs, you'll need to install python-pip.
 This is not necessary on OpenIndiana.</p>
@@ -607,15 +602,16 @@ However, the MKDocs Material theme may need to be installed additionally using <
 <li>Most other operating systems: <code>pip install mkdocs-material</code></li>
 </ul>
 <p>After MKDocs has been installed, be sure to verify your installation with <code>mkdocs --version</code></p>
-<div class="note" markdown="1">
-!!! note
-    If you experience difficulties installing mkdocs, try using the python 3 version of `pip`.
-
-    For example:
-
-    * For Linux Mint 18, the python 3 version of `pip` would be `pip3`.
+<div class="note">
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you experience difficulties installing mkdocs, try using the python 3 version of <code>pip</code>.</p>
+<p>For example:</p>
+<ul>
+<li>For Linux Mint 18, the python 3 version of <code>pip</code> would be <code>pip3</code>.</li>
+</ul>
 </div>
-
+</div>
 <h3 id="install-markdown-lint-mdl">Install Markdown Lint (mdl)</h3>
 <p>On OpenIndiana you can install mdl using standard package management tools:</p>
 <ul>
@@ -664,15 +660,15 @@ Pandoc is not yet avalible packaged on OpenIndiana.</p>
 </tr>
 </tbody>
 </table>
-<div class="note" markdown="1">
-!!! note
-    Not all OS distro repositories contain XeTex.
-    In this case it could be installed as part of a manual TeX Live installation.
-
-    As of Summer 2021, the version of Pandoc available from OS distro repositories may be too old (was the case for Centos/RHEL and Debian < 11).
-    In this case you can try and use the Pandoc GitHub release versions instead.
+<div class="note">
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Not all OS distro repositories contain XeTex.
+In this case it could be installed as part of a manual TeX Live installation.</p>
+<p>As of Summer 2021, the version of Pandoc available from OS distro repositories may be too old (was the case for Centos/RHEL and Debian &lt; 11).
+In this case you can try and use the Pandoc GitHub release versions instead.</p>
 </div>
-
+</div>
 <h2 id="fork-the-openindiana-docs-repository">Fork the OpenIndiana Docs repository</h2>
 <ul>
 <li>Open your web browser to the <a href="https://github.com/OpenIndiana/oi-docs">OpenIndiana Docs GitHub Repository</a>.</li>
@@ -683,33 +679,33 @@ Pandoc is not yet avalible packaged on OpenIndiana.</p>
 </li>
 </ul>
 <h2 id="create-a-local-clone-of-your-fork">Create a local clone of your fork</h2>
-<pre><code class="language-bash">git clone https://github.com/YOUR-USER-NAME/oi-docs.git
-</code></pre>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/YOUR-USER-NAME/oi-docs.git
+</code></pre></div>
 <p>The local clone is where you will perform your work.
 Think of your local clone as your working copy of the repository.
 The local clone is also where you will commit your changes.
 Periodically you will push these local changes to your fork residing on Github.</p>
 <h2 id="add-the-upstream-repository">Add the upstream repository</h2>
-<pre><code class="language-bash">cd oi-docs
-git remote add upstream https://github.com/OpenIndiana/oi-docs.git
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>oi-docs
+git<span class="w"> </span>remote<span class="w"> </span>add<span class="w"> </span>upstream<span class="w"> </span>https://github.com/OpenIndiana/oi-docs.git
+</code></pre></div>
 <p>Verify things with <code>git remote -v</code></p>
 <p>You should now see:</p>
-<pre><code class="language-bash">origin  https://github.com/YOUR-USER-NAME/oi-docs.git (fetch)
-origin  https://github.com/YOUR-USER-NAME/oi-docs.git (push)
-upstream        https://github.com/OpenIndiana/oi-docs.git (fetch)
-upstream        https://github.com/OpenIndiana/oi-docs.git (push)
-</code></pre>
+<div class="highlight"><pre><span></span><code>origin<span class="w">  </span>https://github.com/YOUR-USER-NAME/oi-docs.git<span class="w"> </span><span class="o">(</span>fetch<span class="o">)</span>
+origin<span class="w">  </span>https://github.com/YOUR-USER-NAME/oi-docs.git<span class="w"> </span><span class="o">(</span>push<span class="o">)</span>
+upstream<span class="w">        </span>https://github.com/OpenIndiana/oi-docs.git<span class="w"> </span><span class="o">(</span>fetch<span class="o">)</span>
+upstream<span class="w">        </span>https://github.com/OpenIndiana/oi-docs.git<span class="w"> </span><span class="o">(</span>push<span class="o">)</span>
+</code></pre></div>
 <h2 id="sync-and-merge-changes-from-the-upstream-repository">Sync and merge changes from the upstream repository</h2>
 <p>Periodically you will want to <em>rebase</em> your local copy by bringing in changes from the upstream repository.
 In plain English, this means the upstream repository is locally registered so you can periodically <em>pull down</em> changes from the upstream master repository and merge them into your local clone.
 This way your local clone remains in synchronization with the master upstream repository.
 It is always a good idea to perform a pull from the upstream master repository prior to making changes to your local clone (working copy).</p>
-<pre><code class="language-bash">git pull upstream master
-</code></pre>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>pull<span class="w"> </span>upstream<span class="w"> </span>master
+</code></pre></div>
 <h2 id="openindiana-docs-site-structure-master-branch">OpenIndiana Docs site structure (master branch)</h2>
 <p>All site development occurs within the master branch.</p>
-<pre><code class="language-markdown">oi-docs/
+<div class="highlight"><pre><span></span><code>oi-docs/
 ├── docs/
 ├── link_validator.py
 ├── makepdf.sh
@@ -719,7 +715,7 @@ It is always a good idea to perform a pull from the upstream master repository p
 ├── pdf/
 ├── README.md
 └── site/
-</code></pre>
+</code></pre></div>
 <table>
 <thead>
 <tr>
@@ -770,16 +766,23 @@ It is always a good idea to perform a pull from the upstream master repository p
 </tr>
 </tbody>
 </table>
-<div class="caution" markdown="1">
-!!! danger "Caution"
-    * Please do **NOT** perform any work within the `site/` or `pdf/` folder.
-        * `site/` is a temporary folder created by MkDocs when the site is run locally in preview mode.
-        * `pdf/` is a temporary folder for storing locally generated PDFs.
-    * Also, please do **NOT** perform any work within the gh-pages branch.
-        * The gh-branch is destroyed and rebuilt each time the site is deployed to GitHub pages.
+<div class="caution">
+<div class="admonition danger">
+<p class="admonition-title">Caution</p>
+<ul>
+<li>Please do <strong>NOT</strong> perform any work within the <code>site/</code> or <code>pdf/</code> folder.<ul>
+<li><code>site/</code> is a temporary folder created by MkDocs when the site is run locally in preview mode.</li>
+<li><code>pdf/</code> is a temporary folder for storing locally generated PDFs.</li>
+</ul>
+</li>
+<li>Also, please do <strong>NOT</strong> perform any work within the gh-pages branch.<ul>
+<li>The gh-branch is destroyed and rebuilt each time the site is deployed to GitHub pages.</li>
+</ul>
+</li>
+</ul>
 </div>
-
-<pre><code class="language-markdown">docs/
+</div>
+<div class="highlight"><pre><span></span><code>docs/
 ├── books/
 ├── community-hcl/
 ├── contrib/
@@ -791,7 +794,7 @@ It is always a good idea to perform a pull from the upstream master repository p
 ├── Openindiana.png
 ├── release-notes/
 └── retired/
-</code></pre>
+</code></pre></div>
 <table>
 <thead>
 <tr>
@@ -850,11 +853,12 @@ It is always a good idea to perform a pull from the upstream master repository p
 <p>Open your favorite text editor and begin authoring content.</p>
 <p>For example: <code>vim somefile.md</code> or <code>emacs somefile.md</code></p>
 <p>Some text editors (Atom, VIM, etc.) natively include Markdown syntax highlighting (or offer it as a plugin).</p>
-<div class="note" markdown="1">
-!!! note
-    Major changes should be performed within a separate branch, appropriately named to reflect the changes being made.
+<div class="note">
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Major changes should be performed within a separate branch, appropriately named to reflect the changes being made.</p>
 </div>
-
+</div>
 <p>For a list of subject to write about:</p>
 <ul>
 <li>See the site TODO list.</li>
@@ -867,18 +871,18 @@ It is always a good idea to perform a pull from the upstream master repository p
 <p>Site configuration settings and menus are located in <code>mkdocs.yml</code>.
 To add a page to the menu, simply add a line to this file.
 See the code snippet below for examples.</p>
-<pre><code class="language-markdown">- Docs:
-        - 'OpenIndiana Code of Conduct': misc/conduct.md
-        - 'OpenIndiana FAQ': misc/faq.md
-        - 'OpenIndiana Handbook': handbook/handbook.md
-        - OpenSolaris Books:
-                - 'Book Index': books/index.md
-                - 'Basic Administration': books/basic.md
-                - 'Advanced Administration': books/advanced.md
-                - 'Solaris Express Administration': books/express.md
-                - 'Trusted Extensions Administration': books/trusted.md
-                - 'Development Titles': books/develop.md
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="k">-</span><span class="w"> </span>Docs:
+<span class="w">        </span><span class="k">-</span><span class="w"> </span>&#39;OpenIndiana Code of Conduct&#39;: misc/conduct.md
+<span class="w">        </span><span class="k">-</span><span class="w"> </span>&#39;OpenIndiana FAQ&#39;: misc/faq.md
+<span class="w">        </span><span class="k">-</span><span class="w"> </span>&#39;OpenIndiana Handbook&#39;: handbook/handbook.md
+<span class="w">        </span><span class="k">-</span><span class="w"> </span>OpenSolaris Books:
+<span class="w">                </span><span class="k">-</span><span class="w"> </span>&#39;Book Index&#39;: books/index.md
+<span class="w">                </span><span class="k">-</span><span class="w"> </span>&#39;Basic Administration&#39;: books/basic.md
+<span class="w">                </span><span class="k">-</span><span class="w"> </span>&#39;Advanced Administration&#39;: books/advanced.md
+<span class="w">                </span><span class="k">-</span><span class="w"> </span>&#39;Solaris Express Administration&#39;: books/express.md
+<span class="w">                </span><span class="k">-</span><span class="w"> </span>&#39;Trusted Extensions Administration&#39;: books/trusted.md
+<span class="w">                </span><span class="k">-</span><span class="w"> </span>&#39;Development Titles&#39;: books/develop.md
+</code></pre></div>
 <h2 id="visualize-your-changes-using-live-preview">Visualize your changes using live preview</h2>
 <p>To assist with the content authoring process, it may be helpful to visualize your changes using a live preview.</p>
 <ul>
@@ -890,35 +894,36 @@ See the code snippet below for examples.</p>
 </ul>
 <p>Each time you save your changes, the site page is automatically reloaded within your web browser.</p>
 <p>To shut down the live preview web server, use <code>CTRL</code> + <code>C</code>.</p>
-<div class="note" markdown="1">
-!!! note
-    If you wish to preview your changes on a remotely networked system or on a networked mobile device such as a tablet, the site can also be served on your LAN IP address.
-
-    To do so, issue the following command: `mkdocs serve --dev-addr=0.0.0.0:8000`
+<div class="note">
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you wish to preview your changes on a remotely networked system or on a networked mobile device such as a tablet, the site can also be served on your LAN IP address.</p>
+<p>To do so, issue the following command: <code>mkdocs serve --dev-addr=0.0.0.0:8000</code></p>
 </div>
-
+</div>
 <h2 id="running-markdown-lint-locally">Running Markdown Lint (locally)</h2>
 <p>Markdown Lint is used to check your changes for Markdown syntax errors.
 Prior to submitting a pull request (PR), please consider running Markdown Lint locally on your computer.</p>
 <p>From the root of the <code>oi-docs/</code> directory, execute the following command:</p>
-<pre><code class="language-bash">mdl -s markdownlint-rules.rb .
-</code></pre>
+<div class="highlight"><pre><span></span><code>mdl<span class="w"> </span>-s<span class="w"> </span>markdownlint-rules.rb<span class="w"> </span>.
+</code></pre></div>
 <p>Markdown Lint will automatically traverse the entire folder structure looking for problems.
 Alternately you may also run <code>mdl</code> on a specific file.
 Simply replace the period (.) with the path to the file.</p>
-<div class="note" markdown="1">
-!!! note
-    Before you can run `mdl`, it may be necessary to modify your `$PATH` variable:
-    see “[Install Markdown Lint](#install-markdown-lint-mdl)” above.
+<div class="note">
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Before you can run <code>mdl</code>, it may be necessary to modify your <code>$PATH</code> variable:
+see “<a href="#install-markdown-lint-mdl">Install Markdown Lint</a>” above.</p>
 </div>
-
+</div>
 <h2 id="generating-pdfs-locally">Generating PDFs (locally)</h2>
 <p>Pandoc (via XeLaTex) is used to create PDF versions of pages.
 The <code>makepdf.sh</code> bash script automatically moves through a subset of the docs directories creating a PDF for every Markdown file.
 Prior to submitting a pull request (PR), please consider running the Pandoc PDF generation script locally on your computer to ensure no Pandoc incompatibilities have been introduced.</p>
 <p>To convert multiple pages to PDF, execute the following command from the root of the <code>oi-docs/</code> directory:</p>
-<pre><code class="language-bash">./makepdf.sh
-</code></pre>
+<div class="highlight"><pre><span></span><code>./makepdf.sh
+</code></pre></div>
 <p>This will produce PDF versions (placed in <code>oi-docs/pdf/</code>) of most of the doc pages.
 Not all pages are suitible for conversion yet, some contain incompatible HTML which needs to be fixed before they can be converted.</p>
 <p>To convert a single file, the <code>-f</code> option can be used.
@@ -929,13 +934,14 @@ Currently the only other option is 'opensolaris' which produces PDFs in the styl
 <p>The formatting and restyling required for the PDFs is configured with files in the <code>pandoc/</code> folder of the root directory.
 Each style uses a pair of files, a <code>.yaml</code> file to specifiy Pandoc settings &amp; LaTex/XeLaTex headers and a <code>.lua</code> Lua script to apply formatting to the Pandoc native representation (AST).
 For more information on Pandoc, see the <a href="https://pandoc.org/MANUAL.html">official Pandoc Manual</a>.</p>
-<div class="caution" markdown="1">
-!!! danger "Caution"
-    Inline HTML is not supported by Pandoc for PDF output and is not rendered at all in PDFs produced.
-    Ensure that you only use Markdown in your edits.
-    The only exception is for the mkdocs `div` elements used to create these 'Note' breakouts - support for these has been manually programmed into the Pandoc lua filters.
+<div class="caution">
+<div class="admonition danger">
+<p class="admonition-title">Caution</p>
+<p>Inline HTML is not supported by Pandoc for PDF output and is not rendered at all in PDFs produced.
+Ensure that you only use Markdown in your edits.
+The only exception is for the mkdocs <code>div</code> elements used to create these 'Note' breakouts - support for these has been manually programmed into the Pandoc lua filters.</p>
 </div>
-
+</div>
 <h2 id="enabling-spell-checking-in-vim">Enabling spell checking in vim</h2>
 <p>You can invoke spell checking in your current session by inputting the command:</p>
 <p><code>:set spell spelllang=en_us</code></p>
@@ -951,11 +957,11 @@ For more information on Pandoc, see the <a href="https://pandoc.org/MANUAL.html"
 <li><code>zw</code> is used to mark a word as incorrect.</li>
 </ul>
 <h2 id="commit-and-push-your-changes">Commit and push your changes.</h2>
-<pre><code class="language-bash">git status
-git add some-file-you-just-edited
-git commit -m 'your commit message'
-git push
-</code></pre>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>status
+git<span class="w"> </span>add<span class="w"> </span>some-file-you-just-edited
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s1">&#39;your commit message&#39;</span>
+git<span class="w"> </span>push
+</code></pre></div>
 <p>When you make a commit, you are committing those changes locally to your clone.
 When you perform a push, your are pushing your commits from your local clone to your fork residing on Github.</p>
 <h2 id="send-a-pull-request">Send a pull request.</h2>
@@ -969,11 +975,12 @@ When you perform a push, your are pushing your commits from your local clone to 
 <li>Submit your PR (pull request).</li>
 </ul>
 <p>Pull requests are used to request a <em>pull in</em> of changes from your fork to the master repository.</p>
-<div class="note" markdown="1">
-!!! note
-    After a pull request has been submitted, and for the duration of time your pull request remains open and uncommitted to the OI-DOCS master repository, any additional commits you make to your own fork of the oi-docs repository will automatically be included in your open pull request.
+<div class="note">
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>After a pull request has been submitted, and for the duration of time your pull request remains open and uncommitted to the OI-DOCS master repository, any additional commits you make to your own fork of the oi-docs repository will automatically be included in your open pull request.</p>
 </div>
-
+</div>
 <h2 id="what-happens-next">What happens next?</h2>
 <p>At this point a member of the OpenIndiana Project docs team will review your changes.
 If no corrections are required, your changes will be accepted and merged into the upstream repository.</p>

@@ -466,15 +466,14 @@ All Rights Reserved. (Contributor contact(s):________________[Insert hyperlink/a
 -->
 
 <h1 id="common-tasks">Common Tasks</h1>
-<div class="note" markdown="1">
-!!! note
-    This is a **DRAFT** document which may contain errors!
-
-    Help us improve and expand this site.
-
-    Please see the **Contrib** section for more details about joining the OpenIndiana Documentation Team.
+<div class="note">
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This is a <strong>DRAFT</strong> document which may contain errors!</p>
+<p>Help us improve and expand this site.</p>
+<p>Please see the <strong>Contrib</strong> section for more details about joining the OpenIndiana Documentation Team.</p>
 </div>
-
+</div>
 <p>&lt; place holder for introduction content &gt;</p>
 <h2 id="basic-unix-commands">Basic UNIX commands</h2>
 <p>In addition to native command line system administration tools, OpenIndiana also includes the GNU core utilities suite.
@@ -564,10 +563,10 @@ Print versions are also available.</p>
 </tbody>
 </table>
 <p>Examples:</p>
-<pre><code>shutdown -i5 -g0 -y # Turn off the machine immediately
+<div class="highlight"><pre><span></span><code>shutdown -i5 -g0 -y # Turn off the machine immediately
 shutdown -i6 -g0 -y # Reboot the machine immediately
 shutdown -i6 -g120 -y # Reboot the machine in 2 minutes (120 seconds)
-</code></pre>
+</code></pre></div>
 <h3 id="user-management">User management</h3>
 <table>
 <thead>
@@ -603,65 +602,76 @@ shutdown -i6 -g120 -y # Reboot the machine in 2 minutes (120 seconds)
 <h2 id="desktop-applications">Desktop applications</h2>
 <p>&lt; place holder &gt;</p>
 <h3 id="how-can-the-desktop-be-modified">How can the desktop be modified?</h3>
-<div class="info" markdown="1">
-!!! info "Documentation Team"
-    ITEMS TO WRITE ABOUT:
-
-    * Gnome or (MATE) walkthrough
-    * Appearance applet
-        * Enabling Compiz
-        * Configuring font anti-aliasing
-        * Desktop backgrounds
-
-    In regards to the default terminal emulator, see: <https://www.illumos.org/issues/7525>
-
-    * we introduce mediator x-terminal-emulator for link /usr/bin/x-terminal-emulator with possible implementations gnome-terminal, mate-terminal and xterm;
-    * mate-terminal implementation has the highest priority (if it is installed, by default it wins);
-    * glib is modified to use link /usr/bin/x-terminal-emulator if it's found for running applications with Terminal=true.
+<div class="info">
+<div class="admonition info">
+<p class="admonition-title">Documentation Team</p>
+<p>ITEMS TO WRITE ABOUT:</p>
+<ul>
+<li>Gnome or (MATE) walkthrough</li>
+<li>Appearance applet<ul>
+<li>Enabling Compiz</li>
+<li>Configuring font anti-aliasing</li>
+<li>Desktop backgrounds</li>
+</ul>
+</li>
+</ul>
+<p>In regards to the default terminal emulator, see: <a href="https://www.illumos.org/issues/7525">https://www.illumos.org/issues/7525</a></p>
+<ul>
+<li>we introduce mediator x-terminal-emulator for link /usr/bin/x-terminal-emulator with possible implementations gnome-terminal, mate-terminal and xterm;</li>
+<li>mate-terminal implementation has the highest priority (if it is installed, by default it wins);</li>
+<li>glib is modified to use link /usr/bin/x-terminal-emulator if it's found for running applications with Terminal=true.</li>
+</ul>
 </div>
-
+</div>
 <h2 id="multimedia-audio">Multimedia - Audio</h2>
 <p>&lt; Place Holder for future content &gt;</p>
 <h2 id="multimedia-video">Multimedia - Video</h2>
-<div class="info" markdown="1">
-!!! info "Documentation Team"
-    ITEMS TO WRITE ABOUT:
-
-    * How to get OI to play a DVD
-    * How to get flash player installed and working.
-    * How to get VLC installed and working.
-    * Totem (video player)
+<div class="info">
+<div class="admonition info">
+<p class="admonition-title">Documentation Team</p>
+<p>ITEMS TO WRITE ABOUT:</p>
+<ul>
+<li>How to get OI to play a DVD</li>
+<li>How to get flash player installed and working.</li>
+<li>How to get VLC installed and working.</li>
+<li>Totem (video player)</li>
+</ul>
 </div>
-
+</div>
 <h3 id="using-openindiana-as-a-media-server-htpc-etc">Using OpenIndiana as a media server, HTPC, etc.</h3>
-<div class="info" markdown="1">
-!!! info "Documentation Team"
-    ITEMS TO WRITE ABOUT:
-
-    * <http://forum.kodi.tv/showthread.php?tid=44315&page=2>
-    * <https://web.archive.org/web/20180822163548/http://lightsandshapes.com/plex-on-smartos.html>
+<div class="info">
+<div class="admonition info">
+<p class="admonition-title">Documentation Team</p>
+<p>ITEMS TO WRITE ABOUT:</p>
+<ul>
+<li><a href="http://forum.kodi.tv/showthread.php?tid=44315&amp;page=2">http://forum.kodi.tv/showthread.php?tid=44315&amp;page=2</a></li>
+<li><a href="https://web.archive.org/web/20180822163548/http://lightsandshapes.com/plex-on-smartos.html">https://web.archive.org/web/20180822163548/http://lightsandshapes.com/plex-on-smartos.html</a></li>
+</ul>
 </div>
-
+</div>
 <h2 id="printing">Printing</h2>
-<div class="info" markdown="1">
-!!! info "Documentation Team"
-    ITEMS TO WRITE ABOUT:
-
-    * OI uses CUPS as the primary print system.
-    * GNOME print manager (`system-config-printer`)
-
-    See the additional information about printing in contrib/topics.md
-    Also see the deprecation comments in the OSOL printing guide.
+<div class="info">
+<div class="admonition info">
+<p class="admonition-title">Documentation Team</p>
+<p>ITEMS TO WRITE ABOUT:</p>
+<ul>
+<li>OI uses CUPS as the primary print system.</li>
+<li>GNOME print manager (<code>system-config-printer</code>)</li>
+</ul>
+<p>See the additional information about printing in contrib/topics.md
+Also see the deprecation comments in the OSOL printing guide.</p>
 </div>
-
+</div>
 <h2 id="graphics-workstation">Graphics workstation</h2>
-<div class="info" markdown="1">
-!!! info "Documentation Team"
-    ITEMS TO WRITE ABOUT:
-
-    * GIMP
+<div class="info">
+<div class="admonition info">
+<p class="admonition-title">Documentation Team</p>
+<p>ITEMS TO WRITE ABOUT:</p>
+<ul>
+<li>GIMP</li>
+</ul>
 </div>
-
+</div>
 <h2 id="desktop-publishing-system-etc">Desktop Publishing system, Etc.</h2>
 <p>&lt; Place holder for content &gt;</p>
 <h2 id="boot-loader-settings">Boot loader settings</h2>

@@ -467,11 +467,12 @@ All Rights Reserved. (Contributor contact(s):________________[Insert hyperlink/a
 
 <h1 id="storage-archive-manager-file-system-on-openindiana-hipster">Storage Archive Manager File System on OpenIndiana Hipster</h1>
 <p>Some notes for installation and use of Storage Archive Manager on OpenIndiana Hipster.</p>
-<div class="note" markdown="1">
-!!! note
-    This configuration is not supported by OI nor by Oracle.
+<div class="note">
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This configuration is not supported by OI nor by Oracle.</p>
 </div>
-
+</div>
 <h2 id="samfs-versus-qfs">SamFS versus QFS</h2>
 <p>It seems like this product contains two different filesystems. QFS (quick file system) can be shared between multiple hosts, if you use shared storge like it is possible in FC-SAN. For QFS you need two different kinds of block storage, one for metadata and one for the file data.</p>
 <p>If you configure the archive service then QFS becomes SamFS. Archive service means here, the filesystem content can automatically create up to 4 copies on different storage devices. The archiving is controlled by policies. The archive storage can be inexpensive disk storage, NFS-Share or tape storage. Nowadays tape storage is managed by generic SCSI libraries. So policy based storage tiering is applied.</p>
@@ -495,12 +496,12 @@ All Rights Reserved. (Contributor contact(s):________________[Insert hyperlink/a
 </ul>
 <h2 id="install">Install</h2>
 <p>SamQFS can simply installed by:</p>
-<pre><code># pkg install samqfs
-</code></pre>
+<div class="highlight"><pre><span></span><code># pkg install samqfs
+</code></pre></div>
 <p>This will install the entire software, add the filesystem driver <code>samfs</code>, two additional pseudo device drivers <code>samioc</code> and <code>samaio</code> as well as two SMF services:</p>
-<pre><code>online         Feb_08   svc:/system/samqfs-postinstall:default
+<div class="highlight"><pre><span></span><code>online         Feb_08   svc:/system/samqfs-postinstall:default
 online         Feb_08   svc:/system/sam-fsd:default
-</code></pre>
+</code></pre></div>
 <p>Keep in mind that the service 'sam-fsd' only needs to enabled temporarily.</p>
 <p>The <code>system/samqfs-postinstall</code> SMF will setup the <code>/etc/opt/SUNWsamfs</code> directory from template files. All the configuration files of Storage Archive Manager reside within this directory. The local state files are in <code>/var/opt/SUNWsamfs</code>.</p>
 <h2 id="a-small-home-server-setup">A small home server setup</h2>
@@ -508,7 +509,7 @@ online         Feb_08   svc:/system/sam-fsd:default
 <h3 id="samfs-file-system">SamFS file system</h3>
 <p>Configure two Zvols, one Zvol <code>rpool/samfsmm</code> for metadata e.g. 10g size and one Zvol <code>rpool/samfsmr</code> for the file content e.g. 1TB.</p>
 <p>Configure the SamFS file system in the <code>/etc/opt/SUNWsamfs/mcf</code> (main configuration file) as follows:</p>
-<pre><code>#
+<div class="highlight"><pre><span></span><code>#
 # Sun StorEdge SAM-FS file system configuration example
 #
 # Equipment       Eq Eq Family Dev Additional
@@ -517,34 +518,34 @@ online         Feb_08   svc:/system/sam-fsd:default
 samfs1            10 ma samfs1
 /dev/zvol/dsk/rpool/samfsmm 11 mm samfs1 -
 /dev/zvol/dsk/rpool/samfsmr 12 mr samfs1 -
-</code></pre>
+</code></pre></div>
 <p>run</p>
-<pre><code># sam-fsd
-</code></pre>
+<div class="highlight"><pre><span></span><code># sam-fsd
+</code></pre></div>
 <p>and check output for errors</p>
 <p>and then</p>
-<pre><code># sammkfs samfs1
-</code></pre>
+<div class="highlight"><pre><span></span><code># sammkfs samfs1
+</code></pre></div>
 <p>then you can mount the SamFS file system</p>
-<pre><code># mount -T samfs samfs1 /archive
-</code></pre>
+<div class="highlight"><pre><span></span><code># mount -T samfs samfs1 /archive
+</code></pre></div>
 <p>It is suggested to add the following to <code>/etc/vfstab</code>.</p>
-<pre><code>samfs1  -  /sam1   samfs  -  no   -
-</code></pre>
+<div class="highlight"><pre><span></span><code>samfs1  -  /sam1   samfs  -  no   -
+</code></pre></div>
 <h3 id="archive-storage">Archive Storage</h3>
 <p>The copies should be stored on external USB-drives. Hence we connect two USB-drives and create two Zpools <code>usbdisk1</code> and <code>usbdisk2</code> on  them. For the archive service create the config file <code>/etc/opt/SUNWsamfs/diskvols.conf</code></p>
-<pre><code>#
+<div class="highlight"><pre><span></span><code>#
 #       diskvols.conf
 #
 #  VSN Name [Host Name:]Path
 #
 usbdisk01 /usbdisk1/samarch
 usbdisk02 /usbdisk2/samarch
-</code></pre>
+</code></pre></div>
 <p>On the Zpools two ZFS datasets <code>usbdisk[12]/samarch</code> are created.</p>
 <h3 id="archive-rule">Archive Rule</h3>
 <p>Now we determine the archive policies in the config file <code>/etc/opt/SUNWsamfs/archiver.cmd</code>.</p>
-<pre><code>#
+<div class="highlight"><pre><span></span><code>#
 #       Global Directives
 #
 #
@@ -563,30 +564,30 @@ vsns
 samfs1.1 dk usbdisk01
 samfs1.2 dk usbdisk02
 endvsns
-</code></pre>
+</code></pre></div>
 <p>We define to create 2 copies of your data files on <code>/archive</code>, after 4 minutes write the first copy on <code>usbdisk1</code>, the second after 16m on <code>usbdisk02</code>. The file should stay online on the filesystem until the second copy is made.</p>
 <h3 id="check-the-configuration">check the configuration</h3>
-<pre><code># sam-fsd
+<div class="highlight"><pre><span></span><code># sam-fsd
 ...
 # archiver -lv
 ...
-</code></pre>
+</code></pre></div>
 <h3 id="activate-the-configuration">activate the configuration</h3>
-<pre><code># samd config
+<div class="highlight"><pre><span></span><code># samd config
 # pkill -HUP sam-fsd
-</code></pre>
+</code></pre></div>
 <h2 id="a-vtl-setup">A VTL setup</h2>
 <p>For use of a SCSI Tape Library we have to configure <code>sgen</code> for use with an autochanger
 run the following:</p>
-<pre><code>update_drv -a -i '&quot;scsiclass,08&quot;' sgen
-</code></pre>
+<div class="highlight"><pre><span></span><code>update_drv -a -i &#39;&quot;scsiclass,08&quot;&#39; sgen
+</code></pre></div>
 <p>If no physical tape library is available, the Quadstor VTL is a simple alternative.</p>
 <p>https://www.quadstor.com/</p>
 <p>The VTL will connected via ISCSI. Install ISCSI client:</p>
-<pre><code>root@oi-sr:~# pkg install network/iscsi/initiator
-</code></pre>
+<div class="highlight"><pre><span></span><code>root@oi-sr:~# pkg install network/iscsi/initiator
+</code></pre></div>
 <p>If you have successfully configured ISCSI initiator, then you can see ISCSI devices. In this example we see a Quantum i500 VTL with two tape drives:</p>
-<pre><code>root@oi-sr:~# iscsiadm list target -S
+<div class="highlight"><pre><span></span><code>root@oi-sr:~# iscsiadm list target -S
 Target: iqn.2006-06.com.quadstor.vtl.i500.drive2
         Alias: -
         TPGT: 1
@@ -616,41 +617,40 @@ Target: iqn.2006-06.com.quadstor.vtl.i500.autoloader
              Vendor:  QUANTUM
              Product: Scalar i500
              OS Device Name: /dev/scsi/changer/c1t0d0
-
-</code></pre>
+</code></pre></div>
 <p>Now you are ready to configure the tape library for SamFS. Add to the /etc/opt/SUNWsamfs/mcf:</p>
-<pre><code>/dev/scsi/changer/c1t0d0 50 rb i500 on i500
+<div class="highlight"><pre><span></span><code>/dev/scsi/changer/c1t0d0 50 rb i500 on i500
 /dev/rmt/1cbn   51      tp      i500     on
 /dev/rmt/2cbn   52      tp      i500     on
-</code></pre>
+</code></pre></div>
 <p>Unfortunately the inquiry of the virtual LTO-8 devices does not work, therefore the config has to be manually added to '/kernel/drv/st.conf'</p>
-<pre><code>tape-config-list= &quot;IBM     ULT3580-TD8&quot;, &quot;IBM     ULT3580-TD8&quot;, &quot;CFGIBMULT3580TD8&quot;;
+<div class="highlight"><pre><span></span><code>tape-config-list= &quot;IBM     ULT3580-TD8&quot;, &quot;IBM     ULT3580-TD8&quot;, &quot;CFGIBMULT3580TD8&quot;;
 
 CFGIBMULT3580TD8 = 2,0x3B,0,0x1018619,4,0x5C,0x5D,0x5E,0x5E,3,60,2340,600,2940,960,960,65535;
-</code></pre>
+</code></pre></div>
 <h2 id="samfs-at-work">SamFS at work</h2>
 <p>If a SAM files system is mounted, the following system state is seen:</p>
 <p>Three kernel modules are loaded:</p>
-<pre><code>$ modinfo | grep SAM-QFS
+<div class="highlight"><pre><span></span><code>$ modinfo | grep SAM-QFS
 204 fffffffff8158000  e8450   6   1  samfs (SAM-QFS: Storage Archiving Mgmt)
 205 fffffffff7e787b8    9a0 312   1  samioc (SAM-QFS system call interface)
 206 fffffffff8096000   15b8 314   1  samaio (SAM-QFS pseudo AIO driver)
-</code></pre>
+</code></pre></div>
 <p>Two SMF's are online</p>
-<pre><code>$ svcs | grep sam
+<div class="highlight"><pre><span></span><code>$ svcs | grep sam
 online         Feb._07  svc:/system/sam-fsd:default
 online         Feb._07  svc:/system/samqfs-postinstall:default
-</code></pre>
+</code></pre></div>
 <p>In userland the services are controled by the sam-fsd</p>
-<pre><code>$ ptree `pgrep sam-fsd`
+<div class="highlight"><pre><span></span><code>$ ptree `pgrep sam-fsd`
 568    /opt/SUNWsamfs/sbin/sam-fsd -D
   617    sam-archiverd
     737    sam-arfind samfs1
   618    sam-stagealld
   619    sam-stagerd
-</code></pre>
+</code></pre></div>
 <p>Once you have tape-library configured the library daemons will be started.</p>
-<pre><code>$ ptree `pgrep sam-fsd`
+<div class="highlight"><pre><span></span><code>$ ptree `pgrep sam-fsd`
 9043   /opt/SUNWsamfs/sbin/sam-fsd -D
   9044   sam-stagealld
   9054   sam-archiverd
@@ -667,7 +667,7 @@ online         Feb._07  svc:/system/samqfs-postinstall:default
         9885 /opt/SUNWsamfs/sbin/ssi_so 9885 50025 23
         9895 sam-stk_helper 201326610 70
     9831   sam-rpcd 201326610 201326611
-</code></pre>
+</code></pre></div>
 <p>In this example two SAM file systems 'samfsfc' and 'samfs1' are mounted and two libraries configured, one of them via ACSLS. The RPC service is started for remote controlling the SamFS.</p>
 <h2 id="samfs-usage">SamFS usage</h2>
 <p>A SamFS filesystem can never be become full as long as the archive storage is not full. Because the SamFS is a hierachical filesystem it can release data blocks of files which not needed in the moment. On SamFS such file is called 'offline'.</p>

@@ -477,22 +477,22 @@ The system will recognize a reader out of the box and ZFS works fine with the in
 The Hardware Abstraction Layer (hal) however doesn't know that this cartridge is removable.</p>
 <h3 id="modifications-to-the-system">Modifications to the system</h3>
 <p>To allow it to be ejected, add a file (named along the lines of <code>10-rdx.fdi</code>) to <code>/etc/hal/fdi/preprobe/30user</code> with content like the following:</p>
-<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
-&lt;deviceinfo version=&quot;0.2&quot;&gt;
- &lt;device&gt;
-   &lt;match key=&quot;info.udi&quot; string=&quot;/org/freedesktop/Hal/devices/pci_0_0/pci_ide_1f_2/ide_0_2/sd20/sd20&quot;&gt;
-   &lt;merge key=&quot;storage.removable&quot; type=&quot;bool&quot;&gt;true&lt;/merge&gt;
-   &lt;merge key=&quot;storage.hotpluggable&quot; type=&quot;bool&quot;&gt;true&lt;/merge&gt;
-   &lt;merge key=&quot;storage.requires_eject&quot; type=&quot;bool&quot;&gt;true&lt;/merge&gt;
-  &lt;/match&gt;
- &lt;/device&gt;
-&lt;/deviceinfo&gt;
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="nt">&lt;deviceinfo</span><span class="w"> </span><span class="na">version=</span><span class="s">&quot;0.2&quot;</span><span class="nt">&gt;</span>
+<span class="w"> </span><span class="nt">&lt;device&gt;</span>
+<span class="w">   </span><span class="nt">&lt;match</span><span class="w"> </span><span class="na">key=</span><span class="s">&quot;info.udi&quot;</span><span class="w"> </span><span class="na">string=</span><span class="s">&quot;/org/freedesktop/Hal/devices/pci_0_0/pci_ide_1f_2/ide_0_2/sd20/sd20&quot;</span><span class="nt">&gt;</span>
+<span class="w">   </span><span class="nt">&lt;merge</span><span class="w"> </span><span class="na">key=</span><span class="s">&quot;storage.removable&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;bool&quot;</span><span class="nt">&gt;</span>true<span class="nt">&lt;/merge&gt;</span>
+<span class="w">   </span><span class="nt">&lt;merge</span><span class="w"> </span><span class="na">key=</span><span class="s">&quot;storage.hotpluggable&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;bool&quot;</span><span class="nt">&gt;</span>true<span class="nt">&lt;/merge&gt;</span>
+<span class="w">   </span><span class="nt">&lt;merge</span><span class="w"> </span><span class="na">key=</span><span class="s">&quot;storage.requires_eject&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;bool&quot;</span><span class="nt">&gt;</span>true<span class="nt">&lt;/merge&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/match&gt;</span>
+<span class="w"> </span><span class="nt">&lt;/device&gt;</span>
+<span class="nt">&lt;/deviceinfo&gt;</span>
+</code></pre></div>
 <p>The "match" key is the only system-specific item. You could alternatively use the <code>info.product key</code> and match an 'RDX' string.</p>
 <p>Now, restart the <code>hal</code> service:</p>
-<pre><code>pfexec svcadm disable hal
+<div class="highlight"><pre><span></span><code>pfexec svcadm disable hal
 pfexec svcadm enable hal
-</code></pre>
+</code></pre></div>
 <p>When you need to eject the RDX, use <code>pfexec eject /dev/dsk/cXtXdX</code> where cXtXdX is your specific drive address.</p>
 <h3 id="what-if-i-cantdont-want-to-modify-my-system">What if I can't/don't want to modify my system?</h3>
 <p>You can either:</p>
@@ -504,9 +504,9 @@ pfexec svcadm enable hal
 <p>The Hardware Abstraction Layer can be troublesome to get working properly. Here are some tidbits that are useful for debugging purposes:
 The lshal command that dumps "what HAL thinks about a device". Its output can be lengthy, but it's invaluable when finding out what keys one should match and merge.
 The hal daemon can be run from the command line in debug mode, showing what happens when you plug in a new device:</p>
-<pre><code>svcadm disable hal
+<div class="highlight"><pre><span></span><code>svcadm disable hal
 pfexec /usr/lib/hal/hald --daemon=no --verbose=yes
-</code></pre>
+</code></pre></div>
 <h3 id="suggested-reading">Suggested reading</h3>
 <ul>
 <li><a href="https://iws.cs.uni-magdeburg.de/~elkner/s11/rmmount.html">Solaris-specific information about rmmount, dbus and hal, looking especially at the interaction between these components</a></li>

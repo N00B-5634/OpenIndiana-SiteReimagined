@@ -563,15 +563,15 @@ the <a href="https://www.freedesktop.org/">freedesktop.org</a> community.</p>
 <p>The drivers series 340.xx, 390.xx, and 490.xx are currently part of oi-userland, others may be installed manually following Nvidia's instructions.</p>
 <p>The 390.xx drivers are current default.</p>
 <p>Note on switching driver versions</p>
-<pre><code># beadm create nvidia-460
+<div class="highlight"><pre><span></span><code># beadm create nvidia-460
 # beadm mount nvidia-460 /tmp/nvidia-460
 # pkg -R /tmp/nvidia-460 uninstall xorg-video nvidia nvidia-390
 # pkg -R /tmp/nvidia-460 install nvidia-460
 # beadm activate nvidia-460
 # init 6
-</code></pre>
+</code></pre></div>
 <p>Note on manual driver installations:</p>
-<pre><code># beadm create oi-nvidia
+<div class="highlight"><pre><span></span><code># beadm create oi-nvidia
 # beadm mount oi-nvidia /mnt
 # pkg -R /mnt uninstall x11/server/xorg/driver/xorg-video driver/graphics/nvidia
 # /bin/sh NVIDIA-Solaris-x86-390.48.run --extract-only
@@ -581,7 +581,7 @@ the <a href="https://www.freedesktop.org/">freedesktop.org</a> community.</p>
 # beadm unmount -f oi-nvidia
 # beadm activate oi-nvidia
 # init 6
-</code></pre>
+</code></pre></div>
 <h2 id="gfx-drm">gfx-drm</h2>
 <p>The gfx-drm gate consists of different kernel components for support of various graphic adapters in the illumos and the Direct Rendering Infrastructure (DRI) library, libdrm.</p>
 <table>
@@ -2525,15 +2525,15 @@ They require Intel ringbuffer support, which is not implemented.</p>
 </tbody>
 </table>
 <h3 id="how-to-checkout-linux-drm-code-only">How to checkout Linux drm code only</h3>
-<pre><code class="language-bash">$ mkdir linux-drm
-$ cd linux-drm/
-$ git init
-$ git remote add origin https://github.com/freedesktop/drm-intel.git
-$ git config core.sparsecheckout true
-$ echo &quot;drivers/gpu/drm/*&quot; &gt;&gt; .git/info/sparse-checkout
-$ echo &quot;include/drm/*&quot; &gt;&gt; .git/info/sparse-checkout
-$ git pull --depth=1 origin drm-intel-fixes
-</code></pre></article>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>mkdir<span class="w"> </span>linux-drm
+$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>linux-drm/
+$<span class="w"> </span>git<span class="w"> </span>init
+$<span class="w"> </span>git<span class="w"> </span>remote<span class="w"> </span>add<span class="w"> </span>origin<span class="w"> </span>https://github.com/freedesktop/drm-intel.git
+$<span class="w"> </span>git<span class="w"> </span>config<span class="w"> </span>core.sparsecheckout<span class="w"> </span><span class="nb">true</span>
+$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;drivers/gpu/drm/*&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>.git/info/sparse-checkout
+$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;include/drm/*&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>.git/info/sparse-checkout
+$<span class="w"> </span>git<span class="w"> </span>pull<span class="w"> </span>--depth<span class="o">=</span><span class="m">1</span><span class="w"> </span>origin<span class="w"> </span>drm-intel-fixes
+</code></pre></div></article>
     </main>
 </div>
 

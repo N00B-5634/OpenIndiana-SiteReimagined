@@ -465,12 +465,12 @@ Portions created by Alexander Pyhalov are Copyright (C) 2019.
 <p>Distribution constructor allows you to build OpenIndiana installation images (iso and usb).</p>
 <p>Creating images is straight forward.
 To create an image install the distribution-constructor. Then create a distribution constructor manifest based on an existing one.</p>
-<pre><code class="language-bash">mkdir distro-const
-cd distro-const
-pfexec pkg install install/distribution-constructor
-cp /usr/share/distro_const/slim_cd/slim_cd_x86.xml .
-pfexec distro_const build slim_cd_x86.xml
-</code></pre>
+<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>distro-const
+<span class="nb">cd</span><span class="w"> </span>distro-const
+pfexec<span class="w"> </span>pkg<span class="w"> </span>install<span class="w"> </span>install/distribution-constructor
+cp<span class="w"> </span>/usr/share/distro_const/slim_cd/slim_cd_x86.xml<span class="w"> </span>.
+pfexec<span class="w"> </span>distro_const<span class="w"> </span>build<span class="w"> </span>slim_cd_x86.xml
+</code></pre></div>
 <p>The distribution constructor will create an image with the packages specified in the <code>&lt;packages&gt;</code> attribute using <code>&lt;build_area&gt;</code> for storing files.
 Final images will be located in the <code>media</code> directory under <code>&lt;build_area&gt;</code>.
 Distribution constructor logs will be available in the <code>logs</code> directory.</p>
@@ -501,19 +501,18 @@ Each image is described by its own distribution constructor manifest.</p>
 <p>Images with the text installer and the GUI live image differ by the sets of installed packages, preparation steps required to build the image and final post install steps made by installer to prepare a system.
 The installer behavior is controlled by a distribution constructor manifest.</p>
 <p>If you want to add packages from your own publisher to the image uncomment <code>&lt;post_install_repo_addl_authority&gt;</code> and <code>&lt;pkg_repo_addl_authority&gt;</code> sections and add your publisher there. For example:</p>
-<pre><code class="language-xml">
-&lt;pkg_repo_addl_authority&gt;
-        &lt;main
-                url=&quot;http://buildzone.oi-build.r61.net:1000/&quot;
-                authname=&quot;userland&quot;/&gt;
-&lt;/pkg_repo_addl_authority&gt;
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;pkg_repo_addl_authority&gt;</span>
+<span class="w">        </span><span class="nt">&lt;main</span>
+<span class="w">                </span><span class="na">url=</span><span class="s">&quot;http://buildzone.oi-build.r61.net:1000/&quot;</span>
+<span class="w">                </span><span class="na">authname=</span><span class="s">&quot;userland&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/pkg_repo_addl_authority&gt;</span>
 ...
-&lt;post_install_repo_addl_authority&gt;
-        &lt;main
-                url=&quot;http://buildzone.oi-build.r61.net:1000/&quot;
-                authname=&quot;userland&quot;/&gt;
-&lt;/post_install_repo_addl_authority&gt;
-</code></pre>
+<span class="nt">&lt;post_install_repo_addl_authority&gt;</span>
+<span class="w">        </span><span class="nt">&lt;main</span>
+<span class="w">                </span><span class="na">url=</span><span class="s">&quot;http://buildzone.oi-build.r61.net:1000/&quot;</span>
+<span class="w">                </span><span class="na">authname=</span><span class="s">&quot;userland&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/post_install_repo_addl_authority&gt;</span>
+</code></pre></div>
 <p>A repository specified as <code>&lt;pkg_repo_addl_authority&gt;</code> will be used as an additional repository while constructing an image. A repository specified as <code>&lt;post_install_repo_addl_authority&gt;</code> will be set as an additional repository on the installed system.</p>
 <p>To actually use packages from your package repository you should add full FMRIs of necessary packages to the <code>&lt;packages&gt;</code> section.</p></article>
     </main>

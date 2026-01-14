@@ -424,4 +424,59 @@ body {
     border-top: 1px solid var(--card-border);
     margin: 2rem 0;
 }
+/* Admonition Base Styles */
+.md-typeset .admonition {
+    border-left: 4px solid;
+    padding: 1rem;
+    margin: 1.5rem 0;
+    border-radius: 4px;
+    background-color: rgba(0, 0, 0, 0.03);
+    page-break-inside: avoid;
+}
+
+/* Admonition Icons */
+.md-typeset .admonition-title {
+    display: all; /* Hide the title text */
+}
+
+/* Add icons to admonitions */
+.md-typeset .admonition::before {
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    font-size: 1.2rem;
+    position: absolute;
+    left: 1rem;
+    top: 0.8rem;
+}
+
+
+
+/* Note Admonition */
+.md-typeset .admonition.note {
+    border-left-color: var(--oi-primary);
+}
+.md-typeset .admonition.note::before {
+    content: "\f05a"; /* fa-solid fa-note-sticky */
+    color: var(--oi-primary);
+}
+
+/* Danger Admonition */
+.md-typeset .admonition.danger {
+    border-left-color: #ef4444; /* Red */
+}
+.md-typeset .admonition.danger::before {
+    content: "\f071"; /* fa-solid fa-triangle-exclamation */
+    color: #ef4444;
+}
+
+/* Admonition Content */
+.md-typeset .admonition p:last-child {
+    margin-bottom: 0;
+    padding-left: 0.5rem;
+}
+
+/* Indent content to avoid overlap with icon */
+.md-typeset .admonition > *:not(.admonition-title) {
+    margin-left: 1.8rem;
+}
 

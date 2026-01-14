@@ -469,12 +469,13 @@ All Rights Reserved. (Contributor contact(s):________________[Insert hyperlink/a
 -->
 
 <h1 id="installing-openindiana-dev-and-upgrading-to-hipster">Installing OpenIndiana /dev and upgrading to /hipster</h1>
-<div class="caution" markdown="1">
-!!! danger "Caution"
-    This page contains legacy instructions for creating USB media which applied prior to OI 2016.10,
-    and upgrade instructions for the legacy oi-dev-151x branch. **This page is not applicable to current versions of OI**.
+<div class="caution">
+<div class="admonition danger">
+<p class="admonition-title">Caution</p>
+<p>This page contains legacy instructions for creating USB media which applied prior to OI 2016.10,
+and upgrade instructions for the legacy oi-dev-151x branch. <strong>This page is not applicable to current versions of OI</strong>.</p>
 </div>
-
+</div>
 <h2 id="creating-a-hipster-usb-drive-pre-201610-only">Creating a Hipster USB Drive <em>(pre 2016.10 only)</em></h2>
 <p>There are two unique methods for creating bootable USB flash drives.
 The method to use depends on the release date of the USB image you intend to write.</p>
@@ -487,13 +488,18 @@ The method to use depends on the release date of the USB image you intend to wri
 <li>USB flash drive - (2GB or larger).</li>
 <li>Download the OpenIndiana USB installer image.</li>
 </ul>
-<div class="note" markdown="1">
-!!! note
-    * Header files are only required when writing a legacy image **AND** using the dd utility.
-        * Header files are **NOT** required when writing current images.
-        * For example: The Hipster 2016.10 release, does **NOT** require header files.
+<div class="note">
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul>
+<li>Header files are only required when writing a legacy image <strong>AND</strong> using the dd utility.<ul>
+<li>Header files are <strong>NOT</strong> required when writing current images.</li>
+<li>For example: The Hipster 2016.10 release, does <strong>NOT</strong> require header files.</li>
+</ul>
+</li>
+</ul>
 </div>
-
+</div>
 <ul>
 <li>Download the appropriate OpenIndiana <a href="http://dlc.openindiana.org/isos/archive/1G.header&quot;">1G</a> or <a href="http://dlc.openindiana.org/isos/archive/2G.header">2G</a> header file<ul>
 <li>There are 2 unique USB header files (1G and 2G).</li>
@@ -505,38 +511,39 @@ The method to use depends on the release date of the USB image you intend to wri
 </ul>
 </li>
 </ul>
-<div class="caution" markdown="1">
-!!! danger "Caution"
-    Failure to use the correct USB header file can result in the USB drive either failing to boot, or only partially booting.
+<div class="caution">
+<div class="admonition danger">
+<p class="admonition-title">Caution</p>
+<p>Failure to use the correct USB header file can result in the USB drive either failing to boot, or only partially booting.</p>
 </div>
-
+</div>
 <h3 id="bsdlinuxos-x">BSD/Linux/OS X</h3>
 <p>In the command below, replace <code>X</code> with the appropriate letter for your USB device. At least on Linux and FreeBSD you can add <code>status=progress</code> operand to print basic transfer statistics, refer to <code>dd(1)</code> man page of your platform for more information.</p>
-<pre><code># cat 1G.header image.usb | dd bs=1024k of=/dev/sdX
-</code></pre>
+<div class="highlight"><pre><span></span><code># cat 1G.header image.usb | dd bs=1024k of=/dev/sdX
+</code></pre></div>
 <p>For live images larger than 1GB, use the following command instead.</p>
-<pre><code># cat 2G.header image.usb | dd bs=1024k of=/dev/sdX
-</code></pre>
+<div class="highlight"><pre><span></span><code># cat 2G.header image.usb | dd bs=1024k of=/dev/sdX
+</code></pre></div>
 <h3 id="illumossolaris">illumos/Solaris</h3>
 <p>For illumos based distributions including OpenIndiana, a script <a href="https://raw.githubusercontent.com/OpenIndiana/slim_source/oi/hipster/usr/src/cmd/install-tools/usbcopy">(USBCOPY)</a> is available to copy the USB image onto a USB device.</p>
 <p>Be sure to run as root or with SUDO as the script exits if not run with elevated permissions.</p>
 <!-- had to specify java (other langs may work) to fix the formatting -->
 
-<pre><code class="language-java"># ./usbcopy image.usb
-Found the following USB devices:
-0:    devices/dev/rdsk/c4t0d0p0    3.9 GB    USB    DISK 2.0       1.00
-Enter the number of your choice: 0
+<div class="highlight"><pre><span></span><code><span class="err">#</span><span class="w"> </span><span class="p">.</span><span class="o">/</span><span class="n">usbcopy</span><span class="w"> </span><span class="n">image</span><span class="p">.</span><span class="na">usb</span>
+<span class="n">Found</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">following</span><span class="w"> </span><span class="n">USB</span><span class="w"> </span><span class="n">devices</span><span class="p">:</span>
+<span class="mi">0</span><span class="p">:</span><span class="w">    </span><span class="n">devices</span><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">rdsk</span><span class="o">/</span><span class="n">c4t0d0p0</span><span class="w">    </span><span class="mf">3.9</span><span class="w"> </span><span class="n">GB</span><span class="w">    </span><span class="n">USB</span><span class="w">    </span><span class="n">DISK</span><span class="w"> </span><span class="mf">2.0</span><span class="w">       </span><span class="mf">1.00</span>
+<span class="n">Enter</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">number</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">your</span><span class="w"> </span><span class="n">choice</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
 
-WARNING: All data on your USB storage will be lost.
-Are you sure you want to install to
-USB DISK 2.0 1.00, 3900 MB at /dev/rdsk/c4t0d0p0 ?  (y/n) y
-Copying and verifying image to USB device
-Finished 1643 MB in 685 seconds (2.3MB/s)
-0 block(s) re-written due to verification failure
-Installing grub to USB device /dev/rdsk/c4t0d0s0
-Completed copy to USB
-#
-</code></pre>
+<span class="nl">WARNING</span><span class="p">:</span><span class="w"> </span><span class="n">All</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="n">on</span><span class="w"> </span><span class="n">your</span><span class="w"> </span><span class="n">USB</span><span class="w"> </span><span class="n">storage</span><span class="w"> </span><span class="n">will</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">lost</span><span class="p">.</span>
+<span class="n">Are</span><span class="w"> </span><span class="n">you</span><span class="w"> </span><span class="n">sure</span><span class="w"> </span><span class="n">you</span><span class="w"> </span><span class="n">want</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="n">to</span>
+<span class="n">USB</span><span class="w"> </span><span class="n">DISK</span><span class="w"> </span><span class="mf">2.0</span><span class="w"> </span><span class="mf">1.00</span><span class="p">,</span><span class="w"> </span><span class="mi">3900</span><span class="w"> </span><span class="n">MB</span><span class="w"> </span><span class="n">at</span><span class="w"> </span><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">rdsk</span><span class="o">/</span><span class="n">c4t0d0p0</span><span class="w"> </span><span class="o">?</span><span class="w">  </span><span class="p">(</span><span class="n">y</span><span class="o">/</span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="n">y</span>
+<span class="n">Copying</span><span class="w"> </span><span class="n">and</span><span class="w"> </span><span class="n">verifying</span><span class="w"> </span><span class="n">image</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">USB</span><span class="w"> </span><span class="n">device</span>
+<span class="n">Finished</span><span class="w"> </span><span class="mi">1643</span><span class="w"> </span><span class="n">MB</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="mi">685</span><span class="w"> </span><span class="n">seconds</span><span class="w"> </span><span class="p">(</span><span class="mf">2.3</span><span class="n">MB</span><span class="o">/</span><span class="n">s</span><span class="p">)</span>
+<span class="mi">0</span><span class="w"> </span><span class="n">block</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="n">re</span><span class="o">-</span><span class="n">written</span><span class="w"> </span><span class="n">due</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">verification</span><span class="w"> </span><span class="n">failure</span>
+<span class="n">Installing</span><span class="w"> </span><span class="n">grub</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">USB</span><span class="w"> </span><span class="n">device</span><span class="w"> </span><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">rdsk</span><span class="o">/</span><span class="n">c4t0d0s0</span>
+<span class="n">Completed</span><span class="w"> </span><span class="n">copy</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">USB</span>
+<span class="err">#</span>
+</code></pre></div>
 <h3 id="windows">Windows</h3>
 <p>The <a href="http://devzone.sites.pid0.org/OpenSolaris/opensolaris-liveusb-creator">OpenSolaris Live USB Creator</a> is a small stand alone GUI utility suitable for creating an OpenIndiana bootable USB flash drive.</p>
 <h2 id="updating-openindiana-dev-to-hipster">Updating OpenIndiana /dev to /hipster</h2>
@@ -545,13 +552,14 @@ Completed copy to USB
 <p>There are several techniques which you can use to update your systems, including root pool installation from OpenIndiana ISO.
 Complete reinstall also can be a decent option.</p>
 <p>Further it's considered that you were warned and decided to do more-or-less direct update from /dev to /hipster.</p>
-<div class="note" markdown="1">
-!!! note
-    Only server installation update was tested.
-    If you do GUI installation update, you are on your own.
-    Of course, you are welcome to ask questions in [oi-dev](https://openindiana.org/mailman/listinfo/oi-dev) mailing list, but prepare that nobody will guide you through update.
+<div class="note">
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Only server installation update was tested.
+If you do GUI installation update, you are on your own.
+Of course, you are welcome to ask questions in <a href="https://openindiana.org/mailman/listinfo/oi-dev">oi-dev</a> mailing list, but prepare that nobody will guide you through update.</p>
 </div>
-
+</div>
 <ul>
 <li>
 <p>Do backup.
@@ -578,84 +586,85 @@ Complete reinstall also can be a decent option.</p>
 <p>Update to the latest OpenIndiana /dev version.</p>
 </li>
 </ul>
-<pre><code># pkg update -v
-</code></pre>
+<div class="highlight"><pre><span></span><code># pkg update -v
+</code></pre></div>
 <ul>
 <li>Create new boot environment, which you'll update to /hipster, and mount it to <code>/mnt</code> (the default empty temporary mountpoint directory).</li>
 </ul>
-<pre><code class="language-bash"># beadm create oi-hipster
-# beadm mount oi-hipster /mnt
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="c1"># beadm create oi-hipster</span>
+<span class="c1"># beadm mount oi-hipster /mnt</span>
+</code></pre></div>
 <ul>
 <li>Uninstall all packages coming from opensolaris.org, sfe or sfe-encumbered publishers.</li>
 </ul>
-<pre><code class="language-bash"># pkg -R /mnt list pkg://sfe/* pkg://sfe-encumbered/* pkg://opensolaris.org/*
-# pkg -R /mnt uninstall &lt;list of matched packages&gt;
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="c1"># pkg -R /mnt list pkg://sfe/* pkg://sfe-encumbered/* pkg://opensolaris.org/*</span>
+<span class="c1"># pkg -R /mnt uninstall &lt;list of matched packages&gt;</span>
+</code></pre></div>
 <ul>
 <li>Unset sfe, sfe-encumbered, opensolaris.org publishers in new BE if they were used.</li>
 </ul>
-<pre><code class="language-bash"># pkg -R /mnt unset-publisher opensolaris.org
+<div class="highlight"><pre><span></span><code><span class="c1"># pkg -R /mnt unset-publisher opensolaris.org</span>
 ...
-</code></pre>
+</code></pre></div>
 <ul>
 <li>Change publisher to <a href="http://pkg.openindiana.org/hipster">http://pkg.openindiana.org/hipster</a>.</li>
 </ul>
-<pre><code class="language-bash"># pkg -R /mnt set-publisher -g http://pkg.openindiana.org/hipster -G http://pkg.openindiana.org/dev openindiana.org
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="c1"># pkg -R /mnt set-publisher -g http://pkg.openindiana.org/hipster -G http://pkg.openindiana.org/dev openindiana.org</span>
+</code></pre></div>
 <ul>
 <li>Refresh IPS catalog.</li>
 </ul>
-<pre><code class="language-bash"># pkg -R /mnt refresh --full
-</code></pre>
-<div class="note" markdown="1">
-!!! note
-    Two following steps are actually better to run under `screen(1)` or `tmux(1)`
+<div class="highlight"><pre><span></span><code><span class="c1"># pkg -R /mnt refresh --full</span>
+</code></pre></div>
+<div class="note">
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Two following steps are actually better to run under <code>screen(1)</code> or <code>tmux(1)</code></p>
 </div>
-
+</div>
 <ul>
 <li>Look what IPS is going to do.</li>
 </ul>
-<pre><code class="language-bash"># pkg -R /mnt update -nv 2&gt;&amp;1 | tee /root/testing_update
-# less /root/testing_update
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="c1"># pkg -R /mnt update -nv 2&gt;&amp;1 | tee /root/testing_update</span>
+<span class="c1"># less /root/testing_update</span>
+</code></pre></div>
 <ul>
 <li>If you are satisfied with what you've seen, run actual update and review <code>pkg(1)</code> output.</li>
 </ul>
-<pre><code class="language-bash"># pkg -R /mnt update -v 2&gt;&amp;1 | tee /root/update
-# less /root/update
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="c1"># pkg -R /mnt update -v 2&gt;&amp;1 | tee /root/update</span>
+<span class="c1"># less /root/update</span>
+</code></pre></div>
 <ul>
 <li>Now you have updated boot environment, but have no means to activate it, so you'll have to boot from recent OpenIndiana minimal ISO.
   <br/>After booting from ISO run shell, import pool, update boot archive, install boot loader, activate new boot environment and reboot.
   <code>c2t0d0s0</code> disk name is used in example, you should look at <code>zpool status</code> output and use corresponding device.
   You'd better use cpio boot archive format due to existing issue in compressed ufs boot archive support.</li>
 </ul>
-<pre><code class="language-bash"># zpool import -R /tmp rpool
-# beadm mount oi-hipster /mnt
-# bootadm update-archive -R /mnt/tmp -vf -F cpio
-# installboot -mvF  /mnt/tmp/boot/pmbr /mnt/tmp/boot/gptzfsboot /dev/rdsk/c2t0d0s0
-# beadm activate oi-hipster
-# init 6
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="c1"># zpool import -R /tmp rpool</span>
+<span class="c1"># beadm mount oi-hipster /mnt</span>
+<span class="c1"># bootadm update-archive -R /mnt/tmp -vf -F cpio</span>
+<span class="c1"># installboot -mvF  /mnt/tmp/boot/pmbr /mnt/tmp/boot/gptzfsboot /dev/rdsk/c2t0d0s0</span>
+<span class="c1"># beadm activate oi-hipster</span>
+<span class="c1"># init 6</span>
+</code></pre></div>
 <ul>
 <li>When your new boot environment is booting, look at possible error messages.
   <br/>You can see warnings about inability to import some manifests.
   After logging in you'll be able to import them manually with svccfg import.
   Also you'll have to remove metainit service, which has gone with SVM support.</li>
 </ul>
-<pre><code class="language-bash"># svccfg -s metainit delete default
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="c1"># svccfg -s metainit delete default</span>
+</code></pre></div>
 <ul>
 <li>Look if there are any failed services and examine their log files.</li>
 </ul>
-<pre><code class="language-bash"># svcs -xv
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="c1"># svcs -xv</span>
+</code></pre></div>
 <ul>
 <li>Ensure that you have latest osnet-incorporation and userland-incorporation installed.</li>
 </ul>
-<pre><code class="language-bash"># pkg info osnet-incorporation userland-incorporation
-</code></pre></article>
+<div class="highlight"><pre><span></span><code><span class="c1"># pkg info osnet-incorporation userland-incorporation</span>
+</code></pre></div></article>
     </main>
 </div>
 

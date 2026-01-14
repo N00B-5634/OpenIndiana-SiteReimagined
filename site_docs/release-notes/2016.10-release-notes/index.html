@@ -519,15 +519,15 @@ However, it is clearly a giant step forward for desktop users.</p>
 <p><strong>Sun SSH</strong> was completely removed.
 Unfortunately, due to a bug in IPS (which is already fixed in newer versions), the package update can fail because of packages being renamed relating to Sun SSH removal.
 If you see this error:</p>
-<pre><code>Action upgrade failed for 'etc/ssh/sshd_config' (pkg://openindiana.org/service/network/ssh):
-TypeError: 'NoneType' object is not callable
-</code></pre>
+<div class="highlight"><pre><span></span><code>Action upgrade failed for &#39;etc/ssh/sshd_config&#39; (pkg://openindiana.org/service/network/ssh):
+TypeError: &#39;NoneType&#39; object is not callable
+</code></pre></div>
 <p>during system update, then edit <code>/etc/ssh/sshd_config</code> with your favorite text editor and, for example, add an empty line to it.
 This will allow you to proceed and get into an updated operating system (including the new IPS version which has this bug fixed).</p>
 <p><strong>Mate</strong> 1.14 was integrated. It is installed by default with new GUI installations. GDM was replaced by lightdm. If you want to install it on an existing installation, just update your system and run:</p>
-<pre><code>pkg install mate_install
+<div class="highlight"><pre><span></span><code>pkg install mate_install
 pkg uninstall mate_install
-</code></pre>
+</code></pre></div>
 <p>to install the metapackage, which pulls all needed packages, and then remove the metapackage itself.</p>
 <p>One more noticeable change in the installer – now it generates <strong>full USB images</strong>, which can be directly copied to USB sticks. 1G/2G header files are longer required.</p>
 <p>Please note that openindiana is moving towards a pure 64-bit environment. 32-bit support is obsolete and will be entirely removed in a future release.</p>
@@ -545,13 +545,13 @@ pkg uninstall mate_install
 <li>FUSE modules for ntfs-3g were added</li>
 <li>The OpenOffice component, which had a long standing issue with saving documents in different formats (https://www.illumos.org/issues/5210), was dropped. Users are advised to use libreoffice from SFE localhostoih repository instead.</li>
 </ul>
-<pre><code>  # pkg set-publisher -g http://sfe.opencsw.org/localhostoih/ localhostoih
+<div class="highlight"><pre><span></span><code>  # pkg set-publisher -g http://sfe.opencsw.org/localhostoih/ localhostoih
   # pkg install -v pkg://localhostoih/desktop/application/libreoffice4 \
           pkg://localhostoih/desktop/application/libreoffice4-desktop-int \
           pkg://localhostoih/system/library/g++/boost \
           pkg://localhostoih/library/g++/icu \
           pkg://localhostoih/sfe/system/library/gcc-runtime
-</code></pre>
+</code></pre></div>
 <ul>
 <li>Mate 1.14 was integrated</li>
 <li>mutt was updated to 1.7.1</li>

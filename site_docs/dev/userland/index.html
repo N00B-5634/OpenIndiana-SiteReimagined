@@ -547,89 +547,89 @@ The complete set of instructions to build one or more related packages is called
 </tr>
 </tbody>
 </table>
-<div class="note" markdown="1">
-!!! note
-    **Before adding new packages to oi-userland...**
-
-    Before considering adding a new package to oi-userland, please check first whether someone else is working on the package by checking the issue tracker, mailing [oi-dev@openindiana.org](mailto:oi-dev@openindiana.org) or asking on the IRC (#oi-dev at irc.libera.chat)
-
-    * If you don't find anyone already working on a port, please register your effort by opening an issue.
-    * If you wish to update an existing port, look at the log for the component Makefile ("git log Makefile") and make sure you either contact the person who last updated the Makefile or include them on notifications for the issue by ticking their name.
-
-    This will ensure efforts aren't duplicated and help to ensure sanity and comity amongst project members.
+<div class="note">
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Before adding new packages to oi-userland...</strong></p>
+<p>Before considering adding a new package to oi-userland, please check first whether someone else is working on the package by checking the issue tracker, mailing <a href="mailto:oi-dev@openindiana.org">oi-dev@openindiana.org</a> or asking on the IRC (#oi-dev at irc.libera.chat)</p>
+<ul>
+<li>If you don't find anyone already working on a port, please register your effort by opening an issue.</li>
+<li>If you wish to update an existing port, look at the log for the component Makefile ("git log Makefile") and make sure you either contact the person who last updated the Makefile or include them on notifications for the issue by ticking their name.</li>
+</ul>
+<p>This will ensure efforts aren't duplicated and help to ensure sanity and comity amongst project members.</p>
 </div>
-
+</div>
 <h3 id="setting-up-your-build-environment">Setting up your build environment</h3>
 <p>We strongly recommend building packages inside a fresh local zone set up exclusively for building. See <a href="../../handbook/systems-administration/#quick-setup-example">Quick zone setup example</a> for simple instructions.</p>
 <p>Further we assume that you are logged into the build zone if you set up the build environment in a zone the directory were oi-userland is cloned can otherwise be anywhere you like.</p>
 <h4 id="adding-rbac-profile-to-the-build-user">Adding RBAC profile to the build user</h4>
 <p>Installing software requires privileges, so your build user must have at minimum the 'Software Installation' profile:</p>
-<pre><code class="language-bash">$ profiles
-Software Installation
-ZFS File System Management
-Console User
-Suspend To RAM
-Suspend To Disk
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>profiles
+Software<span class="w"> </span>Installation
+ZFS<span class="w"> </span>File<span class="w"> </span>System<span class="w"> </span>Management
+Console<span class="w"> </span>User
+Suspend<span class="w"> </span>To<span class="w"> </span>RAM
+Suspend<span class="w"> </span>To<span class="w"> </span>Disk
 Brightness
-CPU Power Management
-Network Autoconf User
-Desktop Removable Media User
-Basic Solaris User
+CPU<span class="w"> </span>Power<span class="w"> </span>Management
+Network<span class="w"> </span>Autoconf<span class="w"> </span>User
+Desktop<span class="w"> </span>Removable<span class="w"> </span>Media<span class="w"> </span>User
+Basic<span class="w"> </span>Solaris<span class="w"> </span>User
 All
-</code></pre>
+</code></pre></div>
 <p>If it is not the case add this profile to your build user:</p>
-<pre><code class="language-bash">pfexec su -
-usermod -P'Software Installation' &lt;username&gt;
-</code></pre>
+<div class="highlight"><pre><span></span><code>pfexec<span class="w"> </span>su<span class="w"> </span>-
+usermod<span class="w"> </span>-P<span class="s1">&#39;Software Installation&#39;</span><span class="w"> </span>&lt;username&gt;
+</code></pre></div>
 <p>This is not necessary if your user has already the 'Primary Administrator' profile.</p>
 <h4 id="downloading-oi-userland">Downloading oi-userland</h4>
 <p>Start by forking <a href="https://github.com/OpenIndiana/oi-userland">oi-userland repository</a> on Github and then check out the repository (subdirectory oi-userland must not pre-exist):</p>
-<pre><code class="language-bash">cd ~
-git clone https://github.com/mylogin/oi-userland
-cd oi-userland
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>~
+git<span class="w"> </span>clone<span class="w"> </span>https://github.com/mylogin/oi-userland
+<span class="nb">cd</span><span class="w"> </span>oi-userland
+</code></pre></div>
 <p>Add https://github.com/OpenIndiana/oi-userland/ as upstream to your repository to resync your repository with oi-userland.</p>
-<pre><code class="language-bash">git remote add upstream https://github.com/OpenIndiana/oi-userland/
-</code></pre>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>remote<span class="w"> </span>add<span class="w"> </span>upstream<span class="w"> </span>https://github.com/OpenIndiana/oi-userland/
+</code></pre></div>
 <p>Run the setup stage which will prepare some tools and create an IPS pkg5 repository for first use under the i386 directory:</p>
-<pre><code class="language-bash">cd $HOME/oi-userland
-gmake setup
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span><span class="nv">$HOME</span>/oi-userland
+gmake<span class="w"> </span>setup
+</code></pre></div>
 <h4 id="adding-the-local-repository-to-your-publisher-list">Adding the local repository to your publisher list</h4>
-<pre><code class="language-bash">pfexec pkg set-publisher -g file://$HOME/oi-userland/i386/repo userland
-pfexec pkg set-publisher --non-sticky openindiana.org
-</code></pre>
+<div class="highlight"><pre><span></span><code>pfexec<span class="w"> </span>pkg<span class="w"> </span>set-publisher<span class="w"> </span>-g<span class="w"> </span>file://<span class="nv">$HOME</span>/oi-userland/i386/repo<span class="w"> </span>userland
+pfexec<span class="w"> </span>pkg<span class="w"> </span>set-publisher<span class="w"> </span>--non-sticky<span class="w"> </span>openindiana.org
+</code></pre></div>
 <h4 id="setting-the-local-repository-as-primary-publisher">Setting the local repository as primary publisher</h4>
-<pre><code class="language-bash">pfexec pkg set-publisher --search-first userland
-</code></pre>
+<div class="highlight"><pre><span></span><code>pfexec<span class="w"> </span>pkg<span class="w"> </span>set-publisher<span class="w"> </span>--search-first<span class="w"> </span>userland
+</code></pre></div>
 <h4 id="optional-running-a-local-pkg-server-for-installation-on-other-zoneshosts">Optional: Running a local pkg server for installation on other zones/hosts</h4>
 <p>If you would like to use your oi-userland repository on other zones or hosts, you can run a pkg server:</p>
-<pre><code class="language-bash">$ pfexec svccfg -s  pkg/server
-svc:/application/pkg/server&gt; add oi-userland
-svc:/application/pkg/server&gt; select oi-userland
-svc:/application/pkg/server:oi-userland&gt; addpg pkg application
-svc:/application/pkg/server:oi-userland&gt; setprop pkg/inst_root=astring:&quot;/export/home/username/oi-userland/i386/repo&quot;
-svc:/application/pkg/server:oi-userland&gt; setprop pkg/port=count:&quot;10000&quot;
-svc:/application/pkg/server:oi-userland&gt; setprop pkg/readonly=boolean:&quot;true&quot;
-svc:/application/pkg/server:oi-userland&gt; refresh
-svc:/application/pkg/server:oi-userland&gt; exit
-$ pfexec svcadm enable oi-userland
-</code></pre>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>pfexec<span class="w"> </span>svccfg<span class="w"> </span>-s<span class="w">  </span>pkg/server
+svc:/application/pkg/server&gt;<span class="w"> </span>add<span class="w"> </span>oi-userland
+svc:/application/pkg/server&gt;<span class="w"> </span><span class="k">select</span><span class="w"> </span>oi-userland
+svc:/application/pkg/server:oi-userland&gt;<span class="w"> </span>addpg<span class="w"> </span>pkg<span class="w"> </span>application
+svc:/application/pkg/server:oi-userland&gt;<span class="w"> </span>setprop<span class="w"> </span>pkg/inst_root<span class="o">=</span>astring:<span class="s2">&quot;/export/home/username/oi-userland/i386/repo&quot;</span>
+svc:/application/pkg/server:oi-userland&gt;<span class="w"> </span>setprop<span class="w"> </span>pkg/port<span class="o">=</span>count:<span class="s2">&quot;10000&quot;</span>
+svc:/application/pkg/server:oi-userland&gt;<span class="w"> </span>setprop<span class="w"> </span>pkg/readonly<span class="o">=</span>boolean:<span class="s2">&quot;true&quot;</span>
+svc:/application/pkg/server:oi-userland&gt;<span class="w"> </span>refresh
+svc:/application/pkg/server:oi-userland&gt;<span class="w"> </span><span class="nb">exit</span>
+$<span class="w"> </span>pfexec<span class="w"> </span>svcadm<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>oi-userland
+</code></pre></div>
 <p>On other hosts you can then specify http://hostname:10000 instead of the file:// address above.
 If you only intend to install and test packages locally this is not necessary as on-disk repository access suffices.</p>
 <h3 id="building-and-installing-your-first-packages">Building and installing your first packages</h3>
 <p>Enter to oi-userland/components/PATH/TO/COMPONENT directory and run:</p>
-<pre><code class="language-bash">cd $HOME/oi-userland/components/SOFTWARE
-gmake env-prep
-gmake publish
-pfexec pkg refresh
-pfexec pkg install pkg://userland/PACKAGE_FMRI
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span><span class="nv">$HOME</span>/oi-userland/components/SOFTWARE
+gmake<span class="w"> </span>env-prep
+gmake<span class="w"> </span>publish
+pfexec<span class="w"> </span>pkg<span class="w"> </span>refresh
+pfexec<span class="w"> </span>pkg<span class="w"> </span>install<span class="w"> </span>pkg://userland/PACKAGE_FMRI
+</code></pre></div>
 <p>Here PACKAGE_FMRI is a full name (FMRI) of package which you want to install. The FMRIs of published packages will be printed in the end of <code>publish</code> stage.
 Note, that running <code>gmake env-prep</code> is strictly not required, if you are sure that all build requirements are satisfied.</p>
 <p>To speed up the compilation you can pass an optional argument to gmake setting COMPONENT_BUILD_ARGS variable in your environment, for instance with</p>
-<pre><code class="language-bash">export COMPONENT_BUILD_ARGS=-j4
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">COMPONENT_BUILD_ARGS</span><span class="o">=</span>-j4
+</code></pre></div>
 <p>to use 4 jobs for builds.</p>
 <h2 id="creating-your-first-component">Creating your first component</h2>
 <p>The easiest way to create new component is to take one which is similar to yours and modify it as needed. Also you can look at <a href="https://github.com/OpenIndiana/oi-userland/tree/oi/hipster/templates">Makefile templates</a> delivered with oi-userland.</p>
@@ -639,7 +639,7 @@ On the top of the Makefile it includes <code>../../../make-rules/shared-macros.m
 The file shared-macros.mk contains global constants used by other makefiles. Sometimes some global variables that alter these constants are declared before this include.
 The first section of the Makefile contains definitions of the component name, version, an url where the software should be fetched from, a short description embedded in the package metadata and so on.
 Look, for example, at <code>library/libjpeg6-ijg/Makefile</code>:</p>
-<pre><code>COMPONENT_NAME=         libjpeg6-ijg
+<div class="highlight"><pre><span></span><code>COMPONENT_NAME=         libjpeg6-ijg
 COMPONENT_VERSION=      6.0.2
 LIBJPEG_API_VERSION=    6b
 COMPONENT_FMRI=         image/library/libjpeg6-ijg
@@ -653,7 +653,7 @@ COMPONENT_ARCHIVE_HASH= \
 COMPONENT_ARCHIVE_URL=  http://www.ijg.org/files/jpegsrc.v$(LIBJPEG_API_VERSION).tar.gz
 COMPONENT_LICENSE=      IJG,GPLv2.0
 COMPONENT_LICENSE_FILE= $(COMPONENT_NAME).license
-</code></pre>
+</code></pre></div>
 <p>Here</p>
 <table>
 <thead>
@@ -787,8 +787,8 @@ COMPONENT_LICENSE_FILE= $(COMPONENT_NAME).license
 <li><code>POST_*_ACTION</code></li>
 </ul>
 <p>For example, you may add this line for an Autotools-based component:</p>
-<pre><code class="language-bash">CONFIGURE_OPTIONS+= --enable-shared
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nv">CONFIGURE_OPTIONS</span><span class="o">+=</span><span class="w"> </span>--enable-shared
+</code></pre></div>
 <p>After creating the component Makefile you can run <code>gmake prep</code>.</p>
 <p>Now you can create necessary patches for the component and put them in the patches directory.</p>
 <p>When the component is built and installed correctly (via <code>gmake build</code> and <code>gmake install</code>), look if you can run the test suite if one comes with the software.</p>
@@ -798,8 +798,8 @@ You can use the COMPONENT_TEST_TRANSFORMS variable to set a list of sed directiv
 make it reproducible.</p>
 <h3 id="creating-p5m-files">Creating p5m files</h3>
 <p>When the <code>install</code> target passes you can run:</p>
-<pre><code class="language-bash">gmake sample-manifest
-</code></pre>
+<div class="highlight"><pre><span></span><code>gmake<span class="w"> </span>sample-manifest
+</code></pre></div>
 <p>to generate a manifest from the list of installed files.</p>
 <p>Copy the file <code>manifests/sample-manifest.p5m</code> to <code>$(COMPONENT_NAME).p5m</code> and edit it:</p>
 <ul>
@@ -820,71 +820,71 @@ These transforms can be used as examples if you need custom transforms for your 
 <p>Add necessary build time dependencies on the top of the generated section.</p>
 <p>Run <code>gmake publish</code>. If the manifest is valid your package is published to the local repository.</p>
 <p>To be able to search for the new packages in the local repository you need to rebuild search indexes:</p>
-<pre><code class="language-bash">pkgrepo refresh -s /path/to/my_repo
-</code></pre>
+<div class="highlight"><pre><span></span><code>pkgrepo<span class="w"> </span>refresh<span class="w"> </span>-s<span class="w"> </span>/path/to/my_repo
+</code></pre></div>
 <p>You can even rebuild the entire metadata:</p>
-<pre><code class="language-bash">pkgrepo rebuild -s /path/to/my_repo
-</code></pre>
+<div class="highlight"><pre><span></span><code>pkgrepo<span class="w"> </span>rebuild<span class="w"> </span>-s<span class="w"> </span>/path/to/my_repo
+</code></pre></div>
 <h3 id="installing-the-package">Installing the package</h3>
 <p>After you've published the package to your local repository and rebuilt the repository index or metadata you can install the package and perform whatever testing is appropriate.</p>
-<pre><code class="language-bash">pkg publisher
-</code></pre>
+<div class="highlight"><pre><span></span><code>pkg<span class="w"> </span>publisher
+</code></pre></div>
 <p>If the package you built and published to the local userland repository is not already part of hipster it should be straightforward to install it:</p>
-<pre><code class="language-bash">pfexec pkg install your/package/name
-</code></pre>
+<div class="highlight"><pre><span></span><code>pfexec<span class="w"> </span>pkg<span class="w"> </span>install<span class="w"> </span>your/package/name
+</code></pre></div>
 <p>If, however, the package you built is an updated version of an existing package then you may have to take additional steps before it can be updated.</p>
 <p>If <code>pkg</code> refuses to install the package from your local repository it may be because the userland-incorporation is preventing updates to the version of the package:</p>
-<pre><code class="language-bash">$ pfexec pkg update image/library/libjpeg6-ijg
-No updates available for this image.
-$ pfexec pkg update pkg://userland/image/library/libjpeg6-ijg@6.0.2-2018.0.0.1:20180211T125627Z
-pkg update: No matching version of image/library/libjpeg6-ijg can be installed:
-  Reject:  pkg://userland/image/library/libjpeg6-ijg@6.0.2-2018.0.0.1
-  Reason:  This version is excluded by installed incorporation consolidation/userland/userland-incorporation@0.5.11-2018.0.0.11745
-</code></pre>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>pfexec<span class="w"> </span>pkg<span class="w"> </span>update<span class="w"> </span>image/library/libjpeg6-ijg
+No<span class="w"> </span>updates<span class="w"> </span>available<span class="w"> </span><span class="k">for</span><span class="w"> </span>this<span class="w"> </span>image.
+$<span class="w"> </span>pfexec<span class="w"> </span>pkg<span class="w"> </span>update<span class="w"> </span>pkg://userland/image/library/libjpeg6-ijg@6.0.2-2018.0.0.1:20180211T125627Z
+pkg<span class="w"> </span>update:<span class="w"> </span>No<span class="w"> </span>matching<span class="w"> </span>version<span class="w"> </span>of<span class="w"> </span>image/library/libjpeg6-ijg<span class="w"> </span>can<span class="w"> </span>be<span class="w"> </span>installed:
+<span class="w">  </span>Reject:<span class="w">  </span>pkg://userland/image/library/libjpeg6-ijg@6.0.2-2018.0.0.1
+<span class="w">  </span>Reason:<span class="w">  </span>This<span class="w"> </span>version<span class="w"> </span>is<span class="w"> </span>excluded<span class="w"> </span>by<span class="w"> </span>installed<span class="w"> </span>incorporation<span class="w"> </span>consolidation/userland/userland-incorporation@0.5.11-2018.0.0.11745
+</code></pre></div>
 <p>If you will install many test versions of packages on your development system you may find it easiest to uninstall the userland-incorporation.  Alternately, if you want to test a package on a system while keeping userland-incorporation, you can use <code>pkg change-facet</code> to relax the version constraint for just that package:</p>
-<pre><code class="language-bash">pfexec pkg change-facet facet.version-lock.your/package/name/here=false
-</code></pre>
+<div class="highlight"><pre><span></span><code>pfexec<span class="w"> </span>pkg<span class="w"> </span>change-facet<span class="w"> </span>facet.version-lock.your/package/name/here<span class="o">=</span><span class="nb">false</span>
+</code></pre></div>
 <p>After you have performed one of these steps to remove the version constraint there is one more issue you may encounter.  Because the installed version of the package came from the openindiana.org publisher but the updated version you want to install and test is associated with the userland publisher, <code>pkg</code> will by default not allow the package update to switch which publisher provides the package.</p>
 <p>One option to work around this is to make the openindiana.org publisher non-sticky:</p>
-<pre><code class="language-bash">pfexec pkg set-publisher --non-sticky openindiana.org
-</code></pre>
+<div class="highlight"><pre><span></span><code>pfexec<span class="w"> </span>pkg<span class="w"> </span>set-publisher<span class="w"> </span>--non-sticky<span class="w"> </span>openindiana.org
+</code></pre></div>
 <p>You only need to perform that operation on your development system once.</p>
 <p>Alternately, you can force <code>pkg</code> to apply an update from a different publisher by specifying the full FMRI for the package, including the publisher:</p>
-<pre><code class="language-bash">pfexec pkg update pkg://userland/image/library/libjpeg6-ijg@6.0.2-2018.0.0.1:20180211T125627Z
-</code></pre>
+<div class="highlight"><pre><span></span><code>pfexec<span class="w"> </span>pkg<span class="w"> </span>update<span class="w"> </span>pkg://userland/image/library/libjpeg6-ijg@6.0.2-2018.0.0.1:20180211T125627Z
+</code></pre></div>
 <h2 id="contributing-changes-back-to-oi-userland">Contributing changes back to oi-userland</h2>
 <h3 id="every-time-you-add-or-modify-a-component-create-a-new-branch">Every time you add or modify a component, create a new branch:</h3>
-<pre><code class="language-bash">git checkout -b my_feature
-</code></pre>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>my_feature
+</code></pre></div>
 <h3 id="keep-this-branch-synchronized-with-upstreamoihipster">Keep this branch synchronized with upstream/oi/hipster:</h3>
-<pre><code class="language-bash">git pull --rebase upstream oi/hipster
-</code></pre>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>pull<span class="w"> </span>--rebase<span class="w"> </span>upstream<span class="w"> </span>oi/hipster
+</code></pre></div>
 <p>Your local branch is forwarded to the last commit of oi/hipster and your additional commits are kept on top of the stack.</p>
 <h3 id="committing-changes">Committing changes</h3>
 <p>When you think you are ready with changes you need to commit them locally and push those changes back to your Github repository.</p>
-<pre><code class="language-bash">cd ~/oi-userland/components/SOFTWARE
-git add Makefile *.p5m &lt;etc.&gt;
-git commit
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>~/oi-userland/components/SOFTWARE
+git<span class="w"> </span>add<span class="w"> </span>Makefile<span class="w"> </span>*.p5m<span class="w"> </span>&lt;etc.&gt;
+git<span class="w"> </span>commit
+</code></pre></div>
 <p>Commit messages should be simple and describe what you did, e.g "Added XYZ", "XYZ: updated to SOME_VERSION", "XYZ: fixed SOMETHING" or "BUG_ID BUG_SUMMARY", where BUG_ID is issue number from issue tracker and BUG_SUMMARY is the issue name.</p>
 <p>If you've created several commits while working on your component it's necessary to <em>squash</em> all your commits into one.</p>
 <p>To do it, first check how many commits are to be considered:</p>
-<pre><code class="language-bash">git log
-</code></pre>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>log
+</code></pre></div>
 <p>then</p>
-<pre><code class="language-bash">git rebase -i HEAD~N
-</code></pre>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>rebase<span class="w"> </span>-i<span class="w"> </span>HEAD~N
+</code></pre></div>
 <p>with N the number of commits to be squashed and follow the instructions: the letter 's' should be put in place of 'pick' for the N - 1 commits before the last.</p>
 <p>If you made a mistake with the commit message or author, use:</p>
-<pre><code class="language-bash">git commit --amend
-</code></pre>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>commit<span class="w"> </span>--amend
+</code></pre></div>
 <p>with the relevant option.</p>
 <p>Now push your changes to your repository to GitHub.</p>
-<pre><code class="language-bash">git push my_name my_feature
-</code></pre>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>push<span class="w"> </span>my_name<span class="w"> </span>my_feature
+</code></pre></div>
 <p>or</p>
-<pre><code class="language-bash">git push -f my_name my_feature
-</code></pre>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>push<span class="w"> </span>-f<span class="w"> </span>my_name<span class="w"> </span>my_feature
+</code></pre></div>
 <p>if the branch you just rebased had already been pushed: since the history is rewritten you need to force the push, be careful.</p>
 <h3 id="asking-for-change-integration">Asking for change integration</h3>
 <p>This is as simple as creating a Pull Request into the main oi-userland repository and asking developers to review your changeset. We should beware of possibly breaking packages as it adds additional work and can be unpleasant for other contributors (imagine a situation where gcc, perl or anything else needed for building packages is broken).</p>

@@ -481,18 +481,18 @@ Since GNOME is replaced by Mate in Hipster, installation is a little bit more di
 <h2 id="install-prerequisites">Install Prerequisites</h2>
 <p>If you have installed new Hipster, it is necessary to install GNOME packages for GDM and its greeter-session. For user session 'Mate Session' will be used, it is no longer necessary to install other packages needed by Gnome Session (only Gnome packages which Mate session still uses).</p>
 <p>Install packages from publisher openindiana.org which is nessesary to run SunRay Software. This will do the package sunray-essential for you.</p>
-<pre><code># pkg install sunray-essential
-</code></pre>
-<p>This will install all necessary packages for using GDM and Sun Ray Software tools on OI Hipster.</p>
+<p><div class="highlight"><pre><span></span><code># pkg install sunray-essential
+</code></pre></div>
+This will install all necessary packages for using GDM and Sun Ray Software tools on OI Hipster.</p>
 <h2 id="install-sun-ray-server-software">Install Sun Ray Server Software</h2>
 <p>Sun Ray Software still can be downloaded at http://edelivery.oracle.com (registration required). Download the Software for Solaris x86-64</p>
 <p>Extract the archives.</p>
 <p>Install IPS packages of the Sun Ray Software from the local repository</p>
-<pre><code class="language-shell"># pkg set-publisher -g &lt;extractdirectory&gt;/srs_5.4.5.0-Solaris_11plus.i386/IPS.i386/ sunray
-# pkg install SUNWut-srss SUNWut-srwc
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="c1"># pkg set-publisher -g &lt;extractdirectory&gt;/srs_5.4.5.0-Solaris_11plus.i386/IPS.i386/ sunray</span>
+<span class="c1"># pkg install SUNWut-srss SUNWut-srwc</span>
+</code></pre></div>
 <p>Due to package dependencies following packages will be installed:</p>
-<pre><code>SUNWut-srss (sunray)                              5.4.5.0.38-0.0             i--
+<div class="highlight"><pre><span></span><code>SUNWut-srss (sunray)                              5.4.5.0.38-0.0             i--
 SUNWuta (sunray)                                  4.5.4.0.38-0.0             i--
 SUNWutdso (sunray)                                3.5.0.0.2-0.0              i--
 SUNWutdsr (sunray)                                3.5.0.0.2-0.0              i--
@@ -520,30 +520,29 @@ SUNWutwa (sunray)                                 4.5.2.0.5-0.0              i--
 SUNWutwar (sunray)                                4.5.0.0.44-0.0             i--
 SUNWutwh (sunray)                                 4.5.0.0.44-0.0             i--
 SUNWutwl (sunray)                                 4.5.0.0.44-0.0             i--
-</code></pre>
+</code></pre></div>
 <p>To enable Sun Ray Software utilities to use ISC DHCP server, we take patches located in path <code>/opt/SUNWut/utils</code> from the package sunray/oi-adaptions.</p>
-<pre><code class="language-shell"># pkg install sunray/oi-adaptions
-# /opt/SUNWut/utils/apply_patches
-</code></pre>
-<p>For using the ISC-DHCP server instead of the Sun DHCP Server:</p>
-<pre><code class="language-shell"># rm /etc/opt/SUNWut/dhcp
-# ln -s /opt/SUNWut/lib/dhcp/isc /etc/opt/SUNWut/dhcp
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="c1"># pkg install sunray/oi-adaptions</span>
+<span class="c1"># /opt/SUNWut/utils/apply_patches</span>
+</code></pre></div>
+<p>For using the ISC-DHCP server instead of the Sun DHCP Server:
+<div class="highlight"><pre><span></span><code><span class="c1"># rm /etc/opt/SUNWut/dhcp</span>
+<span class="c1"># ln -s /opt/SUNWut/lib/dhcp/isc /etc/opt/SUNWut/dhcp</span>
+</code></pre></div></p>
 <h3 id="note-on-java-runtime-environment">Note on Java Runtime Environment</h3>
 <p>The Sun Ray Software needs the Sun/Oracle JRE 1.7 (32 bit) which can be downloaded from the Oracle Website and unpacked in a location where you like, eg. <code>/opt/SUNWut/jre</code>. The link <code>/etc/opt/SUNWut/jre</code> should set to the JRE install path.</p>
-<pre><code># rm /etc/opt/SUNWut/jre
+<div class="highlight"><pre><span></span><code># rm /etc/opt/SUNWut/jre
 # ln -s /opt/SUNWut/jre/jre1.7.0_80 /etc/opt/SUNWut/jre
-</code></pre>
+</code></pre></div>
 <h2 id="basic-configuration">Basic Configuration</h2>
 <p>You can run <code>utconfig</code> and <code>utadm</code> the way described in the <a href="https://docs.oracle.com/cd/E35310_01/index.html">Sun Ray Software</a> document.</p>
-<p>run utconfig and choose the defaults</p>
-<pre><code># utconfig
-
-</code></pre>
+<p>run utconfig and choose the defaults
+<div class="highlight"><pre><span></span><code># utconfig
+</code></pre></div></p>
 <p>For configuring SunRay network on a dedicated network interface, e.g bge1, use the following command. This will configure the ISC DHCP server.</p>
-<pre><code># utadm -a bge1
-</code></pre>
-<p><i class="fa fa-info-circle fa-lg" aria-hidden="true"></i> <strong>NOTE:</strong></p>
+<p><div class="highlight"><pre><span></span><code># utadm -a bge1
+</code></pre></div>
+<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i> <strong>NOTE:</strong></p>
 <div class="well">
 If the script seems to hang, press `Enter` or `Y/N`. Some times the YesNo output is not shown.
 <br>
@@ -551,17 +550,17 @@ If setup of /etc/inet/dhcpd4.conf failed, unconfigure with 'utadm -d bge1' and r
 </div>
 
 <p>If you have to use a shared network, use the command</p>
-<pre><code># utadm -A &lt;sever IP address&gt;
-</code></pre>
-<p>run utpolicy</p>
-<pre><code># utpolicy -a -z both -m -D
-</code></pre>
+<div class="highlight"><pre><span></span><code># utadm -A &lt;sever IP address&gt;
+</code></pre></div>
+<p>run utpolicy
+<div class="highlight"><pre><span></span><code># utpolicy -a -z both -m -D
+</code></pre></div></p>
 <p>Now the Sun Ray server installation is ready to serve your Sun Ray DTU. For more configuration options you can use the Oracle/Sun documentation.</p>
 <h3 id="gdm">GDM</h3>
 <p>the GDM service has to be enabled. lightdm should not run however.</p>
-<pre><code># svcadm enable graphical-login/gdm
+<div class="highlight"><pre><span></span><code># svcadm enable graphical-login/gdm
 # svcadm disable graphical-login/lightdm
-</code></pre>
+</code></pre></div>
 <h3 id="gdm-greeter">GDM greeter</h3>
 <p>On greeter login choose session <code>Mate</code>, <code>Gnome</code> is not available for user session on OpenIndiana.</p>
 <h3 id="some-panel-applets-crash">Some Panel applets crash</h3>
@@ -570,12 +569,12 @@ If setup of /etc/inet/dhcpd4.conf failed, unconfigure with 'utadm -d bge1' and r
 <p>After logout the gdm-login won't reappear. That's why the script in <code>/opt/SUNWut/lib/gdm/revivesrsession.py</code> is installed, and is called by the <code>/etc/opt/SUNWut/gdm/SunRayPostSession/helpers/revivesession</code> helper script.</p>
 <h3 id="multihead-group-configuration">Multihead group configuration</h3>
 <p>Up 16 SunRay Thin Clients can be grouped to a multihead setup, where multiple monitors will be used for a single user session. For two clients this can be done with:</p>
-<pre><code>$ /opt/SUNWut/bin/utxconfig -m on -R 2x1 -S 0,1
-</code></pre>
+<div class="highlight"><pre><span></span><code>$ /opt/SUNWut/bin/utxconfig -m on -R 2x1 -S 0,1
+</code></pre></div>
 <p>Since GTK 3.10 multi screen setup is not supported anymore. The command line option <code>--display</code> whith a dot value greate 0 will not work any more (e.g.: earlier the command <code>firefox --display=:11.1</code> has started firefox on the second display).</p>
 <p>metacity or marco will manage only the default screen. For multihead setup it is now necessary to enable 'xinerama' mode, so that the Window manager expands the screen across all DTU's in a group.</p>
-<pre><code>$ opt/SUNWut/bin/utxconfig -x on
-</code></pre>
+<div class="highlight"><pre><span></span><code>$ opt/SUNWut/bin/utxconfig -x on
+</code></pre></div>
 <p>Refer to the original documentation from Oracle for configuration in general: <a href="https://docs.oracle.com/cd/E35310_01/E35309/html/MultipleMonitor.html">Multiple Monitor Configurations</a></p>
 <h3 id="configure-isc-dhcp-server-manually">Configure ISC DHCP server manually</h3>
 <p>Sun Ray Server on Hipster has to use DHCP scripts for <code>isc-dhcp-server</code> like on Linux. Instead of using <code>utadm</code> for configuration, it is possible to configure DHCP manually. Here an example:</p>
@@ -609,8 +608,8 @@ If setup of /etc/inet/dhcpd4.conf failed, unconfigure with 'utadm -d bge1' and r
 </tr>
 </tbody>
 </table>
-<p><code>/etc/inet/dhcpd4.conf</code> contains:</p>
-<pre><code>ddns-update-style none;
+<p><code>/etc/inet/dhcpd4.conf</code> contains:
+<div class="highlight"><pre><span></span><code>ddns-update-style none;
 
 # option definitions common to all supported networks...
 option domain-name &quot;sunray.lan&quot;;
@@ -670,13 +669,13 @@ subnet 192.168.128.0 netmask 255.255.255.0 {
         range 192.168.128.51 192.168.128.59;
     }
 }
-</code></pre>
+</code></pre></div></p>
 <p>Vendor specific DHCP options are described in the <a href="https://docs.oracle.com/cd/E25749_01/E25745/html/Alternate-Client-Initialization-Reqs-Using-DHCP.html#Alternate-Vendor-Specific-DHCP-Options">Sun Ray Software: Alternate Client Initialization Reqs Using DHCP</a> document.</p>
 <h2 id="rdp-client">RDP client</h2>
 <p>Sun Ray Server Sofware delivers a own RDP client <code>uttsc</code>.  The client <code>uttsc</code> is not compatible with the current authentication protocols of MS Windows versions, so we do not want to support it on OpenIndiana in the future.</p>
 <p>A good replacement is <code>xfreerdp</code>. You can install this</p>
-<pre><code class="language-shell"># pkg install desktop/remote-desktop/freerdp
-</code></pre></article>
+<div class="highlight"><pre><span></span><code><span class="c1"># pkg install desktop/remote-desktop/freerdp</span>
+</code></pre></div></article>
     </main>
 </div>
 

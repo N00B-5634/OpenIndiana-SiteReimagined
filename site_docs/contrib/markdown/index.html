@@ -467,12 +467,12 @@ All Rights Reserved. (Contributor contact(s):________________[Insert hyperlink/a
 <h1 id="markdown-syntax-guide">Markdown Syntax Guide</h1>
 <h3 id="italics-and-bold-text">Italics and bold text</h3>
 <p><strong>Markdown Code</strong> <i class="fa fa-code fa-lg" aria-hidden="true"></i></p>
-<pre><code class="language-markdown">This is plain text
+<div class="highlight"><pre><span></span><code>This is plain text
 
-_This is italic text_
+<span class="ge">_This is italic text_</span>
 
-**This is bold text**
-</code></pre>
+<span class="gs">**This is bold text**</span>
+</code></pre></div>
 <p><strong>Rendered HTML</strong> <i class="fa fa-html5" aria-hidden="true"></i></p>
 <p>This is plain text</p>
 <p><em>This is italic text</em></p>
@@ -480,13 +480,13 @@ _This is italic text_
 <h3 id="headers">Headers</h3>
 <p>Headers in markdown (much like HTML) come in various sizes.</p>
 <p><strong>Markdown Code</strong> <i class="fa fa-code fa-lg" aria-hidden="true"></i></p>
-<pre><code class="language-markdown"># First level header
-## Second level header
-### Third level header
-#### Fourth level header
-##### Fifth level header
-###### Sixth level header
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="gh"># First level header</span>
+<span class="gu">## Second level header</span>
+<span class="gu">### Third level header</span>
+<span class="gu">#### Fourth level header</span>
+<span class="gu">##### Fifth level header</span>
+<span class="gu">###### Sixth level header</span>
+</code></pre></div>
 <p>In this simple example you can see some headers have less hashes then others.
 The more hashes added, the smaller the header will be, for example.</p>
 <p><strong>Rendered HTML</strong> <i class="fa fa-html5" aria-hidden="true"></i></p>
@@ -500,10 +500,10 @@ The more hashes added, the smaller the header will be, for example.</p>
 <h3 id="ordered-lists">Ordered lists</h3>
 <p>Ordered or numbered lists are fairly simple to do in markdown.</p>
 <p><strong>Markdown Code</strong> <i class="fa fa-code fa-lg" aria-hidden="true"></i></p>
-<pre><code class="language-markdown">1. First item
-2. Second item
-3. Third item
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="k">1.</span> First item
+<span class="k">2.</span> Second item
+<span class="k">3.</span> Third item
+</code></pre></div>
 <p><strong>Rendered HTML</strong> <i class="fa fa-html5" aria-hidden="true"></i></p>
 <ol>
 <li>First item</li>
@@ -514,10 +514,10 @@ The more hashes added, the smaller the header will be, for example.</p>
 <p>Unordered lists are great for general lists that don't need to be done
 in specific steps.</p>
 <p><strong>Markdown Code</strong> <i class="fa fa-code fa-lg" aria-hidden="true"></i></p>
-<pre><code class="language-markdown">* this
-* is
-* unordered
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="k">*</span><span class="w"> </span>this
+<span class="k">*</span><span class="w"> </span>is
+<span class="k">*</span><span class="w"> </span>unordered
+</code></pre></div>
 <p><strong>Rendered HTML</strong> <i class="fa fa-html5" aria-hidden="true"></i></p>
 <ul>
 <li>this</li>
@@ -526,11 +526,11 @@ in specific steps.</p>
 </ul>
 <h3 id="nested-lists">Nested lists</h3>
 <p><strong>Markdown Code</strong> <i class="fa fa-code fa-lg" aria-hidden="true"></i></p>
-<pre><code class="language-markdown">* Markdown lists are:
-    * awesome
-    * amazing
-    * really cool
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="k">*</span><span class="w"> </span>Markdown lists are:
+<span class="w">    </span><span class="k">*</span><span class="w"> </span>awesome
+<span class="w">    </span><span class="k">*</span><span class="w"> </span>amazing
+<span class="w">    </span><span class="k">*</span><span class="w"> </span>really cool
+</code></pre></div>
 <p><strong>Rendered HTML</strong> <i class="fa fa-html5" aria-hidden="true"></i></p>
 <ul>
 <li>Markdown lists are:<ul>
@@ -542,11 +542,11 @@ in specific steps.</p>
 </ul>
 <h3 id="tables">Tables</h3>
 <p><strong>Markdown Code</strong> <i class="fa fa-code fa-lg" aria-hidden="true"></i></p>
-<pre><code class="language-markdown">| Table Header 1 | Table Header 2
+<div class="highlight"><pre><span></span><code>| Table Header 1 | Table Header 2
 | --- | ---
 | Row 1, Column 1 | Row 1, Column 2
 | Row 2, Column 1 | Row 2, Column 2
-</code></pre>
+</code></pre></div>
 <p><strong>Rendered HTML</strong> <i class="fa fa-html5" aria-hidden="true"></i></p>
 <table>
 <thead>
@@ -568,12 +568,12 @@ in specific steps.</p>
 </table>
 <h3 id="external-urls">External URL's</h3>
 <p><strong>Markdown Code</strong> <i class="fa fa-code fa-lg" aria-hidden="true"></i></p>
-<pre><code class="language-markdown">[The OpenIndiana Website](http://www.openindiana.org)
+<div class="highlight"><pre><span></span><code>[<span class="nt">The OpenIndiana Website</span>](<span class="na">http://www.openindiana.org</span>)
 
-or (bare url's)
+or (bare url&#39;s)
 
 &lt;http://www.openindiana.org&gt;
-</code></pre>
+</code></pre></div>
 <p><strong>Rendered HTML</strong> <i class="fa fa-html5" aria-hidden="true"></i></p>
 <p><a href="http://www.openindiana.org">The OpenIndiana Website</a></p>
 <p>or (bare url's)</p>
@@ -583,25 +583,25 @@ or (bare url's)
 Simply specify the relative path to the document.
 You can even target a specific section of the document.</p>
 <p><strong>Markdown Code</strong> <i class="fa fa-code fa-lg" aria-hidden="true"></i></p>
-<pre><code class="language-markdown">[The OpenIndiana Handbook - getting started](../handbook/getting-started.md)
+<div class="highlight"><pre><span></span><code>[<span class="nt">The OpenIndiana Handbook - getting started</span>](<span class="na">../handbook/getting-started.md</span>)
 
-[Handbook - Appendix - Finding Help and Support](../handbook/appendix.md#finding-help-and-support)
-</code></pre>
+[<span class="nt">Handbook - Appendix - Finding Help and Support</span>](<span class="na">../handbook/appendix.md#finding-help-and-support</span>)
+</code></pre></div>
 <p><strong>Rendered HTML</strong> <i class="fa fa-html5" aria-hidden="true"></i></p>
 <p><a href="../../handbook/getting-started/">The OpenIndiana Handbook - getting started</a></p>
 <p><a href="../../handbook/appendix/#finding-help-and-support">Handbook - Appendix - Finding Help and Support</a></p>
 <h3 id="images">Images</h3>
 <p>Specify the relative path to the image, just like an internal URL.</p>
 <p><strong>Markdown Code</strong> <i class="fa fa-code fa-lg" aria-hidden="true"></i></p>
-<pre><code class="language-markdown">![openindiana logo](../Openindiana.png)
-</code></pre>
+<div class="highlight"><pre><span></span><code>![<span class="nt">openindiana logo</span>](<span class="na">../Openindiana.png</span>)
+</code></pre></div>
 <p><strong>Rendered HTML</strong> <i class="fa fa-html5" aria-hidden="true"></i></p>
 <p><img alt="openindiana logo" src="../../Openindiana.png" /></p>
 <h3 id="block-quotes">Block quotes</h3>
 <p><strong>Markdown Code</strong> <i class="fa fa-code fa-lg" aria-hidden="true"></i></p>
-<pre><code class="language-markdown">&gt; This is a block quote.
-&gt; And here is the 2nd line of the quote.
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="k">&gt; </span><span class="ge">This is a block quote.</span>
+<span class="k">&gt; </span><span class="ge">And here is the 2nd line of the quote.</span>
+</code></pre></div>
 <p><strong>Rendered HTML</strong> <i class="fa fa-html5" aria-hidden="true"></i></p>
 <blockquote>
 <p>This is a block quote.
@@ -619,11 +619,11 @@ For the purpose of syntax highlighting, you may also specify the programming lan
 ```
 </code></pre>
 <p><strong>Rendered HTML</strong> <i class="fa fa-html5" aria-hidden="true"></i></p>
-<pre><code class="language-bash">#!/bin/bash
-  if [ &quot;foo&quot; = &quot;foo&quot; ]; then
-    echo expression evaluated as true
-  fi
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;foo&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;foo&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span>expression<span class="w"> </span>evaluated<span class="w"> </span>as<span class="w"> </span><span class="nb">true</span>
+<span class="w">  </span><span class="k">fi</span>
+</code></pre></div>
 <h3 id="in-line-code">In-line code</h3>
 <p>In-line code is delineated with a single backtick mark at each end of the text.</p>
 <p><strong>Markdown Code</strong> <i class="fa fa-code fa-lg" aria-hidden="true"></i></p>
@@ -636,26 +636,26 @@ For the purpose of syntax highlighting, you may also specify the programming lan
 For example, sometimes you may find Markdown doesn't do quite what you need to do.
 In these cases you may include some in-line HTML.</p>
 <p><strong>Markdown Code</strong> <i class="fa fa-code fa-lg" aria-hidden="true"></i></p>
-<pre><code class="language-markdown">&lt;!-- This is a single line comment --&gt;
+<div class="highlight"><pre><span></span><code>&lt;!-- This is a single line comment --&gt;
 
 &lt;!--
 This comment
 spans multiple
 lines
 --&gt;
-</code></pre>
+</code></pre></div>
 <p>Comments are meant to be hidden, so they not rendered as HTML.
 You'll likely find them very useful for adding TODO lists, or other useful notes.
 Comments are primarily for internal use by members of the OpenIndiana documentation team.</p>
 <h3 id="in-line-html-advanced">In-line HTML - Advanced</h3>
 <h4 id="using-html-within-markdown-tables">Using HTML within Markdown tables</h4>
 <p><strong>Markdown Code</strong> <i class="fa fa-code fa-lg" aria-hidden="true"></i></p>
-<pre><code class="language-markdown">| Item | Description
+<div class="highlight"><pre><span></span><code>| Item | Description
 | --- | ---
 | Item 1 | This is a single line description
 | Item 2 | This is a multi line description with an unordered list:&lt;ul&gt;&lt;li&gt;First item&lt;/li&gt;&lt;li&gt;Second item&lt;/li&gt;&lt;/ul&gt;Lets add another paragraph to that.&lt;/p&gt; And here it is.
 | Item 3 | We can also use multiple sentences within tables. Here is the second sentence. And here is a third.
-</code></pre>
+</code></pre></div>
 <p><strong>Rendered HTML</strong> <i class="fa fa-html5" aria-hidden="true"></i></p>
 <table>
 <thead>
