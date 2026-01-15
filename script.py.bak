@@ -1,0 +1,69 @@
+#!/usr/bin/env python3
+import os
+
+# Output Markdown file
+output_file = "docs/downloads.md"
+
+# Folders to scan
+folders = {
+    "PDF": "docs/pdf",
+    "EPUB": "docs/epub"
+}
+
+# Recursively scan a folder for files
+def scan_folder(folder, extensions):
+    found_files = []
+    for root, dirs, files in os.walk(folder):
+        for file in files:
+            if any(file.lower().endswith(ext) for ext in extensions):
+                full_path = os.path.relpath(os.path.join(root, file))
+                found_files.append(full_path)
+    return sorted(found_files)
+
+# Start building Markdown content
+md_content = "# Downloads\n\n"
+md_content += "Welcome to the OpenIndiana Docs Reimagined downloads page! Click a card to download the document you need.\n\n"
+
+for ftype, folder in folders.items():
+    if not os.path.exists(folder):
+        print(f"Warning: folder '{folder}' does not exist, skipping {ftype}.")
+        continue
+
+    md_content += f"## {ftype}s\n\n"
+
+    extensions = [".pdf"] if ftype == "PDF" else [".epub"]
+    files = scan_folder(folder, extensions)
+
+    if not files:
+        md_content += f"No {ftype} files found in '{folder}'.\n\n"
+        continue
+
+    for file_path in files:
+        print(f"Detected {ftype} file: {file_path}")
+
+        # Ask user for title
+        title = input(f"Enter a display title for '{file_path}' (leave blank to use filename): ").strip()
+        if not title:
+            title = os.path.basename(file_path)
+
+        # Ask user for description
+        description = input(f"Enter a short description for '{file_path}' (leave blank for default): ").strip()
+        if not description:
+            description = f"Download the {ftype} version of {title} from OpenIndiana Docs Reimagined."
+
+        # Append Markdown snippet
+        md_content += (
+            f"<a href=\"{file_path}\" class=\"download-card\">\n"
+            f"  <img src=\"img/{ftype.lower()}-icon.png\" alt=\"{ftype} Icon\">\n"
+            f"  <span>{title}</span>\n"
+            f"  <p>{description}</p>\n"
+            f"</a>\n\n"
+        )
+
+md_content += "\n*All files are hosted safely in their respective directories.*\n"
+
+# Write to downloads.md
+with open(output_file, "w") as f:
+    f.write(md_content)
+
+print(f"\n✅ Markdown file successfully generated at '{output_file}'!")

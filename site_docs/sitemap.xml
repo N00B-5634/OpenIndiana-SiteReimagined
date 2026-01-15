@@ -2,347 +2,607 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/</loc>
-         <lastmod>2026-01-14</lastmod>
+         <lastmod>2026-01-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/books/about/</loc>
-         <lastmod>2026-01-14</lastmod>
+         <lastmod>2026-01-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/books/advanced/</loc>
-         <lastmod>2026-01-14</lastmod>
+         <lastmod>2026-01-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/books/basic/</loc>
-         <lastmod>2026-01-14</lastmod>
+         <lastmod>2026-01-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/books/develop/</loc>
-         <lastmod>2026-01-14</lastmod>
+         <lastmod>2026-01-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/books/express/</loc>
-         <lastmod>2026-01-14</lastmod>
+         <lastmod>2026-01-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/books/trusted/</loc>
-         <lastmod>2026-01-14</lastmod>
+         <lastmod>2026-01-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/community-hcl/</loc>
-         <lastmod>2026-01-14</lastmod>
+         <lastmod>2026-01-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/community-hcl/components/</loc>
-         <lastmod>2026-01-14</lastmod>
+         <lastmod>2026-01-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/community-hcl/getting-hardware-info/</loc>
-         <lastmod>2026-01-14</lastmod>
+         <lastmod>2026-01-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/community-hcl/systems/</loc>
-         <lastmod>2026-01-14</lastmod>
+         <lastmod>2026-01-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/contrib/content/</loc>
-         <lastmod>2026-01-14</lastmod>
+         <lastmod>2026-01-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/contrib/getting-started/</loc>
-         <lastmod>2026-01-14</lastmod>
+         <lastmod>2026-01-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/contrib/git/</loc>
-         <lastmod>2026-01-14</lastmod>
+         <lastmod>2026-01-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/contrib/markdown/</loc>
-         <lastmod>2026-01-14</lastmod>
+         <lastmod>2026-01-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/contrib/roles/</loc>
-         <lastmod>2026-01-14</lastmod>
+         <lastmod>2026-01-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/contrib/style/</loc>
-         <lastmod>2026-01-14</lastmod>
+         <lastmod>2026-01-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/contrib/tools/</loc>
-         <lastmod>2026-01-14</lastmod>
+         <lastmod>2026-01-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/contrib/topics/</loc>
-         <lastmod>2026-01-14</lastmod>
+         <lastmod>2026-01-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/dev/</loc>
-         <lastmod>2026-01-14</lastmod>
+         <lastmod>2026-01-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/dev/building-openindiana/</loc>
-         <lastmod>2026-01-14</lastmod>
+         <lastmod>2026-01-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/dev/distribution-constructor/</loc>
-         <lastmod>2026-01-14</lastmod>
+         <lastmod>2026-01-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/dev/existing-tasks/</loc>
-         <lastmod>2026-01-14</lastmod>
+         <lastmod>2026-01-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/dev/graphics-stack/</loc>
-         <lastmod>2026-01-14</lastmod>
+         <lastmod>2026-01-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/dev/repo-cleanup/</loc>
-         <lastmod>2026-01-14</lastmod>
+         <lastmod>2026-01-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/dev/userland/</loc>
-         <lastmod>2026-01-14</lastmod>
+         <lastmod>2026-01-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/downloads/downloads/</loc>
+         <lastmod>2026-01-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/handbook/</loc>
-         <lastmod>2026-01-14</lastmod>
+         <lastmod>2026-01-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/handbook/appendix/</loc>
-         <lastmod>2026-01-14</lastmod>
+         <lastmod>2026-01-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/handbook/common-tasks/</loc>
-         <lastmod>2026-01-14</lastmod>
+         <lastmod>2026-01-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/handbook/community/</loc>
-         <lastmod>2026-01-14</lastmod>
+         <lastmod>2026-01-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/handbook/getting-started/</loc>
-         <lastmod>2026-01-14</lastmod>
+         <lastmod>2026-01-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/handbook/legacy-branch/</loc>
-         <lastmod>2026-01-14</lastmod>
+         <lastmod>2026-01-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/handbook/network-communications/</loc>
-         <lastmod>2026-01-14</lastmod>
+         <lastmod>2026-01-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/handbook/openindiana-download-mirrors/</loc>
-         <lastmod>2026-01-14</lastmod>
+         <lastmod>2026-01-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/handbook/pdfdocs/</loc>
-         <lastmod>2026-01-14</lastmod>
+         <lastmod>2026-01-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/handbook/sunray/</loc>
-         <lastmod>2026-01-14</lastmod>
+         <lastmod>2026-01-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/handbook/systems-administration/</loc>
-         <lastmod>2026-01-14</lastmod>
+         <lastmod>2026-01-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/handbook/community/inputmethod/</loc>
-         <lastmod>2026-01-14</lastmod>
+         <lastmod>2026-01-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/handbook/community/oracledb/</loc>
-         <lastmod>2026-01-14</lastmod>
+         <lastmod>2026-01-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/handbook/community/quikstor/</loc>
-         <lastmod>2026-01-14</lastmod>
+         <lastmod>2026-01-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/handbook/community/samqfs/</loc>
-         <lastmod>2026-01-14</lastmod>
+         <lastmod>2026-01-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/handbook/community/squeak/</loc>
-         <lastmod>2026-01-14</lastmod>
+         <lastmod>2026-01-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/handbook/community/texlive/</loc>
-         <lastmod>2026-01-14</lastmod>
+         <lastmod>2026-01-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/handbook/community/vagrant/</loc>
-         <lastmod>2026-01-14</lastmod>
+         <lastmod>2026-01-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/misc/conduct/</loc>
-         <lastmod>2026-01-14</lastmod>
+         <lastmod>2026-01-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/misc/oi-docs/</loc>
-         <lastmod>2026-01-14</lastmod>
+         <lastmod>2026-01-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/misc/openindiana/</loc>
-         <lastmod>2026-01-14</lastmod>
+         <lastmod>2026-01-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/misc/pdl/</loc>
-         <lastmod>2026-01-14</lastmod>
+         <lastmod>2026-01-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/misc/community-hcl/</loc>
+         <lastmod>2026-01-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/misc/community-hcl/components/</loc>
+         <lastmod>2026-01-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/misc/community-hcl/getting-hardware-info/</loc>
+         <lastmod>2026-01-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/misc/community-hcl/systems/</loc>
+         <lastmod>2026-01-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/misc/contrib/content/</loc>
+         <lastmod>2026-01-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/misc/contrib/getting-started/</loc>
+         <lastmod>2026-01-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/misc/contrib/git/</loc>
+         <lastmod>2026-01-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/misc/contrib/markdown/</loc>
+         <lastmod>2026-01-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/misc/contrib/roles/</loc>
+         <lastmod>2026-01-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/misc/contrib/style/</loc>
+         <lastmod>2026-01-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/misc/contrib/tools/</loc>
+         <lastmod>2026-01-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/misc/contrib/topics/</loc>
+         <lastmod>2026-01-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/misc/dev/</loc>
+         <lastmod>2026-01-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/misc/dev/building-openindiana/</loc>
+         <lastmod>2026-01-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/misc/dev/distribution-constructor/</loc>
+         <lastmod>2026-01-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/misc/dev/existing-tasks/</loc>
+         <lastmod>2026-01-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/misc/dev/graphics-stack/</loc>
+         <lastmod>2026-01-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/misc/dev/repo-cleanup/</loc>
+         <lastmod>2026-01-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/misc/dev/userland/</loc>
+         <lastmod>2026-01-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/misc/handbook/</loc>
+         <lastmod>2026-01-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/misc/handbook/appendix/</loc>
+         <lastmod>2026-01-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/misc/handbook/common-tasks/</loc>
+         <lastmod>2026-01-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/misc/handbook/community/</loc>
+         <lastmod>2026-01-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/misc/handbook/getting-started/</loc>
+         <lastmod>2026-01-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/misc/handbook/legacy-branch/</loc>
+         <lastmod>2026-01-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/misc/handbook/network-communications/</loc>
+         <lastmod>2026-01-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/misc/handbook/openindiana-download-mirrors/</loc>
+         <lastmod>2026-01-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/misc/handbook/pdfdocs/</loc>
+         <lastmod>2026-01-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/misc/handbook/sunray/</loc>
+         <lastmod>2026-01-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/misc/handbook/systems-administration/</loc>
+         <lastmod>2026-01-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/misc/handbook/community/inputmethod/</loc>
+         <lastmod>2026-01-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/misc/handbook/community/oracledb/</loc>
+         <lastmod>2026-01-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/misc/handbook/community/quikstor/</loc>
+         <lastmod>2026-01-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/misc/handbook/community/samqfs/</loc>
+         <lastmod>2026-01-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/misc/handbook/community/squeak/</loc>
+         <lastmod>2026-01-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/misc/handbook/community/texlive/</loc>
+         <lastmod>2026-01-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/misc/handbook/community/vagrant/</loc>
+         <lastmod>2026-01-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/misc/release-notes/</loc>
+         <lastmod>2026-01-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/misc/release-notes/2015.03-release-notes/</loc>
+         <lastmod>2026-01-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/misc/release-notes/2015.10-release-notes/</loc>
+         <lastmod>2026-01-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/misc/release-notes/2016.04-release-notes/</loc>
+         <lastmod>2026-01-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/misc/release-notes/2016.10-release-notes/</loc>
+         <lastmod>2026-01-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/misc/release-notes/2017.04-release-notes/</loc>
+         <lastmod>2026-01-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/misc/release-notes/2017.10-release-notes/</loc>
+         <lastmod>2026-01-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/misc/release-notes/2018.04-release-notes/</loc>
+         <lastmod>2026-01-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/misc/release-notes/2018.10-release-notes/</loc>
+         <lastmod>2026-01-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/misc/release-notes/2019.04-release-notes/</loc>
+         <lastmod>2026-01-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/misc/release-notes/2019.10-release-notes/</loc>
+         <lastmod>2026-01-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/misc/release-notes/2020.04-release-notes/</loc>
+         <lastmod>2026-01-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/misc/release-notes/2020.10-release-notes/</loc>
+         <lastmod>2026-01-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/misc/release-notes/latest-changes/</loc>
+         <lastmod>2026-01-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/release-notes/</loc>
-         <lastmod>2026-01-14</lastmod>
+         <lastmod>2026-01-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/release-notes/2015.03-release-notes/</loc>
-         <lastmod>2026-01-14</lastmod>
+         <lastmod>2026-01-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/release-notes/2015.10-release-notes/</loc>
-         <lastmod>2026-01-14</lastmod>
+         <lastmod>2026-01-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/release-notes/2016.04-release-notes/</loc>
-         <lastmod>2026-01-14</lastmod>
+         <lastmod>2026-01-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/release-notes/2016.10-release-notes/</loc>
-         <lastmod>2026-01-14</lastmod>
+         <lastmod>2026-01-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/release-notes/2017.04-release-notes/</loc>
-         <lastmod>2026-01-14</lastmod>
+         <lastmod>2026-01-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/release-notes/2017.10-release-notes/</loc>
-         <lastmod>2026-01-14</lastmod>
+         <lastmod>2026-01-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/release-notes/2018.04-release-notes/</loc>
-         <lastmod>2026-01-14</lastmod>
+         <lastmod>2026-01-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/release-notes/2018.10-release-notes/</loc>
-         <lastmod>2026-01-14</lastmod>
+         <lastmod>2026-01-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/release-notes/2019.04-release-notes/</loc>
-         <lastmod>2026-01-14</lastmod>
+         <lastmod>2026-01-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/release-notes/2019.10-release-notes/</loc>
-         <lastmod>2026-01-14</lastmod>
+         <lastmod>2026-01-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/release-notes/2020.04-release-notes/</loc>
-         <lastmod>2026-01-14</lastmod>
+         <lastmod>2026-01-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/release-notes/2020.10-release-notes/</loc>
-         <lastmod>2026-01-14</lastmod>
+         <lastmod>2026-01-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/release-notes/latest-changes/</loc>
-         <lastmod>2026-01-14</lastmod>
+         <lastmod>2026-01-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/retired/</loc>
-         <lastmod>2026-01-14</lastmod>
+         <lastmod>2026-01-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/retired/books/</loc>
-         <lastmod>2026-01-14</lastmod>
+         <lastmod>2026-01-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/retired/bsd/</loc>
-         <lastmod>2026-01-14</lastmod>
+         <lastmod>2026-01-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/retired/old-handbook/</loc>
-         <lastmod>2026-01-14</lastmod>
+         <lastmod>2026-01-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/retired/project/</loc>
-         <lastmod>2026-01-14</lastmod>
+         <lastmod>2026-01-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/retired/sphinx/</loc>
-         <lastmod>2026-01-14</lastmod>
+         <lastmod>2026-01-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://n00b-5634.github.io/OpenIndiana-SiteReimagined/retired/toolchain/</loc>
-         <lastmod>2026-01-14</lastmod>
+         <lastmod>2026-01-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>

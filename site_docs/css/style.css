@@ -479,4 +479,42 @@ body {
 .md-typeset .admonition > *:not(.admonition-title) {
     margin-left: 1.8rem;
 }
+.download-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 5%;
+}
+
+.download-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+}
+
+.download-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid var(--card-border);
+    background: var(--card-bg);
+    text-decoration: none;
+    color: var(--text-main);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.download-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+}
+
+.download-card img {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 0.75rem;
+}
 
