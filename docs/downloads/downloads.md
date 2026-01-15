@@ -6,50 +6,58 @@ Welcome! Click the links below to download the document you need.
 
 ## PDFs
 
-- 📄 **Ips Dev Guide** — [Download](../../../docs/dev/pdf/ips-dev-guide.pdf)
-- 📄 **How To Install Oracle DB** — [Download](../../../docs/handbook/pdf/HowToInstallOracleDB.pdf)
-- 📄 **Content** — [Download](../../../docs/pdf/contrib/content.pdf)
-- 📄 **Getting Started** — [Download](../../../docs/pdf/contrib/getting-started.pdf)
-- 📄 **Git** — [Download](../../../docs/pdf/contrib/git.pdf)
-- 📄 **Markdown** — [Download](../../../docs/pdf/contrib/markdown.pdf)
-- 📄 **Roles** — [Download](../../../docs/pdf/contrib/roles.pdf)
-- 📄 **Style** — [Download](../../../docs/pdf/contrib/style.pdf)
-- 📄 **Tools** — [Download](../../../docs/pdf/contrib/tools.pdf)
-- 📄 **Topics** — [Download](../../../docs/pdf/contrib/topics.pdf)
-- 📄 **Readme (Dev)** — [Download](../../../docs/pdf/dev/README.pdf)
-- 📄 **Building OpenIndiana** — [Download](../../../docs/pdf/dev/building-openindiana.pdf)
-- 📄 **Distribution Constructor** — [Download](../../../docs/pdf/dev/distribution-constructor.pdf)
-- 📄 **Existing Tasks** — [Download](../../../docs/pdf/dev/existing-tasks.pdf)
-- 📄 **Graphics Stack** — [Download](../../../docs/pdf/dev/graphics-stack.pdf)
-- 📄 **Repo Cleanup** — [Download](../../../docs/pdf/dev/repo-cleanup.pdf)
-- 📄 **Userland** — [Download](../../../docs/pdf/dev/userland.pdf)
-- 📄 **Readme (Handbook)** — [Download](../../../docs/pdf/handbook/README.pdf)
-- 📄 **Appendix** — [Download](../../../docs/pdf/handbook/appendix.pdf)
-- 📄 **Common Tasks** — [Download](../../../docs/pdf/handbook/common-tasks.pdf)
-- 📄 **Community** — [Download](../../../docs/pdf/handbook/community.pdf)
-- 📄 **Input Method** — [Download](../../../docs/pdf/handbook/community/inputmethod.pdf)
-- 📄 **Oracle DB** — [Download](../../../docs/pdf/handbook/community/oracledb.pdf)
-- 📄 **Quikstor** — [Download](../../../docs/pdf/handbook/community/quikstor.pdf)
-- 📄 **SamQfs** — [Download](../../../docs/pdf/handbook/community/samqfs.pdf)
-- 📄 **Squeak** — [Download](../../../docs/pdf/handbook/community/squeak.pdf)
-- 📄 **Texlive** — [Download](../../../docs/pdf/handbook/community/texlive.pdf)
-- 📄 **Vagrant** — [Download](../../../docs/pdf/handbook/community/vagrant.pdf)
-- 📄 **Getting Started (Handbook)** — [Download](../../../docs/pdf/handbook/getting-started.pdf)
-- 📄 **Legacy Branch** — [Download](../../../docs/pdf/handbook/legacy-branch.pdf)
-- 📄 **Network Communications** — [Download](../../../docs/pdf/handbook/network-communications.pdf)
-- 📄 **OpenIndiana Download Mirrors** — [Download](../../../docs/pdf/handbook/openindiana-download-mirrors.pdf)
-- 📄 **PDF Docs** — [Download](../../../docs/pdf/handbook/pdfdocs.pdf)
-- 📄 **Sunray** — [Download](../../../docs/pdf/handbook/sunray.pdf)
-- 📄 **Systems Administration** — [Download](../../../docs/pdf/handbook/systems-administration.pdf)
-- 📄 **Conduct** — [Download](../../../docs/pdf/misc/conduct.pdf)
-- 📄 **OI Docs** — [Download](../../../docs/pdf/misc/oi-docs.pdf)
-- 📄 **OpenIndiana** — [Download](../../../docs/pdf/misc/openindiana.pdf)
-- 📄 **PDL** — [Download](../../../docs/pdf/misc/pdl.pdf)
+### Contrib
+- 📄 **Content** — [Download](docs/pdf/contrib/content.pdf)
+- 📄 **Getting Started** — [Download](docs/pdf/contrib/getting-started.pdf)
+- 📄 **Git** — [Download](docs/pdf/contrib/git.pdf)
+- 📄 **Markdown** — [Download](docs/pdf/contrib/markdown.pdf)
+- 📄 **Roles** — [Download](docs/pdf/contrib/roles.pdf)
+- 📄 **Style** — [Download](docs/pdf/contrib/style.pdf)
+- 📄 **Tools** — [Download](docs/pdf/contrib/tools.pdf)
+- 📄 **Topics** — [Download](docs/pdf/contrib/topics.pdf)
+
+### Dev
+- 📄 **Building OpenIndiana** — [Download](docs/pdf/dev/building-openindiana.pdf)
+- 📄 **Distribution Constructor** — [Download](docs/pdf/dev/distribution-constructor.pdf)
+- 📄 **Existing Tasks** — [Download](docs/pdf/dev/existing-tasks.pdf)
+- 📄 **Graphics Stack** — [Download](docs/pdf/dev/graphics-stack.pdf)
+- 📄 **Readme** — [Download](docs/pdf/dev/README.pdf)
+- 📄 **Repo Cleanup** — [Download](docs/pdf/dev/repo-cleanup.pdf)
+- 📄 **Userland** — [Download](docs/pdf/dev/userland.pdf)
+
+### Handbook
+- 📄 **Appendix** — [Download](docs/pdf/handbook/appendix.pdf)
+- 📄 **Common Tasks** — [Download](docs/pdf/handbook/common-tasks.pdf)
+- 📄 **Community** — [Download](docs/pdf/handbook/community.pdf)
+- 📄 **Getting Started** — [Download](docs/pdf/handbook/getting-started.pdf)
+- 📄 **Legacy Branch** — [Download](docs/pdf/handbook/legacy-branch.pdf)
+- 📄 **Network Communications** — [Download](docs/pdf/handbook/network-communications.pdf)
+- 📄 **OpenIndiana Download Mirrors** — [Download](docs/pdf/handbook/openindiana-download-mirrors.pdf)
+- 📄 **PDF Docs** — [Download](docs/pdf/handbook/pdfdocs.pdf)
+- 📄 **Readme** — [Download](docs/pdf/handbook/README.pdf)
+- 📄 **Sunray** — [Download](docs/pdf/handbook/sunray.pdf)
+- 📄 **Systems Administration** — [Download](docs/pdf/handbook/systems-administration.pdf)
+
+#### Handbook Community
+- 📄 **Input Method** — [Download](docs/pdf/handbook/community/inputmethod.pdf)
+- 📄 **Oracle DB** — [Download](docs/pdf/handbook/community/oracledb.pdf)
+- 📄 **Quikstor** — [Download](docs/pdf/handbook/community/quikstor.pdf)
+- 📄 **SamQfs** — [Download](docs/pdf/handbook/community/samqfs.pdf)
+- 📄 **Squeak** — [Download](docs/pdf/handbook/community/squeak.pdf)
+- 📄 **Texlive** — [Download](docs/pdf/handbook/community/texlive.pdf)
+- 📄 **Vagrant** — [Download](docs/pdf/handbook/community/vagrant.pdf)
+
+### Misc
+- 📄 **Conduct** — [Download](docs/pdf/misc/conduct.pdf)
+- 📄 **OI Docs** — [Download](docs/pdf/misc/oi-docs.pdf)
+- 📄 **OpenIndiana** — [Download](docs/pdf/misc/openindiana.pdf)
+- 📄 **PDL** — [Download](docs/pdf/misc/pdl.pdf)
 
 ---
 
 ## EPUBs
 
+### Contrib
 - 📚 **Content** — [Download](docs/epub/contrib/content.epub)
 - 📚 **Getting Started** — [Download](docs/epub/contrib/getting-started.epub)
 - 📚 **Git** — [Download](docs/epub/contrib/git.epub)
@@ -58,17 +66,30 @@ Welcome! Click the links below to download the document you need.
 - 📚 **Style** — [Download](docs/epub/contrib/style.epub)
 - 📚 **Tools** — [Download](docs/epub/contrib/tools.epub)
 - 📚 **Topics** — [Download](docs/epub/contrib/topics.epub)
-- 📚 **Readme (Dev)** — [Download](docs/epub/dev/README.epub)
+
+### Dev
 - 📚 **Building OpenIndiana** — [Download](docs/epub/dev/building-openindiana.epub)
 - 📚 **Distribution Constructor** — [Download](docs/epub/dev/distribution-constructor.epub)
 - 📚 **Existing Tasks** — [Download](docs/epub/dev/existing-tasks.epub)
 - 📚 **Graphics Stack** — [Download](docs/epub/dev/graphics-stack.epub)
+- 📚 **Readme** — [Download](docs/epub/dev/README.epub)
 - 📚 **Repo Cleanup** — [Download](docs/epub/dev/repo-cleanup.epub)
 - 📚 **Userland** — [Download](docs/epub/dev/userland.epub)
-- 📚 **Readme (Handbook)** — [Download](docs/epub/handbook/README.epub)
+
+### Handbook
 - 📚 **Appendix** — [Download](docs/epub/handbook/appendix.epub)
 - 📚 **Common Tasks** — [Download](docs/epub/handbook/common-tasks.epub)
 - 📚 **Community** — [Download](docs/epub/handbook/community.epub)
+- 📚 **Getting Started** — [Download](docs/epub/handbook/getting-started.epub)
+- 📚 **Legacy Branch** — [Download](docs/epub/handbook/legacy-branch.epub)
+- 📚 **Network Communications** — [Download](docs/epub/handbook/network-communications.epub)
+- 📚 **OpenIndiana Download Mirrors** — [Download](docs/epub/handbook/openindiana-download-mirrors.epub)
+- 📚 **PDF Docs** — [Download](docs/epub/handbook/pdfdocs.epub)
+- 📚 **Readme** — [Download](docs/epub/handbook/README.epub)
+- 📚 **Sunray** — [Download](docs/epub/handbook/sunray.epub)
+- 📚 **Systems Administration** — [Download](docs/epub/handbook/systems-administration.epub)
+
+#### Handbook Community
 - 📚 **Input Method** — [Download](docs/epub/handbook/community/inputmethod.epub)
 - 📚 **Oracle DB** — [Download](docs/epub/handbook/community/oracledb.epub)
 - 📚 **Quikstor** — [Download](docs/epub/handbook/community/quikstor.epub)
@@ -76,15 +97,9 @@ Welcome! Click the links below to download the document you need.
 - 📚 **Squeak** — [Download](docs/epub/handbook/community/squeak.epub)
 - 📚 **Texlive** — [Download](docs/epub/handbook/community/texlive.epub)
 - 📚 **Vagrant** — [Download](docs/epub/handbook/community/vagrant.epub)
-- 📚 **Getting Started (Handbook)** — [Download](docs/epub/handbook/getting-started.epub)
-- 📚 **Legacy Branch** — [Download](docs/epub/handbook/legacy-branch.epub)
-- 📚 **Network Communications** — [Download](docs/epub/handbook/network-communications.epub)
-- 📚 **OpenIndiana Download Mirrors** — [Download](docs/epub/handbook/openindiana-download-mirrors.epub)
-- 📚 **PDF Docs** — [Download](docs/epub/handbook/pdfdocs.epub)
-- 📚 **Sunray** — [Download](docs/epub/handbook/sunray.epub)
-- 📚 **Systems Administration** — [Download](docs/epub/handbook/systems-administration.epub)
+
+### Misc
 - 📚 **Conduct** — [Download](docs/epub/misc/conduct.epub)
 - 📚 **OI Docs** — [Download](docs/epub/misc/oi-docs.epub)
 - 📚 **OpenIndiana** — [Download](docs/epub/misc/openindiana.epub)
 - 📚 **PDL** — [Download](docs/epub/misc/pdl.epub)
-
