@@ -517,4 +517,8 @@ body {
     height: 48px;
     margin-bottom: 0.75rem;
 }
+/* Use Markdown H1 as the single source of truth */
+.doc-header {
+    display: none;
+}
 
